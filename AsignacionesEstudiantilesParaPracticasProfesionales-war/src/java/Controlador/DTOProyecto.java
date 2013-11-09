@@ -7,7 +7,7 @@
 package Controlador;
 
 /**
- * hola chicos
+ * 
  * @author milton
  */
 public class DTOProyecto {
