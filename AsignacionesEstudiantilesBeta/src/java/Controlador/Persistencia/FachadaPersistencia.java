@@ -4,8 +4,9 @@
  */
 package Controlador.Persistencia;
 
+import Modelo.Criterio;
 import java.util.List;
-
+import java.util.ArrayList;
 /**
  *
  * @author milton
@@ -16,11 +17,16 @@ public class FachadaPersistencia {
         if(instancia == null)instancia = new FachadaPersistencia();
         return instancia;
     }
-    
-    public List<Object> Buscar(String tipo,String codigo){
-        FactoriaIntermediarioPersistencia fip = FactoriaIntermediarioPersistencia.obtenerInstancia();
-        IntermediarioPersistencia ip = fip.obtenerIntermediarioPersistencia(tipo);
-        List<Object> resultado = ip.Buscar(codigo);
-        return resultado;
+
+    public FachadaPersistencia() {
     }
+    
+    public List<Object> buscar(String tipoEntidad,Criterio criterio){
+        return FachadaPersistenciaInterna.getInstancia().buscar(criterio, tipoEntidad);
+    }
+    
+    public void guardar(Object obj, String nomEnt){
+        FachadaPersistenciaInterna.getInstancia().guardar(obj, nomEnt);
+    }
+    
 }

@@ -5,12 +5,19 @@
 package Controlador.Persistencia;
 
 import java.util.List;
+import Modelo.Criterio; 
 
 /**
  *
  * @author milton
  */
-public interface IntermediarioPersistencia {
-    public List<Object> Buscar(String codigo);
-    public boolean guardar(Object object);
+public abstract class IntermediarioPersistencia {
+    public abstract List<Object> buscar(Criterio criterio){
+        
+    }
+    public abstract List<Object> buscar(String oid);
+    public abstract boolean guardar(Object object);
+    public abstract List<Object> materializar(Criterio criterio);
+    public abstract List<Object> materializar(String oid);
+    public abstract boolean desmaterializar(Object o);
 }

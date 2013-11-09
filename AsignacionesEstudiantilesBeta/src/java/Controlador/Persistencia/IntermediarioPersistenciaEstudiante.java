@@ -19,10 +19,10 @@ import java.util.logging.Logger;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaEstudiante implements IntermediarioPersistencia{
+public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
 
     @Override
-    public List<Object> Buscar(String codigo) {
+    public List<Object> Buscar(String codigo/*busca por un entero no String*/) {
         List<Object> listaResultado = new ArrayList<>();
         try {
             Connection c = Conexion.getConnection();
@@ -54,6 +54,8 @@ public class IntermediarioPersistenciaEstudiante implements IntermediarioPersist
             Statement st = c.createStatement();
             String query ="INSERT INTO Estudiantes";
             ResultSet resultSet = st.executeQuery(query);
+            //falta commit y close()??
+            //return si termina el catch no deveria pasar a True??
             
         } catch (SQLException ex) {
             Logger.getLogger(IntermediarioPersistenciaEstudiante.class.getName()).log(Level.SEVERE, null, ex);

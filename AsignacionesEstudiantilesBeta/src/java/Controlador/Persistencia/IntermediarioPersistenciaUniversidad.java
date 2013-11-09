@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaUniversidad implements IntermediarioPersistencia{
+public class IntermediarioPersistenciaUniversidad extends IntermediarioPersistenciaRelacional{
 
     @Override
     public List<Object> Buscar(String codigo) {
