@@ -15,6 +15,6 @@ import java.util.List;
  * @author yanina
  */
 public interface EstrategiaCalcularOrdenMerito {
-    public List<SeleccionPostulacionProyectoCargo> asignarOrdenMerito(Seleccion seleccion);
+    public List<SeleccionPostulacionProyectoCargo> asignarOrdenMerito(List<Seleccion> ListaSeleccion);
     
 }
