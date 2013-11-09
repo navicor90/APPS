@@ -6,6 +6,7 @@
 
 package Controlador;
 
+import Modelo.DTO.*;
 /**
  *
  * @author milton
