@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class PostulacionProyectoCargo {
     private String prioridad;
+    private int codPostulacionProyectoCargo;
     private List<PostulacionProyectoCargoEstado> postProyecCargoEstado;
     private Proyecto proyecto;
     private Universidad universidad;
@@ -63,6 +64,16 @@ public class PostulacionProyectoCargo {
     public void setProyectoCargo(ProyectoCargo proyectoCargo) {
         this.proyectoCargo = proyectoCargo;
     }
+
+    public int getCodPostulacionProyectoCargo() {
+        return codPostulacionProyectoCargo;
+    }
+
+    public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo) {
+        this.codPostulacionProyectoCargo = codPostulacionProyectoCargo;
+    }
+    
+    
     
     
     
