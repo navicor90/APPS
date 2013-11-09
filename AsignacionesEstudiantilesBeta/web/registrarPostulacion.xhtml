@@ -5,17 +5,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Listar Proyectos - #{userBean.legajo}</title>
-        <h:outputStylesheet library="css" name="style.css"  />
+        <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
         <h1>Listar Proyectos</h1>
         <h:dataTable value="#{userBean.listaProyecto}" var="proyecto"
-                     styleClass="proyectosTable"
-                     headerClass="proyectosTableHeader"
-                     rowClasses="proyectosTableOddRow,proyectosTableEvenRow">
+                     styleClass="proyectoTable"
+                     headerClass="proyectoTableHeader"
+                     rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
             <h:column>    				
                 <f:facet name="header">Nombre</f:facet>    				
-                    #{proyecto.nomProyecto}
+                <h:link hreflang="#" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Descripcion</f:facet>

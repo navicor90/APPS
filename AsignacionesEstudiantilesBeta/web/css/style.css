@@ -7,24 +7,35 @@ and open the template in the editor.
     Created on : 09/11/2013, 12:19:24
     Author     : milton
 */
-.proyectosTable{   
+
+.na{
+    color: blue;
+    font-size: 40px;
+}
+.proyectoTable{   
    border-collapse:collapse;
    border:1px solid #000000;
 }
 
-.proyectosTableHeader{
+.proyectoTableHeader{
    text-align:center;
    background:none repeat scroll 0 0 #B5B5B5;
    border-bottom:1px solid #000000;  
    padding:2px;
 }
 
-.proyectosTableOddRow{
+.proyectoTableOddRow{
    text-align:center;
-   background:none repeat scroll 0 0 #FFFFFFF;	
+   background:none repeat scroll 0 0 #FFFFFF;
 }
 
-.proyectosTableEvenRow{
+.proyectoTableEvenRow{
    text-align:center;
    background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.linkProyecto{
+   text-align:center;
+   text-decoration: none;
+   color: tomato;
 }
