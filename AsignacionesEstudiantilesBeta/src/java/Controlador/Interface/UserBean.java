@@ -5,6 +5,7 @@
  */
 package ControladorInterface;
 
+import Controlador.ControladorRegistrarPostulacion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -25,6 +26,7 @@ public class UserBean {
         private String nombre = "ivan";
         private String apellido = "terreno";
         private String mail = "ivan@celeste.com.ar";
+        private ControladorRegistrarPostulacion controlador;
 
     /**
      * Get the value of legajo
