@@ -5,14 +5,15 @@
  */
 
 package Controlador;
-
+import Modelo.DTO.*;
+import java.util.List;
 /**
  *
  * @author milton
  */
 public class ExpertoRegistrarPostulacion {
     
-    public DTOProyecto listarProyectos(long legajo, int codUniversidad){
+    public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad){
         return null;
     }
     

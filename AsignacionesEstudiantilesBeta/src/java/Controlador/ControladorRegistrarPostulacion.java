@@ -6,13 +6,20 @@
 
 package Controlador;
 
+import Modelo.DTO.*;
+import java.util.List;
 /**
  *
  * @author milton
  */
 public class ControladorRegistrarPostulacion {
     ExpertoRegistrarPostulacion experto;
-    public DTOProyecto listarProyectos(long legajo, String url){
+
+    public ControladorRegistrarPostulacion() {
+        this.experto = new ExpertoRegistrarPostulacion();
+    }
+    
+    public List<DTOProyecto> listarProyectos(long legajo, String url){
         int codUniversidad=2;
         return experto.listarProyectos(legajo, codUniversidad);
     }
