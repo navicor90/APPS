@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 
-package Controlador;
+package Modelo;
 
 /**
- * hola chicos
- * @author milton
+ *
+ * @author yanina
  */
-public class DTOProyecto {
-    
+public class ProyectoCargoCarrera {
+    private int cantMatReg;
+    private int cantMarRend;
+    private Carrera carre;
 }

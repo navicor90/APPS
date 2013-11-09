@@ -2,33 +2,43 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.DTO;
 
 /**
  *
- * @author milton
+ * @author yanina
  */
-public class Estudiante {
-private String legajo;
-private String nombre;
-private String apellido;
-private String email;
-private Long dni;
-private String tipoDni;
-private Long telefono;
-private Universidad universidad;
-private EstadoEstudiante estadoEstu;
+public class DtoEstudiante {
+    private String legajo;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private Long dni;
+    private String tipoDni;
+    private Long telefono;
 
-    public Estudiante() {
-    }
-
-    
     public String getLegajo() {
         return legajo;
     }
 
     public void setLegajo(String legajo) {
         this.legajo = legajo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getEmail() {
@@ -63,30 +73,5 @@ private EstadoEstudiante estadoEstu;
         this.telefono = telefono;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public Universidad getUniversidad() {
-        return universidad;
-    }
-
-    public void setUniversidad(Universidad universidad) {
-        this.universidad = universidad;
-    }
     
-
-
 }
