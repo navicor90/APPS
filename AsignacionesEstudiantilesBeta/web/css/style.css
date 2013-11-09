@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09/11/2013, 12:19:24
+    Author     : milton
+*/
+
+.na{
+    color: blue;
+    font-size: 40px;
+}
+.proyectoTable{   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.proyectoTableHeader{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.proyectoTableOddRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFF;
+}
+
+.proyectoTableEvenRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.linkProyecto{
+   text-align:center;
+   text-decoration: none;
+   color: tomato;
+}

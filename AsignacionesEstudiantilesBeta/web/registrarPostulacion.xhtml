@@ -1,12 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>NA NA NA NA NA BATMAN</title>
+        <title>Listar Proyectos - #{userBean.legajo}</title>
+        <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
-        NA NA NA NA NA BATMAN
+        <h1>Listar Proyectos</h1>
+        <h:dataTable value="#{userBean.listaProyecto}" var="proyecto"
+                     styleClass="proyectoTable"
+                     headerClass="proyectoTableHeader"
+                     rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
+            <h:column>    				
+                <f:facet name="header">Nombre</f:facet>    				
+                <h:link hreflang="#" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripcion</f:facet>
+                    #{proyecto.descripcion}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha Inicio</f:facet>
+                    #{proyecto.fechaInicio}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Duracion</f:facet>
+                    #{proyecto.duracion}
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
 

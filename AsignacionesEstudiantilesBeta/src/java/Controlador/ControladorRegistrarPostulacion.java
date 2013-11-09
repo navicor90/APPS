@@ -14,6 +14,11 @@ import java.util.List;
  */
 public class ControladorRegistrarPostulacion {
     ExpertoRegistrarPostulacion experto;
+
+    public ControladorRegistrarPostulacion() {
+        this.experto = new ExpertoRegistrarPostulacion();
+    }
+    
     public List<DTOProyecto> listarProyectos(long legajo, String url){
         int codUniversidad=2;
         return experto.listarProyectos(legajo, codUniversidad);
