@@ -6,6 +6,7 @@
 package ControladorInterface;
 
 import Controlador.ControladorRegistrarPostulacion;
+import Modelo.DTO.DTOProyecto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -73,13 +74,16 @@ public class UserBean {
     
     public String validar() {
         String pagina="index.html";
-        HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaa"+origRequest.getRequestURI());
         Long constante=1234L;
         if(legajo == constante){
             pagina = "home.xhtml";
         }
         return pagina;
     }
-
+    
+    public List<DTOProyecto> listarProyectos(){
+        HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String URL = origRequest.getRequestURI();
+        return controlador.listarProyectos(legajo,URL);
+    }
 }
