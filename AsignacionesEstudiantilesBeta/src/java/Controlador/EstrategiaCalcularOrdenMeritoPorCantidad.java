@@ -8,6 +8,7 @@ package Controlador;
 
 import Modelo.Seleccion;
 import Modelo.SeleccionPostulacionProyectoCargo;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class EstrategiaCalcularOrdenMeritoPorCantidad implements EstrategiaCalcu
     
     public List<SeleccionPostulacionProyectoCargo> asignarOrdenMerito(List<Seleccion> ListaSeleccion) {
         
-        List <SeleccionPostulacionProyectoCargo> selec;
+        List <SeleccionPostulacionProyectoCargo> selec= new ArrayList<>();
         for(Seleccion s: ListaSeleccion){
             int codPPC=s.getSeleccionPostulacionProyectoCargo().getPostulacionPC().getCodPostulacionProyectoCargo();
            
@@ -29,5 +30,9 @@ public class EstrategiaCalcularOrdenMeritoPorCantidad implements EstrategiaCalcu
         
         return selec;
                 }
+
+   
+
+    
     
 }
