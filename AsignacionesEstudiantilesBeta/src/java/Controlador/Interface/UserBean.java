@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControladorInterface;
+package Controlador.Interface;
 
 import Controlador.ControladorRegistrarPostulacion;
 import Modelo.DTO.DTOProyecto;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 
@@ -81,9 +82,25 @@ public class UserBean {
         return pagina;
     }
     
-    public List<DTOProyecto> listarProyectos(){
-        HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String URL = origRequest.getRequestURI();
-        return controlador.listarProyectos(legajo,URL);
+    public List<DTOProyecto> getListaProyecto() {
+        return listarProyectos();
+    }     
+    
+    private List<DTOProyecto> listarProyectos(){
+        //HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        //String URL = origRequest.getRequestURI();
+        //ListaProyecto = controlador.listarProyectos(legajo,URL);
+        List<DTOProyecto> r = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            DTOProyecto d = new DTOProyecto();
+            d.setDescripcion(Integer.toString(i));
+            d.setNomProyecto(Integer.toString(i));
+            d.setDuracion(i);
+            d.setFechaInicio(new Date());
+            r.add(d);
+        }
+        return r;
     }
+    
+    
 }
