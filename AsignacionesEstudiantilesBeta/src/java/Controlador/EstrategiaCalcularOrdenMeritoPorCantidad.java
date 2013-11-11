@@ -23,13 +23,13 @@ public class EstrategiaCalcularOrdenMeritoPorCantidad implements EstrategiaCalcu
         List <SeleccionPostulacionProyectoCargo> selec= new ArrayList<>();
         for(Seleccion s: ListaSeleccion){
             int codPPC=s.getSeleccionPostulacionProyectoCargo().getPostulacionPC().getCodPostulacionProyectoCargo();
-           
+            
         //selec.add(s.getSeleccionPostulacionProyectoCargo());
             
         }
         
         return selec;
-                }
+     }
 
    
 
