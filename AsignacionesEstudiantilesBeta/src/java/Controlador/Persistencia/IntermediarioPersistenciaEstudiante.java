@@ -4,6 +4,7 @@
  */
 package Controlador.Persistencia;
 
+import Modelo.Criterio;
 import Modelo.Estudiante;
 import Modelo.Universidad;
 import java.sql.Connection;
@@ -19,10 +20,24 @@ import java.util.logging.Logger;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
-
+public abstract class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
+    /* esto es nuevo
     @Override
-    public List<Object> Buscar(String codigo/*busca por un entero no String*/) {
+    public abstract List<Object> convertirRegistroAObjeto(ResultSet a);
+    @Override
+    public abstract String convertirObjectoRegistro(Object obj);
+    @Override
+    public abstract String armarConsultaSeleccion(Criterio cri);
+    @Override
+    public abstract String armarConsultaSeleccion(String oid);
+    @Override
+    public abstract String armarConsultaInsercion(Object objInsert);
+    @Override
+    public abstract String armarConsultaActualizacion(Object objUpdate);
+    */
+    /* Esto es lo que estaba hecho antes
+    @Override
+    public List<Object> materializar() {
         List<Object> listaResultado = new ArrayList<>();
         try {
             Connection c = Conexion.getConnection();
@@ -64,8 +79,5 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
         }
     }
     
-    
-    
-    
-    
+    */
 }
