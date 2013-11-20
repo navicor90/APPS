@@ -4,7 +4,8 @@
  */
 package Controlador.Persistencia;
 
-import Modelo.Estudiante;
+import Modelo.Criterio;
+import Modelo.ImplementacionEstudiante;
 import Modelo.Universidad;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,10 +20,40 @@ import java.util.logging.Logger;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaEstudiante implements IntermediarioPersistencia{
-
+public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
+    
     @Override
-    public List<Object> Buscar(String codigo) {
+    public List<Object> convertirRegistroAObjeto(ResultSet rs){
+        List<AgenteEstudiante> estudiantes;
+        while(a.next()){
+            ImplementacionEstudiante estudianteI = new ImplementacionEstudiante();
+            AgenteEstudiante estudianteA = new AgenteEstudiante(estudianteI);
+            estudianteI.setApellido(rs.getString("apellido"));
+            estudianteI.setDni(rs.getLong("dni"));
+            estudianteI.setEmail(rs.getString("email"));
+            estudianteI.setLegajo(rs.getString("legajo"));
+            estudianteI.setNombre(rs.getString("nombre"));
+            estudianteI.setTelefono(rs.getLong("telefono"));
+            estudianteI.setTipoDni(rs.getString("tipoDni"));
+            estudianteI.set
+            
+        }
+    }
+    /* esto es nuevo
+    @Override
+    public abstract String convertirObjectoRegistro(Object obj);
+    @Override
+    public abstract String armarConsultaSeleccion(Criterio cri);
+    @Override
+    public abstract String armarConsultaSeleccion(String oid);
+    @Override
+    public abstract String armarConsultaInsercion(Object objInsert);
+    @Override
+    public abstract String armarConsultaActualizacion(Object objUpdate);
+    */
+    /* Esto es lo que estaba hecho antes
+    @Override
+    public List<Object> materializar() {
         List<Object> listaResultado = new ArrayList<>();
         try {
             Connection c = Conexion.getConnection();
@@ -54,6 +85,8 @@ public class IntermediarioPersistenciaEstudiante implements IntermediarioPersist
             Statement st = c.createStatement();
             String query ="INSERT INTO Estudiantes";
             ResultSet resultSet = st.executeQuery(query);
+            //falta commit y close()??
+            //return si termina el catch no deveria pasar a True??
             
         } catch (SQLException ex) {
             Logger.getLogger(IntermediarioPersistenciaEstudiante.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,8 +95,5 @@ public class IntermediarioPersistenciaEstudiante implements IntermediarioPersist
         }
     }
     
-    
-    
-    
-    
+    */
 }

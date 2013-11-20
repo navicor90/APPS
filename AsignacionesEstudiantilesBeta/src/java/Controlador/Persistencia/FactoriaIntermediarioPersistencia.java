@@ -18,10 +18,15 @@ public class FactoriaIntermediarioPersistencia {
     
     public IntermediarioPersistencia obtenerIntermediarioPersistencia(String tipo){
         IntermediarioPersistencia intermediario;
-        intermediario = (tipo.contentEquals(Estudiante.class.getName()))?
-                new IntermediarioPersistenciaEstudiante(): null;
-        intermediario = (tipo.contentEquals(Universidad.class.getName()))?
-                new IntermediarioPersistenciaUniversidad(): null;
+        switch(tipo){ 
+            case "Estudiante":
+                intermediario = new IntermediarioPersistenciaEstudiante();
+                break;
+            case "Universidad":
+                intermediario = new IntermediarioPersistenciaUniversidad();
+            default:
+                intermediario = null;
+        }
         return intermediario;
     }
 }
