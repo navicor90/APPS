@@ -4,7 +4,7 @@
  */
 package Controlador.Persistencia;
 
-import Modelo.Criterio;
+import Modelo.Expresion;
 import java.sql.ResultSet;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public abstract class IntermediarioPersistenciaUniversidad extends Intermediario
     @Override
     public abstract String convertirObjectoRegistro(Object obj);
     @Override
-    public abstract String armarConsultaSeleccion(Criterio cri);
+    public abstract String armarConsultaSeleccion(Expresion cri);
     @Override
     public abstract String armarConsultaSeleccion(String oid);
     @Override

@@ -16,13 +16,15 @@ import java.sql.SQLException;
 public abstract class IntermediarioPersistenciaRelacional extends IntermediarioPersistencia{
     @Override
     public List<Object> materializar(Expresion c){
-        ResultSet rs;
+        ResultSet rs = null;
+        List<Object> agente = new ArrayList<>();
         try{
         rs = FachadaPersistenciaInterna.getInstancia().st.executeQuery(armarConsultaSeleccion(c));
+        
+        agente = convertirRegistroAObjeto(rs);
         }catch(SQLException exception){
-            
+            //implementar excepcion
         }
-        List<Object> agente = convertirRegistroAObjeto(rs);
         return agente;
     }
     @Override
