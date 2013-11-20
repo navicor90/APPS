@@ -4,32 +4,27 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Listar Proyectos - #{userBean.legajo}</title>
+        <title>Listar Proyecto Cargo - #{userBean.legajo}</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
-        <h1>Listar Proyectos</h1>
-        <h:dataTable value="#{userBean.listaProyecto}" var="proyecto"
+        <h1>Seleccionar ProyectoCargo</h1>
+        <h:dataTable value="#{userBean.listaProyectoCargo}" var="proyectoCargo"
                      styleClass="proyectoTable"
                      headerClass="proyectoTableHeader"
                      rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
             <h:column>    				
-                <f:facet name="header">Nombre</f:facet>    				
-                <h:link hreflang="#" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
+                <f:facet name="header">Nombre -</f:facet>    				
+                <h:link hreflang="#" value="#{proyectoCargo.nombreProyectoCargo}" styleClass="linkProyecto"/>
             </h:column>
             <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                    #{proyecto.descripcion}
+                <f:facet name="header">Descripcion -</f:facet>
+                    #{proyectoCargo.descripcion}
             </h:column>
             <h:column>
-                <f:facet name="header">Fecha Inicio</f:facet>
-                    #{proyecto.fechaInicio}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Duracion</f:facet>
-                    #{proyecto.duracion}
+                <f:facet name="header">Horas dedicadas</f:facet>
+                    #{proyectoCargo.horasDedicadas}
             </h:column>
         </h:dataTable>
     </h:body>
 </html>
-
