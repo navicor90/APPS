@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+//http://balusoft.wordpress.com/2011/07/12/usar-un-archivo-xml-como-una-base-de-datos-java-parte-12/
+
+-->
+
+
+<EstadoAcademico>
+    <Alumno>
+        <tipoDocumento>DNI</tipoDocumento>
+        <dni>11111111</dni>
+        <Carrera>
+            <nombre>Ingenieria en Sistemas</nombre>
+            <legajo>1111</legajo>
+            <estado>regular</estado>
+            <fechaIngreso>febro</fechaIngreso>
+            <fechaBaja>julio</fechaBaja>
+        </Carrera>   
+        <Carrera>   
+            <nombre>Programacion</nombre>
+            <legajo>31904</legajo>
+            <estado>libre</estado>
+            <fechaIngreso>julio</fechaIngreso>
+            <fechaBaja>febrero</fechaBaja>        
+        </Carrera>
+    </Alumno>
+    <Alumno>
+        <tipoDocumento>DNI</tipoDocumento>
+        <dni>22222222</dni>
+        <Carrera>
+            <nombre>Ingenieria en Electronica</nombre>
+            <legajo>1111</legajo>
+            <estado>regular</estado>
+            <fechaIngreso>febro</fechaIngreso>
+            <fechaBaja>julio</fechaBaja>
+        </Carrera>   
+        <Carrera>   
+            <nombre>redes</nombre>
+            <legajo>00000</legajo>
+            <estado>libre</estado>
+            <fechaIngreso>julio</fechaIngreso>
+            <fechaBaja>febrero</fechaBaja>        
+        </Carrera>
+    </Alumno>
+</EstadoAcademico>
