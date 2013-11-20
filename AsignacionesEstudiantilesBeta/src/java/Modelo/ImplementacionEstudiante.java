@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author milton
  */
-public class Estudiante {
+public class ImplementacionEstudiante {
 private String legajo;
 private String nombre;
 private String apellido;
@@ -19,7 +19,7 @@ private Long telefono;
 private Universidad universidad;
 private EstadoEstudiante estadoEstu;
 
-    public Estudiante() {
+    public ImplementacionEstudiante() {
     }
 
     

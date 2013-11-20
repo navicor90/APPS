@@ -1,7 +1,7 @@
 package Modelo;
 
 
-import Modelo.Estudiante;
+import Modelo.ImplementacionEstudiante;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Postulacion {
     private Date fechaHoraPostulacion;
     private int nroPostulacion;
     private List<PostulacionProyectoCargo> pC;
-    private Estudiante es;
+    private ImplementacionEstudiante es;
 
     public Postulacion() {
     }
@@ -60,11 +60,11 @@ public class Postulacion {
 
     
 
-    public Estudiante getEs() {
+    public ImplementacionEstudiante getEs() {
         return es;
     }
 
-    public void setEs(Estudiante es) {
+    public void setEs(ImplementacionEstudiante es) {
         this.es = es;
     }
     

@@ -4,7 +4,7 @@
  */
 package Controlador.Persistencia;
 
-import Modelo.Criterio;
+import Modelo.Expresion;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,6 +15,7 @@ import java.sql.Statement;
  */
 public abstract class FachadaPersistenciaInterna {
     static FachadaPersistenciaInterna instancia;
+    Statement st;
     public static FachadaPersistenciaInterna getInstancia(){
         /*if(instancia == null) instancia = new FachadaPersistenciaInterna()*/;
         return instancia;
@@ -23,7 +24,7 @@ public abstract class FachadaPersistenciaInterna {
 public FachadaPersistenciaInterna() {
     }
 
-public List<Object> buscar(Criterio c, String nomEntidad){
+public List<Object> buscar(Expresion c, String nomEntidad){
     return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nomEntidad).buscar(c);
     }
 public Object buscar(String oid, String nomEnt){
@@ -32,7 +33,7 @@ public Object buscar(String oid, String nomEnt){
 public void iniciarTransaccion(){
     try{
     Connection con = Conexion.getConnection();
-    Statement st = con.createStatement();
+    st = con.createStatement();
     }catch(SQLException a){
         /*manejo excepcion*/
     }

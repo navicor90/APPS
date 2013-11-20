@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author franco
  */
-public class Criterio {
+public class Criterio extends Expresion{
     private String atributo;
     private String operador;
     private Object valor;
@@ -16,6 +16,12 @@ public class Criterio {
     public Criterio() {
     }
 
+    public Criterio(String atributo, String operador, Object valor) {
+        this.atributo = atributo;
+        this.operador = operador;
+        this.valor = valor;
+    }
+    
     public String getAtributo() {
         return atributo;
     }

@@ -5,7 +5,7 @@
 package Controlador.Persistencia;
 
 import Modelo.Criterio;
-import Modelo.Estudiante;
+import Modelo.ImplementacionEstudiante;
 import Modelo.Universidad;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -20,10 +20,18 @@ import java.util.logging.Logger;
  *
  * @author milton
  */
-public abstract class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
-    /* esto es nuevo
+public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
+    
     @Override
-    public abstract List<Object> convertirRegistroAObjeto(ResultSet a);
+    public List<Object> convertirRegistroAObjeto(ResultSet rs){
+        List<AgenteEstudiante> estudiantes;
+        while(a.next()){
+            ImplementacionEstudiante estudianteI = new ImplementacionEstudiante();
+            AgenteEstudiante estudianteA = new AgenteEstudiante(estudianteI);
+            estudianteI.setApellido(rs.getInt(""));
+        }
+    }
+    /* esto es nuevo
     @Override
     public abstract String convertirObjectoRegistro(Object obj);
     @Override

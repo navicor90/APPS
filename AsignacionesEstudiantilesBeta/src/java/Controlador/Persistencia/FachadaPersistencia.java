@@ -4,7 +4,7 @@
  */
 package Controlador.Persistencia;
 
-import Modelo.Criterio;
+import Modelo.Expresion;
 import java.util.List;
 import java.util.ArrayList;
 /**
@@ -21,7 +21,7 @@ public class FachadaPersistencia {
     public FachadaPersistencia() {
     }
     
-    public List<Object> buscar(String tipoEntidad,Criterio criterio){
+    public List<Object> buscar(String tipoEntidad,Expresion criterio){
         return FachadaPersistenciaInterna.getInstancia().buscar(criterio, tipoEntidad);
     }
     
