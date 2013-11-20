@@ -12,11 +12,20 @@ import java.util.Date;
  *
  * @author yanina
  */
-class DTOProyectoCargo {
+public class DTOProyectoCargo {
     private String descripcion;
-    private Date horasDedicadas;
+    private double horasDedicadas;
     private int nroProyectoCargo;
+    private String nombreProyectoCargo;
 
+    public String getNombreProyectoCargo() {
+        return nombreProyectoCargo;
+    }
+
+    public void setNombreProyectoCargo(String nombreProyectoCargo) {
+        this.nombreProyectoCargo = nombreProyectoCargo;
+    }
+    
     public String getDescripcion() {
         return descripcion;
     }
@@ -25,11 +34,11 @@ class DTOProyectoCargo {
         this.descripcion = descripcion;
     }
 
-    public Date getHorasDedicadas() {
+    public double getHorasDedicadas() {
         return horasDedicadas;
     }
 
-    public void setHorasDedicadas(Date horasDedicadas) {
+    public void setHorasDedicadas(double horasDedicadas) {
         this.horasDedicadas = horasDedicadas;
     }
 

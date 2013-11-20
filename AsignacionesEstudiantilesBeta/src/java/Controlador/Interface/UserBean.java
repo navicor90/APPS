@@ -6,7 +6,7 @@
 package Controlador.Interface;
 
 import Controlador.ControladorRegistrarPostulacion;
-import Modelo.DTO.DTOProyecto;
+import Modelo.DTO.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -84,7 +84,14 @@ public class UserBean {
     
     public List<DTOProyecto> getListaProyecto() {
         return listarProyectos();
-    }     
+    }
+    
+    public List<DTOProyectoCargo> getListaProyectoCargo() {
+        
+        HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String nombre = origRequest.getParameter("nombreProyectoCargo");
+        return listarProyectoCargo(nombre);
+    }
     
     private List<DTOProyecto> listarProyectos(){
         //HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -102,5 +109,17 @@ public class UserBean {
         return r;
     }
     
+    private List<DTOProyectoCargo> listarProyectoCargo(String nomProyecto) {
+        List<DTOProyectoCargo> r = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            DTOProyectoCargo d = new DTOProyectoCargo();
+            d.setDescripcion(Integer.toString(i));
+            d.setNombreProyectoCargo(Integer.toString(i));
+            d.setHorasDedicadas(12d);
+            r.add(d);
+        }
+        return r;
+    }
+
     
 }

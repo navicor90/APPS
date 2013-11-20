@@ -8,7 +8,7 @@ package Modelo.DTO;
  *
  * @author yanina
  */
-public class DtoEstudiante {
+public class DTOEstudiante {
     private String legajo;
     private String nombre;
     private String apellido;
