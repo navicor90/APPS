@@ -4,6 +4,7 @@
  */
 package Controlador.Persistencia;
 
+import Modelo.Agente.Agente;
 import java.util.List;
 import Modelo.Expresion;
 
@@ -17,7 +18,7 @@ public abstract class IntermediarioPersistencia {
         Cache cache = Cache.obtenerInstancia();
         List<Object> objetosObtenidos = materializar(criterio);
         for (Object objetoObtenido : objetosObtenidos) {
-            cache.depositar(objetoObtenido);
+            cache.depositar((Agente) objetoObtenido);
         }
         return objetosObtenidos;
     }
@@ -31,13 +32,13 @@ public abstract class IntermediarioPersistencia {
         return agente;
     }
 
-    public boolean guardar(Object object) {
-        return desmaterializar(object);
+    public boolean guardar(Object objeto) {
+        return desmaterializar(objeto);
     }
 
     public abstract List<Object> materializar(Expresion criterio);
 
     public abstract Object materializar(String oid);
 
-    public abstract boolean desmaterializar(Object o);
+    public abstract boolean desmaterializar(Object objeto);
 }
