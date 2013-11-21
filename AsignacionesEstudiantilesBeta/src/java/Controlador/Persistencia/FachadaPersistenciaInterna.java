@@ -8,7 +8,6 @@ import Modelo.Expresion;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -55,10 +54,6 @@ public class FachadaPersistenciaInterna {
 
     public Connection getConexion() {
         return conexion;
-    }
-
-    public void setConexion(Connection conexion) {
-        this.conexion = conexion;
     }
     
 }

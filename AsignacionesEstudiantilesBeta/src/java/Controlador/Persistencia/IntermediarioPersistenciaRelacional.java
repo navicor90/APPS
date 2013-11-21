@@ -41,7 +41,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     }
 
     @Override
-    public boolean desmaterializar(Object o){
+    public boolean desmaterializar(Object objeto){
         return false;
     }
 
