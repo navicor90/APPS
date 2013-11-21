@@ -31,7 +31,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     public abstract Object materializar(String oid);
     @Override
     public abstract boolean desmaterializar(Object o);
-    public abstract List<Object> convertirRegistroAObjeto(ResultSet a);
+    public abstract List<Object> convertirRegistroAObjeto(ResultSet a) throws SQLException;
     public abstract String convertirObjectoRegistro(Object obj);
     public abstract String armarConsultaSeleccion(Expresion cri);
     public abstract String armarConsultaSeleccion(String oid);
