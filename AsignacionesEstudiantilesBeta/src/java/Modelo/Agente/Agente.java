@@ -9,6 +9,7 @@ package Modelo.Agente;
  * @author franco
  */
 public class Agente {
+    String oid;
     boolean esNuevo;
     boolean modificado;
 
@@ -26,6 +27,14 @@ public class Agente {
 
     public void setEsNuevo(boolean esNuevo) {
         this.esNuevo = esNuevo;
+    }
+
+    public String getOid() {
+        return oid;
+    }
+
+    public void setOid(String oid) {
+        this.oid = oid;
     }
     
 }
