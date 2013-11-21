@@ -24,9 +24,9 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     public List<Object> materializar(Expresion expresion) {
         List<Object> objetosList = new ArrayList<>();
         try {
-            String consulta = armarConsultaSeleccion(expresion);
             Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
             Statement st = conexion.createStatement();
+            String consulta = armarConsultaSeleccion(expresion);
             ResultSet rs = st.executeQuery(consulta);
             objetosList = convertirRegistroAObjeto(rs);
         } catch (SQLException ex) {
