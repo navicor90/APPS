@@ -7,7 +7,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.interfaces.TipoEstadoPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 
 /**
  *

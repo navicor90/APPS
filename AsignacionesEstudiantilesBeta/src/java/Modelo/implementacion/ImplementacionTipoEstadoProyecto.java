@@ -6,7 +6,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.interfaces.TipoEstadoProyecto;
+import Modelo.interfaces.*;
 
 /**
  *
@@ -16,6 +16,7 @@ public class ImplementacionTipoEstadoProyecto implements TipoEstadoProyecto{
     private String descripcion;
     private String nombreTipoEstadoProyecto;
 
+    @Override
     public String getDescripcion() {
         return descripcion;
     }

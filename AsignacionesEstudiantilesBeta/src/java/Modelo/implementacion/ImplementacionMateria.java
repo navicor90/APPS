@@ -6,7 +6,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.interfaces.Materia;
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**

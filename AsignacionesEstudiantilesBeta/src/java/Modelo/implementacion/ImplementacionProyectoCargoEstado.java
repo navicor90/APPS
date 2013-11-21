@@ -17,18 +17,22 @@ public class ImplementacionProyectoCargoEstado implements ProyectoCargoEstado{
     private Date fechahoraCambioEstado;
     private TipoEstadoProyectoCargo tipoEstadoProyectoCargo;
 
+    @Override
     public Date getFechahoraCambioEstado() {
         return fechahoraCambioEstado;
     }
 
+    @Override
     public void setFechahoraCambioEstado(Date fechahoraCambioEstado) {
         this.fechahoraCambioEstado = fechahoraCambioEstado;
     }
 
+    @Override
     public TipoEstadoProyectoCargo getTipoEstadoProyectoCargo() {
         return tipoEstadoProyectoCargo;
     }
 
+    @Override
     public void setTipoEstadoProyectoCargo(TipoEstadoProyectoCargo tipoEstadoProyectoCargo) {
         this.tipoEstadoProyectoCargo = tipoEstadoProyectoCargo;
     }

@@ -12,22 +12,26 @@ import java.util.Date;
  *
  * @author yanina
  */
-public class ImplementacionContratoEstado {
+public class ImplementacionContratoEstado implements ContratoEstado{
     private Date fechaHoraCambioEstado;
     private TipoEstadoContrato tipoEstadoContrato;
 
+    @Override
     public Date getFechaHoraCambioEstado() {
         return fechaHoraCambioEstado;
     }
 
+    @Override
     public void setFechaHoraCambioEstado(Date fechaHoraCambioEstado) {
         this.fechaHoraCambioEstado = fechaHoraCambioEstado;
     }
 
+    @Override
     public TipoEstadoContrato getTipoEstadoContrato() {
         return tipoEstadoContrato;
     }
 
+    @Override
     public void setTipoEstadoContrato(TipoEstadoContrato tipoEstadoContrato) {
         this.tipoEstadoContrato = tipoEstadoContrato;
     }

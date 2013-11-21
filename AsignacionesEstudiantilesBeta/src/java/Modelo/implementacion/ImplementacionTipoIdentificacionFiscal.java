@@ -5,7 +5,7 @@
  */
 package Modelo.implementacion;
 
-import Modelo.interfaces.TipoIdentificacionFiscal;
+import Modelo.interfaces.*;
 
 /**
  *

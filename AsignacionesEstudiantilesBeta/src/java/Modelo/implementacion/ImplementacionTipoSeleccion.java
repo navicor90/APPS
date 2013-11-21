@@ -6,7 +6,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.interfaces.TipoSeleccion;
+import Modelo.interfaces.*;
 
 /**
  *

@@ -4,7 +4,7 @@
  */
 package Modelo.implementacion;
 
-import Modelo.interfaces.Universidad;
+import Modelo.interfaces.*;
 
 /**
  *

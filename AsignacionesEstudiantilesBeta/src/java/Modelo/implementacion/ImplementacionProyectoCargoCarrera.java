@@ -6,8 +6,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.interfaces.Carrera;
-import Modelo.interfaces.ProyectoCargoCarrera;
+import Modelo.interfaces.*;
 
 /**
  *
@@ -18,26 +17,32 @@ public class ImplementacionProyectoCargoCarrera implements ProyectoCargoCarrera{
     private int cantidadMateriasRendidas;
     private Carrera carrera;
 
+    @Override
     public int getCantidadMateriasRegulares() {
         return cantidadMateriasRegulares;
     }
 
+    @Override
     public void setCantidadMateriasRegulares(int cantidadMateriasRegulares) {
         this.cantidadMateriasRegulares = cantidadMateriasRegulares;
     }
 
+    @Override
     public int getCantidadMateriasRendidas() {
         return cantidadMateriasRendidas;
     }
 
+    @Override
     public void setCantidadMateriasRendidas(int cantidadMateriasRendidas) {
         this.cantidadMateriasRendidas = cantidadMateriasRendidas;
     }
 
+    @Override
     public Carrera getCarrera() {
         return carrera;
     }
 
+    @Override
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
     }
