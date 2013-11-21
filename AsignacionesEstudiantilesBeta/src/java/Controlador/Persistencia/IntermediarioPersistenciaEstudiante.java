@@ -22,8 +22,9 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
         List<Object> estudiantes = new ArrayList<>();
         while (rs.next()) {
+            AgenteEstudiante estudianteA = new AgenteEstudiante();
             ImplementacionEstudiante estudianteI = new ImplementacionEstudiante();
-            AgenteEstudiante estudianteA = new AgenteEstudiante(estudianteI);
+            estudianteA.setImplementacionEstudiante(estudianteI);
             estudianteI.setApellido(rs.getString("apellido"));
             estudianteI.setDni(rs.getLong("dni"));
             estudianteI.setEmail(rs.getString("email"));
