@@ -8,7 +8,7 @@ package Controlador;
 
 import Modelo.DTO.DTOEstadoAcademicoGeneral;
 import Modelo.DTO.DTOMateria;
-import Modelo.SeleccionPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;

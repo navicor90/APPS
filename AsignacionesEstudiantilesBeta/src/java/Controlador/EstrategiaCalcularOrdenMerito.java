@@ -6,8 +6,7 @@
 
 package Controlador;
 
-import Modelo.Seleccion;
-import Modelo.SeleccionPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.List;
 
 /**

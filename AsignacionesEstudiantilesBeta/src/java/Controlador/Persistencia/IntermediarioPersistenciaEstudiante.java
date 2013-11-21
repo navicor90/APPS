@@ -4,9 +4,8 @@
  */
 package Controlador.Persistencia;
 
-import Modelo.Criterio;
-import Modelo.ImplementacionEstudiante;
-import Modelo.Universidad;
+import Modelo.interfaces.*;
+import Modelo.implementacion.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

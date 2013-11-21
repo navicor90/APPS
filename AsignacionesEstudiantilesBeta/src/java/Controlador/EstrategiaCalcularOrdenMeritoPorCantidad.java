@@ -6,8 +6,7 @@
 
 package Controlador;
 
-import Modelo.Seleccion;
-import Modelo.SeleccionPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class EstrategiaCalcularOrdenMeritoPorCantidad implements EstrategiaCalcu
         
         List <SeleccionPostulacionProyectoCargo> selec= new ArrayList<>();
         for(Seleccion s: ListaSeleccion){
-            int codPPC=s.getSeleccionPostulacionProyectoCargo().getPostulacionPC().getCodPostulacionProyectoCargo();
+            //int codPPC = s.getSeleccionPostulacionProyectoCargo().getPostulacionProyectoCargo().
             
         //selec.add(s.getSeleccionPostulacionProyectoCargo());
             
