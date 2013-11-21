@@ -19,9 +19,9 @@ public interface SeleccionPostulacionProyectoCargo {
 
     public void setOrdenMerito(int ordenMerito);
 
-    public EstadoSeleccionPostulacionProyectoCargo getEstadoSelecccionProyectoCargo();
+    public TipoEstadoSeleccionPostulacionProyectoCargo getTipoEstadoSelecccionProyectoCargo() ;
 
-    public void setEstadoSelecccionProyectoCargo(EstadoSeleccionPostulacionProyectoCargo estadoSelecccionProyectoCargo);
+    public void setTipoEstadoSelecccionProyectoCargo(TipoEstadoSeleccionPostulacionProyectoCargo tipoEstadoSelecccionProyectoCargo) ;
 
     public PostulacionProyectoCargo getPostulacionProyectoCargo();
 

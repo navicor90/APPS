@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.implementacion;
 
 import Modelo.interfaces.*;
@@ -12,10 +11,11 @@ import Modelo.interfaces.*;
  *
  * @author yanina
  */
-public class ImplementacionSeleccionPostulacionProyectoCargo implements SeleccionPostulacionProyectoCargo{
+public class ImplementacionSeleccionPostulacionProyectoCargo implements SeleccionPostulacionProyectoCargo {
+
     private int estado;
     private int ordenMerito;
-    private EstadoSeleccionPostulacionProyectoCargo estadoSelecccionProyectoCargo;
+    private TipoEstadoSeleccionPostulacionProyectoCargo tipoEstadoSelecccionProyectoCargo;
     private PostulacionProyectoCargo postulacionProyectoCargo;
     private ProyectoCargo proyectoCargo;
 
@@ -39,14 +39,12 @@ public class ImplementacionSeleccionPostulacionProyectoCargo implements Seleccio
         this.ordenMerito = ordenMerito;
     }
 
-    @Override
-    public EstadoSeleccionPostulacionProyectoCargo getEstadoSelecccionProyectoCargo() {
-        return estadoSelecccionProyectoCargo;
+    public TipoEstadoSeleccionPostulacionProyectoCargo getTipoEstadoSelecccionProyectoCargo() {
+        return tipoEstadoSelecccionProyectoCargo;
     }
 
-    @Override
-    public void setEstadoSelecccionProyectoCargo(EstadoSeleccionPostulacionProyectoCargo estadoSelecccionProyectoCargo) {
-        this.estadoSelecccionProyectoCargo = estadoSelecccionProyectoCargo;
+    public void setTipoEstadoSelecccionProyectoCargo(TipoEstadoSeleccionPostulacionProyectoCargo tipoEstadoSelecccionProyectoCargo) {
+        this.tipoEstadoSelecccionProyectoCargo = tipoEstadoSelecccionProyectoCargo;
     }
 
     @Override
@@ -69,7 +67,4 @@ public class ImplementacionSeleccionPostulacionProyectoCargo implements Seleccio
         this.proyectoCargo = proyectoCargo;
     }
 
-   
-    
-    
 }
