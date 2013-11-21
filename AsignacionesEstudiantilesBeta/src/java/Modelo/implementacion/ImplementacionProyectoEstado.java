@@ -7,32 +7,37 @@
 package Modelo.implementacion;
 
 import Modelo.implementacion.ImplementacionTipoEstadoProyecto;
+import Modelo.interfaces.ProyectoEstado;
+import Modelo.interfaces.TipoEstadoProyecto;
 import java.util.Date;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionProyectoEstado {
+public class ImplementacionProyectoEstado implements ProyectoEstado{
     private Date fechaHoraCambio;
-    private ImplementacionTipoEstadoProyecto tipoEstProy;
+    private TipoEstadoProyecto tipoEstadoProyecto;
 
+    @Override
     public Date getFechaHoraCambio() {
         return fechaHoraCambio;
     }
 
+    @Override
     public void setFechaHoraCambio(Date fechaHoraCambio) {
         this.fechaHoraCambio = fechaHoraCambio;
     }
 
-    public ImplementacionTipoEstadoProyecto getTipoEstProy() {
-        return tipoEstProy;
+    @Override
+    public TipoEstadoProyecto getTipoEstadoProyecto() {
+        return tipoEstadoProyecto;
+    }
+    
+    @Override
+    public void setTipoEstadoProyecto(TipoEstadoProyecto tipoEstadoProyecto) {
+        this.tipoEstadoProyecto = tipoEstadoProyecto;
     }
 
-    public void setTipoEstProy(ImplementacionTipoEstadoProyecto tipoEstProy) {
-        this.tipoEstProy = tipoEstProy;
-    }
-    
-    
     
 }

@@ -6,10 +6,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionProyectoCargoCarrera;
-import Modelo.implementacion.ImplementacionProyectoCargoEstado;
-import Modelo.implementacion.ImplementacionTipoCargo;
-import Modelo.implementacion.ImplementacionImplementacionProyecto;
+import Modelo.interfaces.*;
 import java.util.Date;
 import java.util.List;
 
@@ -17,23 +14,104 @@ import java.util.List;
  *
  * @author yanina
  */
-public class ImplementacionProyectoCargo {
-    private int cantMinPostulacion;
+public class ImplementacionProyectoCargo implements ProyectoCargo{
+    private int cantidadMinimaPostulacion;
     private String descripcion;
     private Boolean habilitado;
     private Date horasDedicadas;
     private int nroProyectoCargo;
-    private List <ImplementacionProyectoCargoEstado> proyCarEstado;
-    private ImplementacionTipoCargo tipoCargo;
-    private ImplementacionImplementacionProyecto proy;
-    private ImplementacionProyectoCargoCarrera proyCargCarrera;
-    
-    public ImplementacionProyectoCargo(List<ImplementacionProyectoCargoEstado> proyCarEstado) {
-        this.proyCarEstado = proyCarEstado;
+    private List <ImplementacionProyectoCargoEstado> proyectoCargoEstado;
+    private TipoCargo tipoCargo;
+    private Proyecto proyecto;
+    private ProyectoCargoCarrera proyectoCargoCarrera;
+
+    @Override
+    public int getCantidadMinimaPostulacion() {
+        return cantidadMinimaPostulacion;
     }
-    
-    
-            
-            
-    
+
+    @Override
+    public void setCantidadMinimaPostulacion(int cantidadMinimaPostulacion) {
+        this.cantidadMinimaPostulacion = cantidadMinimaPostulacion;
+    }
+
+    @Override
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    @Override
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public Boolean isHabilitado() {
+        return habilitado;
+    }
+
+    @Override
+    public void setHabilitado(Boolean habilitado) {
+        this.habilitado = habilitado;
+    }
+
+    @Override
+    public Date getHorasDedicadas() {
+        return horasDedicadas;
+    }
+
+    @Override
+    public void setHorasDedicadas(Date horasDedicadas) {
+        this.horasDedicadas = horasDedicadas;
+    }
+
+    @Override
+    public int getNroProyectoCargo() {
+        return nroProyectoCargo;
+    }
+
+    @Override
+    public void setNroProyectoCargo(int nroProyectoCargo) {
+        this.nroProyectoCargo = nroProyectoCargo;
+    }
+
+    @Override
+    public List<ImplementacionProyectoCargoEstado> getProyectoCargoEstado() {
+        return proyectoCargoEstado;
+    }
+
+    @Override
+    public void setProyectoCargoEstado(List<ImplementacionProyectoCargoEstado> proyectoCargoEstado) {
+        this.proyectoCargoEstado = proyectoCargoEstado;
+    }
+
+    @Override
+    public TipoCargo getTipoCargo() {
+        return tipoCargo;
+    }
+
+    @Override
+    public void setTipoCargo(TipoCargo tipoCargo) {
+        this.tipoCargo = tipoCargo;
+    }
+
+    @Override
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    @Override
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    @Override
+    public ProyectoCargoCarrera getProyectoCargoCarrera() {
+        return proyectoCargoCarrera;
+    }
+
+    @Override
+    public void setProyectoCargoCarrera(ProyectoCargoCarrera proyectoCargoCarrera) {
+        this.proyectoCargoCarrera = proyectoCargoCarrera;
+    }
 }

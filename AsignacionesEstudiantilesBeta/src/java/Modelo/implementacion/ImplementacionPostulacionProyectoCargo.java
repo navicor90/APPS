@@ -1,9 +1,6 @@
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionPostulacionProyectoCargoEstado;
-import Modelo.implementacion.ImplementacionProyectoCargo;
-import Modelo.implementacion.ImplementacionImplementacionProyecto;
-import Modelo.implementacion.ImplementacionUniversidad;
+import Modelo.interfaces.*;
 import java.util.List;
 
 /*
@@ -16,70 +13,73 @@ import java.util.List;
  *
  * @author yanina
  */
-public class ImplementacionPostulacionProyectoCargo {
+public class ImplementacionPostulacionProyectoCargo implements PostulacionProyectoCargo{
     private String prioridad;
     private int codPostulacionProyectoCargo;
-    private List<ImplementacionPostulacionProyectoCargoEstado> postProyecCargoEstado;
-    private ImplementacionImplementacionProyecto proyecto;
-    private ImplementacionUniversidad universidad;
-    private ImplementacionProyectoCargo proyectoCargo;
-    
+    private List<ImplementacionPostulacionProyectoCargoEstado> postulacionProyectoCargoEstado;
+    private Proyecto proyecto;
+    private Universidad universidad;
+    private ProyectoCargo proyectoCargo;
 
-    public ImplementacionPostulacionProyectoCargo(List<ImplementacionPostulacionProyectoCargoEstado> postProyecCargoEstado) {
-        this.postProyecCargoEstado = postProyecCargoEstado;
-    }
-
+    @Override
     public String getPrioridad() {
         return prioridad;
     }
 
+    @Override
     public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
     }
 
-    public List<ImplementacionPostulacionProyectoCargoEstado> getPostProyecCargoEstado() {
-        return postProyecCargoEstado;
-    }
-
-    public void setPostProyecCargoEstado(List<ImplementacionPostulacionProyectoCargoEstado> postProyecCargoEstado) {
-        this.postProyecCargoEstado = postProyecCargoEstado;
-    }
-
-    public ImplementacionImplementacionProyecto getProyecto() {
-        return proyecto;
-    }
-
-    public void setProyecto(ImplementacionImplementacionProyecto proyecto) {
-        this.proyecto = proyecto;
-    }
-
-    public ImplementacionUniversidad getUniversidad() {
-        return universidad;
-    }
-
-    public void setUniversidad(ImplementacionUniversidad universidad) {
-        this.universidad = universidad;
-    }
-
-    public ImplementacionProyectoCargo getProyectoCargo() {
-        return proyectoCargo;
-    }
-
-    public void setProyectoCargo(ImplementacionProyectoCargo proyectoCargo) {
-        this.proyectoCargo = proyectoCargo;
-    }
-
+    @Override
     public int getCodPostulacionProyectoCargo() {
         return codPostulacionProyectoCargo;
     }
 
+    @Override
     public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo) {
         this.codPostulacionProyectoCargo = codPostulacionProyectoCargo;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public List<ImplementacionPostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado() {
+        return postulacionProyectoCargoEstado;
+    }
+
+    @Override
+    public void setPostulacionProyectoCargoEstado(List<ImplementacionPostulacionProyectoCargoEstado> postulacionProyectoCargoEstado) {
+        this.postulacionProyectoCargoEstado = postulacionProyectoCargoEstado;
+    }
+
+    @Override
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    @Override
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    @Override
+    public Universidad getUniversidad() {
+        return universidad;
+    }
+
+    @Override
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
+    }
+
+    @Override
+    public ProyectoCargo getProyectoCargo() {
+        return proyectoCargo;
+    }
+
+    @Override
+    public void setProyectoCargo(ProyectoCargo proyectoCargo) {
+        this.proyectoCargo = proyectoCargo;
+    }
+       
     
 }

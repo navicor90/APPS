@@ -6,32 +6,36 @@
 
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionTipoEstadoPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionPostulacionProyectoCargoEstado {
+public class ImplementacionPostulacionProyectoCargoEstado implements PostulacionProyectoCargoEstado{
     private Date fechaHoraCambio;
-    private ImplementacionTipoEstadoPostulacionProyectoCargo estPotulacion;
+    private TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo;
 
+    @Override
     public Date getFechaHoraCambio() {
         return fechaHoraCambio;
     }
 
+    @Override
     public void setFechaHoraCambio(Date fechaHoraCambio) {
         this.fechaHoraCambio = fechaHoraCambio;
     }
 
-    public ImplementacionTipoEstadoPostulacionProyectoCargo getEstPotulacion() {
-        return estPotulacion;
+    @Override
+    public TipoEstadoPostulacionProyectoCargo getTipoEstadoPostulacionProyectoCargo() {
+        return tipoEstadoPostulacionProyectoCargo;
     }
 
-    public void setEstPotulacion(ImplementacionTipoEstadoPostulacionProyectoCargo estPotulacion) {
-        this.estPotulacion = estPotulacion;
+    @Override
+    public void setTipoEstadoPostulacionProyectoCargo(TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo) {
+        this.tipoEstadoPostulacionProyectoCargo = tipoEstadoPostulacionProyectoCargo;
     }
     
-    
+        
 }

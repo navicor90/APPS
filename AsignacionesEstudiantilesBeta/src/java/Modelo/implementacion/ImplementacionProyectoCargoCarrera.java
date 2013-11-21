@@ -6,37 +6,40 @@
 
 package Modelo.implementacion;
 
+import Modelo.interfaces.Carrera;
+import Modelo.interfaces.ProyectoCargoCarrera;
+
 /**
  *
  * @author yanina
  */
-public class ImplementacionProyectoCargoCarrera {
-    private int cantMatReg;
-    private int cantMarRend;
-    private ImplementacionCarrera carre;
+public class ImplementacionProyectoCargoCarrera implements ProyectoCargoCarrera{
+    private int cantidadMateriasRegulares;
+    private int cantidadMateriasRendidas;
+    private Carrera carrera;
 
-    public int getCantMatReg() {
-        return cantMatReg;
+    public int getCantidadMateriasRegulares() {
+        return cantidadMateriasRegulares;
     }
 
-    public void setCantMatReg(int cantMatReg) {
-        this.cantMatReg = cantMatReg;
+    public void setCantidadMateriasRegulares(int cantidadMateriasRegulares) {
+        this.cantidadMateriasRegulares = cantidadMateriasRegulares;
     }
 
-    public int getCantMarRend() {
-        return cantMarRend;
+    public int getCantidadMateriasRendidas() {
+        return cantidadMateriasRendidas;
     }
 
-    public void setCantMarRend(int cantMarRend) {
-        this.cantMarRend = cantMarRend;
+    public void setCantidadMateriasRendidas(int cantidadMateriasRendidas) {
+        this.cantidadMateriasRendidas = cantidadMateriasRendidas;
     }
 
-    public ImplementacionCarrera getCarre() {
-        return carre;
+    public Carrera getCarrera() {
+        return carrera;
     }
 
-    public void setCarre(ImplementacionCarrera carre) {
-        this.carre = carre;
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
     }
     
 }

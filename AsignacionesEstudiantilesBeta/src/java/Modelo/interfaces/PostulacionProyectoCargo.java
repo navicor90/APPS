@@ -6,10 +6,35 @@
 
 package Modelo.interfaces;
 
+import Modelo.implementacion.ImplementacionPostulacionProyectoCargoEstado;
+import java.util.List;
+
 /**
  *
  * @author yanina
  */
-public class PostulacionProyectoCargo {
-    
+public interface PostulacionProyectoCargo {
+     public String getPrioridad();
+
+    public void setPrioridad(String prioridad);
+
+    public int getCodPostulacionProyectoCargo();
+
+    public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo);
+
+    public List<ImplementacionPostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado();
+
+    public void setPostulacionProyectoCargoEstado(List<ImplementacionPostulacionProyectoCargoEstado> postulacionProyectoCargoEstado);
+
+    public Proyecto getProyecto();
+
+    public void setProyecto(Proyecto proyecto);
+
+    public Universidad getUniversidad();
+
+    public void setUniversidad(Universidad universidad);
+
+    public ProyectoCargo getProyectoCargo();
+
+    public void setProyectoCargo(ProyectoCargo proyectoCargo);
 }

@@ -13,49 +13,59 @@ import java.util.Date;
  *
  * @author yanina
  */
-public class ImplementacionSeleccion {
+public class ImplementacionSeleccion implements Seleccion{
     private Date fechaHoraSeleccion;
     private int nroSeleccion;
     private Proyecto proyecto;
     private EstadoSeleccion estadoSeleccion;
     private SeleccionPostulacionProyectoCargo seleccionPostulacionProyectoCargo;
 
+    @Override
     public Date getFechaHoraSeleccion() {
         return fechaHoraSeleccion;
     }
 
+    @Override
     public void setFechaHoraSeleccion(Date fechaHoraSeleccion) {
         this.fechaHoraSeleccion = fechaHoraSeleccion;
     }
 
+    @Override
     public int getNroSeleccion() {
         return nroSeleccion;
     }
 
+    @Override
     public void setNroSeleccion(int nroSeleccion) {
         this.nroSeleccion = nroSeleccion;
     }
 
+    @Override
     public Proyecto getProyecto() {
         return proyecto;
     }
 
+    @Override
     public void setProyecto(Proyecto proyecto) {
         this.proyecto = proyecto;
     }
 
+    @Override
     public EstadoSeleccion getEstadoSeleccion() {
         return estadoSeleccion;
     }
 
+    @Override
     public void setEstadoSeleccion(EstadoSeleccion estadoSeleccion) {
         this.estadoSeleccion = estadoSeleccion;
     }
 
+    @Override
     public SeleccionPostulacionProyectoCargo getSeleccionPostulacionProyectoCargo() {
         return seleccionPostulacionProyectoCargo;
     }
 
+    @Override
     public void setSeleccionPostulacionProyectoCargo(SeleccionPostulacionProyectoCargo seleccionPostulacionProyectoCargo) {
         this.seleccionPostulacionProyectoCargo = seleccionPostulacionProyectoCargo;
     }

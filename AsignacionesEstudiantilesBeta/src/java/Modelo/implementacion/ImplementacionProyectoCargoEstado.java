@@ -6,15 +6,16 @@
 
 package Modelo.implementacion;
 
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionProyectoCargoEstado {
+public class ImplementacionProyectoCargoEstado implements ProyectoCargoEstado{
     private Date fechahoraCambioEstado;
-    private ImplementacionTipoEstadoProyectoCargo estadoProycarg;
+    private TipoEstadoProyectoCargo tipoEstadoProyectoCargo;
 
     public Date getFechahoraCambioEstado() {
         return fechahoraCambioEstado;
@@ -24,13 +25,13 @@ public class ImplementacionProyectoCargoEstado {
         this.fechahoraCambioEstado = fechahoraCambioEstado;
     }
 
-    public ImplementacionTipoEstadoProyectoCargo getEstadoProycarg() {
-        return estadoProycarg;
+    public TipoEstadoProyectoCargo getTipoEstadoProyectoCargo() {
+        return tipoEstadoProyectoCargo;
     }
 
-    public void setEstadoProycarg(ImplementacionTipoEstadoProyectoCargo estadoProycarg) {
-        this.estadoProycarg = estadoProycarg;
+    public void setTipoEstadoProyectoCargo(TipoEstadoProyectoCargo tipoEstadoProyectoCargo) {
+        this.tipoEstadoProyectoCargo = tipoEstadoProyectoCargo;
     }
-    
+
     
 }
