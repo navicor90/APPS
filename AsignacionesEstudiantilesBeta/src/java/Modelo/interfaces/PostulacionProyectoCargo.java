@@ -22,9 +22,9 @@ public interface PostulacionProyectoCargo {
 
     public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo);
 
-    public List<ImplementacionPostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado();
+    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado();
 
-    public void setPostulacionProyectoCargoEstado(List<ImplementacionPostulacionProyectoCargoEstado> postulacionProyectoCargoEstado);
+    public void setPostulacionProyectoCargoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado);
 
     public Proyecto getProyecto();
 

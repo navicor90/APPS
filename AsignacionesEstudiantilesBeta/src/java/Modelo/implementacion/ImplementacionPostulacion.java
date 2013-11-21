@@ -2,7 +2,7 @@
 package Modelo.implementacion;
 
 
-import Modelo.implementacion.ImplementacionPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,17 +16,13 @@ import java.util.List;
  *
  * @author yanina
  */
-public class ImplementacionPostulacion {
+public class ImplementacionPostulacion implements Postulacion{
     private String estadoPostulacion;
     private Date fechaHoraPostulacion;
     private int nroPostulacion;
-    private List<ImplementacionPostulacionProyectoCargo> pC;
-    private ImplementacionEstudiante es;
+    private List<PostulacionProyectoCargo> proyectoCargo;
+    private Estudiante estudiante;
 
-    public ImplementacionPostulacion() {
-    }
-    
-    
     public String getEstadoPostulacion() {
         return estadoPostulacion;
     }
@@ -51,30 +47,20 @@ public class ImplementacionPostulacion {
         this.nroPostulacion = nroPostulacion;
     }
 
-    public List<ImplementacionPostulacionProyectoCargo> getpC() {
-        return pC;
+    public List<PostulacionProyectoCargo> getProyectoCargo() {
+        return proyectoCargo;
     }
 
-    public void setpC(List<ImplementacionPostulacionProyectoCargo> pC) {
-        this.pC = pC;
+    public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo) {
+        this.proyectoCargo = proyectoCargo;
     }
 
-    
-
-    public ImplementacionEstudiante getEs() {
-        return es;
+    public Estudiante getEstudiante() {
+        return estudiante;
     }
 
-    public void setEs(ImplementacionEstudiante es) {
-        this.es = es;
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
-    
-    
-    public void addPostulacionProyectoCargo( ImplementacionPostulacionProyectoCargo pC){
-        
-    }
-    
-        
-    
-    
+
 }

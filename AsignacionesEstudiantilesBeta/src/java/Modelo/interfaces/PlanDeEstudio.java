@@ -14,19 +14,19 @@ import java.util.Date;
  * @author yanina
  */
 public interface PlanDeEstudio {
-    public int getCodPlanDeEstudion() ;
+    public int getCodigoPlanDeEstudion();
 
-    public void setCodPlanDeEstudion(int codPlanDeEstudion) ;
+    public void setCodigoPlanDeEstudion(int codigoPlanDeEstudion);
 
-    public Date getFechaFinVigencia() ;
+    public Date getFechaFinVigencia();
 
-    public void setFechaFinVigencia(Date fechaFinVigencia) ;
+    public void setFechaFinVigencia(Date fechaFinVigencia);
 
-    public String getNombrePlanDeEstudio() ;
+    public String getNombrePlanDeEstudio();
 
-    public void setNombrePlanDeEstudio(String nombrePlanDeEstudio) ;
+    public void setNombrePlanDeEstudio(String nombrePlanDeEstudio);
 
-    public Materia getMateria() ;
+    public Materia getMateria();
 
-    public void setMateria(Materia materia) ;
+    public void setMateria(Materia materia);
 }

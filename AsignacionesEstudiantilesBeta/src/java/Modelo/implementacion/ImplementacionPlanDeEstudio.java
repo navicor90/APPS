@@ -13,43 +13,50 @@ import java.util.Date;
  *
  * @author yanina
  */
-public class ImplementacionPlanDeEstudio {
-    private int codPlanDeEstudion;
+public class ImplementacionPlanDeEstudio implements PlanDeEstudio{
+    private int codigoPlanDeEstudion;
     private Date fechaFinVigencia;
     private String nombrePlanDeEstudio;
     private Materia materia;
 
-    public int getCodPlanDeEstudion() {
-        return codPlanDeEstudion;
+    @Override
+    public int getCodigoPlanDeEstudion() {
+        return codigoPlanDeEstudion;
     }
 
-    public void setCodPlanDeEstudion(int codPlanDeEstudion) {
-        this.codPlanDeEstudion = codPlanDeEstudion;
+    @Override
+    public void setCodigoPlanDeEstudion(int codigoPlanDeEstudion) {
+        this.codigoPlanDeEstudion = codigoPlanDeEstudion;
     }
 
+    @Override
     public Date getFechaFinVigencia() {
         return fechaFinVigencia;
     }
 
+    @Override
     public void setFechaFinVigencia(Date fechaFinVigencia) {
         this.fechaFinVigencia = fechaFinVigencia;
     }
 
+    @Override
     public String getNombrePlanDeEstudio() {
         return nombrePlanDeEstudio;
     }
 
+    @Override
     public void setNombrePlanDeEstudio(String nombrePlanDeEstudio) {
         this.nombrePlanDeEstudio = nombrePlanDeEstudio;
     }
 
+    @Override
     public Materia getMateria() {
         return materia;
     }
 
+    @Override
     public void setMateria(Materia materia) {
         this.materia = materia;
     }
-    
     
 }

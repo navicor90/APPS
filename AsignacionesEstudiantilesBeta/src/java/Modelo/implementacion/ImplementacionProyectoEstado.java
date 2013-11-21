@@ -5,8 +5,6 @@
  */
 
 package Modelo.implementacion;
-
-import Modelo.implementacion.ImplementacionTipoEstadoProyecto;
 import Modelo.interfaces.ProyectoEstado;
 import Modelo.interfaces.TipoEstadoProyecto;
 import java.util.Date;
