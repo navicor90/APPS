@@ -13,65 +13,146 @@ import java.util.List;
  * @author yanina
  */
 public class AgentePostulacionProyectoCargo extends Agente implements PostulacionProyectoCargo{
+    String oidUniversidad;
+    String oidProyectoCargo;
+    String oidPostulacion;
+    String oidProyecto;
+    boolean heBuscadoUniversidad;
+    boolean heBuscadoProyectoCargo;
+    boolean heBuscadoPostulacion;
+    boolean heBuscadoProyecto;
+    ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo;
+
+    public String getOidUniversidad() {
+        return oidUniversidad;
+    }
+
+    public void setOidUniversidad(String oidUniversidad) {
+        this.oidUniversidad = oidUniversidad;
+    }
+
+    public String getOidProyectoCargo() {
+        return oidProyectoCargo;
+    }
+
+    public void setOidProyectoCargo(String oidProyectoCargo) {
+        this.oidProyectoCargo = oidProyectoCargo;
+    }
+
+    public String getOidPostulacion() {
+        return oidPostulacion;
+    }
+
+    public void setOidPostulacion(String oidPostulacion) {
+        this.oidPostulacion = oidPostulacion;
+    }
+
+    public String getOidProyecto() {
+        return oidProyecto;
+    }
+
+    public void setOidProyecto(String oidProyecto) {
+        this.oidProyecto = oidProyecto;
+    }
+
+    public boolean isHeBuscadoUniversidad() {
+        return heBuscadoUniversidad;
+    }
+
+    public void setHeBuscadoUniversidad(boolean heBuscadoUniversidad) {
+        this.heBuscadoUniversidad = heBuscadoUniversidad;
+    }
+
+    public boolean isHeBuscadoProyectoCargo() {
+        return heBuscadoProyectoCargo;
+    }
+
+    public void setHeBuscadoProyectoCargo(boolean heBuscadoProyectoCargo) {
+        this.heBuscadoProyectoCargo = heBuscadoProyectoCargo;
+    }
+
+    public boolean isHeBuscadoPostulacion() {
+        return heBuscadoPostulacion;
+    }
+
+    public void setHeBuscadoPostulacion(boolean heBuscadoPostulacion) {
+        this.heBuscadoPostulacion = heBuscadoPostulacion;
+    }
+
+    public boolean isHeBuscadoProyecto() {
+        return heBuscadoProyecto;
+    }
+
+    public void setHeBuscadoProyecto(boolean heBuscadoProyecto) {
+        this.heBuscadoProyecto = heBuscadoProyecto;
+    }
+
+    public ImplementacionPostulacionProyectoCargo getImplementacionPostulacionProyectoCargo() {
+        return implementacionPostulacionProyectoCargo;
+    }
+
+    public void setImplementacionPostulacionProyectoCargo(ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo) {
+        this.implementacionPostulacionProyectoCargo = implementacionPostulacionProyectoCargo;
+    }
     
     @Override
     public String getPrioridad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionPostulacionProyectoCargo.getPrioridad();
     }
 
     @Override
     public void setPrioridad(String prioridad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionPostulacionProyectoCargo.setPrioridad(prioridad);
     }
 
     @Override
     public int getCodPostulacionProyectoCargo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionPostulacionProyectoCargo.getCodPostulacionProyectoCargo();
     }
 
     @Override
     public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionPostulacionProyectoCargo.setCodPostulacionProyectoCargo(codPostulacionProyectoCargo);
     }
 
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstado();
     }
 
     @Override
     public void setPostulacionProyectoCargoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
     }
 
     @Override
     public Proyecto getProyecto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionPostulacionProyectoCargo.getProyecto();
     }
 
     @Override
     public void setProyecto(Proyecto proyecto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionPostulacionProyectoCargo.setProyecto(proyecto);
     }
 
     @Override
     public Universidad getUniversidad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionPostulacionProyectoCargo.getUniversidad();
     }
 
     @Override
     public void setUniversidad(Universidad universidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionPostulacionProyectoCargo.setUniversidad(universidad);
     }
 
     @Override
     public ProyectoCargo getProyectoCargo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionPostulacionProyectoCargo.getProyectoCargo();
     }
 
     @Override
     public void setProyectoCargo(ProyectoCargo proyectoCargo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionPostulacionProyectoCargo.setProyectoCargo(proyectoCargo);
     }
     
 }
