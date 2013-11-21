@@ -20,12 +20,12 @@ import java.util.logging.Logger;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional{
+public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenciaRelacional {
     
     @Override
-    public List<Object> convertirRegistroAObjeto(ResultSet rs){
-        List<AgenteEstudiante> estudiantes;
-        while(a.next()){
+    public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException{
+        List<Object> estudiantes = new ArrayList<>();
+        while(rs.next()){
             ImplementacionEstudiante estudianteI = new ImplementacionEstudiante();
             AgenteEstudiante estudianteA = new AgenteEstudiante(estudianteI);
             estudianteI.setApellido(rs.getString("apellido"));
@@ -35,9 +35,13 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
             estudianteI.setNombre(rs.getString("nombre"));
             estudianteI.setTelefono(rs.getLong("telefono"));
             estudianteI.setTipoDni(rs.getString("tipoDni"));
-            estudianteI.set
-            
+            estudiantes.add(estudianteA);
+            }
+        return estudiantes;
         }
+    @Override
+    public String armarConsultaSeleccion(Expresion e){
+        
     }
     /* esto es nuevo
     @Override
