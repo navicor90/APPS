@@ -17,7 +17,7 @@ public class ImplementacionSeleccion implements Seleccion{
     private Date fechaHoraSeleccion;
     private int nroSeleccion;
     private Proyecto proyecto;
-    private EstadoSeleccion estadoSeleccion;
+    private TipoEstadoSeleccion estadoSeleccion;
     private SeleccionPostulacionProyectoCargo seleccionPostulacionProyectoCargo;
 
     @Override
@@ -51,12 +51,12 @@ public class ImplementacionSeleccion implements Seleccion{
     }
 
     @Override
-    public EstadoSeleccion getEstadoSeleccion() {
+    public TipoEstadoSeleccion getEstadoSeleccion() {
         return estadoSeleccion;
     }
 
     @Override
-    public void setEstadoSeleccion(EstadoSeleccion estadoSeleccion) {
+    public void setEstadoSeleccion(TipoEstadoSeleccion estadoSeleccion) {
         this.estadoSeleccion = estadoSeleccion;
     }
 

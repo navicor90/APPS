@@ -20,7 +20,7 @@ public class ImplementacionEstudiante implements Estudiante {
     private String tipoDni;
     private Long telefono;
     private Universidad universidad;
-    private EstadoEstudiante estadoEstudiante;
+    private TipoEstadoEstudiante estadoEstudiante;
 
     public ImplementacionEstudiante() {
     }
@@ -106,12 +106,12 @@ public class ImplementacionEstudiante implements Estudiante {
     }
 
     @Override
-    public EstadoEstudiante getEstadoEstudiante() {
+    public TipoEstadoEstudiante getEstadoEstudiante() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setEstadoEstudiante(EstadoEstudiante estadoEstudiante) {
+    public void setEstadoEstudiante(TipoEstadoEstudiante estadoEstudiante) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
