@@ -23,8 +23,8 @@ public class Cache {
         return instancia;
     }
 
-    public void depositar(Object objetoAgente) {
-        objetosAgenteDepositados.add((Agente) objetoAgente);
+    public void depositar(Agente objetoAgente) {
+        objetosAgenteDepositados.add(objetoAgente);
     }
 
     public Agente buscar(String oid) {
