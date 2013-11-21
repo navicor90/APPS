@@ -6,48 +6,56 @@
 
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionFormulario {
+public class ImplementacionFormulario implements Formulario{
     private int nroFormulario;
     private Date fechaDeCreacion;
-    private ImplementacionPostulacionProyectoCargo postulacionProyectoCargo;
-    private ImplementacionEmpresa empresa;
+    private PostulacionProyectoCargo postulacionProyectoCargo;
+    private Empresa empresa;
 
+    @Override
     public int getNroFormulario() {
         return nroFormulario;
     }
 
+    @Override
     public void setNroFormulario(int nroFormulario) {
         this.nroFormulario = nroFormulario;
     }
 
+    @Override
     public Date getFechaDeCreacion() {
         return fechaDeCreacion;
     }
 
+    @Override
     public void setFechaDeCreacion(Date fechaDeCreacion) {
         this.fechaDeCreacion = fechaDeCreacion;
     }
 
-    public ImplementacionPostulacionProyectoCargo getPostulacionProyectoCargo() {
+    @Override
+    public PostulacionProyectoCargo getPostulacionProyectoCargo() {
         return postulacionProyectoCargo;
     }
 
-    public void setPostulacionProyectoCargo(ImplementacionPostulacionProyectoCargo postulacionProyectoCargo) {
+    @Override
+    public void setPostulacionProyectoCargo(PostulacionProyectoCargo postulacionProyectoCargo) {
         this.postulacionProyectoCargo = postulacionProyectoCargo;
     }
 
-    public ImplementacionEmpresa getEmpresa() {
+    @Override
+    public Empresa getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(ImplementacionEmpresa empresa) {
+    @Override
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
     
