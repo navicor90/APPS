@@ -6,14 +6,15 @@
 
 package Modelo.Agente;
 
-import Modelo.interfaces.Carrera;
+import Modelo.interfaces.*;
 import Modelo.implementacion.*;
+import Controlador.Persistencia.*;
 import java.util.Date;
 /**
  *
  * @author yanina
  */
-public class AgenteCarrera implements Carrera {
+public class AgenteCarrera extends Agente implements Carrera  {
     String oidUniversidad;
     boolean heBuscadoUniversdad;
     ImplementacionCarrera implementacionCarrera;
@@ -53,43 +54,43 @@ public class AgenteCarrera implements Carrera {
     }
 
     @Override
-    public String getNomCarrera() {
-        return implementacionCarrera.getNomCarrera();
+    public String getNombreCarrera() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setNomCarrera(String nomCarrera) {
-        implementacionCarrera.setNomCarrera(nomCarrera);
+    public void setNombreCarrera(String nombreCarrera) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Universidad getUniver() {
-        return implementacionCarrera.getUniver();
+    public Universidad getUniversdad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setUniver(ImplementacionUniversidad univer) {
-        implementacionCarrera.setUniver(univer);
+    public void setUniversdad(Universidad universdad) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ImplementacionTipoEstadoCarrera getEstadoCarr() {
-        return implementacionCarrera.getEstadoCarr();
+    public TipoEstadoCarrera getEstadoCarrerra() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setEstadoCarr(ImplementacionTipoEstadoCarrera estadoCarr) {
-        implementacionCarrera.setEstadoCarr(estadoCarr);
+    public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ImplementacionPlanDeEstudio getPlanEstudio() {
-        return implementacionCarrera.getPlanEstudio();
+    public PlanDeEstudio getPlanDeEstudio() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void setPlanEstudio(ImplementacionPlanDeEstudio planEstudio) {
-        implementacionCarrera.setPlanEstudio(planEstudio);
+    public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
