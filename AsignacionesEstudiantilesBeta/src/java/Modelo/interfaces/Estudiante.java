@@ -43,7 +43,7 @@ public interface Estudiante {
 
     public void setUniversidad(Universidad universidad);
 
-    public EstadoEstudiante getEstadoEstudiante();
+    public TipoEstadoEstudiante getEstadoEstudiante();
 
-    public void setEstadoEstudiante(EstadoEstudiante estadoEstudiante);
+    public void setEstadoEstudiante(TipoEstadoEstudiante estadoEstudiante);
 }

@@ -25,9 +25,9 @@ public interface Seleccion {
 
     public void setProyecto(Proyecto proyecto);
 
-    public EstadoSeleccion getEstadoSeleccion();
+    public TipoEstadoSeleccion getEstadoSeleccion();
 
-    public void setEstadoSeleccion(EstadoSeleccion estadoSeleccion);
+    public void setEstadoSeleccion(TipoEstadoSeleccion estadoSeleccion);
 
     public SeleccionPostulacionProyectoCargo getSeleccionPostulacionProyectoCargo();
 

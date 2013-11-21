@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.interfaces;
 
 /**
  *
  * @author yanina
  */
-public interface EstadoSeleccion {
-    public String getNomEstadoSeleccion();
+public interface TipoEstadoSeleccion {
 
-    public void setNomEstadoSeleccion(String nomEstadoSeleccion);
-    
+    public String getTipoNombreEstadoSeleccion();
+
+    public void setTipoNombreEstadoSeleccion(String tipoNombreEstadoSeleccion);
 }
