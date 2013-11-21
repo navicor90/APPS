@@ -9,35 +9,56 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 /**
  *
  * @author franco
  */
-public abstract class FachadaPersistenciaInterna {
-    static FachadaPersistenciaInterna instancia;
-    Statement st;
-    public static FachadaPersistenciaInterna getInstancia(){
-        /*if(instancia == null) instancia = new FachadaPersistenciaInterna()*/;
+public class FachadaPersistenciaInterna {
+
+    static private FachadaPersistenciaInterna instancia;
+    private Connection conexion;
+
+    public static FachadaPersistenciaInterna getInstancia() {
+        if (instancia == null) {
+            instancia = new FachadaPersistenciaInterna();
+        }
         return instancia;
     }
 
-public FachadaPersistenciaInterna() {
+    public List<Object> buscar(Expresion c, String nombreEntidad) {
+        return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad).buscar(c);
     }
 
-public List<Object> buscar(Expresion c, String nomEntidad){
-    return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nomEntidad).buscar(c);
+    public Object buscar(String oid, String nombreEntidad) {
+        return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad).buscar(oid);
     }
-public Object buscar(String oid, String nomEnt){
-    return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nomEnt).buscar(oid);
-}
-public void iniciarTransaccion(){
-    try{
-    Connection con = Conexion.getConnection();
-    st = con.createStatement();
-    }catch(SQLException a){
-        /*manejo excepcion*/
+
+    public void guardar(Object obj, String nombreEntidad) {
+        IntermediarioPersistencia intermediario = FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad);
+        intermediario.guardar(obj);
+    }
+
+    public void iniciarTransaccion() {
+        conexion = Conexion.getConnection();
+    }
+
+    public void ConfirmarTransaccion() throws SQLException {
+        conexion.commit();
+        conexion.close();
+    }
+
+    public void CancelarTransaccion() throws SQLException {
+        conexion.rollback();
+        conexion.close();
+    }
+
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
     }
     
-}
-public abstract void guardar(Object obj, String nomEnt);
 }

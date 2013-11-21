@@ -6,7 +6,6 @@ package Controlador.Persistencia;
 
 import Modelo.Expresion;
 import java.util.List;
-import java.util.ArrayList;
 /**
  *
  * @author milton
@@ -21,12 +20,12 @@ public class FachadaPersistencia {
     public FachadaPersistencia() {
     }
     
-    public List<Object> buscar(String tipoEntidad,Expresion criterio){
-        return FachadaPersistenciaInterna.getInstancia().buscar(criterio, tipoEntidad);
+    public List<Object> buscar(String nombreEntidad,Expresion criterio){
+        return FachadaPersistenciaInterna.getInstancia().buscar(criterio, nombreEntidad);
     }
     
-    public void guardar(Object obj, String nomEnt){
-        FachadaPersistenciaInterna.getInstancia().guardar(obj, nomEnt);
+    public void guardar(Object obj, String nombreEntidad){
+        FachadaPersistenciaInterna.getInstancia().guardar(obj, nombreEntidad);
     }
     
 }

@@ -5,10 +5,14 @@
 package Controlador.Persistencia;
 
 import Modelo.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,17 +21,18 @@ import java.sql.SQLException;
 public abstract class IntermediarioPersistenciaRelacional extends IntermediarioPersistencia {
 
     @Override
-    public List<Object> materializar(Expresion c) {
-        ResultSet rs = null;
-        List<Object> agente = new ArrayList<>();
+    public List<Object> materializar(Expresion expresion) {
+        List<Object> objetosList = new ArrayList<>();
         try {
-            rs = FachadaPersistenciaInterna.getInstancia().st.executeQuery(armarConsultaSeleccion(c));
-
-            agente = convertirRegistroAObjeto(rs);
-        } catch (SQLException exception) {
-            //implementar excepcion
+            String consulta = armarConsultaSeleccion(expresion);
+            Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            objetosList = convertirRegistroAObjeto(rs);
+        } catch (SQLException ex) {
+            Logger.getLogger(IntermediarioPersistenciaRelacional.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return agente;
+        return objetosList;
     }
 
     @Override
