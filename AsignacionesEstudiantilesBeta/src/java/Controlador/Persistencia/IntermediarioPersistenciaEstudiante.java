@@ -20,21 +20,21 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
-        List<Object> estudiantes = new ArrayList<>();
+        List<Object> estudiantesList = new ArrayList<>();
         while (rs.next()) {
-            AgenteEstudiante estudianteA = new AgenteEstudiante();
-            ImplementacionEstudiante estudianteI = new ImplementacionEstudiante();
-            estudianteA.setImplementacionEstudiante(estudianteI);
-            estudianteI.setApellido(rs.getString("apellido"));
-            estudianteI.setDni(rs.getLong("dni"));
-            estudianteI.setEmail(rs.getString("email"));
-            estudianteI.setLegajo(rs.getString("legajo"));
-            estudianteI.setNombre(rs.getString("nombre"));
-            estudianteI.setTelefono(rs.getLong("telefono"));
-            estudianteI.setTipoDni(rs.getString("tipoDni"));
-            estudiantes.add(estudianteA);
+            AgenteEstudiante estudianteAgente = new AgenteEstudiante();
+            ImplementacionEstudiante estudianteImplementacion = new ImplementacionEstudiante();
+            estudianteAgente.setImplementacionEstudiante(estudianteImplementacion);
+            estudianteImplementacion.setApellido(rs.getString("apellido"));
+            estudianteImplementacion.setDni(rs.getLong("dni"));
+            estudianteImplementacion.setEmail(rs.getString("email"));
+            estudianteImplementacion.setLegajo(rs.getString("legajo"));
+            estudianteImplementacion.setNombre(rs.getString("nombre"));
+            estudianteImplementacion.setTelefono(rs.getLong("telefono"));
+            estudianteImplementacion.setTipoDni(rs.getString("tipoDni"));
+            estudiantesList.add(estudianteAgente);
         }
-        return estudiantes;
+        return estudiantesList;
     }
 
     @Override
