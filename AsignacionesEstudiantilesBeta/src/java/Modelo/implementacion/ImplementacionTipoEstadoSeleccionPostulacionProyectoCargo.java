@@ -3,32 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.implementacion;
+
+import Modelo.interfaces.*;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionEstadoSeleccionPostulacionProyectoCargo {
-    private int codSeleccionproyectoCargo;
+public class ImplementacionTipoEstadoSeleccionPostulacionProyectoCargo implements TipoEstadoSeleccionPostulacionProyectoCargo {
+
+    private int codigoSeleccionProyectoCargo;
     private String nombreSeleccionProyectoCargo;
 
-    public int getCodSeleccionproyectoCargo() {
-        return codSeleccionproyectoCargo;
+    @Override
+    public int getCodigoSeleccionProyectoCargo() {
+        return codigoSeleccionProyectoCargo;
     }
 
-    public void setCodSeleccionproyectoCargo(int codSeleccionproyectoCargo) {
-        this.codSeleccionproyectoCargo = codSeleccionproyectoCargo;
+    @Override
+    public void setCodigoSeleccionProyectoCargo(int codigoSeleccionProyectoCargo) {
+        this.codigoSeleccionProyectoCargo = codigoSeleccionProyectoCargo;
     }
 
+    @Override
     public String getNombreSeleccionProyectoCargo() {
         return nombreSeleccionProyectoCargo;
     }
 
+    @Override
     public void setNombreSeleccionProyectoCargo(String nombreSeleccionProyectoCargo) {
         this.nombreSeleccionProyectoCargo = nombreSeleccionProyectoCargo;
     }
-    
-    
+
 }

@@ -22,9 +22,6 @@ public class ImplementacionEstudiante implements Estudiante {
     private Universidad universidad;
     private TipoEstadoEstudiante estadoEstudiante;
 
-    public ImplementacionEstudiante() {
-    }
-
     @Override
     public String getLegajo() {
         return legajo;
@@ -107,12 +104,14 @@ public class ImplementacionEstudiante implements Estudiante {
 
     @Override
     public TipoEstadoEstudiante getEstadoEstudiante() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return estadoEstudiante;
     }
 
     @Override
     public void setEstadoEstudiante(TipoEstadoEstudiante estadoEstudiante) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.estadoEstudiante = estadoEstudiante;
     }
+
+    
 
 }
