@@ -14,7 +14,16 @@ import Controlador.Persistencia.*;
  * @author yanina
  */
 public class AgenteEstudiante extends Agente implements Estudiante{
+    ImplementacionEstudiante implementacionEstudiante;
 
+    public ImplementacionEstudiante getImplementacionEstudiante() {
+        return implementacionEstudiante;
+    }
+
+    public void setImplementacionEstudiante(ImplementacionEstudiante implementacionEstudiante) {
+        this.implementacionEstudiante = implementacionEstudiante;
+    }
+    
     @Override
     public String getLegajo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
