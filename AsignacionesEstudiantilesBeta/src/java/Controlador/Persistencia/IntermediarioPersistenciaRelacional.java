@@ -41,7 +41,9 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     }
 
     @Override
-    public abstract boolean desmaterializar(Object o);
+    public boolean desmaterializar(Object o){
+        return false;
+    }
 
     public abstract List<Object> convertirRegistroAObjeto(ResultSet a) throws SQLException;
 
