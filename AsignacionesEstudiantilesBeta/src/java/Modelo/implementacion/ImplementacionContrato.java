@@ -6,9 +6,7 @@
 
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionEmpresa;
-import Modelo.implementacion.ImplementacionPostulacion;
-import Modelo.implementacion.ImplementacionPostulacionProyectoCargo;
+import Modelo.interfaces.*;
 import java.util.Date;
 import java.util.List;
 
@@ -16,63 +14,74 @@ import java.util.List;
  *
  * @author yanina
  */
-public class ImplementacionContrato {
-    private int codContrato;
-    private Date fechaEmisioncontrato;
+public class ImplementacionContrato implements Contrato {
+    private int codigoContrato;
+    private Date fechaEmisionContrato;
     private ImplementacionEmpresa empresa;
-    private List<ImplementacionPostulacionProyectoCargo> postProyecCargo;
-    private ImplementacionPostulacion post;
+    private List<ImplementacionPostulacionProyectoCargo> postulacionProyecCargo;
+    private ImplementacionPostulacion postulacion;
     private ImplementacionContrato contrato;
 
-    public int getCodContrato() {
-        return codContrato;
+    @Override
+    public int getCodigoContrato() {
+        return codigoContrato;
     }
 
-    public void setCodContrato(int codContrato) {
-        this.codContrato = codContrato;
+    @Override
+    public void setCodigoContrato(int codigoContrato) {
+        this.codigoContrato = codigoContrato;
     }
 
-    public Date getFechaEmisioncontrato() {
-        return fechaEmisioncontrato;
+    @Override
+    public Date getFechaEmisionContrato() {
+        return fechaEmisionContrato;
     }
 
-    public void setFechaEmisioncontrato(Date fechaEmisioncontrato) {
-        this.fechaEmisioncontrato = fechaEmisioncontrato;
+    @Override
+    public void setFechaEmisionContrato(Date fechaEmisionContrato) {
+        this.fechaEmisionContrato = fechaEmisionContrato;
     }
 
+    @Override
     public ImplementacionEmpresa getEmpresa() {
         return empresa;
     }
 
+    @Override
     public void setEmpresa(ImplementacionEmpresa empresa) {
         this.empresa = empresa;
     }
 
-    public List<ImplementacionPostulacionProyectoCargo> getPostProyecCargo() {
-        return postProyecCargo;
+    @Override
+    public List<ImplementacionPostulacionProyectoCargo> getPostulacionProyecCargo() {
+        return postulacionProyecCargo;
     }
 
-    public void setPostProyecCargo(List<ImplementacionPostulacionProyectoCargo> postProyecCargo) {
-        this.postProyecCargo = postProyecCargo;
+    @Override
+    public void setPostulacionProyecCargo(List<ImplementacionPostulacionProyectoCargo> postulacionProyecCargo) {
+        this.postulacionProyecCargo = postulacionProyecCargo;
     }
 
-    public ImplementacionPostulacion getPost() {
-        return post;
+    @Override
+    public ImplementacionPostulacion getPostulacion() {
+        return postulacion;
     }
 
-    public void setPost(ImplementacionPostulacion post) {
-        this.post = post;
+    @Override
+    public void setPostulacion(ImplementacionPostulacion postulacion) {
+        this.postulacion = postulacion;
     }
 
+    @Override
     public ImplementacionContrato getContrato() {
         return contrato;
     }
 
+    @Override
     public void setContrato(ImplementacionContrato contrato) {
         this.contrato = contrato;
     }
-    
-    
+
             
             
 }

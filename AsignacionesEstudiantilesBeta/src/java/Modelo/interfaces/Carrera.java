@@ -14,23 +14,23 @@ import java.util.Date;
  * @author yanina
  */
 public interface Carrera {
-    public Date getFechaFinVigencia();
+    public Date getFechaFinVigencia() ;
 
-    public void setFechaFinVigencia(Date fechaFinVigencia);
+    public void setFechaFinVigencia(Date fechaFinVigencia) ;
 
-    public String getNomCarrera();
+    public String getNombreCarrera() ;
 
-    public void setNomCarrera(String nomCarrera);
+    public void setNombreCarrera(String nombreCarrera) ;
 
-    public Universidad getUniver() ;
+    public Universidad getUniversdad() ;
 
-    public void setUniver(Universidad univer);
+    public void setUniversdad(Universidad universdad) ;
 
-    public EstadoCarrera getEstadoCarr();
+    public TipoEstadoCarrera getEstadoCarrerra();
 
-    public void setEstadoCarr(EstadoCarrera estadoCarr) ;
+    public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) ;
 
-    public PlanDeEstudio getPlanEstudio() ;
+    public PlanDeEstudio getPlanDeEstudio() ;
 
-    public void setPlanEstudio(PlanDeEstudio planEstudio);
+    public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) ;
 }

@@ -10,8 +10,9 @@ package Modelo.interfaces;
  *
  * @author yanina
  */
-public interface EstadoCarrera {
-    public abstract String getNombreEstadoCarrera();
+public interface TipoEstadoCarrera {
+    
+    public String getNombreTipoEstadoCarrera() ;
 
-    public abstract void setNombreEstadoCarrera(String nombreEstadoCarrera);
+    public void setNombreTipoEstadoCarrera(String nombreTipoEstadoCarrera) ;
 }

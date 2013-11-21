@@ -5,8 +5,7 @@
  */
 
 package Modelo.implementacion;
-
-import Modelo.implementacion.ImplementacionEstadoContrato;
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**
@@ -15,12 +14,8 @@ import java.util.Date;
  */
 public class ImplementacionContratoEstado {
     private Date fechaHoraCambioEstado;
-    private ImplementacionEstadoContrato eC;
+    private TipoEstadoContrato tipoEstadoContrato;
 
-    public ImplementacionContratoEstado() {
-    }
-    
-    
     public Date getFechaHoraCambioEstado() {
         return fechaHoraCambioEstado;
     }
@@ -29,13 +24,17 @@ public class ImplementacionContratoEstado {
         this.fechaHoraCambioEstado = fechaHoraCambioEstado;
     }
 
-    public ImplementacionEstadoContrato geteC() {
-        return eC;
+    public TipoEstadoContrato getTipoEstadoContrato() {
+        return tipoEstadoContrato;
     }
 
-    public void seteC(ImplementacionEstadoContrato eC) {
-        this.eC = eC;
+    public void setTipoEstadoContrato(TipoEstadoContrato tipoEstadoContrato) {
+        this.tipoEstadoContrato = tipoEstadoContrato;
     }
+    
+    
+    
+    
     
     
 }

@@ -3,32 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionEmpresaEstado;
-import Modelo.implementacion.ImplementacionIdentificacionFiscal;
-import Modelo.implementacion.ImplementacionUniversidad;
-import java.util.ArrayList;
+import Modelo.interfaces.*;
 import java.util.List;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionEmpresa {
+public class ImplementacionEmpresa implements Empresa {
+
     private String emailEmpresa;
     private String nombreEmpresa;
-    private int telefonoEmpresa;
-    private ImplementacionUniversidad univ;
-    private ImplementacionIdentificacionFiscal idFiscal;
-    private List <ImplementacionEmpresaEstado> empEstado;
+    private Long telefonoEmpresa;
+    private Universidad universidad;
+    private Long identificacionFiscal;
+    private List<EmpresaEstado> empresaEstado;
 
-    public ImplementacionEmpresa(List<ImplementacionEmpresaEstado> empEstado) {
-        this.empEstado = empEstado;
-    }
-    
-    
     public String getEmailEmpresa() {
         return emailEmpresa;
     }
@@ -45,37 +37,36 @@ public class ImplementacionEmpresa {
         this.nombreEmpresa = nombreEmpresa;
     }
 
-    public int getTelefonoEmpresa() {
+    public Long getTelefonoEmpresa() {
         return telefonoEmpresa;
     }
 
-    public void setTelefonoEmpresa(int telefonoEmpresa) {
+    public void setTelefonoEmpresa(Long telefonoEmpresa) {
         this.telefonoEmpresa = telefonoEmpresa;
     }
 
-    public ImplementacionUniversidad getUniv() {
-        return univ;
+    public Universidad getUniversidad() {
+        return universidad;
     }
 
-    public void setUniv(ImplementacionUniversidad univ) {
-        this.univ = univ;
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
     }
 
-    public ImplementacionIdentificacionFiscal getIdFiscal() {
-        return idFiscal;
+    public Long getIdentificacionFiscal() {
+        return identificacionFiscal;
     }
 
-    public void setIdFiscal(ImplementacionIdentificacionFiscal idFiscal) {
-        this.idFiscal = idFiscal;
+    public void setIdentificacionFiscal(Long identificacionFiscal) {
+        this.identificacionFiscal = identificacionFiscal;
     }
 
-    public List<ImplementacionEmpresaEstado> getEmpEstado() {
-        return empEstado;
+    public List<EmpresaEstado> getEmpresaEstado() {
+        return empresaEstado;
     }
 
-    public void setEmpEstado(List<ImplementacionEmpresaEstado> empEstado) {
-        this.empEstado = empEstado;
+    public void setEmpresaEstado(List<EmpresaEstado> empresaEstado) {
+        this.empresaEstado = empresaEstado;
     }
-            
-    
+
 }

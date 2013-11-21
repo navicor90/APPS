@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionEstadoEmpresa;
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**
@@ -14,26 +13,24 @@ import java.util.Date;
  * @author yanina
  */
 public class ImplementacionEmpresaEstado {
-    private Date fechaEmpresaEstado;
-    private ImplementacionEstadoEmpresa estEmp;
 
-    public Date getFechaEmpresaEstado() {
-        return fechaEmpresaEstado;
+    private Date fechaCambioEstadoEmpresa;
+    private TipoEstadoEmpresa tipoEstadoEmpresa;
+
+    public Date getFechaCambioEstadoEmpresa() {
+        return fechaCambioEstadoEmpresa;
     }
 
-    public void setFechaEmpresaEstado(Date fechaEmpresaEstado) {
-        this.fechaEmpresaEstado = fechaEmpresaEstado;
+    public void setFechaCambioEstadoEmpresa(Date fechaCambioEstadoEmpresa) {
+        this.fechaCambioEstadoEmpresa = fechaCambioEstadoEmpresa;
     }
 
-    public ImplementacionEstadoEmpresa getEstEmp() {
-        return estEmp;
+    public TipoEstadoEmpresa getTipoEstadoEmpresa() {
+        return tipoEstadoEmpresa;
     }
 
-    public void setEstEmp(ImplementacionEstadoEmpresa estEmp) {
-        this.estEmp = estEmp;
+    public void setTipoEstadoEmpresa(TipoEstadoEmpresa tipoEstadoEmpresa) {
+        this.tipoEstadoEmpresa = tipoEstadoEmpresa;
     }
-    
-    
-    
-    
+
 }

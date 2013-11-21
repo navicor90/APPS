@@ -6,21 +6,19 @@
 
 package Modelo.implementacion;
 
-import Modelo.implementacion.ImplementacionEstadoCarrera;
-import Modelo.implementacion.ImplementacionPlanDeEstudio;
-import Modelo.implementacion.ImplementacionUniversidad;
-import Modelo.interfaces.Carrera;
+
+import Modelo.interfaces.*;
 import java.util.Date;
 
 /**
  *
  * @author yanina
  */
-public class ImplementacionCarrera implements Carrera{
+public class ImplementacionCarrera implements Carrera {
     private Date fechaFinVigencia;
-    private String nomCarrera;
+    private String nombreCarrera;
     private Universidad universdad;
-    private EstadoCarrera estadoCarrerra;
+    private TipoEstadoCarrera estadoCarrerra;
     private PlanDeEstudio planDeEstudio;
 
     @Override
@@ -34,39 +32,45 @@ public class ImplementacionCarrera implements Carrera{
     }
 
     @Override
-    public String getNomCarrera() {
-        return nomCarrera;
+    public String getNombreCarrera() {
+        return nombreCarrera;
     }
 
     @Override
-    public void setNomCarrera(String nomCarrera) {
-        this.nomCarrera = nomCarrera;
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
     }
 
+    @Override
     public Universidad getUniversdad() {
         return universdad;
     }
 
+    @Override
     public void setUniversdad(Universidad universdad) {
         this.universdad = universdad;
     }
 
-    public EstadoCarrera getEstadoCarrerra() {
+    @Override
+    public TipoEstadoCarrera getEstadoCarrerra() {
         return estadoCarrerra;
     }
 
-    public void setEstadoCarrerra(EstadoCarrera estadoCarrerra) {
+    @Override
+    public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) {
         this.estadoCarrerra = estadoCarrerra;
     }
 
+    @Override
     public PlanDeEstudio getPlanDeEstudio() {
         return planDeEstudio;
     }
 
+    @Override
     public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) {
         this.planDeEstudio = planDeEstudio;
     }
     
-    
+
     
 }

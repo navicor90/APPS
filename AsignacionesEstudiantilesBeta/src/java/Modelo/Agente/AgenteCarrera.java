@@ -73,12 +73,12 @@ public class AgenteCarrera implements Carrera {
     }
 
     @Override
-    public ImplementacionEstadoCarrera getEstadoCarr() {
+    public ImplementacionTipoEstadoCarrera getEstadoCarr() {
         return implementacionCarrera.getEstadoCarr();
     }
 
     @Override
-    public void setEstadoCarr(ImplementacionEstadoCarrera estadoCarr) {
+    public void setEstadoCarr(ImplementacionTipoEstadoCarrera estadoCarr) {
         implementacionCarrera.setEstadoCarr(estadoCarr);
     }
 
