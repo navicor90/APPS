@@ -11,14 +11,14 @@ package Modelo;
  * @author franco
  */
 public class CriterioCompuesto extends Expresion{
-    String operadorLogico;
-    Expresion expresionIzq;
-    Expresion expresionDer;
+    private String operadorLogico;
+    private Expresion expresionIzq;
+    private Expresion expresionDer;
 
     public CriterioCompuesto() {
     }
 
-    public String isOperadorLogico() {
+    public String getOperadorLogico() {
         return operadorLogico;
     }
 

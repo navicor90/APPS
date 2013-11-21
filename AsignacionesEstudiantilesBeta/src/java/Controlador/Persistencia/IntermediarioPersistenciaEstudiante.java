@@ -39,7 +39,8 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public String armarConsultaSeleccion(Expresion e) {
-        return null;
+        String sql = "SELECT * FROM Estudiante WHERE "+Expresion.desarmarExpresion(e);
+        return sql;
     }
 
     @Override

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
@@ -11,17 +10,23 @@ package Modelo;
  * @author franco
  */
 public class FabricaCriterio {
+
     public static FabricaCriterio instancia;
 
     public static FabricaCriterio getInstancia() {
         return instancia;
     }
-    
-    public Expresion crear(String operador, String operando, Object valor){
+
+    public Expresion crear(String operador, String operando, Object valor) {
         Expresion a = new Criterio(operador, operando, valor);
         return a;
     }
-    public Expresion crear(){
-        return new CriterioCompuesto();
+
+    public Expresion crear(Expresion expresionIzq, String operador, Expresion ExpresionDer) {
+        CriterioCompuesto criterioCompuesto = new CriterioCompuesto();
+        criterioCompuesto.setExpresionDer(ExpresionDer);
+        criterioCompuesto.setExpresionIzq(expresionIzq);
+        criterioCompuesto.setOperadorLogico(operador);
+        return criterioCompuesto;
     }
 }
