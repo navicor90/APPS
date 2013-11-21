@@ -8,12 +8,12 @@ package Modelo.Agente;
 
 import Modelo.interfaces.*;
 import Modelo.implementacion.*;
-
+import Controlador.Persistencia.*;
 /**
  *
  * @author yanina
  */
-public class AgenteEstudiante implements Estudiante{
+public class AgenteEstudiante extends Agente implements Estudiante{
 
     @Override
     public String getLegajo() {
