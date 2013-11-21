@@ -15,6 +15,7 @@ import Modelo.interfaces.TipoEstadoProyecto;
  */
 public class AgenteTipoEstadoProyecto implements TipoEstadoProyecto{
     ImplementacionTipoEstadoProyecto implementacionTipoEstadoProyecto;          
+    
     @Override
     public String getDescripcion() {
         return implementacionTipoEstadoProyecto.getDescripcion();

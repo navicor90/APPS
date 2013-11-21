@@ -55,42 +55,42 @@ public class AgenteCarrera extends Agente implements Carrera  {
 
     @Override
     public String getNombreCarrera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionCarrera.getNombreCarrera();
     }
 
     @Override
     public void setNombreCarrera(String nombreCarrera) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionCarrera.setNombreCarrera(nombreCarrera);
     }
 
     @Override
     public Universidad getUniversdad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionCarrera.getUniversdad();
     }
 
     @Override
     public void setUniversdad(Universidad universdad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionCarrera.setUniversdad(universdad);
     }
 
     @Override
     public TipoEstadoCarrera getEstadoCarrerra() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionCarrera.getEstadoCarrerra();
     }
 
     @Override
     public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionCarrera.setEstadoCarrerra(estadoCarrerra);
     }
 
     @Override
     public PlanDeEstudio getPlanDeEstudio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionCarrera.getPlanDeEstudio();
     }
 
     @Override
     public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionCarrera.setPlanDeEstudio(planDeEstudio);
     }
     
 }
