@@ -14,8 +14,28 @@ import Controlador.Persistencia.*;
  * @author yanina
  */
 public class AgenteEstudiante extends Agente implements Estudiante{
+    String oidUniversidad;
+    boolean heBuscadoUniversdad;
     ImplementacionEstudiante implementacionEstudiante;
 
+    public String getOidUniversidad() {
+        return oidUniversidad;
+    }
+
+    public void setOidUniversidad(String oidUniversidad) {
+        this.oidUniversidad = oidUniversidad;
+    }
+
+    public boolean isHeBuscadoUniversdad() {
+        return heBuscadoUniversdad;
+    }
+
+    public void setHeBuscadoUniversdad(boolean heBuscadoUniversdad) {
+        this.heBuscadoUniversdad = heBuscadoUniversdad;
+    }
+    
+    
+    
     public ImplementacionEstudiante getImplementacionEstudiante() {
         return implementacionEstudiante;
     }
@@ -26,92 +46,92 @@ public class AgenteEstudiante extends Agente implements Estudiante{
     
     @Override
     public String getLegajo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getLegajo();
     }
 
     @Override
     public void setLegajo(String legajo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setLegajo(legajo);
     }
 
     @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getNombre();
     }
 
     @Override
     public void setNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setNombre(nombre);
     }
 
     @Override
     public String getApellido() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getApellido();
     }
 
     @Override
     public void setApellido(String apellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setApellido(apellido);
     }
 
     @Override
     public String getEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getEmail();
     }
 
     @Override
     public void setEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setEmail(email);
     }
 
     @Override
     public Long getDni() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getDni();
     }
 
     @Override
     public void setDni(Long dni) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setDni(dni);
     }
 
     @Override
     public String getTipoDni() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getTipoDni();
     }
 
     @Override
     public void setTipoDni(String tipoDni) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setTipoDni(tipoDni);
     }
 
     @Override
     public Long getTelefono() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getTelefono();
     }
 
     @Override
     public void setTelefono(Long telefono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setTelefono(telefono);
     }
 
     @Override
     public Universidad getUniversidad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getUniversidad();
     }
 
     @Override
     public void setUniversidad(Universidad universidad) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setUniversidad(universidad);
     }
 
     @Override
     public TipoEstadoEstudiante getEstadoEstudiante() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionEstudiante.getEstadoEstudiante();
     }
 
     @Override
     public void setEstadoEstudiante(TipoEstadoEstudiante estadoEstudiante) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionEstudiante.setEstadoEstudiante(estadoEstudiante);
     }
     
     
