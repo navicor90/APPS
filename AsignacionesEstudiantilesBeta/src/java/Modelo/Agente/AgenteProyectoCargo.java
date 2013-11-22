@@ -104,52 +104,52 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
 
     @Override
     public int getNroProyectoCargo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargo.getNroProyectoCargo();
     }
 
     @Override
     public void setNroProyectoCargo(int nroProyectoCargo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargo.setNroProyectoCargo(nroProyectoCargo);
     }
 
     @Override
     public List<ImplementacionProyectoCargoEstado> getProyectoCargoEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargo.getProyectoCargoEstado();
     }
 
     @Override
     public void setProyectoCargoEstado(List<ImplementacionProyectoCargoEstado> proyectoCargoEstado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargo.setProyectoCargoEstado(proyectoCargoEstado);
     }
 
     @Override
     public TipoCargo getTipoCargo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargo.getTipoCargo();
     }
 
     @Override
     public void setTipoCargo(TipoCargo tipoCargo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargo.setTipoCargo(tipoCargo);
     }
 
     @Override
     public Proyecto getProyecto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargo.getProyecto();
     }
 
     @Override
     public void setProyecto(Proyecto proyecto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargo.setProyecto(proyecto);
     }
 
     @Override
     public ProyectoCargoCarrera getProyectoCargoCarrera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargo.getProyectoCargoCarrera();
     }
 
     @Override
     public void setProyectoCargoCarrera(ProyectoCargoCarrera proyectoCargoCarrera) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargo.setProyectoCargoCarrera(proyectoCargoCarrera);
     }
     
     
