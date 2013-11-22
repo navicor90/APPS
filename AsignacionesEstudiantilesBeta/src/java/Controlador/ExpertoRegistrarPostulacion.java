@@ -6,6 +6,7 @@
 
 package Controlador;
 import Modelo.DTO.*;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -14,8 +15,18 @@ import java.util.List;
 public class ExpertoRegistrarPostulacion {
     
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad){
-        
         return null;
     }
     
+    public List<DTOProyectoCargo> listarProyectoCargos(){
+        return null;
+    }
+    
+    public Date obtenerFechaYHoraActuales(){
+        return new Date();
+    }
+    
+    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO){
+        return null;
+    }
 }

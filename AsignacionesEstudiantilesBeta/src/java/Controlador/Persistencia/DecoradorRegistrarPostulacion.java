@@ -6,9 +6,9 @@
 package Controlador.Persistencia;
 
 import Controlador.ExpertoRegistrarPostulacion;
+import Modelo.DTO.DTOPostulacionProyectoCargo;
 import Modelo.DTO.DTOProyecto;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,10 +21,16 @@ public class DecoradorRegistrarPostulacion extends ExpertoRegistrarPostulacion {
 
     @Override
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
-        List<DTOProyecto> listarProyectos = new ArrayList();
+        List<DTOProyecto> listaProyectos;
+        FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+        listaProyectos = super.listarProyectos(legajo, codUniversidad);
+        return listaProyectos;
+    }
+
+    @Override
+    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+        List<DTOPostulacionProyectoCargo> realizarPostulacion = super.realizarPostulacion(postulacionesDTO);
         try {
-            FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-            listarProyectos = super.listarProyectos(legajo, codUniversidad);
             FachadaPersistenciaInterna.getInstancia().ConfirmarTransaccion();
         } catch (Exception ex) {
             try {
@@ -34,8 +40,7 @@ public class DecoradorRegistrarPostulacion extends ExpertoRegistrarPostulacion {
                 Logger.getLogger(DecoradorRegistrarPostulacion.class.getName()).log(Level.SEVERE, null, ex1);
             }
         }
-        return listarProyectos;
-
+        return realizarPostulacion;
     }
     
     
