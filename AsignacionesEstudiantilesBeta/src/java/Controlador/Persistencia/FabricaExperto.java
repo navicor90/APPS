@@ -22,8 +22,8 @@ public class FabricaExperto {
     }
     public Object obtenerExperto(String experto){
         switch(experto){
-         case("ExpertoRegistrarPostulacion"):   
-            return new ExpertoRegistrarPostulacion();
+         case("registrarPostulacion"):   
+            return new DecoradorRegistrarPostulacion();
          default:
              return null;
         }    

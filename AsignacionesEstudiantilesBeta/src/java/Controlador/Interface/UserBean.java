@@ -23,27 +23,17 @@ import javax.servlet.http.HttpServletRequest;
 @ManagedBean
 @SessionScoped
 public class UserBean {
-    
-        private long legajo;
-        private String nombre = "ivan";
-        private String apellido = "terreno";
-        private String mail = "ivan@celeste.com.ar";
-        private ControladorRegistrarPostulacion controlador;
 
-    /**
-     * Get the value of legajo
-     *
-     * @return the value of legajo
-     */
+    private long legajo;
+    private String nombre = "ivan";
+    private String apellido = "terreno";
+    private String mail = "ivan@celeste.com.ar";
+    private ControladorRegistrarPostulacion controlador = new ControladorRegistrarPostulacion();
+
     public long getLegajo() {
         return legajo;
     }
 
-    /**
-     * Set the value of legajo
-     *
-     * @param legajo new value of legajo
-     */
     public void setLegajo(long legajo) {
         this.legajo = legajo;
     }
@@ -72,54 +62,27 @@ public class UserBean {
         this.mail = mail;
     }
 
-    
     public String validar() {
-        String pagina="index.html";
-        Long constante=1234L;
-        if(legajo == constante){
+        String pagina = "index.html";
+        Long constante = 1234L;
+        if (legajo == constante) {
             pagina = "home.xhtml";
         }
         return pagina;
     }
-    
+
     public List<DTOProyecto> getListaProyecto() {
-        return listarProyectos();
-    }
-    
-    public List<DTOProyectoCargo> getListaProyectoCargo() {
-        
-        HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String nombre = origRequest.getParameter("nombreProyectoCargo");
-        return listarProyectoCargo(nombre);
-    }
-    
-    private List<DTOProyecto> listarProyectos(){
-        //HttpServletRequest origRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        //String URL = origRequest.getRequestURI();
-        //ListaProyecto = controlador.listarProyectos(legajo,URL);
-        List<DTOProyecto> r = new ArrayList();
-        for (int i = 0; i < 10; i++) {
-            DTOProyecto d = new DTOProyecto();
-            d.setDescripcion(Integer.toString(i));
-            d.setNomProyecto(Integer.toString(i));
-            d.setDuracion(i);
-            d.setFechaInicio(new Date());
-            r.add(d);
-        }
-        return r;
-    }
-    
-    private List<DTOProyectoCargo> listarProyectoCargo(String nomProyecto) {
-        List<DTOProyectoCargo> r = new ArrayList();
-        for (int i = 0; i < 10; i++) {
-            DTOProyectoCargo d = new DTOProyectoCargo();
-            d.setDescripcion(Integer.toString(i));
-            d.setNombreProyectoCargo(Integer.toString(i));
-            d.setHorasDedicadas(12d);
-            r.add(d);
-        }
-        return r;
+        HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String URL = origRequest.getRequestURI();
+        List<DTOProyecto> proyectosList = controlador.listarProyectos(legajo, URL);
+        return proyectosList;
     }
 
-    
+    public List<DTOProyectoCargo> getListaProyectoCargo() {
+        HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String nombre = origRequest.getParameter("nombreProyectoCargo");
+        List<DTOProyectoCargo> proyectoCargosList = controlador.listarProyectoCargos();
+        return proyectoCargosList;
+    }
+
 }
