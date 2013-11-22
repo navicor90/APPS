@@ -6,8 +6,8 @@
 
 package Modelo.Agente;
 
-import Modelo.implementacion.ImplementacionTipoEstadoProyecto;
-import Modelo.interfaces.TipoEstadoProyecto;
+import Modelo.implementacion.*;
+import Modelo.interfaces.*;
 
 /**
  *
