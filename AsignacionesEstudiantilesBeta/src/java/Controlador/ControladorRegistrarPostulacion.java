@@ -8,13 +8,15 @@ package Controlador;
 
 import Modelo.DTO.*;
 import Controlador.Persistencia.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 /**
  *
  * @author milton
  */
 public class ControladorRegistrarPostulacion {
-    ExpertoRegistrarPostulacion experto;
+    private ExpertoRegistrarPostulacion experto;
 
     public ControladorRegistrarPostulacion() {
         this.experto = (ExpertoRegistrarPostulacion) FabricaExperto.getInstancia().obtenerExperto("registrarPostulacion");
@@ -25,6 +27,17 @@ public class ControladorRegistrarPostulacion {
         return experto.listarProyectos(legajo, codUniversidad);
     }
     
+    public List<DTOProyectoCargo> listarProyectoCargos(){
+        return experto.listarProyectoCargos();
+    }
+    
+    public Date obtenerFechaYHoraActuales(){
+        return experto.obtenerFechaYHoraActuales();
+    }
+    
+    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO){
+        return experto.realizarPostulacion(postulacionesDTO);
+    }
     
     
 }
