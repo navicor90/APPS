@@ -7,6 +7,7 @@
 package Controlador;
 
 import Modelo.DTO.*;
+import Controlador.Persistencia.*;
 import java.util.List;
 /**
  *
@@ -16,7 +17,7 @@ public class ControladorRegistrarPostulacion {
     ExpertoRegistrarPostulacion experto;
 
     public ControladorRegistrarPostulacion() {
-        this.experto = new ExpertoRegistrarPostulacion();
+        this.experto = (ExpertoRegistrarPostulacion) FabricaExperto.getInstancia().obtenerExperto("registrarPostulacion");
     }
     
     public List<DTOProyecto> listarProyectos(long legajo, String url){
