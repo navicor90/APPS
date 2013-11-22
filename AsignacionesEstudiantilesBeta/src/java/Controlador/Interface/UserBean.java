@@ -25,11 +25,19 @@ import javax.servlet.http.HttpServletRequest;
 public class UserBean {
 
     private long legajo;
-    private String nombre = "ivan";
-    private String apellido = "terreno";
-    private String mail = "ivan@celeste.com.ar";
-    private ControladorRegistrarPostulacion controlador = new ControladorRegistrarPostulacion();
+    private String nombre;
+    private String apellido;
+    private String mail;
+    private ControladorRegistrarPostulacion controlador;
+    private List<DTOPostulacionProyectoCargo> postulacionesDTO;
 
+    public UserBean() {
+        controlador = new ControladorRegistrarPostulacion();
+        postulacionesDTO = new ArrayList<DTOPostulacionProyectoCargo>();
+    }
+    
+    
+    
     public long getLegajo() {
         return legajo;
     }
@@ -63,11 +71,7 @@ public class UserBean {
     }
 
     public String validar() {
-        String pagina = "index.html";
-        Long constante = 1234L;
-        if (legajo == constante) {
-            pagina = "home.xhtml";
-        }
+        String pagina = "seleccionarProyecto.xhtml";
         return pagina;
     }
 
