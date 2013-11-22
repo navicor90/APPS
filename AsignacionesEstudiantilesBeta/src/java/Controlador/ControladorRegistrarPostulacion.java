@@ -27,8 +27,8 @@ public class ControladorRegistrarPostulacion {
         return experto.listarProyectos(legajo, codUniversidad);
     }
     
-    public List<DTOProyectoCargo> listarProyectoCargos(){
-        return experto.listarProyectoCargos();
+    public List<DTOProyectoCargo> listarProyectoCargos(String nombreProyecto){
+        return experto.listarProyectoCargos(nombreProyecto);
     }
     
     public Date obtenerFechaYHoraActuales(){

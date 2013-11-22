@@ -28,7 +28,7 @@ public class ExpertoRegistrarPostulacion {
         return r;
     }
     
-    public List<DTOProyectoCargo> listarProyectoCargos(){
+    public List<DTOProyectoCargo> listarProyectoCargos(String nombreProyecto){
         List<DTOProyectoCargo> r = new ArrayList();
         for (int i = 0; i < 10; i++) {
             DTOProyectoCargo d = new DTOProyectoCargo();
