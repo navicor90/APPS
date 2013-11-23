@@ -11,9 +11,10 @@ package Modelo;
  */
 public class FabricaCriterio {
 
-    public static FabricaCriterio instancia;
+    private static FabricaCriterio instancia;
 
     public static FabricaCriterio getInstancia() {
+        if (instancia == null)instancia = new FabricaCriterio();
         return instancia;
     }
 
