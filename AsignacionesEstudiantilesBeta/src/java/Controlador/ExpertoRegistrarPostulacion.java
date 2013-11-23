@@ -31,19 +31,19 @@ public class ExpertoRegistrarPostulacion {
             }
         }
         if (esRegular) {
-            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("Proyecto", null, legajo);
+            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicio",">" ,new Date());
             List<Proyecto> ProyectosList = (List)(Proyecto)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
+            List<DTOProyecto> proyectoDTOList = new ArrayList<>();
             for (Proyecto proyecto: ProyectosList) {
                 DTOProyecto proyectoDTO = new DTOProyecto();
                 proyectoDTO.setDescripcion(proyecto.getDescripcion());
                 proyectoDTO.setDuracion(proyecto.getDuracion());
                 proyectoDTO.setFechaInicio(proyecto.getFechaInicio());
                 proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
-            }
-            
-            return null;
+                proyectoDTOList.add(proyectoDTO);
+            }            
+            return proyectoDTOList;
         }
-
         return null;
         /*
          //codigo stub - interface ivan
@@ -71,6 +71,7 @@ public class ExpertoRegistrarPostulacion {
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(String nombreProyecto) {
+        //codigo stub - interface ivan
         List<DTOProyectoCargo> r = new ArrayList();
         for (int i = 0; i < 5; i++) {
             DTOProyectoCargo d = new DTOProyectoCargo();
