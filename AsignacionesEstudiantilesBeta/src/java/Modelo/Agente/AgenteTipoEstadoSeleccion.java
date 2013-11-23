@@ -5,11 +5,22 @@
  */
 
 package Modelo.Agente;
-
+import Modelo.interfaces.*;
+import Modelo.implementacion.*;
 /**
  *
  * @author yanina
  */
-public class AgenteTipoEstadoSeleccion {
+public class AgenteTipoEstadoSeleccion extends Agente implements TipoEstadoSeleccion{
+    ImplementacionTipoEstadoSeleccion implementacionTipoEstadoSeleccion;
+    @Override
+    public String getTipoNombreEstadoSeleccion() {
+        return implementacionTipoEstadoSeleccion.getTipoNombreEstadoSeleccion();
+    }
+
+    @Override
+    public void setTipoNombreEstadoSeleccion(String tipoNombreEstadoSeleccion) {
+        implementacionTipoEstadoSeleccion.setTipoNombreEstadoSeleccion(tipoNombreEstadoSeleccion);
+    }
     
 }

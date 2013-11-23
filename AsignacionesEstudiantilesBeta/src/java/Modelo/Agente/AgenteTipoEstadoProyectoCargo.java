@@ -5,11 +5,32 @@
  */
 
 package Modelo.Agente;
+import Modelo.interfaces.*;
+import Modelo.implementacion.*;
 
 /**
  *
  * @author yanina
  */
-public class AgenteTipoEstadoProyectoCargo {
+public class AgenteTipoEstadoProyectoCargo extends Agente implements TipoEstadoProyectoCargo{
+    ImplementacionTipoEstadoProyectoCargo implementacionTipoEstadoProyectoCargo;
+
+    public ImplementacionTipoEstadoProyectoCargo getImplementacionTipoEstadoProyectoCargo() {
+        return implementacionTipoEstadoProyectoCargo;
+    }
+
+    public void setImplementacionTipoEstadoProyectoCargo(ImplementacionTipoEstadoProyectoCargo implementacionTipoEstadoProyectoCargo) {
+        this.implementacionTipoEstadoProyectoCargo = implementacionTipoEstadoProyectoCargo;
+    }
+    
+    @Override
+    public String getNombreEstadoProyectoCargo() {
+        return implementacionTipoEstadoProyectoCargo.getNombreEstadoProyectoCargo();
+    }
+
+    @Override
+    public void setNombreEstadoProyectoCargo(String nombreEstadoProyectoCargo) {
+        implementacionTipoEstadoProyectoCargo.setNombreEstadoProyectoCargo(nombreEstadoProyectoCargo);
+    }
     
 }

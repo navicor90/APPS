@@ -6,6 +6,7 @@
 
 package Modelo.Agente;
 import Modelo.implementacion.ImplementacionProyectoCargoCarrera;
+import Modelo.implementacion.ImplementacionProyectoCargoEstado;
 import Modelo.interfaces.*;
 import java.util.Date;
 /**
@@ -17,25 +18,67 @@ public class AgenteProyectoCargoEstado extends Agente implements ProyectoCargoEs
     String oidTipoEstadoProyectoCargo;
     boolean heBuscadoProyectoCargo;
     boolean heBuscadoTipoEstadoProyectoCargo;
-    ImplementacionProyectoCargoCarrera implementacionProyectoCargoCarrera;
+    ImplementacionProyectoCargoEstado implementacionProyectoCargoEstado;
+
+    public String getOidproyectoCargo() {
+        return oidproyectoCargo;
+    }
+
+    public void setOidproyectoCargo(String oidproyectoCargo) {
+        this.oidproyectoCargo = oidproyectoCargo;
+    }
+
+    public String getOidTipoEstadoProyectoCargo() {
+        return oidTipoEstadoProyectoCargo;
+    }
+
+    public void setOidTipoEstadoProyectoCargo(String oidTipoEstadoProyectoCargo) {
+        this.oidTipoEstadoProyectoCargo = oidTipoEstadoProyectoCargo;
+    }
+
+    public boolean isHeBuscadoProyectoCargo() {
+        return heBuscadoProyectoCargo;
+    }
+
+    public void setHeBuscadoProyectoCargo(boolean heBuscadoProyectoCargo) {
+        this.heBuscadoProyectoCargo = heBuscadoProyectoCargo;
+    }
+
+    public boolean isHeBuscadoTipoEstadoProyectoCargo() {
+        return heBuscadoTipoEstadoProyectoCargo;
+    }
+
+    public void setHeBuscadoTipoEstadoProyectoCargo(boolean heBuscadoTipoEstadoProyectoCargo) {
+        this.heBuscadoTipoEstadoProyectoCargo = heBuscadoTipoEstadoProyectoCargo;
+    }
+
+    public ImplementacionProyectoCargoEstado getImplementacionProyectoCargoEstado() {
+        return implementacionProyectoCargoEstado;
+    }
+
+    public void setImplementacionProyectoCargoEstado(ImplementacionProyectoCargoEstado implementacionProyectoCargoEstado) {
+        this.implementacionProyectoCargoEstado = implementacionProyectoCargoEstado;
+    }
+    
+    
     @Override
     public Date getFechahoraCambioEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargoEstado.getFechahoraCambioEstado();
     }
 
     @Override
     public void setFechahoraCambioEstado(Date fechahoraCambioEstado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargoEstado.setFechahoraCambioEstado(fechahoraCambioEstado);
     }
 
     @Override
     public TipoEstadoProyectoCargo getTipoEstadoProyectoCargo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return implementacionProyectoCargoEstado.getTipoEstadoProyectoCargo();
     }
 
     @Override
     public void setTipoEstadoProyectoCargo(TipoEstadoProyectoCargo tipoEstadoProyectoCargo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        implementacionProyectoCargoEstado.setTipoEstadoProyectoCargo(tipoEstadoProyectoCargo);
     }
     
 }

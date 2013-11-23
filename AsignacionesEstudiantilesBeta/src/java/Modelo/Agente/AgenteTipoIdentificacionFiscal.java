@@ -5,11 +5,31 @@
  */
 
 package Modelo.Agente;
-
+import Modelo.interfaces.*;
+import Modelo.implementacion.*;
 /**
  *
  * @author yanina
  */
-public class AgenteTipoIdentificacionFiscal {
+public class AgenteTipoIdentificacionFiscal extends Agente implements TipoIdentificacionFiscal{
+    ImplementacionTipoIdentificacionFiscal implementacionTipoIdentificacionFiscal;
+
+    public ImplementacionTipoIdentificacionFiscal getImplementacionTipoIdentificacionFiscal() {
+        return implementacionTipoIdentificacionFiscal;
+    }
+
+    public void setImplementacionTipoIdentificacionFiscal(ImplementacionTipoIdentificacionFiscal implementacionTipoIdentificacionFiscal) {
+        this.implementacionTipoIdentificacionFiscal = implementacionTipoIdentificacionFiscal;
+    }
+    
+    @Override
+    public String getNombreTipoIdentificacionFiscal() {
+        return implementacionTipoIdentificacionFiscal.getNombreTipoIdentificacionFiscal();
+    }
+
+    @Override
+    public void setNombreTipoIdentificacionFiscal(String nombreTipoIdentificacionFiscal) {
+        implementacionTipoIdentificacionFiscal.setNombreTipoIdentificacionFiscal(nombreTipoIdentificacionFiscal);
+    }
     
 }

@@ -15,6 +15,14 @@ import Modelo.interfaces.*;
  */
 public class AgenteTipoEstadoProyecto implements TipoEstadoProyecto{
     ImplementacionTipoEstadoProyecto implementacionTipoEstadoProyecto;          
+
+    public ImplementacionTipoEstadoProyecto getImplementacionTipoEstadoProyecto() {
+        return implementacionTipoEstadoProyecto;
+    }
+
+    public void setImplementacionTipoEstadoProyecto(ImplementacionTipoEstadoProyecto implementacionTipoEstadoProyecto) {
+        this.implementacionTipoEstadoProyecto = implementacionTipoEstadoProyecto;
+    }
     
     @Override
     public String getDescripcion() {
