@@ -8,7 +8,6 @@ package Controlador;
 
 import Modelo.DTO.DTOEstadoAcademicoGeneral;
 import Modelo.DTO.DTOMateria;
-import Modelo.interfaces.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -17,7 +16,6 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import javax.swing.JOptionPane;
-import static javax.ws.rs.client.Entity.xml;
 //http://franciscocoenda.blogspot.com.ar/2013/09/leer-un-xml-con-java.html
 //http://es.softuses.com/139147
 //http://expertoj2ee.blogspot.com.ar/2011/03/como-leer-un-fichero-xml-en-java-y-su.html
@@ -30,13 +28,13 @@ public class AdaptadorSistemaAcademico01 implements AdaptadorSistemaAcademico{
     
 
     @Override
-    public List<DTOMateria> ObtenerDatosEstadoAcademico(int dni) {
+    public List<DTOMateria> ObtenerEstadoAcademicoDetallado(String legajo) {
        List <DTOMateria> selec= new ArrayList<>();
        return selec;
     }
 
     @Override
-    public List<DTOEstadoAcademicoGeneral> VerificarRegularidadEstudiante(String tipoLegajo, int legajo) {
+    public List<DTOEstadoAcademicoGeneral> obtenerEstadoAcademicoGeneral(String tipoDNI, long DNI) {
         
         List <DTOEstadoAcademicoGeneral> estadoAcademicoGeneral=new ArrayList<>();
         try{

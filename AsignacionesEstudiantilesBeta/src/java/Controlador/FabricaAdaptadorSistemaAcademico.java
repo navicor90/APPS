@@ -5,11 +5,20 @@
  */
 
 package Controlador;
-
+import Modelo.interfaces.*;
 /**
  *
  * @author yanina
  */
 public class FabricaAdaptadorSistemaAcademico {
+    private static FabricaAdaptadorSistemaAcademico instancia;
+
+    public static FabricaAdaptadorSistemaAcademico getInstancia() {
+        if(instancia==null)instancia = new FabricaAdaptadorSistemaAcademico();
+        return instancia;
+    }
+    public AdaptadorSistemaAcademico obtenerAdaptadorSistemaAcademico(int codUniversidad){
+        return null;
+    }
     
 }

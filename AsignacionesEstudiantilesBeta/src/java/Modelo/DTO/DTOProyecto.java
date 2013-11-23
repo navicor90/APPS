@@ -17,7 +17,6 @@ public class DTOProyecto {
     private int duracion;
     private Date fechaInicio;
     private String nomProyecto;
-    private DTOProyectoCargo DTOProyecCarg;
 
     public String getDescripcion() {
         return descripcion;
@@ -51,13 +50,6 @@ public class DTOProyecto {
         this.nomProyecto = nomProyecto;
     }
 
-    public DTOProyectoCargo getDTOProyecCarg() {
-        return DTOProyecCarg;
-    }
-
-    public void setDTOProyecCarg(DTOProyectoCargo DTOProyecCarg) {
-        this.DTOProyecCarg = DTOProyecCarg;
-    }
     
     
 }

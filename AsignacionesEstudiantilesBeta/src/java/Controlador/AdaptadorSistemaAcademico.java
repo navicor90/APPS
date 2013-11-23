@@ -16,8 +16,8 @@ import java.util.List;
  */
 public interface AdaptadorSistemaAcademico {
     //estado academico detallado
-    public List<DTOMateria> ObtenerDatosEstadoAcademico(int dni);
+    public List<DTOMateria> ObtenerEstadoAcademicoDetallado(String legajo);
     //estado academico general
-    public List<DTOEstadoAcademicoGeneral> VerificarRegularidadEstudiante(String tipoLegajo, int legajo);
+    public List<DTOEstadoAcademicoGeneral> obtenerEstadoAcademicoGeneral(String tipoDni, long dni);
     
 }
