@@ -25,6 +25,9 @@ public class FactoriaIntermediarioPersistencia {
             case "Estudiante":
                 intermediario = new IntermediarioPersistenciaEstudiante();
                 break;
+            case "Proyecto":
+                intermediario = new IntermediarioPersistenciaProyecto();
+                break;
             default:
                 intermediario = null;
         }
