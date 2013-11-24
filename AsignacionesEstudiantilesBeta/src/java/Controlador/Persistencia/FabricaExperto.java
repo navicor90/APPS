@@ -18,8 +18,6 @@ public class FabricaExperto {
         return instancia;
     }
 
-    public FabricaExperto() {
-    }
     public Object obtenerExperto(String experto){
         switch(experto){
          case("registrarPostulacion"):   

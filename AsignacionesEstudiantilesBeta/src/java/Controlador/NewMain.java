@@ -6,7 +6,10 @@
 
 package Controlador;
 
+import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 /**
  *
  * @author yanina
@@ -16,10 +19,13 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Expresion expresion = generarExp();
-        String sql="SELECT * FROM Estudiantes WHERE "+ Expresion.desarmarExpresion(expresion);
-        System.out.println(sql);
+    public static void main(String[] args) throws SQLException {
+        FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+        Connection c;
+        c = FachadaPersistenciaInterna.getInstancia().getConexion();
+        if(c==null)System.out.println("annanananna--batman");
+        c.createStatement();
+                
         
     }
     
