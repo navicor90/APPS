@@ -20,7 +20,7 @@ import java.util.List;
 public class ExpertoRegistrarPostulacion {
 
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
-        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajo", "=", legajo);
+        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo);
         List<Object> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         Estudiante estudiante=null;
         if(estudiantesList!=null){

@@ -29,7 +29,7 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
             proyectoAgente.setOid(rs.getString("OIDProyecto"));
             proyectoAgente.setOidUniversidad(rs.getString("OIDUniversidad"));
             proyectoAgente.setOidEmpresa(rs.getString("OIDEmpresa"));
-            proyectoAgente.setCodigo(rs.getInt("codigo"));
+            proyectoAgente.setCodigo(rs.getInt("codigoProyecto"));
             proyectoAgente.setDescripcion(rs.getString("descripcionProyecto"));
             proyectoAgente.setDuracion(rs.getInt("duracionProyecto"));
             proyectoAgente.setNombreProyecto(rs.getString("nombreProyecto"));

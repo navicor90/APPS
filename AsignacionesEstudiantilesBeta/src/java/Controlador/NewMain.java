@@ -24,10 +24,13 @@ public class NewMain {
      */
     public static void main(String[] args) throws SQLException {
         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajo", "=", 27881);
-        List<Object> estudiantesList = FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
-        for (Object estudiante:estudiantesList) {
-            System.out.println(((Estudiante)estudiante).getApellido()+"--------------------------------IT IS FINDED");    
+        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", "34567");
+        List<Object> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        Estudiante estudiante=null;
+        if(estudiantesList!=null){
+            estudiante = (Estudiante) estudiantesList.get(0);
+        }else{
+            System.out.println("nullllllllll");
         }
                 
         

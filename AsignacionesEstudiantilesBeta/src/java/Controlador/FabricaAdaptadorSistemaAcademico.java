@@ -18,7 +18,7 @@ public class FabricaAdaptadorSistemaAcademico {
         return instancia;
     }
     public AdaptadorSistemaAcademico obtenerAdaptadorSistemaAcademico(int codUniversidad){
-        return null;
+        return new AdaptadorSistemaAcademico02();
     }
     
 }
