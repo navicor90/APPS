@@ -6,10 +6,13 @@
 
 package Controlador;
 
+import Controlador.Persistencia.FachadaPersistencia;
 import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.*;
+import Modelo.interfaces.Estudiante;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 /**
  *
  * @author yanina
@@ -21,10 +24,11 @@ public class NewMain {
      */
     public static void main(String[] args) throws SQLException {
         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-        Connection c;
-        c = FachadaPersistenciaInterna.getInstancia().getConexion();
-        if(c==null)System.out.println("annanananna--batman");
-        c.createStatement();
+        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajo", "=", 27881);
+        List<Object> estudiantesList = FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        for (Object estudiante:estudiantesList) {
+            System.out.println(((Estudiante)estudiante).getApellido()+"--------------------------------IT IS FINDED");    
+        }
                 
         
     }

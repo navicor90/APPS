@@ -27,7 +27,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
             estudianteAgente.setImplementacionEstudiante(estudianteImplementacion);
             estudianteImplementacion.setApellido(rs.getString("apellido"));
             estudianteImplementacion.setDni(rs.getLong("dni"));
-            estudianteImplementacion.setEmail(rs.getString("email"));
+            estudianteImplementacion.setEmail(rs.getString("emailEstudiante"));
             estudianteImplementacion.setLegajo(rs.getString("legajo"));
             estudianteImplementacion.setNombre(rs.getString("nombre"));
             estudianteImplementacion.setTelefono(rs.getLong("telefono"));
@@ -39,7 +39,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public String armarConsultaSeleccion(Expresion e) {
-        String sql = "SELECT * FROM Estudiante WHERE "+Expresion.desarmarExpresion(e);
+        String sql = "SELECT * FROM AE.estudiante WHERE "+Expresion.desarmarExpresion(e);
         return sql;
     }
 

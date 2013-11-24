@@ -5,6 +5,7 @@
 package Controlador.Persistencia;
 
 import Modelo.Agente.Agente;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,11 @@ public class Cache {
     public static Cache instancia;
     public List<Agente> objetosAgenteDepositados;
 
+    public Cache() {
+        objetosAgenteDepositados= new ArrayList<>();
+    }
+    
+    
     public static Cache obtenerInstancia() {
         if (instancia == null) {
             instancia = new Cache();

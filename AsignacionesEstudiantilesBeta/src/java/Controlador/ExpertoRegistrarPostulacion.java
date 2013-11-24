@@ -21,7 +21,13 @@ public class ExpertoRegistrarPostulacion {
 
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajo", "=", legajo);
-        Estudiante estudiante = (Estudiante) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        List<Object> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        Estudiante estudiante=null;
+        if(estudiantesList!=null){
+            estudiante = (Estudiante) estudiantesList.get(0);
+        }else{
+            return null;
+        }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
         Boolean esRegular = false;

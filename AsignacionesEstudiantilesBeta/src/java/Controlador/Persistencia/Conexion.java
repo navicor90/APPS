@@ -19,7 +19,6 @@ public class Conexion {
     public static Connection getConnection() {
         Connection conexion = null;
         try {
-            System.out.println("nananannannan--------------------------------");
             Class.forName("com.mysql.jdbc.Driver");
             String servidor = "jdbc:mysql://localhost/AE";
             String usuarioDB = "root";

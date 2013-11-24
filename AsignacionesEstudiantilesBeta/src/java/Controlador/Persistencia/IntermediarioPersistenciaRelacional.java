@@ -27,6 +27,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
             Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
             Statement st = conexion.createStatement();
             String consulta = armarConsultaSeleccion(expresion);
+            System.out.println(consulta);
             ResultSet rs = st.executeQuery(consulta);
             objetosList = convertirRegistroAObjeto(rs);
         } catch (SQLException ex) {
