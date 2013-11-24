@@ -160,5 +160,15 @@ public class AgenteProyecto extends Agente implements Proyecto{
     public void setTipoSeleccion(TipoSeleccion tipoSeleccion) {
         implementacionProyecto.setTipoSeleccion(tipoSeleccion);
     }
+
+    @Override
+    public int getCodigo() {
+        return implementacionProyecto.getCodigo();
+    }
+
+    @Override
+    public void setCodigo(int codigo) {
+        implementacionProyecto.setCodigo(codigo);
+    }
     
 }

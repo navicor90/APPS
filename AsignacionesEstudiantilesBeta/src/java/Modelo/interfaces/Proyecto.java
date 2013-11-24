@@ -15,7 +15,11 @@ import java.util.List;
  */
 public interface Proyecto {
     public String getDescripcion();
+    
+    public int getCodigo() ;
 
+    public void setCodigo(int codigo) ;
+    
     public void setDescripcion(String descripcion);
 
     public int getDuracion();

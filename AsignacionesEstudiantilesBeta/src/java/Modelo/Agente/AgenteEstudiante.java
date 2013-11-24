@@ -133,6 +133,16 @@ public class AgenteEstudiante extends Agente implements Estudiante{
     public void setEstadoEstudiante(TipoEstadoEstudiante estadoEstudiante) {
         implementacionEstudiante.setEstadoEstudiante(estadoEstudiante);
     }
+
+    @Override
+    public int getCodigo() {
+        return implementacionEstudiante.getCodigo();
+    }
+
+    @Override
+    public void setCodigo(int codigo) {
+        implementacionEstudiante.setCodigo(codigo);
+    }
     
     
 }

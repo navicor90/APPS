@@ -12,6 +12,7 @@ import Modelo.interfaces.*;
  */
 public class ImplementacionEstudiante implements Estudiante {
 
+    private int codigo;
     private String legajo;
     private String nombre;
     private String apellido;
@@ -21,6 +22,16 @@ public class ImplementacionEstudiante implements Estudiante {
     private Long telefono;
     private Universidad universidad;
     private TipoEstadoEstudiante estadoEstudiante;
+
+    @Override
+    public int getCodigo() {
+        return codigo;
+    }
+
+    @Override
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     @Override
     public String getLegajo() {
@@ -111,7 +122,5 @@ public class ImplementacionEstudiante implements Estudiante {
     public void setEstadoEstudiante(TipoEstadoEstudiante estadoEstudiante) {
         this.estadoEstudiante = estadoEstudiante;
     }
-
-    
 
 }

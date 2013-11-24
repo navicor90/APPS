@@ -26,12 +26,14 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
             AgenteProyecto proyectoAgente = new AgenteProyecto();
             ImplementacionProyecto proyectoImplementacion = new ImplementacionProyecto();
             proyectoAgente.setImplementacionProyecto(proyectoImplementacion);
-            proyectoImplementacion.setDescripcion(rs.getString("descripcion"));
-            proyectoImplementacion.setDuracion(rs.getInt("duracion"));
-            proyectoImplementacion.setNombreProyecto(rs.getString("nombreProyecto"));
-            proyectoImplementacion.setFechaInicio(rs.getDate("fechaInicio"));
-            proyectoImplementacion.setFechaFinPostulacion(rs.getDate("fechaFinPostulacion"));
-            
+            proyectoAgente.setOid("OIDProyecto");
+            proyectoAgente.setOidUniversidad("OIDUniversidad");
+            proyectoAgente.setOidEmpresa("OIDEmpresa");
+            proyectoAgente.setDescripcion(rs.getString("descripcionProyecto"));
+            proyectoAgente.setDuracion(rs.getInt("duracionProyecto"));
+            proyectoAgente.setNombreProyecto(rs.getString("nombreProyecto"));
+            proyectoAgente.setFechaInicio(rs.getDate("fechaInicioProyecto"));
+            proyectoAgente.setFechaFinPostulacion(rs.getDate("fechaLimitePostulacion"));
             proyectosList.add(proyectoAgente);
 
         }

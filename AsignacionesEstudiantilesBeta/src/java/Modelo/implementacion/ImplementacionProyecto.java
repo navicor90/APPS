@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.implementacion;
 
 import Modelo.interfaces.*;
@@ -14,8 +13,10 @@ import java.util.List;
  *
  * @author yanina
  */
-public class ImplementacionProyecto implements Proyecto{
+public class ImplementacionProyecto implements Proyecto {
+
     private String descripcion;
+    private int codigo;
     private int duracion;
     private Date fechaInicio;
     private Date fechaFinPostulacion;
@@ -44,6 +45,17 @@ public class ImplementacionProyecto implements Proyecto{
     @Override
     public void setDuracion(int duracion) {
         this.duracion = duracion;
+    }
+    
+    
+    @Override
+    public int getCodigo() {
+        return codigo;
+    }
+
+    @Override
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     @Override
@@ -125,5 +137,5 @@ public class ImplementacionProyecto implements Proyecto{
     public void setTipoSeleccion(TipoSeleccion tipoSeleccion) {
         this.tipoSeleccion = tipoSeleccion;
     }
-    
+
 }

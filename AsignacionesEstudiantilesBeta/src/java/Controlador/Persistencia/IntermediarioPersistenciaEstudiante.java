@@ -25,15 +25,13 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
             AgenteEstudiante estudianteAgente = new AgenteEstudiante();
             ImplementacionEstudiante estudianteImplementacion = new ImplementacionEstudiante();
             estudianteAgente.setImplementacionEstudiante(estudianteImplementacion);
-            estudianteAgente.setApellido(rs.getString("apellido"));
-            estudianteAgente.setOidUniversidad(rs.getString("oidUniversidad"));
-            estudianteAgente.setTelefono(rs.getLong("telefono"));
-            estudianteAgente.setDni(rs.getLong("dni"));
+            estudianteAgente.setApellido(rs.getString("apellidoEstudiante"));
+            estudianteAgente.setNombre(rs.getString("nombreEstudiante"));
+            estudianteAgente.setOidUniversidad(rs.getString("OIDUniversidad"));
+            estudianteAgente.setDni(rs.getLong("dniEstudiante"));
             estudianteAgente.setEmail(rs.getString("emailEstudiante"));
-            estudianteAgente.setLegajo(rs.getString("legajo"));
-            estudianteAgente.setNombre(rs.getString("nombre"));
-            estudianteAgente.setTelefono(rs.getLong("telefono"));
-            estudianteAgente.setTipoDni(rs.getString("tipoDni"));
+            estudianteAgente.setLegajo(rs.getString("legajoEstudiante"));
+            estudianteAgente.setTipoDni(rs.getString("tipoDNIEstudiante"));
             estudiantesList.add(estudianteAgente);
         }
         return estudiantesList;
@@ -41,7 +39,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.estudiante WHERE "+Expresion.desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.estudiantes WHERE "+Expresion.desarmarExpresion(expresion);
         return sql;
     }
 

@@ -11,6 +11,11 @@ package Modelo.interfaces;
  * @author yanina
  */
 public interface Estudiante {
+    
+    public int getCodigo() ;
+
+    public void setCodigo(int codigo) ;
+    
     public String getLegajo();
 
     public void setLegajo(String legajo);
