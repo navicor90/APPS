@@ -46,15 +46,15 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
         return false;
     }
 
-    public abstract List<Object> convertirRegistroAObjeto(ResultSet a) throws SQLException;
+    public abstract List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException;
 
-    public abstract String convertirObjetoRegistro(Object obj);
+    public abstract String convertirObjetoRegistro(Object objeto);
 
-    public abstract String armarConsultaSeleccion(Expresion cri);
+    public abstract String armarConsultaSeleccion(Expresion expresion);
 
     public abstract String armarConsultaSeleccion(String oid);
 
-    public abstract String armarConsultaInsercion(Object objInsert);
+    public abstract String armarConsultaInsercion(Object objeto);
 
-    public abstract String armarConsultaActualizacion(Object objUpdate);
+    public abstract String armarConsultaActualizacion(Object objeto);
 }

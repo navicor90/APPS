@@ -45,7 +45,8 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
 
     @Override
     public String armarConsultaSeleccion(Expresion cri) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM AE.estudiante WHERE "+Expresion.desarmarExpresion(e);
+        return sql;
     }
 
     @Override
