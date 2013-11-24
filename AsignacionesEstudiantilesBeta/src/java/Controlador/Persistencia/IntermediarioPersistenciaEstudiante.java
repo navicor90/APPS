@@ -38,8 +38,8 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
     }
 
     @Override
-    public String armarConsultaSeleccion(Expresion e) {
-        String sql = "SELECT * FROM AE.estudiante WHERE "+Expresion.desarmarExpresion(e);
+    public String armarConsultaSeleccion(Expresion expresion) {
+        String sql = "SELECT * FROM AE.estudiante WHERE "+Expresion.desarmarExpresion(expresion);
         return sql;
     }
 

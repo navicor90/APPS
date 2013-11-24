@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador.Persistencia;
 
 import Modelo.Agente.AgenteProyecto;
@@ -18,7 +17,7 @@ import java.util.List;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaProyecto extends IntermediarioPersistenciaRelacional{
+public class IntermediarioPersistenciaProyecto extends IntermediarioPersistenciaRelacional {
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
@@ -33,7 +32,7 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
             proyectoImplementacion.setFechaFinPostulacion(rs.getDate("fechaFinPostulacion"));
             proyectoAgente.setImplementacionProyecto(proyectoImplementacion);
             proyectosList.add(proyectoAgente);
-            
+
         }
         return proyectosList;
     }
@@ -44,8 +43,8 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
     }
 
     @Override
-    public String armarConsultaSeleccion(Expresion cri) {
-        String sql = "SELECT * FROM AE.estudiante WHERE "+Expresion.desarmarExpresion(e);
+    public String armarConsultaSeleccion(Expresion expresion) {
+        String sql = "SELECT * FROM AE.estudiante WHERE " + Expresion.desarmarExpresion(expresion);
         return sql;
     }
 
@@ -63,5 +62,5 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
     public String armarConsultaActualizacion(Object objUpdate) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
