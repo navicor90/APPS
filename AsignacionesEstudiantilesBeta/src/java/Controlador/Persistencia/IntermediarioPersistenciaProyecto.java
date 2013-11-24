@@ -25,12 +25,13 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
         while (rs.next()) {
             AgenteProyecto proyectoAgente = new AgenteProyecto();
             ImplementacionProyecto proyectoImplementacion = new ImplementacionProyecto();
+            proyectoAgente.setImplementacionProyecto(proyectoImplementacion);
             proyectoImplementacion.setDescripcion(rs.getString("descripcion"));
             proyectoImplementacion.setDuracion(rs.getInt("duracion"));
             proyectoImplementacion.setNombreProyecto(rs.getString("nombreProyecto"));
             proyectoImplementacion.setFechaInicio(rs.getDate("fechaInicio"));
             proyectoImplementacion.setFechaFinPostulacion(rs.getDate("fechaFinPostulacion"));
-            proyectoAgente.setImplementacionProyecto(proyectoImplementacion);
+            
             proyectosList.add(proyectoAgente);
 
         }
@@ -44,7 +45,7 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.estudiante WHERE " + Expresion.desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.proyecto WHERE " + Expresion.desarmarExpresion(expresion);
         return sql;
     }
 

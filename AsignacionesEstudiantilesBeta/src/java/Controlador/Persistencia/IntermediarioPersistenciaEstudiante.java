@@ -25,13 +25,13 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
             AgenteEstudiante estudianteAgente = new AgenteEstudiante();
             ImplementacionEstudiante estudianteImplementacion = new ImplementacionEstudiante();
             estudianteAgente.setImplementacionEstudiante(estudianteImplementacion);
-            estudianteImplementacion.setApellido(rs.getString("apellido"));
-            estudianteImplementacion.setDni(rs.getLong("dni"));
-            estudianteImplementacion.setEmail(rs.getString("emailEstudiante"));
-            estudianteImplementacion.setLegajo(rs.getString("legajo"));
-            estudianteImplementacion.setNombre(rs.getString("nombre"));
-            estudianteImplementacion.setTelefono(rs.getLong("telefono"));
-            estudianteImplementacion.setTipoDni(rs.getString("tipoDni"));
+            estudianteAgente.setApellido(rs.getString("apellido"));
+            estudianteAgente.setDni(rs.getLong("dni"));
+            estudianteAgente.setEmail(rs.getString("emailEstudiante"));
+            estudianteAgente.setLegajo(rs.getString("legajo"));
+            estudianteAgente.setNombre(rs.getString("nombre"));
+            estudianteAgente.setTelefono(rs.getLong("telefono"));
+            estudianteAgente.setTipoDni(rs.getString("tipoDni"));
             estudiantesList.add(estudianteAgente);
         }
         return estudiantesList;
