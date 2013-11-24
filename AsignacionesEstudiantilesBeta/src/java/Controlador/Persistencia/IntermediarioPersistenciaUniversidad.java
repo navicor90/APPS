@@ -16,7 +16,7 @@ public abstract class IntermediarioPersistenciaUniversidad extends Intermediario
    @Override
     public abstract List<Object> convertirRegistroAObjeto(ResultSet a);
     @Override
-    public abstract String convertirObjectoRegistro(Object obj);
+    public abstract String convertirObjetoRegistro(Object obj);
     @Override
     public abstract String armarConsultaSeleccion(Expresion cri);
     @Override
