@@ -48,7 +48,7 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.proyecto WHERE " + Expresion.desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.proyectos WHERE " + Expresion.desarmarExpresion(expresion);
         return sql;
     }
 

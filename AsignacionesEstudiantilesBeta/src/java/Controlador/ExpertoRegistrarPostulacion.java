@@ -37,8 +37,16 @@ public class ExpertoRegistrarPostulacion {
             }
         }
         if (esRegular) {
-            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicio",">" ,new Date());
-            List<Proyecto> ProyectosList = (List)(Proyecto)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
+            Date fechaActualD = new Date();
+            String fechaActual = "";
+            int año = fechaActualD.getYear()+1900;
+            fechaActual+=año+"-";
+            int mes = fechaActualD.getMonth()+1;
+            fechaActual+=mes+"-";
+            int dia = fechaActualD.getDate()+1;
+            fechaActual+=dia;
+            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto",">" ,fechaActual);
+            List<Proyecto> ProyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
             List<DTOProyecto> proyectoDTOList = new ArrayList<>();
             for (Proyecto proyecto: ProyectosList) {
                 DTOProyecto proyectoDTO = new DTOProyecto();
@@ -46,6 +54,7 @@ public class ExpertoRegistrarPostulacion {
                 proyectoDTO.setDuracion(proyecto.getDuracion());
                 proyectoDTO.setFechaInicio(proyecto.getFechaInicio());
                 proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
+                System.out.println(proyecto.getNombreProyecto()+"---------------------------------");
                 proyectoDTOList.add(proyectoDTO);
             }            
             return proyectoDTOList;

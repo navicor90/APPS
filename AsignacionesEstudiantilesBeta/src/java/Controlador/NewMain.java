@@ -9,9 +9,14 @@ package Controlador;
 import Controlador.Persistencia.FachadaPersistencia;
 import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.*;
+import Modelo.DTO.DTOEstadoAcademicoGeneral;
+import Modelo.DTO.DTOProyecto;
 import Modelo.interfaces.Estudiante;
+import Modelo.interfaces.Proyecto;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -25,15 +30,44 @@ public class NewMain {
     public static void main(String[] args) throws SQLException {
         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", "34567");
-        List<Object> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        List<Estudiante> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         Estudiante estudiante=null;
         if(estudiantesList!=null){
-            estudiante = (Estudiante) estudiantesList.get(0);
+            estudiante = estudiantesList.get(0);
         }else{
             System.out.println("nullllllllll");
         }
-                
-        
+        AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(1);
+        List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
+        Boolean esRegular = false;
+        for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
+            if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("esRegular")) {
+                esRegular = true;
+            }
+        }
+        if (esRegular) {
+            Date fechaActualD = new Date();
+            String fechaActual = "";
+            fechaActual+=fechaActualD.getYear()+"-";
+            int mes = fechaActualD.getMonth()+1;
+            fechaActual+=mes+"-";
+            int dia = fechaActualD.getDate()+1;
+            fechaActual+=dia;
+            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto",">" ,fechaActual);
+            List<Proyecto> ProyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
+            List<DTOProyecto> proyectoDTOList = new ArrayList<>();
+            for (Proyecto proyecto: ProyectosList) {
+                DTOProyecto proyectoDTO = new DTOProyecto();
+                proyectoDTO.setDescripcion(proyecto.getDescripcion());
+                proyectoDTO.setDuracion(proyecto.getDuracion());
+                proyectoDTO.setFechaInicio(proyecto.getFechaInicio());
+                proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
+                System.out.println(proyecto.getNombreProyecto());
+                proyectoDTOList.add(proyectoDTO);
+            }            
+            System.out.println("lalalalalal... i winnnn");
+        }
+        System.out.println("i lost");
     }
     
     
