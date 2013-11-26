@@ -3,30 +3,48 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.Agente;
+
+import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
-import java.util.Date;
+
 import java.util.List;
 
 /**
  *
  * @author yanina
  */
-public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
+public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
+
     String oidProyecto;
     String oidTipoCargo;
+    String oidProyectoCargoCarrera;
+    boolean heBuscadoProyectoCargoCarrrera;
     boolean heBuscadoProyecto;
     boolean heBuscadoTipoCargo;
     ImplementacionProyectoCargo implementacionProyectoCargo;
 
+    public AgenteProyectoCargo() {
+        heBuscadoProyecto=false;
+        heBuscadoProyectoCargoCarrrera=false;
+        heBuscadoTipoCargo=false;
+    }
+    
     public String getOidProyecto() {
         return oidProyecto;
     }
 
     public void setOidProyecto(String oidProyecto) {
         this.oidProyecto = oidProyecto;
+    }
+
+    public String getOidProyectoCargoCarrera() {
+        return oidProyectoCargoCarrera;
+    }
+
+    public void setOidProyectoCargoCarrera(String oidProyectoCargoCarrera) {
+        this.oidProyectoCargoCarrera = oidProyectoCargoCarrera;
     }
 
     public String getOidTipoCargo() {
@@ -37,22 +55,6 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
         this.oidTipoCargo = oidTipoCargo;
     }
 
-    public boolean isHeBuscadoProyecto() {
-        return heBuscadoProyecto;
-    }
-
-    public void setHeBuscadoProyecto(boolean heBuscadoProyecto) {
-        this.heBuscadoProyecto = heBuscadoProyecto;
-    }
-
-    public boolean isHeBuscadoTipoCargo() {
-        return heBuscadoTipoCargo;
-    }
-
-    public void setHeBuscadoTipoCargo(boolean heBuscadoTipoCargo) {
-        this.heBuscadoTipoCargo = heBuscadoTipoCargo;
-    }
-
     public ImplementacionProyectoCargo getImplementacionProyectoCargo() {
         return implementacionProyectoCargo;
     }
@@ -60,8 +62,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
     public void setImplementacionProyectoCargo(ImplementacionProyectoCargo implementacionProyectoCargo) {
         this.implementacionProyectoCargo = implementacionProyectoCargo;
     }
-    
-    
+
     @Override
     public int getCantidadMinimaPostulacion() {
         return implementacionProyectoCargo.getCantidadMinimaPostulacion();
@@ -92,8 +93,6 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
         implementacionProyectoCargo.setHabilitado(habilitado);
     }
 
-
-
     @Override
     public int getNroProyectoCargo() {
         return implementacionProyectoCargo.getNroProyectoCargo();
@@ -116,22 +115,36 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
 
     @Override
     public TipoCargo getTipoCargo() {
-        return implementacionProyectoCargo.getTipoCargo();
+        TipoCargo tipoCargo = null;
+        if (heBuscadoTipoCargo) {
+            tipoCargo = implementacionProyectoCargo.getTipoCargo();
+        } else {
+            tipoCargo = (TipoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoCargo", oidTipoCargo);
+        }
+        return tipoCargo;
     }
 
     @Override
     public void setTipoCargo(TipoCargo tipoCargo) {
         implementacionProyectoCargo.setTipoCargo(tipoCargo);
+        heBuscadoTipoCargo=true;
     }
 
     @Override
     public Proyecto getProyecto() {
-        return implementacionProyectoCargo.getProyecto();
+        Proyecto proyecto = null;
+        if (heBuscadoProyecto) {
+            proyecto = implementacionProyectoCargo.getProyecto();
+        } else {
+            proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
+        }
+        return proyecto;
     }
 
     @Override
     public void setProyecto(Proyecto proyecto) {
         implementacionProyectoCargo.setProyecto(proyecto);
+        heBuscadoProyecto=true;
     }
 
     @Override
@@ -153,6 +166,5 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
     public void setHorasDedicadas(double horasDedicadas) {
         implementacionProyectoCargo.setHorasDedicadas(horasDedicadas);
     }
-    
-    
+
 }
