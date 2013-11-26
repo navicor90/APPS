@@ -42,9 +42,11 @@ public interface Proyecto {
 
     public void setEmpresa(Empresa empresa);
 
-    public ProyectoCargo getProyectoCargo();
+    public List<ProyectoCargo> getProyectoCargoList() ;
 
-    public void setProyectoCargo(ProyectoCargo proyectoCargo);
+    public void setProyectoCargoList(List<ProyectoCargo> proyectoCargoList);
+
+    public void addProyectoCargo(ProyectoCargo proyectoCargo);
 
     public Universidad getUniversidad();
 

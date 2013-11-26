@@ -15,7 +15,7 @@
                      rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
             <h:column>    				
                 <f:facet name="header">Nombre</f:facet>    				
-                <h:link outcome="seleccionarProyectoCargo.xhtml?codigoProyecto='#{proyecto.codigo}'" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
+                <h:link outcome="seleccionarProyectoCargo.xhtml?codigoProyecto=#{proyecto.codigo}" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Descripcion</f:facet>

@@ -6,6 +6,7 @@
 package Modelo.implementacion;
 
 import Modelo.interfaces.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +23,16 @@ public class ImplementacionProyecto implements Proyecto {
     private Date fechaFinPostulacion;
     private String nombreProyecto;
     private Empresa empresa;
-    private ProyectoCargo proyectoCargo;
+    private List<ProyectoCargo> proyectoCargoList;
     private Universidad universidad;
     private List<ProyectoEstado> proyectoEstado;
     private TipoSeleccion tipoSeleccion;
 
+    public ImplementacionProyecto() {
+        proyectoCargoList = new ArrayList<>();
+    }
+    
+    
     @Override
     public String getDescripcion() {
         return descripcion;
@@ -98,14 +104,16 @@ public class ImplementacionProyecto implements Proyecto {
         this.empresa = empresa;
     }
 
-    @Override
-    public ProyectoCargo getProyectoCargo() {
-        return proyectoCargo;
+    public List<ProyectoCargo> getProyectoCargoList() {
+        return proyectoCargoList;
     }
 
-    @Override
-    public void setProyectoCargo(ProyectoCargo proyectoCargo) {
-        this.proyectoCargo = proyectoCargo;
+    public void setProyectoCargoList(List<ProyectoCargo> proyectoCargoList) {
+        this.proyectoCargoList = proyectoCargoList;
+    }
+
+    public void addProyectoCargo(ProyectoCargo proyectoCargo){
+        proyectoCargoList.add(proyectoCargo);
     }
 
     @Override

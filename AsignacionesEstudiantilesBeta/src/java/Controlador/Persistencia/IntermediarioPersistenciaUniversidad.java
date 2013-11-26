@@ -6,26 +6,45 @@ package Controlador.Persistencia;
 
 import Modelo.Expresion;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
  * @author milton
  */
-public abstract class IntermediarioPersistenciaUniversidad extends IntermediarioPersistenciaRelacional{
-   @Override
-    public abstract List<Object> convertirRegistroAObjeto(ResultSet a);
+public class IntermediarioPersistenciaUniversidad extends IntermediarioPersistenciaRelacional{
+
     @Override
-    public abstract String convertirObjetoRegistro(Object obj);
+    public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
-    public abstract String armarConsultaSeleccion(Expresion cri);
+    public String convertirObjetoRegistro(Object objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
-    public abstract String armarConsultaSeleccion(String oid);
+    public String armarConsultaSeleccion(Expresion expresion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
-    public abstract String armarConsultaInsercion(Object objInsert);
+    public String armarConsultaSeleccion(String oid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
-    public abstract String armarConsultaActualizacion(Object objUpdate);
-    
+    public String armarConsultaInsercion(Object objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String armarConsultaActualizacion(Object objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /* Lo que estaba hecho antes
     @Override
     public List<Object> Buscar(String codigo) {

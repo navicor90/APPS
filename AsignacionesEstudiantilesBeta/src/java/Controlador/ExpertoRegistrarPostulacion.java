@@ -63,8 +63,10 @@ public class ExpertoRegistrarPostulacion {
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
-        Criterio criterioBusquedaProyCargo = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto","=", codigoProyecto);
-        List<ProyectoCargo> proyectoCargosList = (List)FachadaPersistencia.obtenerInstancia().buscar("ProyectoCargo", criterioBusquedaProyCargo);
+        Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto","=", codigoProyecto);
+        List<Proyecto> proyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
+        Proyecto proyecto = proyectosList.get(0);
+        proyecto.getProyectoCargo();
         List<DTOProyectoCargo> proyectoCargosDTOList = new ArrayList<>();
         for (ProyectoCargo proyectoCargo : proyectoCargosList) {
             DTOProyectoCargo proyectoCargoDTO = new DTOProyectoCargo();

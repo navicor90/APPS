@@ -5,6 +5,11 @@
  */
 
 package Modelo.Agente;
+import Controlador.Persistencia.FachadaPersistencia;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.Criterio;
+import Modelo.Expresion;
+import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.util.Date;
@@ -18,6 +23,7 @@ public class AgenteProyecto extends Agente implements Proyecto{
     String oidUniversidad;
     boolean heBuscadoEmpresa;
     boolean heBuscadoUniversidad;
+    boolean heBuscadoProyectoCargoList;
     ImplementacionProyecto implementacionProyecto;
 
     public String getOidEmpresa() {
@@ -122,15 +128,28 @@ public class AgenteProyecto extends Agente implements Proyecto{
     }
 
     @Override
-    public ProyectoCargo getProyectoCargo() {
-        return implementacionProyecto.getProyectoCargo();
+    public List<ProyectoCargo> getProyectoCargoList() {
+        List<ProyectoCargo> proyectoCargoList= null;
+        if(heBuscadoProyectoCargoList){
+            proyectoCargoList= implementacionProyecto.getProyectoCargoList();
+        }else{
+            Expresion criterioBusquedaProyCargo = FabricaCriterio.getInstancia().crear("OIDProyecto", "=", this.getOid());
+            proyectoCargoList= (List)FachadaPersistenciaInterna.getInstancia().buscar(criterioBusquedaProyCargo,"ProyectoCargo");
+        }
+        return proyectoCargoList;
     }
 
     @Override
-    public void setProyectoCargo(ProyectoCargo proyectoCargo) {
-        implementacionProyecto.setProyectoCargo(proyectoCargo);
+    public void setProyectoCargoList(List<ProyectoCargo> proyectoCargoList) {
+        implementacionProyecto.setProyectoCargoList(proyectoCargoList);
     }
 
+    @Override
+    public void addProyectoCargo(ProyectoCargo proyectoCargo) {
+        implementacionProyecto.addProyectoCargo(proyectoCargo);
+    }
+
+    
     @Override
     public Universidad getUniversidad() {
         return implementacionProyecto.getUniversidad();
