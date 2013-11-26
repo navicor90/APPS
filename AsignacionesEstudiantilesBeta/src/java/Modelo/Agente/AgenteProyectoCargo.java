@@ -92,15 +92,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
         implementacionProyectoCargo.setHabilitado(habilitado);
     }
 
-    @Override
-    public Date getHorasDedicadas() {
-        return implementacionProyectoCargo.getHorasDedicadas();
-    }
 
-    @Override
-    public void setHorasDedicadas(Date horasDedicadas) {
-        implementacionProyectoCargo.setHorasDedicadas(horasDedicadas);
-    }
 
     @Override
     public int getNroProyectoCargo() {
@@ -150,6 +142,16 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo{
     @Override
     public void setProyectoCargoCarrera(ProyectoCargoCarrera proyectoCargoCarrera) {
         implementacionProyectoCargo.setProyectoCargoCarrera(proyectoCargoCarrera);
+    }
+
+    @Override
+    public double getHorasDedicadas() {
+        return implementacionProyectoCargo.getHorasDedicadas();
+    }
+
+    @Override
+    public void setHorasDedicadas(double horasDedicadas) {
+        implementacionProyectoCargo.setHorasDedicadas(horasDedicadas);
     }
     
     

@@ -28,9 +28,9 @@ public interface ProyectoCargo {
 
     public void setHabilitado(Boolean habilitado);
 
-    public Date getHorasDedicadas();
+    public double getHorasDedicadas();
 
-    public void setHorasDedicadas(Date horasDedicadas);
+    public void setHorasDedicadas(double horasDedicadas);
 
     public int getNroProyectoCargo();
 

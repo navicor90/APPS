@@ -63,21 +63,18 @@ public class ExpertoRegistrarPostulacion {
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
-        FabricaCriterio.getInstancia().crear("nombreProyecto","=", codigoProyecto);
-        FachadaPersistencia.obtenerInstancia().buscar("Proyecto", null);
-        
-        return null;
-        /*   //codigo stub - interface ivan
-        List<DTOProyectoCargo> r = new ArrayList();
-        for (int i = 0; i < 5; i++) {
-            DTOProyectoCargo d = new DTOProyectoCargo();
-            d.setDescripcion(Integer.toString(i));
-            d.setNombreProyectoCargo(nombreProyecto + "--" + i);
-            d.setHorasDedicadas(12d);
-            r.add(d);
+        Criterio criterioBusquedaProyCargo = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto","=", codigoProyecto);
+        List<ProyectoCargo> proyectoCargosList = (List)FachadaPersistencia.obtenerInstancia().buscar("ProyectoCargo", criterioBusquedaProyCargo);
+        List<DTOProyectoCargo> proyectoCargosDTOList = new ArrayList<>();
+        for (ProyectoCargo proyectoCargo : proyectoCargosList) {
+            DTOProyectoCargo proyectoCargoDTO = new DTOProyectoCargo();
+            proyectoCargoDTO.setNombreProyectoCargo(proyectoCargo.getTipoCargo().getNomTipoCargo());
+            proyectoCargoDTO.setNroProyectoCargo(proyectoCargo.getNroProyectoCargo());
+            proyectoCargoDTO.setDescripcion(proyectoCargo.getDescripcion());
+            proyectoCargoDTO.setHorasDedicadas(proyectoCargo.getHorasDedicadas());
+            proyectoCargosDTOList.add(proyectoCargoDTO);
         }
-        return r;
-        */
+        return proyectoCargosDTOList;
     }
 
     public Date obtenerFechaYHoraActuales() {

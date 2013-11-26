@@ -18,7 +18,7 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
     private int cantidadMinimaPostulacion;
     private String descripcion;
     private Boolean habilitado;
-    private Date horasDedicadas;
+    private double horasDedicadas;
     private int nroProyectoCargo;
     private List <ImplementacionProyectoCargoEstado> proyectoCargoEstado;
     private TipoCargo tipoCargo;
@@ -56,14 +56,16 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
     }
 
     @Override
-    public Date getHorasDedicadas() {
+    public double getHorasDedicadas() {
         return horasDedicadas;
     }
 
     @Override
-    public void setHorasDedicadas(Date horasDedicadas) {
+    public void setHorasDedicadas(double horasDedicadas) {
         this.horasDedicadas = horasDedicadas;
     }
+
+    
 
     @Override
     public int getNroProyectoCargo() {
