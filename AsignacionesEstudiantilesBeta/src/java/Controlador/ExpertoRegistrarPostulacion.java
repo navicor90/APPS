@@ -66,12 +66,13 @@ public class ExpertoRegistrarPostulacion {
         Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto","=", codigoProyecto);
         List<Proyecto> proyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
         Proyecto proyecto = proyectosList.get(0);
-        proyecto.getProyectoCargo();
+        List<ProyectoCargo> proyectoCargosList = proyecto.getProyectoCargoList();
         List<DTOProyectoCargo> proyectoCargosDTOList = new ArrayList<>();
         for (ProyectoCargo proyectoCargo : proyectoCargosList) {
             DTOProyectoCargo proyectoCargoDTO = new DTOProyectoCargo();
-            proyectoCargoDTO.setNombreProyectoCargo(proyectoCargo.getTipoCargo().getNomTipoCargo());
+            
             proyectoCargoDTO.setNroProyectoCargo(proyectoCargo.getNroProyectoCargo());
+            proyectoCargoDTO.setNombreProyectoCargo(proyectoCargo.getTipoCargo().getNomTipoCargo());
             proyectoCargoDTO.setDescripcion(proyectoCargo.getDescripcion());
             proyectoCargoDTO.setHorasDedicadas(proyectoCargo.getHorasDedicadas());
             proyectoCargosDTOList.add(proyectoCargoDTO);

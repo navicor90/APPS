@@ -22,8 +22,8 @@ public class Expresion {
         } else {
             Criterio criterio = (Criterio) expresion;
             String criterioString = criterio.getAtributo() + " ";
-            criterioString += criterio.getOperador() + " ";
-            criterioString += criterio.getValor() + " ";
+            criterioString += criterio.getOperador() + " '";
+            criterioString += criterio.getValor() + "' ";
             return criterioString;
         }
 

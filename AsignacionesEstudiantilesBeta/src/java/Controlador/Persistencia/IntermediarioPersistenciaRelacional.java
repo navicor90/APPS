@@ -27,7 +27,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
             Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
             Statement st = conexion.createStatement();
             String consulta = armarConsultaSeleccion(expresion);
-            System.out.println(consulta);
+            System.out.println("Consulta="+consulta);
             ResultSet rs = st.executeQuery(consulta);
             objetosList = convertirRegistroAObjeto(rs);
         } catch (SQLException ex) {
@@ -38,7 +38,19 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
 
     @Override
     public Object materializar(String oid) {
-        return null;
+        Object objeto = null;
+        try {
+            Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
+            Statement st = conexion.createStatement();
+            String consulta = armarConsultaSeleccion(oid);
+            System.out.println("Consulta="+consulta);
+            ResultSet rs = st.executeQuery(consulta);
+            List<Object> objectList = convertirRegistroAObjeto(rs);
+            objeto = objectList.get(0);
+        } catch (SQLException ex) {
+            Logger.getLogger(IntermediarioPersistenciaRelacional.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return objeto;
     }
 
     @Override

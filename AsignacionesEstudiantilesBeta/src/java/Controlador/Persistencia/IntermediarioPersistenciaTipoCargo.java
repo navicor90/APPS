@@ -50,7 +50,8 @@ public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenci
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-        return null;
+         String sql = "SELECT * FROM AE.tipoCargos WHERE OIDTipoCargo='"+oid+"'";
+        return sql;
     }
 
     @Override

@@ -119,7 +119,11 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
         if (heBuscadoTipoCargo) {
             tipoCargo = implementacionProyectoCargo.getTipoCargo();
         } else {
-            tipoCargo = (TipoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoCargo", oidTipoCargo);
+            System.out.println("------------------oidtc-----------"+oidTipoCargo);
+            tipoCargo = (TipoCargo) FachadaPersistenciaInterna.getInstancia().buscar(oidTipoCargo,"TipoCargo");
+            System.out.println(tipoCargo.getNomTipoCargo()+"---------------");
+            implementacionProyectoCargo.setTipoCargo(tipoCargo);
+            System.out.println("------------------oidtc-----------"+tipoCargo.getNomTipoCargo());
         }
         return tipoCargo;
     }
