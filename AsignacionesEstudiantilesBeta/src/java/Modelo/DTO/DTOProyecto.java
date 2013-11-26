@@ -17,6 +17,15 @@ public class DTOProyecto {
     private int duracion;
     private Date fechaInicio;
     private String nomProyecto;
+    private int codigo;
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     public String getDescripcion() {
         return descripcion;

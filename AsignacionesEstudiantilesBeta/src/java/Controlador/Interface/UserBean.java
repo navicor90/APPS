@@ -84,8 +84,8 @@ public class UserBean {
 
     public List<DTOProyectoCargo> getListaProyectoCargo() {
         HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String nombreProyecto = origRequest.getParameter("nombreProyecto");
-        List<DTOProyectoCargo> proyectoCargosList = controlador.listarProyectoCargos(nombreProyecto);
+        int codigoProyecto = Integer.parseInt(origRequest.getParameter("codigoProyecto"));
+        List<DTOProyectoCargo> proyectoCargosList = controlador.listarProyectoCargos(codigoProyecto);
         return proyectoCargosList;
     }
 
