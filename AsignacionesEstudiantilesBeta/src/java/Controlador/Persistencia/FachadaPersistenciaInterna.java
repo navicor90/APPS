@@ -25,11 +25,11 @@ public class FachadaPersistenciaInterna {
         return instancia;
     }
 
-    public List<Object> buscar(Expresion c, String nombreEntidad) {
+    public List<Object> buscar(String nombreEntidad, Expresion c) {
         return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad).buscar(c);
     }
 
-    public Object buscar(String oid, String nombreEntidad) {
+    public Object buscar(String nombreEntidad, String oid) {
         return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad).buscar(oid);
     }
 
