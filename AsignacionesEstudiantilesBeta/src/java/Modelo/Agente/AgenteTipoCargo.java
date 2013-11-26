@@ -12,25 +12,7 @@ import Modelo.implementacion.*;
  * @author yanina
  */
 public class AgenteTipoCargo extends Agente implements TipoCargo{
-    String oidUniversidad;
-    boolean heBuscadoUniversidad;
     ImplementacionTipoCargo implementacionTipoCargo;
-
-    public String getOidUniversidad() {
-        return oidUniversidad;
-    }
-
-    public void setOidUniversidad(String oidUniversidad) {
-        this.oidUniversidad = oidUniversidad;
-    }
-
-    public boolean isHeBuscadoUniversidad() {
-        return heBuscadoUniversidad;
-    }
-
-    public void setHeBuscadoUniversidad(boolean heBuscadoUniversidad) {
-        this.heBuscadoUniversidad = heBuscadoUniversidad;
-    }
 
     public ImplementacionTipoCargo getImplementacionTipoCargo() {
         return implementacionTipoCargo;
@@ -49,6 +31,16 @@ public class AgenteTipoCargo extends Agente implements TipoCargo{
     @Override
     public void setNomTipoCargo(String nomTipoCargo) {
         implementacionTipoCargo.setNomTipoCargo(nomTipoCargo);
+    }
+
+    @Override
+    public int getCodigo() {
+        return implementacionTipoCargo.getCodigo();
+    }
+
+    @Override
+    public void setCodigo(int codigo) {
+        implementacionTipoCargo.setCodigo(codigo);
     }
     
     

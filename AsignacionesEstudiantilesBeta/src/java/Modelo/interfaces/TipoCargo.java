@@ -12,6 +12,10 @@ package Modelo.interfaces;
  */
 public interface TipoCargo {
     
+    public int getCodigo() ;
+
+    public void setCodigo(int codigo) ;
+    
     public String getNomTipoCargo() ;
 
     public void setNomTipoCargo(String nomTipoCargo);

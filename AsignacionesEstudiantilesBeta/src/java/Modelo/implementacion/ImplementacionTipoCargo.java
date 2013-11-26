@@ -13,8 +13,18 @@ import Modelo.interfaces.*;
  * @author yanina
  */
 public class ImplementacionTipoCargo implements TipoCargo {
+    private int codigo;
     private String nomTipoCargo;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
+    
     @Override
     public String getNomTipoCargo() {
         return nomTipoCargo;
