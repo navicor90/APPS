@@ -36,6 +36,7 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
             proyectoCargoAgente.setHabilitado(rs.getBoolean("estaHabilitadoProyectoCargo"));
             proyectoCargoAgente.setOidProyecto(rs.getString("OIDProyecto"));
             proyectoCargoAgente.setOidProyectoCargoCarrera(rs.getString("OIDProyectoCargoCarrera"));
+            proyectoCargoAgente.setHorasDedicadas(rs.getDouble("horasDedicadasProyectoCargo"));
             proyectoCargoAgente.setOidTipoCargo(rs.getString("OIDTipoCargo"));
             proyectoCargosList.add(proyectoCargoAgente);
         }
