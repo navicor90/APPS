@@ -97,7 +97,7 @@ public class ExpertoRegistrarPostulacion {
                     for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
                         if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                             if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
-
+                                postulacionProyectoCargoDTO.setDescripcionEstado("No realizada , existe ya una postulacion para este proyecto");
                             }
                         }
                     }
