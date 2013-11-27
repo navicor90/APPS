@@ -18,11 +18,11 @@ import java.util.List;
  * @author milton
  */
 public class ExpertoRegistrarPostulacion {
-
+    Estudiante estudiante;
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo);
         List<Object> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
-        Estudiante estudiante=null;
+        estudiante=null;
         if(estudiantesList!=null){
             estudiante = (Estudiante) estudiantesList.get(0);
         }else{
@@ -84,6 +84,7 @@ public class ExpertoRegistrarPostulacion {
     }
 
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+        
         return null;
     }
 }
