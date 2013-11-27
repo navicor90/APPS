@@ -7,10 +7,17 @@ and open the template in the editor.
     Created on : 09/11/2013, 12:19:24
     Author     : milton
 */
-
+.seleccionarProyectoDiv{
+    float: left;
+    width: 64%;
+    border-right:1px darkseagreen dashed;
+    padding-bottom: 30px;
+    padding-right: 1%;
+}
 .proyectoTable{   
    border-collapse:collapse;
    border:1px solid #000000;
+   width: 100%
 }
 
 .proyectoTableHeader{
@@ -29,9 +36,15 @@ and open the template in the editor.
    text-align:center;
    background:none repeat scroll 0 0 #D3D3D3;
 }
+
+.postulacionesRealizadasDiv{
+    float: right;
+    width: 34%;
+}
 .postulacionTable{   
    border-collapse:collapse;
    border:1px solid #000000;
+   width: 100%;
 }
 
 .postulacionTableHeader{
@@ -48,8 +61,9 @@ and open the template in the editor.
 
 .postulacionTableEvenRow{
    text-align:center;
-   background:none repeat scroll 0 0 #D3D3D3;
+   background:none repeat scroll 0 0 #efdf6d;
 }
+
 
 .linkProyecto{
    text-align:center;

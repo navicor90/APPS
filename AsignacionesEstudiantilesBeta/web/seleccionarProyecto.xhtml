@@ -8,6 +8,7 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
+        <div class="seleccionarProyectoDiv">
         <h1>Seleccionar Proyecto</h1>
         <h:dataTable value="#{userBean.listaProyecto}" var="proyecto"
                      styleClass="proyectoTable"
@@ -30,6 +31,9 @@
                     #{proyecto.duracion}
             </h:column>
         </h:dataTable>
+        </div>
+        <div class="postulacionesRealizadasDiv">
+        <h2>Cargos registrados en esta Postulación</h2>
         <h:dataTable value="#{userBean.postulacionesDTO}" var="postulacion"
                      styleClass="postulacionTable"
                      headerClass="postulacionTableHeader"
@@ -43,6 +47,7 @@
                     #{postulacion.nomProyectoCargo}
             </h:column>
         </h:dataTable>
+        </div>
     </h:body>
 </html>
 
