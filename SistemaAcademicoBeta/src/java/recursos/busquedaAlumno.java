@@ -23,6 +23,7 @@ import javax.persistence.Query;
  * una clase representa a un web service
  * tiene un metodo de cada tipo
  */
+//no registra estado, dps del uso desaparece
 @Stateless
 /*path q representa al web service*/
 @Path("/Alumno")
@@ -32,6 +33,7 @@ public class busquedaAlumno {
     EntityManager entityManager ;
     //nombre del parametro dentro de la uri "legajo" forma e la q la va a usar dentro del metodo
     @GET
+    //valor de retorno
     @Produces("application/json")
     public String consultarAlumno (@QueryParam("legajo") String legajo){
         //buscarlo dentro de la base de dato jason- recibe el codigo q recibio por la uri
