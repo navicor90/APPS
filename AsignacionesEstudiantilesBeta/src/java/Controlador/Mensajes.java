@@ -11,7 +11,9 @@ package Controlador;
  * @author milton
  */
 public class Mensajes {
-    private static final String POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO="No se realizó esta postulación, ya existe una postulacion de usted a este cargo";
+    public static final String POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO="No se realizó esta postulación, EXISTE UNA POSTULACION DE USTED A ESTE CARGO";
+    public static final String POSTULACION_ERROR_YA_TIENE_ASIGNADO_UN_CARGO="No se realizó esta postulación,  usted YA ESTA ASIGNADO a un cargo";
+    public static final String POSTULACION_EXITOSA="Postulacion EXITOSA";
     
             
 }

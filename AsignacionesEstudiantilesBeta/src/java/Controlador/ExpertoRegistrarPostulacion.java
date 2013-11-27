@@ -97,7 +97,11 @@ public class ExpertoRegistrarPostulacion {
                     for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
                         if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                             if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
-                                postulacionProyectoCargoDTO.setDescripcionEstado("No realizada , existe ya una postulacion para este proyecto");
+                                postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
+                                postulacionProyectoCargo.setProyecto(postulacionProyectoCargoAntigua.getProyecto());
+                                postulacionProyectoCargo.setProyectoCargo(postulacionProyectoCargoAntigua.getProyectoCargo());
+                                //postulacionProyectoCargo.setPostulacionProyectoCargoEstado("REPETIDAAAA");
+                                throw new UnsupportedOperationException("NO ESTA IMPELEMENTADO LA PARTE DE CAMBIARLE EL ESTADO A LA POSTULACION PROYECTO CARGO.");
                             }
                         }
                     }
