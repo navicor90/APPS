@@ -8,25 +8,25 @@ package recursos;
 import entidades.Alumno;
 import javax.ejb.Stateless;
 import com.google.gson.*;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
     /**
  * webSevir
  * @author yanina
+ * Recuurso REST
+ * Clase que maneja un servicio
+ *  solo manejará la persistencia de una etndiad, pero será accedido desde la web.
  * una clase representa a un web service
  * tiene un metodo de cada tipo
  */
 //no registra estado, dps del uso desaparece
-@Stateless
+@Stateless//lo convierte en un EJB
 /*path q representa al web service*/
-@Path("/Alumno")
+@Path("/Alumno")//este recurso es accedidp desde la ruta    /Alumno via web
 public class busquedaAlumno {
     // para hacer la busqueda a la base de datos-definir el nombre de la unidad de persistencia
     @PersistenceContext( unitName =  "SistemaAcademicoBetaPU")      

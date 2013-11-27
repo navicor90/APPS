@@ -24,6 +24,7 @@ public class Alumno implements Serializable {
     private String id;
     private String legajo;
     private String nombre;
+    
 
     public String getNombre() {
         return nombre;
