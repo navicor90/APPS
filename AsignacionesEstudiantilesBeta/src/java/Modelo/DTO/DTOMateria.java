@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.DTO;
 
 import java.util.Date;
@@ -13,33 +12,15 @@ import java.util.Date;
  * @author yanina
  */
 public class DTOMateria {
-    private int cantMatAprobadas;
-    private int cantMatRegulares;
+
     private String estadoMateria;
     private Date fechaEstadoMateria;
     private Date fechaIngreso;
     private int legajo;
     private String nombreCarrera;
-    private String nombreEstado;
     private String nombreMateria;
     private Float notaMateria;
     private String planDeEstudio;
-
-    public int getCantMatAprobadas() {
-        return cantMatAprobadas;
-    }
-
-    public void setCantMatAprobadas(int cantMatAprobadas) {
-        this.cantMatAprobadas = cantMatAprobadas;
-    }
-
-    public int getCantMatRegulares() {
-        return cantMatRegulares;
-    }
-
-    public void setCantMatRegulares(int cantMatRegulares) {
-        this.cantMatRegulares = cantMatRegulares;
-    }
 
     public String getEstadoMateria() {
         return estadoMateria;
@@ -81,14 +62,6 @@ public class DTOMateria {
         this.nombreCarrera = nombreCarrera;
     }
 
-    public String getNombreEstado() {
-        return nombreEstado;
-    }
-
-    public void setNombreEstado(String nombreEstado) {
-        this.nombreEstado = nombreEstado;
-    }
-
     public String getNombreMateria() {
         return nombreMateria;
     }
@@ -112,10 +85,5 @@ public class DTOMateria {
     public void setPlanDeEstudio(String planDeEstudio) {
         this.planDeEstudio = planDeEstudio;
     }
-    
-    
-    
-    
-            
-            
+
 }

@@ -21,8 +21,10 @@ import java.util.List;
 public class ExpertoRegistrarPostulacion {
 
     Estudiante estudiante;
+    int codUniversidad;
 
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
+        this.codUniversidad = codUniversidad;
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo);
         List<Object> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         estudiante = null;
@@ -92,6 +94,7 @@ public class ExpertoRegistrarPostulacion {
         Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
         for (DTOPostulacionProyectoCargo postulacionProyectoCargoDTO : postulacionesProyectoCargoDTOList) {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
+            //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
             for (Postulacion postulacionAntigua : postulacionesList) {
                 if (postulacionAntigua.getEstudiante().getDni() == estudiante.getDni()) {
                     for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
@@ -107,8 +110,56 @@ public class ExpertoRegistrarPostulacion {
                     }
                 }
             }
+            //registramos las postulaciones a nuevos proyectoCargo
+            if(postulacionProyectoCargoDTO.getDescripcionEstado()==null){
+                Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigo", "=", postulacionProyectoCargoDTO.getNroProyecto());
+                List<Proyecto> proyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
+                Proyecto proyecto = proyectosList.get(0);
+                for(ProyectoCargo proyectoCargo : proyecto.getProyectoCargoList()){
+                    if(proyectoCargo.getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()){
+                        postulacionProyectoCargo.setProyecto(proyecto);
+                        postulacionProyectoCargo.setProyectoCargo(proyectoCargo);
+                        List<DTOMateria> materiaDTO = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).ObtenerEstadoAcademicoDetallado(estudiante.getLegajo());
+                        int cantidadMateriasRendidasSolicitadas=proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRendidas();
+                        int cantidadMateriasRegularesSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRegulares();
+                        int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
+                        int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
+                        if(cantidadMateriasRendidasSolicitadas <= cantidadMateriasRendidas){
+                            if((cantidadMateriasRendidas-cantidadMateriasRendidasSolicitadas) >=cantidadMateriasRegularesSolicitadas){
+                                //se hace la postulacion
+                            }else{
+                                if(cantidadMateriasRegulares >= cantidadMateriasRegularesSolicitadas){
+                                    //se hace la postulacion
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+            
             postulacion.addProyectoCargo(postulacionProyectoCargo);
         }
         return null;
     }
+
+    private int contarMateriasRegulares(List<DTOMateria> materiasList){
+        int contador = 0;
+        for (DTOMateria materiaDTO : materiasList) {
+            if("esRegular".equals(materiaDTO.getEstadoMateria())){
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    private int contarMateriasAprobadas(List<DTOMateria> materiasList){
+        int contador = 0;
+        for (DTOMateria materiaDTO : materiasList) {
+            if("esAprobada".equals(materiaDTO.getEstadoMateria())){
+                contador++;
+            }
+        }
+        return contador;
+    }   
 }
