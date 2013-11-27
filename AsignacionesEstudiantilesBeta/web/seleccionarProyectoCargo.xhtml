@@ -9,22 +9,28 @@
     </h:head>
     <h:body>
         <h1>Añadir Cargo</h1>
-        <h:dataTable value="#{userBean.listaProyectoCargo}" var="proyectoCargo"
-                     styleClass="proyectoTable"
-                     headerClass="proyectoTableHeader"
-                     rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
-            <h:column>    				
-                <f:facet name="header">Nombre -</f:facet>    				
-                <h:link hreflang="#" value="#{proyectoCargo.nombreProyectoCargo}" styleClass="linkProyecto"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descripcion -</f:facet>
-                    #{proyectoCargo.descripcion}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Horas dedicadas</f:facet>
-                    #{proyectoCargo.horasDedicadas}
-            </h:column>
-        </h:dataTable>
+        <h:form>
+                <h:dataTable value="#{userBean.listaProyectoCargo}" var="proyectoCargo"
+                             styleClass="proyectoTable"
+                             headerClass="proyectoTableHeader"
+                             rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
+                    <h:column>    				
+                        <f:facet name="header">Nombre -</f:facet>    				
+                            #{proyectoCargo.nombreProyectoCargo}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Descripcion -</f:facet>
+                            #{proyectoCargo.descripcion}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Horas dedicadas</f:facet>
+                            #{proyectoCargo.horasDedicadas}
+                    </h:column>
+                    <h:column>
+                        <h:selectBooleanCheckbox value="#{proyectoCargo.selected}"/>
+                    </h:column>
+                </h:dataTable>
+            <h:commandButton action="#{userBean.agregarProyectosCargo()}" value="Agregar cargos" />
+        </h:form>
     </h:body>
 </html>

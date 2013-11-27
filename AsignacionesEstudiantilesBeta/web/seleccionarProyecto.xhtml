@@ -8,6 +8,7 @@
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
+        <div class="seleccionarProyectoDiv">
         <h1>Seleccionar Proyecto</h1>
         <h:dataTable value="#{userBean.listaProyecto}" var="proyecto"
                      styleClass="proyectoTable"
@@ -15,7 +16,7 @@
                      rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
             <h:column>    				
                 <f:facet name="header">Nombre</f:facet>    				
-                <h:link outcome="seleccionarProyectoCargo.xhtml?codigoProyecto=#{proyecto.codigo}" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
+                <h:link outcome="seleccionarProyectoCargo.xhtml?codigoProyecto=#{proyecto.codigo}&amp;nombreProyecto=#{proyecto.nomProyecto}" value="#{proyecto.nomProyecto}" styleClass="linkProyecto"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Descripcion</f:facet>
@@ -30,6 +31,23 @@
                     #{proyecto.duracion}
             </h:column>
         </h:dataTable>
+        </div>
+        <div class="postulacionesRealizadasDiv">
+        <h2>Cargos registrados en esta Postulación</h2>
+        <h:dataTable value="#{userBean.postulacionesDTO}" var="postulacion"
+                     styleClass="postulacionTable"
+                     headerClass="postulacionTableHeader"
+                     rowClasses="postulacionTableOddRow,postulacionTableEvenRow">
+            <h:column>
+                <f:facet name="header">Nombre Proyecto</f:facet>
+                    #{postulacion.nomProyecto}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nombre del Cargo</f:facet>
+                    #{postulacion.nomProyectoCargo}
+            </h:column>
+        </h:dataTable>
+        </div>
     </h:body>
 </html>
 

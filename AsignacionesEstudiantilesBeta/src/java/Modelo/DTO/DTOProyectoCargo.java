@@ -17,6 +17,15 @@ public class DTOProyectoCargo {
     private double horasDedicadas;
     private int nroProyectoCargo;
     private String nombreProyectoCargo;
+    private boolean Selected;
+
+    public boolean isSelected() {
+        return Selected;
+    }
+
+    public void setSelected(boolean Selected) {
+        this.Selected = Selected;
+    }
 
     public String getNombreProyectoCargo() {
         return nombreProyectoCargo;

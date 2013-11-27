@@ -12,9 +12,27 @@ package Modelo.DTO;
  */
 public class DTOPostulacionProyectoCargo {
     private String descripcionEstado;
-    private String nomProyecto;
+    private int nroProyecto;
     private int nroProyectoCargo;
     private int prioridad;
+    private String nomProyecto;
+    private String nomProyectoCargo;
+
+    public String getNomProyectoCargo() {
+        return nomProyectoCargo;
+    }
+
+    public void setNomProyectoCargo(String nomProyectoCargo) {
+        this.nomProyectoCargo = nomProyectoCargo;
+    }
+
+    public String getNomProyecto() {
+        return nomProyecto;
+    }
+
+    public void setNomProyecto(String nomProyecto) {
+        this.nomProyecto = nomProyecto;
+    }
     
     
     public String getDescripcionEstado() {
@@ -25,13 +43,14 @@ public class DTOPostulacionProyectoCargo {
         this.descripcionEstado = descripcionEstado;
     }
 
-    public String getNomProyecto() {
-        return nomProyecto;
+    public int getNroProyecto() {
+        return nroProyecto;
     }
 
-    public void setNomProyecto(String nomProyecto) {
-        this.nomProyecto = nomProyecto;
+    public void setNroProyecto(int nroProyecto) {
+        this.nroProyecto = nroProyecto;
     }
+
 
     public int getNroProyectoCargo() {
         return nroProyectoCargo;
