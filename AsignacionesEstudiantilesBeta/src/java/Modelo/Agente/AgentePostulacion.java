@@ -81,6 +81,11 @@ public class AgentePostulacion extends Agente implements Postulacion{
     public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo) {
         implementacionPostulacion.setEstadoPostulacion(oidPostulacion);
     }
+    
+    @Override
+    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo){
+        implementacionPostulacion.addProyectoCargo(proyectoCargo);
+    }
 
     @Override
     public Estudiante getEstudiante() {

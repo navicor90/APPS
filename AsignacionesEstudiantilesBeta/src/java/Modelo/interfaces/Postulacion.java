@@ -29,7 +29,7 @@ public interface Postulacion {
     public List<PostulacionProyectoCargo> getProyectoCargo();
 
     public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo);
-
+    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo);
     public Estudiante getEstudiante();
     public void setEstudiante(Estudiante estudiante);
 }

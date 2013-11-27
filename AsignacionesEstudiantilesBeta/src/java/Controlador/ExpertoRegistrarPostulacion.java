@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Controlador.Persistencia.FabricaEntidades;
 import Controlador.Persistencia.FachadaPersistencia;
 import Modelo.*;
 import Modelo.DTO.*;
@@ -18,14 +19,16 @@ import java.util.List;
  * @author milton
  */
 public class ExpertoRegistrarPostulacion {
+
     Estudiante estudiante;
+
     public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo);
-        List<Object> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
-        estudiante=null;
-        if(estudiantesList!=null){
+        List<Object> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        estudiante = null;
+        if (estudiantesList != null) {
             estudiante = (Estudiante) estudiantesList.get(0);
-        }else{
+        } else {
             return null;
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
@@ -39,16 +42,16 @@ public class ExpertoRegistrarPostulacion {
         if (esRegular) {
             Date fechaActualD = new Date();
             String fechaActual = "";
-            int año = fechaActualD.getYear()+1900;
-            fechaActual+=año+"-";
-            int mes = fechaActualD.getMonth()+1;
-            fechaActual+=mes+"-";
-            int dia = fechaActualD.getDate()+1;
-            fechaActual+=dia;
-            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto",">" ,fechaActual);
-            List<Proyecto> ProyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
+            int año = fechaActualD.getYear() + 1900;
+            fechaActual += año + "-";
+            int mes = fechaActualD.getMonth() + 1;
+            fechaActual += mes + "-";
+            int dia = fechaActualD.getDate() + 1;
+            fechaActual += dia;
+            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto", ">", fechaActual);
+            List<Proyecto> ProyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
             List<DTOProyecto> proyectoDTOList = new ArrayList<>();
-            for (Proyecto proyecto: ProyectosList) {
+            for (Proyecto proyecto : ProyectosList) {
                 DTOProyecto proyectoDTO = new DTOProyecto();
                 proyectoDTO.setDescripcion(proyecto.getDescripcion());
                 proyectoDTO.setDuracion(proyecto.getDuracion());
@@ -56,15 +59,15 @@ public class ExpertoRegistrarPostulacion {
                 proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
                 proyectoDTO.setCodigo(proyecto.getCodigo());
                 proyectoDTOList.add(proyectoDTO);
-            }            
+            }
             return proyectoDTOList;
         }
         return null;
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
-        Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto","=", codigoProyecto);
-        List<Proyecto> proyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
+        Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto", "=", codigoProyecto);
+        List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
         Proyecto proyecto = proyectosList.get(0);
         List<ProyectoCargo> proyectoCargosList = proyecto.getProyectoCargoList();
         List<DTOProyectoCargo> proyectoCargosDTOList = new ArrayList<>();
@@ -83,8 +86,25 @@ public class ExpertoRegistrarPostulacion {
         return new Date();
     }
 
-    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
-        
+    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) {
+        Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estadoPostulacion", "=", "realizada");
+        List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
+        Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
+        for (DTOPostulacionProyectoCargo postulacionProyectoCargoDTO : postulacionesProyectoCargoDTOList) {
+            PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
+            for (Postulacion postulacionAntigua : postulacionesList) {
+                if (postulacionAntigua.getEstudiante().getDni() == estudiante.getDni()) {
+                    for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
+                        if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
+                            if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
+
+                            }
+                        }
+                    }
+                }
+            }
+            postulacion.addProyectoCargo(postulacionProyectoCargo);
+        }
         return null;
     }
 }

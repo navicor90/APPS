@@ -20,7 +20,7 @@ public class ImplementacionPostulacion implements Postulacion{
     private String estadoPostulacion;
     private Date fechaHoraPostulacion;
     private int nroPostulacion;
-    private List<PostulacionProyectoCargo> proyectoCargo;
+    private List<PostulacionProyectoCargo> proyectoCargosList;
     private Estudiante estudiante;
 
     @Override
@@ -55,14 +55,19 @@ public class ImplementacionPostulacion implements Postulacion{
 
     @Override
     public List<PostulacionProyectoCargo> getProyectoCargo() {
-        return proyectoCargo;
+        return proyectoCargosList;
     }
 
     @Override
     public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo) {
-        this.proyectoCargo = proyectoCargo;
+        this.proyectoCargosList = proyectoCargo;
+    
     }
-
+    @Override
+    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo){
+        this.proyectoCargosList.add(proyectoCargo);
+    }
+    
     @Override
     public Estudiante getEstudiante() {
         return estudiante;
