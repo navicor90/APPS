@@ -70,7 +70,6 @@ public class ExpertoRegistrarPostulacion {
         List<DTOProyectoCargo> proyectoCargosDTOList = new ArrayList<>();
         for (ProyectoCargo proyectoCargo : proyectoCargosList) {
             DTOProyectoCargo proyectoCargoDTO = new DTOProyectoCargo();
-            
             proyectoCargoDTO.setNroProyectoCargo(proyectoCargo.getNroProyectoCargo());
             proyectoCargoDTO.setNombreProyectoCargo(proyectoCargo.getTipoCargo().getNomTipoCargo());
             proyectoCargoDTO.setDescripcion(proyectoCargo.getDescripcion());

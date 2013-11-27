@@ -8,10 +8,6 @@ and open the template in the editor.
     Author     : milton
 */
 
-.na{
-    color: blue;
-    font-size: 40px;
-}
 .proyectoTable{   
    border-collapse:collapse;
    border:1px solid #000000;
@@ -30,6 +26,27 @@ and open the template in the editor.
 }
 
 .proyectoTableEvenRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+.postulacionTable{   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.postulacionTableHeader{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.postulacionTableOddRow{
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFF;
+}
+
+.postulacionTableEvenRow{
    text-align:center;
    background:none repeat scroll 0 0 #D3D3D3;
 }
