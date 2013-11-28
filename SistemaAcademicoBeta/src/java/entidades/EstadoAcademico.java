@@ -21,10 +21,10 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class EstadoAcademico implements Serializable {
-    private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
     private int legajo;
     @ManyToOne
     private Carrera carrera;
@@ -67,14 +67,6 @@ public class EstadoAcademico implements Serializable {
         this.fechaBaja = fechaBaja;
     }
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;

@@ -22,7 +22,7 @@ public class Materia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
     private String nombre;
     private int codigo;
     @ManyToOne
@@ -52,13 +52,6 @@ public class Materia implements Serializable {
         this.planDeEstudio = planDeEstudio;
     }
     
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
