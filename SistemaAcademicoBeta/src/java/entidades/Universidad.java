@@ -7,24 +7,35 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author yanina
  */
 @Entity
-public class Alumno implements Serializable {
+public class Universidad implements Serializable {
+    @OneToMany(mappedBy = "universidad")
+    private List<Estudiante> estudiantes;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-    private String legajo;
+    private Long id;
+    private int codigo;
     private String nombre;
-    
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     public String getNombre() {
         return nombre;
@@ -34,11 +45,11 @@ public class Alumno implements Serializable {
         this.nombre = nombre;
     }
     
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,10 +63,10 @@ public class Alumno implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Alumno)) {
+        if (!(object instanceof Universidad)) {
             return false;
         }
-        Alumno other = (Alumno) object;
+        Universidad other = (Universidad) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -64,7 +75,7 @@ public class Alumno implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Alumno[ id=" + id + " ]";
+        return "entidades.Universidad[ id=" + id + " ]";
     }
     
 }
