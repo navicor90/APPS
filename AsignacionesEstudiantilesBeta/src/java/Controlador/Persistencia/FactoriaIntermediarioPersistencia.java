@@ -37,6 +37,9 @@ public class FactoriaIntermediarioPersistencia {
             case "Universidad":
                 intermediario = new IntermediarioPersistenciaUniversidad();
                 break;
+            case "Postulacion":
+                intermediario = new IntermediarioPersistenciaPostulacion();
+                break;
             default:
                 intermediario = null;
         }

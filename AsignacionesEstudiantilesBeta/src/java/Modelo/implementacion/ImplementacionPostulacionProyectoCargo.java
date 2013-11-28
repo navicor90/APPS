@@ -8,37 +8,48 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author yanina
  */
-public class ImplementacionPostulacionProyectoCargo implements PostulacionProyectoCargo{
-    private String prioridad;
-    private int codPostulacionProyectoCargo;
+public class ImplementacionPostulacionProyectoCargo implements PostulacionProyectoCargo {
+
+    private int prioridad;
     private List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList;
+    int cantidadMateriasAprobadasEstudiante;
+    int cantidadMateriasRegulares;
     private Proyecto proyecto;
     private Universidad universidad;
     private ProyectoCargo proyectoCargo;
 
     @Override
-    public String getPrioridad() {
+    public int getPrioridad() {
         return prioridad;
     }
 
     @Override
-    public void setPrioridad(String prioridad) {
+    public void setPrioridad(int prioridad) {
         this.prioridad = prioridad;
     }
 
     @Override
-    public int getCodPostulacionProyectoCargo() {
-        return codPostulacionProyectoCargo;
+    public int getCantidadMateriasAprobadasEstudiante() {
+        return cantidadMateriasAprobadasEstudiante;
     }
 
     @Override
-    public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo) {
-        this.codPostulacionProyectoCargo = codPostulacionProyectoCargo;
+    public void setCantidadMateriasAprobadasEstudiante(int cantidadMateriasAprobadasEstudiante) {
+        this.cantidadMateriasAprobadasEstudiante = cantidadMateriasAprobadasEstudiante;
+    }
+
+    @Override
+    public int getCantidadMateriasRegulares() {
+        return cantidadMateriasRegulares;
+    }
+
+    @Override
+    public void setCantidadMateriasRegulares(int cantidadMateriasRegulares) {
+        this.cantidadMateriasRegulares = cantidadMateriasRegulares;
     }
 
     @Override
@@ -50,9 +61,9 @@ public class ImplementacionPostulacionProyectoCargo implements PostulacionProyec
     public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList) {
         this.postulacionProyectoCargoEstadoList = postulacionProyectoCargoEstadoList;
     }
-    
+
     @Override
-    public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado){
+    public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado) {
         postulacionProyectoCargoEstadoList.add(postulacionProyectoCargoEstado);
     }
 
@@ -85,6 +96,5 @@ public class ImplementacionPostulacionProyectoCargo implements PostulacionProyec
     public void setProyectoCargo(ProyectoCargo proyectoCargo) {
         this.proyectoCargo = proyectoCargo;
     }
-       
-    
+
 }

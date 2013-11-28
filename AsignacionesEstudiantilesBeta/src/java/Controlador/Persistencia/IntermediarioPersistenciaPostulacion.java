@@ -6,6 +6,7 @@
 
 package Controlador.Persistencia;
 
+import Modelo.Agente.Agente;
 import Modelo.Agente.AgentePostulacion;
 import Modelo.Criterio;
 import Modelo.Expresion;
@@ -29,9 +30,10 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
             ImplementacionPostulacion postulacionImplementacion = new ImplementacionPostulacion();
             postulacionAgente.setImplementacionPostulacion(postulacionImplementacion);
             postulacionAgente.setOid(rs.getString("OIDPostulacion"));
-            postulacionAgente.setEstadoPostulacion(rs.getString("estadoPostulacion"));
-            postulacionAgente.setFechaHoraPostulacion(rs.getDate("fechaHoraPostulacion"));
-            postulacionAgente.setNroPostulacion(rs.getInt("nroPostulacion"));
+            postulacionAgente.setFechaHoraAnulacionPostulacion(rs.getDate("fechaAnulacionPostulacion"));
+            postulacionAgente.setFechaHoraPostulacion(rs.getDate("fechaPostulacion"));
+            postulacionAgente.setNroPostulacion(rs.getInt("codigoPostulacion"));
+            postulacionAgente.setOIDEstudiante(rs.getString("OIDEstudiante"));
             postulacionList.add(postulacionAgente);
         }
         return postulacionList;
@@ -66,6 +68,18 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String criterioString="";
+        switch(criterio.getAtributo()){
+            case "estudiante":
+                criterioString = "OIDEstudiante";
+                break;
+            default:
+                return "";
+        }
+        criterioString += criterio.getOperador();
+        Agente agente = (Agente) criterio.getValor();
+        criterioString += "'"+agente.getOid()+"'";
+        
+        return criterioString;
     }
 }

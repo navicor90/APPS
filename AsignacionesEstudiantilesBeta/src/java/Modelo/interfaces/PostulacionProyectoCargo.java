@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.interfaces;
 
 import Modelo.implementacion.ImplementacionPostulacionProyectoCargoEstado;
@@ -14,18 +13,23 @@ import java.util.List;
  * @author yanina
  */
 public interface PostulacionProyectoCargo {
-     public String getPrioridad();
 
-    public void setPrioridad(String prioridad);
+    public int getPrioridad();
 
-    public int getCodPostulacionProyectoCargo();
+    public void setPrioridad(int prioridad);
 
-    public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo);
+    public int getCantidadMateriasAprobadasEstudiante();
+
+    public void setCantidadMateriasAprobadasEstudiante(int cantidadMateriasAprobadasEstudiante);
+
+    public int getCantidadMateriasRegulares();
+
+    public void setCantidadMateriasRegulares(int cantidadMateriasRegulares);
 
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList();
 
     public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado);
-    
+
     public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado);
 
     public Proyecto getProyecto();

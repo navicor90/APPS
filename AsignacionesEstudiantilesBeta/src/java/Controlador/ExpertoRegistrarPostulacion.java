@@ -96,7 +96,7 @@ public class ExpertoRegistrarPostulacion {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
             //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
             for (Postulacion postulacionAntigua : postulacionesList) {
-                for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
+                for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargosList()) {
                     if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                         if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
                             postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);

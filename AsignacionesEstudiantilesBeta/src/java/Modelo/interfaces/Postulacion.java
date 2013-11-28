@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.interfaces;
 
 import java.util.Date;
@@ -14,9 +13,14 @@ import java.util.List;
  * @author yanina
  */
 public interface Postulacion {
-    public String getEstadoPostulacion();
 
-    public void setEstadoPostulacion(String estadoPostulacion);
+    public List<PostulacionProyectoCargo> getProyectoCargosList();
+
+    public void setProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList);
+
+    public Date getFechaHoraAnulacionPostulacion();
+
+    public void setFechaHoraAnulacionPostulacion(Date fechaHoraAnulacionPostulacion);
 
     public Date getFechaHoraPostulacion();
 
@@ -26,10 +30,9 @@ public interface Postulacion {
 
     public void setNroPostulacion(int nroPostulacion);
 
-    public List<PostulacionProyectoCargo> getProyectoCargo();
-
-    public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo);
     public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo);
+
     public Estudiante getEstudiante();
+
     public void setEstudiante(Estudiante estudiante);
 }

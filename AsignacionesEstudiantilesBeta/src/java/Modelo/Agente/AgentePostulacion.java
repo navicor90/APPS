@@ -14,16 +14,27 @@ import java.util.List;
  * @author yanina
  */
 public class AgentePostulacion extends Agente implements Postulacion{
-    boolean heBuscadoPostulacion;
-    ImplementacionPostulacion implementacionPostulacion;
+    private boolean heBuscadoEstudiante;
+    private String OIDEstudiante;
+    private ImplementacionPostulacion implementacionPostulacion;
 
-    public boolean isHeBuscadoPostulacion() {
-        return heBuscadoPostulacion;
+    public boolean isHeBuscadoEstudiante() {
+        return heBuscadoEstudiante;
     }
 
-    public void setHeBuscadoPostulacion(boolean heBuscadoPostulacion) {
-        this.heBuscadoPostulacion = heBuscadoPostulacion;
+    public void setHeBuscadoEstudiante(boolean heBuscadoEstudiante) {
+        this.heBuscadoEstudiante = heBuscadoEstudiante;
     }
+
+    public String getOIDEstudiante() {
+        return OIDEstudiante;
+    }
+
+    public void setOIDEstudiante(String OIDEstudiante) {
+        this.OIDEstudiante = OIDEstudiante;
+    }
+    
+    
 
     public ImplementacionPostulacion getImplementacionPostulacion() {
         return implementacionPostulacion;
@@ -33,16 +44,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
         this.implementacionPostulacion = implementacionPostulacion;
     }
     
-    @Override
-    public String getEstadoPostulacion() {
-        return implementacionPostulacion.getEstadoPostulacion();
-    }
-
-    @Override
-    public void setEstadoPostulacion(String estadoPostulacion) {
-        implementacionPostulacion.setEstadoPostulacion(estadoPostulacion);
-    }
-
+    
     @Override
     public Date getFechaHoraPostulacion() {
         return implementacionPostulacion.getFechaHoraPostulacion();
@@ -64,16 +66,6 @@ public class AgentePostulacion extends Agente implements Postulacion{
     }
 
     @Override
-    public List<PostulacionProyectoCargo> getProyectoCargo() {
-        return implementacionPostulacion.getProyectoCargo();
-    }
-
-    @Override
-    public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo) {
-        implementacionPostulacion.setProyectoCargo(proyectoCargo);
-    }
-    
-    @Override
     public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo){
         implementacionPostulacion.addProyectoCargo(proyectoCargo);
     }
@@ -86,6 +78,26 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public void setEstudiante(Estudiante estudiante) {
         implementacionPostulacion.setEstudiante(estudiante);
+    }
+
+    @Override
+    public List<PostulacionProyectoCargo> getProyectoCargosList() {
+        return implementacionPostulacion.getProyectoCargosList();
+    }
+
+    @Override
+    public void setProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
+        implementacionPostulacion.setProyectoCargosList(proyectoCargosList);
+    }
+
+    @Override
+    public Date getFechaHoraAnulacionPostulacion() {
+        return implementacionPostulacion.getFechaHoraAnulacionPostulacion();
+    }
+
+    @Override
+    public void setFechaHoraAnulacionPostulacion(Date fechaHoraAnulacionPostulacion) {
+        implementacionPostulacion.setFechaHoraAnulacionPostulacion(fechaHoraAnulacionPostulacion);
     }
     
 }

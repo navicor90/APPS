@@ -12,16 +12,16 @@ import java.util.List;
  *
  * @author yanina
  */
-public class AgentePostulacionProyectoCargo extends Agente implements PostulacionProyectoCargo{
-    String oidUniversidad;
-    String oidProyectoCargo;
-    String oidPostulacion;
-    String oidProyecto;
-    boolean heBuscadoUniversidad;
-    boolean heBuscadoProyectoCargo;
-    boolean heBuscadoPostulacion;
-    boolean heBuscadoProyecto;
-    ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo;
+public class AgentePostulacionProyectoCargo extends Agente implements PostulacionProyectoCargo{   
+    private String oidUniversidad;
+    private String oidProyectoCargo;
+    private String oidPostulacion;
+    private String oidProyecto;
+    private boolean heBuscadoUniversidad;
+    private boolean heBuscadoProyectoCargo;
+    private boolean heBuscadoPostulacion;
+    private boolean heBuscadoProyecto;
+    private ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo;
 
     public String getOidUniversidad() {
         return oidUniversidad;
@@ -95,25 +95,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
         this.implementacionPostulacionProyectoCargo = implementacionPostulacionProyectoCargo;
     }
     
-    @Override
-    public String getPrioridad() {
-        return implementacionPostulacionProyectoCargo.getPrioridad();
-    }
-
-    @Override
-    public void setPrioridad(String prioridad) {
-        implementacionPostulacionProyectoCargo.setPrioridad(prioridad);
-    }
-
-    @Override
-    public int getCodPostulacionProyectoCargo() {
-        return implementacionPostulacionProyectoCargo.getCodPostulacionProyectoCargo();
-    }
-
-    @Override
-    public void setCodPostulacionProyectoCargo(int codPostulacionProyectoCargo) {
-        implementacionPostulacionProyectoCargo.setCodPostulacionProyectoCargo(codPostulacionProyectoCargo);
-    }
+    
 
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
@@ -158,6 +140,36 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setProyectoCargo(ProyectoCargo proyectoCargo) {
         implementacionPostulacionProyectoCargo.setProyectoCargo(proyectoCargo);
+    }
+
+    @Override
+    public int getPrioridad() {
+        return implementacionPostulacionProyectoCargo.getPrioridad();
+    }
+
+    @Override
+    public void setPrioridad(int prioridad) {
+        implementacionPostulacionProyectoCargo.setPrioridad(prioridad);
+    }
+
+    @Override
+    public int getCantidadMateriasAprobadasEstudiante() {
+        return implementacionPostulacionProyectoCargo.getCantidadMateriasAprobadasEstudiante();
+    }
+
+    @Override
+    public void setCantidadMateriasAprobadasEstudiante(int cantidadMateriasAprobadasEstudiante) {
+        implementacionPostulacionProyectoCargo.setCantidadMateriasAprobadasEstudiante(cantidadMateriasAprobadasEstudiante);
+    }
+
+    @Override
+    public int getCantidadMateriasRegulares() {
+        return implementacionPostulacionProyectoCargo.getCantidadMateriasRegulares();
+    }
+
+    @Override
+    public void setCantidadMateriasRegulares(int cantidadMateriasRegulares) {
+        implementacionPostulacionProyectoCargo.setCantidadMateriasRegulares(cantidadMateriasRegulares);
     }
     
 }

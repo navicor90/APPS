@@ -17,20 +17,30 @@ import java.util.List;
  * @author yanina
  */
 public class ImplementacionPostulacion implements Postulacion{
-    private String estadoPostulacion;
     private Date fechaHoraPostulacion;
     private int nroPostulacion;
     private List<PostulacionProyectoCargo> proyectoCargosList;
     private Estudiante estudiante;
+    private Date fechaHoraAnulacionPostulacion;
 
     @Override
-    public String getEstadoPostulacion() {
-        return estadoPostulacion;
+    public List<PostulacionProyectoCargo> getProyectoCargosList() {
+        return proyectoCargosList;
     }
 
     @Override
-    public void setEstadoPostulacion(String estadoPostulacion) {
-        this.estadoPostulacion = estadoPostulacion;
+    public void setProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
+        this.proyectoCargosList = proyectoCargosList;
+    }
+
+    @Override
+    public Date getFechaHoraAnulacionPostulacion() {
+        return fechaHoraAnulacionPostulacion;
+    }
+
+    @Override
+    public void setFechaHoraAnulacionPostulacion(Date fechaHoraAnulacionPostulacion) {
+        this.fechaHoraAnulacionPostulacion = fechaHoraAnulacionPostulacion;
     }
 
     @Override
@@ -52,21 +62,6 @@ public class ImplementacionPostulacion implements Postulacion{
     public void setNroPostulacion(int nroPostulacion) {
         this.nroPostulacion = nroPostulacion;
     }
-
-    @Override
-    public List<PostulacionProyectoCargo> getProyectoCargo() {
-        return proyectoCargosList;
-    }
-
-    @Override
-    public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo) {
-        this.proyectoCargosList = proyectoCargo;
-    
-    }
-    @Override
-    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo){
-        this.proyectoCargosList.add(proyectoCargo);
-    }
     
     @Override
     public Estudiante getEstudiante() {
@@ -76,6 +71,11 @@ public class ImplementacionPostulacion implements Postulacion{
     @Override
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
+    }
+
+    @Override
+    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo) {
+        proyectoCargosList.add(proyectoCargo);
     }
 
 }
