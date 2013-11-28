@@ -115,6 +115,7 @@ public class ExpertoRegistrarPostulacion {
                 }
             }
             //registramos las postulaciones a nuevos proyectoCargo
+            System.out.println("registramos las postulaciones a nuevos proyectoCargo");
             if (postulacionProyectoCargoDTO.getDescripcionEstado() == null) {
                 Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigoProyecto", "=", Integer.toString(postulacionProyectoCargoDTO.getNroProyecto()));
                 List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
@@ -128,7 +129,7 @@ public class ExpertoRegistrarPostulacion {
                         int cantidadMateriasRegularesSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRegulares();
                         int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
                         int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
-                        System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+cantidadMateriasRegularesSolicitadas);
+                        
                         if (cantidadMateriasRendidasSolicitadas <= cantidadMateriasRendidas) {
                             if ((cantidadMateriasRendidas - cantidadMateriasRendidasSolicitadas) >= cantidadMateriasRegularesSolicitadas) {
                                 Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo", "=", "Efectiva");

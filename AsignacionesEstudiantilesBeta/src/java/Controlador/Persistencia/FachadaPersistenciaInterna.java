@@ -8,6 +8,8 @@ import Modelo.Expresion;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,7 +41,12 @@ public class FachadaPersistenciaInterna {
     }
 
     public void iniciarTransaccion() {
-        conexion = Conexion.getConnection();
+        try {
+            conexion = Conexion.getConnection();
+            conexion.setAutoCommit(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(FachadaPersistenciaInterna.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void ConfirmarTransaccion() throws SQLException {

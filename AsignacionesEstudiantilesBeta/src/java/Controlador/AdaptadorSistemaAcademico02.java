@@ -19,7 +19,18 @@ public class AdaptadorSistemaAcademico02 implements AdaptadorSistemaAcademico{
 
     @Override
     public List<DTOMateria> ObtenerEstadoAcademicoDetallado(String legajo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<DTOMateria> dtoList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            DTOMateria dto = new DTOMateria();
+            dto.setEstadoMateria("esRegular");
+            dtoList.add(dto);
+        }
+        for (int i = 0; i < 10; i++) {
+            DTOMateria dto = new DTOMateria();
+            dto.setEstadoMateria("esAprobada");
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 
     @Override

@@ -24,8 +24,7 @@ public abstract class IntermediarioPersistencia {
     }
 
     public Object buscar(String oid) {
-        Cache cache = Cache.obtenerInstancia();
-        Object agente = cache.buscar(oid);
+        Object agente = Cache.obtenerInstancia().buscar(oid);
         if (agente == null) {
             agente = materializar(oid);
         }
