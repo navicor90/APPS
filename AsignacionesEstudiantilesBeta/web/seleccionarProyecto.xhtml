@@ -47,6 +47,10 @@
                     #{postulacion.nomProyectoCargo}
             </h:column>
         </h:dataTable>
+        <h:form>
+            <h:commandButton action="#" value="Terminar Postulacion" styleClass="terminarPostulacion" />
+            <h:commandButton action="#{userBean.cancelarPostulacion()}" value="Cancelar Postulacion" styleClass="cancelarPostulacion" />
+        </h:form>
         </div>
     </h:body>
 </html>

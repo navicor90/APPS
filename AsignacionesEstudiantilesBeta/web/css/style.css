@@ -63,6 +63,21 @@ and open the template in the editor.
    text-align:center;
    background:none repeat scroll 0 0 #efdf6d;
 }
+.terminarPostulacion{
+    float: right;
+    margin: 2em;
+    margin-right: 0em;
+    background-color: coral;
+    border-radius: 15px;
+    padding: 10px;
+}
+.cancelarPostulacion{
+    float: left;
+    margin: 2em;
+    margin-right: 0em;
+    border-radius: 15px;
+    padding: 10px;
+}
 
 
 .linkProyecto{
