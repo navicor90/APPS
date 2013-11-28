@@ -32,7 +32,7 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
             postulacionProyectoCargoAgente.setOid(rs.getString("OIDPostulacionProyectoCargo"));
             postulacionProyectoCargoAgente.setPrioridad(rs.getInt("prioridadPostulacionProyectoCargo"));
             postulacionProyectoCargoAgente.setCantidadMateriasAprobadasEstudiante(rs.getInt("cantidadMateriasAprobadasEstudiantePostulacionProyectoCargo"));
-            postulacionProyectoCargoAgente.setCantidadMateriasRegulares(rs.getInt("cantidadMateriasRegularesEstudiantePostulacionProyectoCargo"));
+            postulacionProyectoCargoAgente.setCantidadMateriasRegulares(rs.getInt("cantidadMateriasRegularesPostulacionProyectoCargo"));
             postulacionProyectoCargoAgente.setOidPostulacion(rs.getString("OIDPostulacion"));
             postulacionProyectoCargoAgente.setOidProyecto(rs.getString("OIDProyecto"));
             postulacionProyectoCargoAgente.setOidProyectoCargo(rs.getString("OIDProyectoCargo"));

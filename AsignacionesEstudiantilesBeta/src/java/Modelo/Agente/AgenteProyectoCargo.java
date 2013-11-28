@@ -144,7 +144,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
         if (heBuscadoProyecto) {
             proyecto = implementacionProyectoCargo.getProyecto();
         } else {
-            proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar(oidProyecto, "Proyecto");
+            proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
         }
         return proyecto;
     }

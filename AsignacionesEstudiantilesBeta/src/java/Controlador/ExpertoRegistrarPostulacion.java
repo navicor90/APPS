@@ -96,6 +96,7 @@ public class ExpertoRegistrarPostulacion {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
             //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
             for (Postulacion postulacionAntigua : postulacionesList) {
+                System.out.println(postulacionAntigua.getNroPostulacion()+"--------------------");
                 for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargosList()) {
                     if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                         if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
@@ -115,7 +116,7 @@ public class ExpertoRegistrarPostulacion {
             }
             //registramos las postulaciones a nuevos proyectoCargo
             if (postulacionProyectoCargoDTO.getDescripcionEstado() == null) {
-                Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigo", "=", postulacionProyectoCargoDTO.getNroProyecto());
+                Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigo", "=", Integer.toString(postulacionProyectoCargoDTO.getNroProyecto()));
                 List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
                 Proyecto proyecto = proyectosList.get(0);
                 for (ProyectoCargo proyectoCargo : proyecto.getProyectoCargoList()) {

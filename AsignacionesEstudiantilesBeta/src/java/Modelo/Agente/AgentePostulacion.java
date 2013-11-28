@@ -5,6 +5,9 @@
  */
 
 package Modelo.Agente;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.Criterio;
+import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.util.Date;
@@ -15,9 +18,23 @@ import java.util.List;
  */
 public class AgentePostulacion extends Agente implements Postulacion{
     private boolean heBuscadoEstudiante;
+    private boolean heBuscadoProyectoCargo;
     private String OIDEstudiante;
     private ImplementacionPostulacion implementacionPostulacion;
 
+    public AgentePostulacion() {
+        heBuscadoEstudiante = false;
+        heBuscadoProyectoCargo = false;
+    }
+    
+    public boolean isHeBuscadoProyectoCargo() {
+        return heBuscadoProyectoCargo;
+    }
+
+    public void setHeBuscadoProyectoCargo(boolean heBuscadoProyectoCargo) {
+        this.heBuscadoProyectoCargo = heBuscadoProyectoCargo;
+    }
+    
     public boolean isHeBuscadoEstudiante() {
         return heBuscadoEstudiante;
     }
@@ -82,7 +99,15 @@ public class AgentePostulacion extends Agente implements Postulacion{
 
     @Override
     public List<PostulacionProyectoCargo> getProyectoCargosList() {
-        return implementacionPostulacion.getProyectoCargosList();
+        List<PostulacionProyectoCargo> postulacionProyectoCargos;
+        
+        if(heBuscadoProyectoCargo){
+            postulacionProyectoCargos = implementacionPostulacion.getProyectoCargosList();
+        }else{
+            Criterio criterioBusquedaPostulacionProyectoCargos = (Criterio) FabricaCriterio.getInstancia().crear("postulacion", "=", this);
+            postulacionProyectoCargos = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargo", criterioBusquedaPostulacionProyectoCargos);
+        }
+        return postulacionProyectoCargos;
     }
 
     @Override

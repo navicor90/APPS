@@ -5,6 +5,8 @@
  */
 
 package Modelo.Agente;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.util.List;
@@ -95,8 +97,6 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
         this.implementacionPostulacionProyectoCargo = implementacionPostulacionProyectoCargo;
     }
     
-    
-
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
         return implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
@@ -114,7 +114,13 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     
     @Override
     public Proyecto getProyecto() {
-        return implementacionPostulacionProyectoCargo.getProyecto();
+        Proyecto proyecto = null;
+        if(heBuscadoProyecto){
+            proyecto = implementacionPostulacionProyectoCargo.getProyecto();
+        }else{
+            proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
+        }
+        return proyecto;
     }
 
     @Override
@@ -134,7 +140,13 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
 
     @Override
     public ProyectoCargo getProyectoCargo() {
-        return implementacionPostulacionProyectoCargo.getProyectoCargo();
+        ProyectoCargo proyectoCargo;
+        if(heBuscadoProyectoCargo){
+            proyectoCargo = implementacionPostulacionProyectoCargo.getProyectoCargo();
+        }else{
+            proyectoCargo = (ProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", oidProyectoCargo);
+        }
+        return proyectoCargo;
     }
 
     @Override

@@ -1,4 +1,4 @@
-/*
+/*  
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -30,7 +30,11 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
             ImplementacionPostulacion postulacionImplementacion = new ImplementacionPostulacion();
             postulacionAgente.setImplementacionPostulacion(postulacionImplementacion);
             postulacionAgente.setOid(rs.getString("OIDPostulacion"));
-            postulacionAgente.setFechaHoraAnulacionPostulacion(rs.getDate("fechaAnulacionPostulacion"));
+            try{
+                postulacionAgente.setFechaHoraAnulacionPostulacion(rs.getDate("fechaAnulacionPostulacion"));
+            }catch(SQLException e){
+                
+            }
             postulacionAgente.setFechaHoraPostulacion(rs.getDate("fechaPostulacion"));
             postulacionAgente.setNroPostulacion(rs.getInt("codigoPostulacion"));
             postulacionAgente.setOIDEstudiante(rs.getString("OIDEstudiante"));
