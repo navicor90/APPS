@@ -20,7 +20,7 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
     private Boolean habilitado;
     private double horasDedicadas;
     private int nroProyectoCargo;
-    private List <ImplementacionProyectoCargoEstado> proyectoCargoEstado;
+    private List <ProyectoCargoEstado> proyectoCargoEstadoList;
     private TipoCargo tipoCargo;
     private Proyecto proyecto;
     private ProyectoCargoCarrera proyectoCargoCarrera;
@@ -78,15 +78,19 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
     }
 
     @Override
-    public List<ImplementacionProyectoCargoEstado> getProyectoCargoEstado() {
-        return proyectoCargoEstado;
+    public List<ProyectoCargoEstado> getProyectoCargoEstadoList() {
+        return proyectoCargoEstadoList;
     }
 
     @Override
-    public void setProyectoCargoEstado(List<ImplementacionProyectoCargoEstado> proyectoCargoEstado) {
-        this.proyectoCargoEstado = proyectoCargoEstado;
+    public void setProyectoCargoEstadoList(List<ProyectoCargoEstado> proyectoCargoEstadoList) {
+        this.proyectoCargoEstadoList = proyectoCargoEstadoList;
     }
-
+    
+    public void addProyectoCargoEstado(ProyectoCargoEstado proyectoCargoEstado){
+        proyectoCargoEstadoList.add(proyectoCargoEstado);
+    }
+    
     @Override
     public TipoCargo getTipoCargo() {
         return tipoCargo;

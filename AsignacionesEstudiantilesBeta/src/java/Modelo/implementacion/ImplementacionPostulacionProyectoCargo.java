@@ -16,7 +16,7 @@ import java.util.List;
 public class ImplementacionPostulacionProyectoCargo implements PostulacionProyectoCargo{
     private String prioridad;
     private int codPostulacionProyectoCargo;
-    private List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado;
+    private List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList;
     private Proyecto proyecto;
     private Universidad universidad;
     private ProyectoCargo proyectoCargo;
@@ -42,13 +42,18 @@ public class ImplementacionPostulacionProyectoCargo implements PostulacionProyec
     }
 
     @Override
-    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado() {
-        return postulacionProyectoCargoEstado;
+    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
+        return postulacionProyectoCargoEstadoList;
     }
 
     @Override
-    public void setPostulacionProyectoCargoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado) {
-        this.postulacionProyectoCargoEstado = postulacionProyectoCargoEstado;
+    public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList) {
+        this.postulacionProyectoCargoEstadoList = postulacionProyectoCargoEstadoList;
+    }
+    
+    @Override
+    public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado){
+        postulacionProyectoCargoEstadoList.add(postulacionProyectoCargoEstado);
     }
 
     @Override

@@ -102,8 +102,13 @@ public class ExpertoRegistrarPostulacion {
                             postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
                             postulacionProyectoCargo.setProyecto(postulacionProyectoCargoAntigua.getProyecto());
                             postulacionProyectoCargo.setProyectoCargo(postulacionProyectoCargoAntigua.getProyectoCargo());
-                            //postulacionProyectoCargo.setPostulacionProyectoCargoEstado("REPETIDAAAA");
-                            throw new UnsupportedOperationException("NO ESTA IMPELEMENTADO LA PARTE DE CAMBIARLE EL ESTADO A LA POSTULACION PROYECTO CARGO.");
+                            Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo","=", "Fallida");
+                            List<TipoEstadoPostulacionProyectoCargo> tiposEstadoPostulacionProyectoCargoList = (List)FachadaPersistencia.obtenerInstancia().buscar("TipoEstadoPostulacionProyectoCargo", criterioBusquedaEstadoPostulaciones);
+                            TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo = tiposEstadoPostulacionProyectoCargoList.get(0);
+                            PostulacionProyectoCargoEstado postulacionProyectoCargoEstado = (PostulacionProyectoCargoEstado) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargoEstado.class);
+                            postulacionProyectoCargoEstado.setFechaHoraCambio(new Date());
+                            postulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
+                            postulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
                         }
                     }
                 }

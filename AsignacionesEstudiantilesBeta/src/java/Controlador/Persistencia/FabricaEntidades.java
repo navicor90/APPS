@@ -4,6 +4,9 @@
  */
 package Controlador.Persistencia;
 
+import Modelo.Agente.*;
+import Modelo.interfaces.*;
+
 
 /**
  *
@@ -20,8 +23,20 @@ public class FabricaEntidades {
     }
     
     public Object crearEntidad(Class clase){
-        //if(clase == Estudiante)
-        return null;
+        Agente entidadNueva = null;
+        if(clase == Estudiante.class){
+            entidadNueva = new AgenteEstudiante();
+        }
+        if(clase == Postulacion.class){
+            entidadNueva = new AgentePostulacion();
+        }
+        if(clase == PostulacionProyectoCargo.class){
+            entidadNueva = new AgentePostulacionProyectoCargo();
+        }
+        if(clase == PostulacionProyectoCargoEstado.class){
+            entidadNueva = new AgentePostulacionProyectoCargoEstado();
+        }
+        return entidadNueva;
     }
     
 }

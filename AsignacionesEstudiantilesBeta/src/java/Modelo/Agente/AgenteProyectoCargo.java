@@ -104,14 +104,20 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     }
 
     @Override
-    public List<ImplementacionProyectoCargoEstado> getProyectoCargoEstado() {
-        return implementacionProyectoCargo.getProyectoCargoEstado();
+    public List<ProyectoCargoEstado> getProyectoCargoEstadoList() {
+        return implementacionProyectoCargo.getProyectoCargoEstadoList();
     }
 
     @Override
-    public void setProyectoCargoEstado(List<ImplementacionProyectoCargoEstado> proyectoCargoEstado) {
-        implementacionProyectoCargo.setProyectoCargoEstado(proyectoCargoEstado);
+    public void setProyectoCargoEstadoList(List<ProyectoCargoEstado> proyectoCargoEstado) {
+        implementacionProyectoCargo.setProyectoCargoEstadoList(proyectoCargoEstado);
     }
+
+    @Override
+    public void addProyectoCargoEstado(ProyectoCargoEstado proyectoCargoEstado) {
+        implementacionProyectoCargo.addProyectoCargoEstado(proyectoCargoEstado);
+    }
+    
 
     @Override
     public TipoCargo getTipoCargo() {

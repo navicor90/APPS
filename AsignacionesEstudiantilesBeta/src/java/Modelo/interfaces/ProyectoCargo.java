@@ -36,9 +36,11 @@ public interface ProyectoCargo {
 
     public void setNroProyectoCargo(int nroProyectoCargo);
 
-    public List<ImplementacionProyectoCargoEstado> getProyectoCargoEstado();
+    public List<ProyectoCargoEstado> getProyectoCargoEstadoList();
 
-    public void setProyectoCargoEstado(List<ImplementacionProyectoCargoEstado> proyectoCargoEstado);
+    public void setProyectoCargoEstadoList(List<ProyectoCargoEstado> proyectoCargoEstado);
+    
+    public void addProyectoCargoEstado(ProyectoCargoEstado proyectoCargoEstado);
 
     public TipoCargo getTipoCargo();
 

@@ -116,15 +116,20 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     }
 
     @Override
-    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstado() {
-        return implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstado();
+    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
+        return implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
     }
 
     @Override
-    public void setPostulacionProyectoCargoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado) {
-        implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
+    public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado) {
+        implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstadoList(postulacionProyectoCargoEstado);
     }
 
+    @Override
+    public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado) {
+        implementacionPostulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
+    }
+    
     @Override
     public Proyecto getProyecto() {
         return implementacionPostulacionProyectoCargo.getProyecto();
