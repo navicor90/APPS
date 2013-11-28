@@ -27,8 +27,8 @@ public class FachadaPersistencia {
         return FachadaPersistenciaInterna.getInstancia().buscar(nombreEntidad, criterio);
     }
 
-    public void guardar(Object obj, String nombreEntidad) {
-        FachadaPersistenciaInterna.getInstancia().guardar(obj, nombreEntidad);
+    public void guardar(Object obj) {
+        FachadaPersistenciaInterna.getInstancia().guardar(obj);
     }
 
 }
