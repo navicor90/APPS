@@ -5,6 +5,10 @@
 package Controlador.Persistencia;
 
 import Modelo.Agente.*;
+import Modelo.implementacion.ImplementacionEstudiante;
+import Modelo.implementacion.ImplementacionPostulacion;
+import Modelo.implementacion.ImplementacionPostulacionProyectoCargo;
+import Modelo.implementacion.ImplementacionPostulacionProyectoCargoEstado;
 import Modelo.interfaces.*;
 
 
@@ -25,16 +29,24 @@ public class FabricaEntidades {
     public Object crearEntidad(Class clase){
         Agente entidadNueva = null;
         if(clase == Estudiante.class){
-            entidadNueva = new AgenteEstudiante();
+            AgenteEstudiante agenteEstudiante = new AgenteEstudiante();
+            agenteEstudiante.setImplementacionEstudiante(new ImplementacionEstudiante());
+            entidadNueva = agenteEstudiante;
         }
         if(clase == Postulacion.class){
-            entidadNueva = new AgentePostulacion();
+            AgentePostulacion agentePostulacion = new AgentePostulacion();
+            agentePostulacion.setImplementacionPostulacion(new ImplementacionPostulacion());
+            entidadNueva = agentePostulacion;
         }
         if(clase == PostulacionProyectoCargo.class){
-            entidadNueva = new AgentePostulacionProyectoCargo();
+            AgentePostulacionProyectoCargo agentePostulacionProyectoCargo = new AgentePostulacionProyectoCargo();
+            agentePostulacionProyectoCargo.setImplementacionPostulacionProyectoCargo(new ImplementacionPostulacionProyectoCargo());
+            entidadNueva = agentePostulacionProyectoCargo;
         }
         if(clase == PostulacionProyectoCargoEstado.class){
-            entidadNueva = new AgentePostulacionProyectoCargoEstado();
+            AgentePostulacionProyectoCargoEstado agentePostulacionProyectoCargoEstado = new AgentePostulacionProyectoCargoEstado();
+            agentePostulacionProyectoCargoEstado.setImplementacionPostulacionProyectoCargoEstado(new ImplementacionPostulacionProyectoCargoEstado());
+            entidadNueva = agentePostulacionProyectoCargoEstado;
         }
         return entidadNueva;
     }
