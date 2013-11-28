@@ -8,7 +8,6 @@ package recursos;
 
 import com.google.gson.Gson;
 import entidades.Estudiante;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -23,7 +22,7 @@ import javax.ws.rs.QueryParam;
  * @author yanina
  */
 @Stateless
-@Path("/Alumno")
+@Path("/EstadoAcademicoGeneral")
 public class buscarEstadoAcademicoGeneral {
     @PersistenceContext( unitName =  "SistemaAcademicoBetaPU")      
     EntityManager entityManager ;
@@ -35,7 +34,8 @@ public class buscarEstadoAcademicoGeneral {
         return pJSON;
      }
     private String buscarAlumno(int dni, String tipoDni){
-    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcademico INER JOIN Carrera WHERE e.dni='"+dni+"' AND a.tipoDni='"+tipoDni+"'").getResultList();
+        //SELECT * FROM  Estudiante e, EstadoAcademico a JOIN Carrera  on a.legajo='345671' WHERE e.ID=a.ESTUDIANTE_ID
+    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcademico INER JOIN Carrera WHERE e.dni='"+dni+"' AND e.tipoDni='"+tipoDni+"'").getResultList();
      String todoslosjson= "";
         for (Estudiante e:estudiantes) {
             todoslosjson += "    "+convertirAJSON(e);

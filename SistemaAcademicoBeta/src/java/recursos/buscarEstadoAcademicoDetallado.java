@@ -22,18 +22,18 @@ import javax.ws.rs.QueryParam;
  * @author yanina
  */
 @Stateless
-@Path("/Alumno")
+@Path("/EstadoAcademicoDetallado")
 public class buscarEstadoAcademicoDetallado {
     @PersistenceContext( unitName =  "SistemaAcademicoBetaPU")      
     EntityManager entityManager ;
     @GET
     @Produces("application/json")
-    public String consultarEstadoAcademicoDetallado (@QueryParam("legajo") int legajo){
+    public String consultarEstadoAcademicoDetallado (@QueryParam("legajo") String legajo){
         System.out.println("valores"+legajo);
         String pJSON= buscarAlumno(legajo);       
         return pJSON;
      }
-    private String buscarAlumno(int legajo){
+    private String buscarAlumno(String legajo){
     List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcaddemico INNER JOIN Carrera EstudianteMateria INER JOIN Materia WHERE e.dni='"+legajo+"'").getResultList();
      String todoslosjson= "";
         for (Estudiante e:estudiantes) {

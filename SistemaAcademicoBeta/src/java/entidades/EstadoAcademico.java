@@ -25,7 +25,7 @@ public class EstadoAcademico implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    private int legajo;
+    private String legajo;
     @ManyToOne
     private Carrera carrera;
     @ManyToOne
@@ -35,14 +35,6 @@ public class EstadoAcademico implements Serializable {
     private Date fechaIngreso;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaBaja;
-
-    public int getLegajo() {
-        return legajo;
-    }
-
-    public void setLegajo(int legajo) {
-        this.legajo = legajo;
-    }
 
     public Carrera getCarrera() {
         return carrera;

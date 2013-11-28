@@ -16,7 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Path("/Alumno")
+@Path("/Estudiante")
 public class busquedaAlumno {
     @PersistenceContext( unitName =  "SistemaAcademicoBetaPU")      
     EntityManager entityManager ;
@@ -28,7 +28,7 @@ public class busquedaAlumno {
      }
     private String buscarAlumno(String legajo){
     Estudiante estudiante;
-       estudiante =(Estudiante)entityManager.createQuery("SELECT a FROM Alumno a WHERE a.legajo='"+legajo+"'").getSingleResult();
+       estudiante =(Estudiante)entityManager.createQuery("SELECT a FROM Estudiante a WHERE a.legajo='"+legajo+"'").getSingleResult();
         return convertirAJSON(estudiante);
      }
     private String convertirAJSON(Object alumno){

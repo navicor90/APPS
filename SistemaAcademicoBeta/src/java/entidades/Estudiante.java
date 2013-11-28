@@ -21,8 +21,6 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Estudiante implements Serializable {
-    @OneToMany(mappedBy = "estudiante")
-    private List<PlanDeEstudio> planDeEstudios;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
