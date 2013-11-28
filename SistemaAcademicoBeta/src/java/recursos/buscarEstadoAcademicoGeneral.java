@@ -34,9 +34,10 @@ public class buscarEstadoAcademicoGeneral {
         return pJSON;
      }
     private String buscarAlumno(int dni, String tipoDni){
-        //SELECT * FROM  Estudiante e, EstadoAcademico a JOIN Carrera  on a.legajo='345671' WHERE e.ID=a.ESTUDIANTE_ID
-    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcademico INER JOIN Carrera WHERE e.dni='"+dni+"' AND e.tipoDni='"+tipoDni+"'").getResultList();
-     String todoslosjson= "";
+        System.out.println("buscar alumnoHOLAAAAAAAAAAAAAAAAAAA");
+    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT legajo, nombreCarrera, estadoAcademico, fechaIngreso, fechaBaja, nombre FROM  Carrera, EstadoAcademico a JOIN Estudiante e  ON e.DNI='34567' AND e.TIPODNI='dni' WHERE e.ID=a.ESTUDIANTE_ID ").getResultList();
+        System.out.println("entrooooooooooooooooooo"); 
+    String todoslosjson= "";
         for (Estudiante e:estudiantes) {
             todoslosjson += "    "+convertirAJSON(e);
         }
