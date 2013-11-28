@@ -69,4 +69,29 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     public abstract String armarConsultaInsercion(Object objeto);
 
     public abstract String armarConsultaActualizacion(Object objeto);
+    
+    public String desarmarExpresion(Expresion expresion) {
+        if (expresion.getClass() == CriterioCompuesto.class) {
+            CriterioCompuesto criterioCompuesto = (CriterioCompuesto) expresion;
+            Expresion expresionIzq = criterioCompuesto.getExpresionIzq();
+            Expresion expresionDer = criterioCompuesto.getExpresionDer();
+            String criterioIzqString = desarmarExpresion(expresionIzq);
+            String criterioDerString = desarmarExpresion(expresionDer);
+            return "(" + criterioIzqString + criterioCompuesto.getOperadorLogico() + " " + criterioDerString + ")";
+        } else {
+            Criterio criterio = (Criterio) expresion;
+            String criterioString = "";
+            if (criterio.getValor().getClass() == String.class) {
+                criterioString = criterio.getAtributo() + " ";
+                criterioString += criterio.getOperador() + " '";
+                criterioString += criterio.getValor() + "' ";
+            } else {
+                criterioString = desarmarCriterioPorObjeto(criterio);
+            }
+            return criterioString;
+        }
+
+    }
+    
+    public abstract String desarmarCriterioPorObjeto(Criterio criterio);
 }

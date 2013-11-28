@@ -6,6 +6,7 @@ package Controlador.Persistencia;
 
 import Modelo.Expresion;
 import Modelo.Agente.*;
+import Modelo.Criterio;
 import Modelo.implementacion.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +43,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.estudiantes WHERE "+Expresion.desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.estudiantes WHERE "+desarmarExpresion(expresion);
         return sql;
     }
 
@@ -64,6 +65,11 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
     @Override
     public String armarConsultaActualizacion(Object objUpdate) {
         return null;
+    }
+
+    @Override
+    public String desarmarCriterioPorObjeto(Criterio criterio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
 /* esto es nuevo

@@ -4,6 +4,7 @@
  */
 package Controlador.Persistencia;
 
+import Modelo.Criterio;
 import Modelo.Expresion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,4 +57,9 @@ public class IntermediarioPersistenciaUniversidad extends IntermediarioPersisten
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     */
+
+    @Override
+    public String desarmarCriterioPorObjeto(Criterio criterio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

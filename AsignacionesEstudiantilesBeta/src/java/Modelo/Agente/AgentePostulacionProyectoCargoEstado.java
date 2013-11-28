@@ -14,18 +14,18 @@ import java.util.Date;
  * @author yanina
  */
 public class AgentePostulacionProyectoCargoEstado extends Agente implements PostulacionProyectoCargoEstado{
-    String oidPostulacionproyectoCargo;
+    String oidPostulacionProyectoCargo;
     String oidTipoEstadoPostulacionProyectoCargo;
     boolean heBuscadoPostulacionProyectoCargo;
     boolean   heBuscadoTipoEstadoPostulacionProyectoCargo;
     ImplementacionPostulacionProyectoCargoEstado implementacionPostulacionProyectoCargoEstado;
 
-    public String getOidPostulacionproyectoCargo() {
-        return oidPostulacionproyectoCargo;
+    public String getOidPostulacionProyectoCargo() {
+        return oidPostulacionProyectoCargo;
     }
 
-    public void setOidPostulacionproyectoCargo(String oidPostulacionproyectoCargo) {
-        this.oidPostulacionproyectoCargo = oidPostulacionproyectoCargo;
+    public void setOidPostulacionProyectoCargo(String oidPostulacionproyectoCargo) {
+        this.oidPostulacionProyectoCargo = oidPostulacionproyectoCargo;
     }
 
     public String getOidTipoEstadoPostulacionProyectoCargo() {

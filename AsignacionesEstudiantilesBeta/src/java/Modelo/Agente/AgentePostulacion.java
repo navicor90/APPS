@@ -14,17 +14,8 @@ import java.util.List;
  * @author yanina
  */
 public class AgentePostulacion extends Agente implements Postulacion{
-    String oidPostulacion;
     boolean heBuscadoPostulacion;
     ImplementacionPostulacion implementacionPostulacion;
-
-    public String getOidPostulacion() {
-        return oidPostulacion;
-    }
-
-    public void setOidPostulacion(String oidPostulacion) {
-        this.oidPostulacion = oidPostulacion;
-    }
 
     public boolean isHeBuscadoPostulacion() {
         return heBuscadoPostulacion;
@@ -69,7 +60,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
 
     @Override
     public void setNroPostulacion(int nroPostulacion) {
-        implementacionPostulacion.setEstadoPostulacion(oidPostulacion);
+        implementacionPostulacion.setNroPostulacion(nroPostulacion);
     }
 
     @Override
@@ -79,7 +70,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
 
     @Override
     public void setProyectoCargo(List<PostulacionProyectoCargo> proyectoCargo) {
-        implementacionPostulacion.setEstadoPostulacion(oidPostulacion);
+        implementacionPostulacion.setProyectoCargo(proyectoCargo);
     }
     
     @Override

@@ -8,6 +8,7 @@ package Controlador.Persistencia;
 
 
 import Modelo.Agente.AgenteProyectoCargo;
+import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionProyectoCargo;
 
@@ -45,7 +46,7 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.proyectoCargos WHERE "+Expresion.desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.proyectoCargos WHERE "+desarmarExpresion(expresion);
         return sql;
     }
 
@@ -67,5 +68,10 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
     @Override
     public String armarConsultaActualizacion(Object objUpdate) {
         return null;
+    }
+
+    @Override
+    public String desarmarCriterioPorObjeto(Criterio criterio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

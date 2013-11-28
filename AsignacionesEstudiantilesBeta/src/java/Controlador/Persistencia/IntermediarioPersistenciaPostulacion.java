@@ -6,12 +6,10 @@
 
 package Controlador.Persistencia;
 
-
-import Modelo.Agente.AgenteTipoCargo;
+import Modelo.Agente.AgentePostulacion;
 import Modelo.Criterio;
 import Modelo.Expresion;
-import Modelo.implementacion.ImplementacionTipoCargo;
-
+import Modelo.implementacion.ImplementacionPostulacion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,26 +19,27 @@ import java.util.List;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenciaRelacional{
+public class IntermediarioPersistenciaPostulacion extends IntermediarioPersistenciaRelacional{
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
-        List<Object> estudiantesList = new ArrayList<>();
+        List<Object> postulacionList = new ArrayList<>();
         while (rs.next()) {
-            AgenteTipoCargo tipoCargoAgente = new AgenteTipoCargo();
-            ImplementacionTipoCargo tipoCargoImplementacion = new ImplementacionTipoCargo();
-            tipoCargoAgente.setImplementacionTipoCargo(tipoCargoImplementacion);
-            tipoCargoAgente.setOid(rs.getString("OIDTipoCargo"));
-            tipoCargoAgente.setCodigo(rs.getInt("codigoTipoCargo"));
-            tipoCargoAgente.setNomTipoCargo(rs.getString("nombreTipoCargo"));
-            estudiantesList.add(tipoCargoAgente);
+            AgentePostulacion postulacionAgente = new AgentePostulacion();
+            ImplementacionPostulacion postulacionImplementacion = new ImplementacionPostulacion();
+            postulacionAgente.setImplementacionPostulacion(postulacionImplementacion);
+            postulacionAgente.setOid(rs.getString("OIDPostulacion"));
+            postulacionAgente.setEstadoPostulacion(rs.getString("estadoPostulacion"));
+            postulacionAgente.setFechaHoraPostulacion(rs.getDate("fechaHoraPostulacion"));
+            postulacionAgente.setNroPostulacion(rs.getInt("nroPostulacion"));
+            postulacionList.add(postulacionAgente);
         }
-        return estudiantesList;
+        return postulacionList;
     }
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.tipoCargos WHERE "+desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.postulaciones WHERE "+desarmarExpresion(expresion);
         return sql;
     }
 
@@ -51,7 +50,7 @@ public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenci
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-         String sql = "SELECT * FROM AE.tipoCargos WHERE OIDTipoCargo='"+oid+"'";
+         String sql = "SELECT * FROM AE.postulaciones WHERE OIDPostulacion='"+oid+"'";
         return sql;
     }
 

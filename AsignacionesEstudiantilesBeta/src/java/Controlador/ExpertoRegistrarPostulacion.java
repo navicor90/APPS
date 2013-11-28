@@ -89,77 +89,75 @@ public class ExpertoRegistrarPostulacion {
     }
 
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) {
-        Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estadoPostulacion", "=", "realizada");
+        Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
         List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
         Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
         for (DTOPostulacionProyectoCargo postulacionProyectoCargoDTO : postulacionesProyectoCargoDTOList) {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
             //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
             for (Postulacion postulacionAntigua : postulacionesList) {
-                if (postulacionAntigua.getEstudiante().getDni() == estudiante.getDni()) {
-                    for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
-                        if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
-                            if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
-                                postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
-                                postulacionProyectoCargo.setProyecto(postulacionProyectoCargoAntigua.getProyecto());
-                                postulacionProyectoCargo.setProyectoCargo(postulacionProyectoCargoAntigua.getProyectoCargo());
-                                //postulacionProyectoCargo.setPostulacionProyectoCargoEstado("REPETIDAAAA");
-                                throw new UnsupportedOperationException("NO ESTA IMPELEMENTADO LA PARTE DE CAMBIARLE EL ESTADO A LA POSTULACION PROYECTO CARGO.");
-                            }
+                for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargo()) {
+                    if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
+                        if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
+                            postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
+                            postulacionProyectoCargo.setProyecto(postulacionProyectoCargoAntigua.getProyecto());
+                            postulacionProyectoCargo.setProyectoCargo(postulacionProyectoCargoAntigua.getProyectoCargo());
+                            //postulacionProyectoCargo.setPostulacionProyectoCargoEstado("REPETIDAAAA");
+                            throw new UnsupportedOperationException("NO ESTA IMPELEMENTADO LA PARTE DE CAMBIARLE EL ESTADO A LA POSTULACION PROYECTO CARGO.");
                         }
                     }
                 }
             }
             //registramos las postulaciones a nuevos proyectoCargo
-            if(postulacionProyectoCargoDTO.getDescripcionEstado()==null){
+            if (postulacionProyectoCargoDTO.getDescripcionEstado() == null) {
                 Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigo", "=", postulacionProyectoCargoDTO.getNroProyecto());
-                List<Proyecto> proyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
+                List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
                 Proyecto proyecto = proyectosList.get(0);
-                for(ProyectoCargo proyectoCargo : proyecto.getProyectoCargoList()){
-                    if(proyectoCargo.getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()){
+                for (ProyectoCargo proyectoCargo : proyecto.getProyectoCargoList()) {
+                    if (proyectoCargo.getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
                         postulacionProyectoCargo.setProyecto(proyecto);
                         postulacionProyectoCargo.setProyectoCargo(proyectoCargo);
                         List<DTOMateria> materiaDTO = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).ObtenerEstadoAcademicoDetallado(estudiante.getLegajo());
-                        int cantidadMateriasRendidasSolicitadas=proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRendidas();
+                        int cantidadMateriasRendidasSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRendidas();
                         int cantidadMateriasRegularesSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRegulares();
                         int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
                         int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
-                        if(cantidadMateriasRendidasSolicitadas <= cantidadMateriasRendidas){
-                            if((cantidadMateriasRendidas-cantidadMateriasRendidasSolicitadas) >=cantidadMateriasRegularesSolicitadas){
+                        if (cantidadMateriasRendidasSolicitadas <= cantidadMateriasRendidas) {
+                            if ((cantidadMateriasRendidas - cantidadMateriasRendidasSolicitadas) >= cantidadMateriasRegularesSolicitadas) {
                                 //se hace la postulacion
-                            }else{
-                                if(cantidadMateriasRegulares >= cantidadMateriasRegularesSolicitadas){
+                            } else {
+                                if (cantidadMateriasRegulares >= cantidadMateriasRegularesSolicitadas) {
                                     //se hace la postulacion
                                 }
                             }
                         }
                     }
                 }
-                
+
             }
-            
+
             postulacion.addProyectoCargo(postulacionProyectoCargo);
         }
         return null;
     }
 
-    private int contarMateriasRegulares(List<DTOMateria> materiasList){
+    private int contarMateriasRegulares(List<DTOMateria> materiasList) {
         int contador = 0;
         for (DTOMateria materiaDTO : materiasList) {
-            if("esRegular".equals(materiaDTO.getEstadoMateria())){
+            if ("esRegular".equals(materiaDTO.getEstadoMateria())) {
                 contador++;
             }
         }
         return contador;
     }
 
-    private int contarMateriasAprobadas(List<DTOMateria> materiasList){
+    private int contarMateriasAprobadas(List<DTOMateria> materiasList) {
         int contador = 0;
         for (DTOMateria materiaDTO : materiasList) {
-            if("esAprobada".equals(materiaDTO.getEstadoMateria())){
+            if ("esAprobada".equals(materiaDTO.getEstadoMateria())) {
                 contador++;
             }
         }
         return contador;
-    }   
+    }
 }
