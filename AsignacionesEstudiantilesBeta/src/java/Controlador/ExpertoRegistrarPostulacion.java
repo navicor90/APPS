@@ -116,7 +116,7 @@ public class ExpertoRegistrarPostulacion {
             }
             //registramos las postulaciones a nuevos proyectoCargo
             if (postulacionProyectoCargoDTO.getDescripcionEstado() == null) {
-                Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigo", "=", Integer.toString(postulacionProyectoCargoDTO.getNroProyecto()));
+                Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigoProyecto", "=", Integer.toString(postulacionProyectoCargoDTO.getNroProyecto()));
                 List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
                 Proyecto proyecto = proyectosList.get(0);
                 for (ProyectoCargo proyectoCargo : proyecto.getProyectoCargoList()) {
@@ -128,6 +128,7 @@ public class ExpertoRegistrarPostulacion {
                         int cantidadMateriasRegularesSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRegulares();
                         int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
                         int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
+                        System.out.println("laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+cantidadMateriasRegularesSolicitadas);
                         if (cantidadMateriasRendidasSolicitadas <= cantidadMateriasRendidas) {
                             if ((cantidadMateriasRendidas - cantidadMateriasRendidasSolicitadas) >= cantidadMateriasRegularesSolicitadas) {
                                 Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo", "=", "Efectiva");
@@ -155,8 +156,8 @@ public class ExpertoRegistrarPostulacion {
             }
             postulacion.addProyectoCargo(postulacionProyectoCargo);
         }
-        FachadaPersistencia.obtenerInstancia().guardar(postulacion);
-        return null;
+        //FachadaPersistencia.obtenerInstancia().guardar(postulacion);
+        return postulacionesProyectoCargoDTOList;
     }
 
     private int contarMateriasRegulares(List<DTOMateria> materiasList) {
