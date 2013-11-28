@@ -101,8 +101,15 @@ public class UserBean {
         this.proyectoCargosList = proyectoCargosList;
     }
 
-    public List<DTOPostulacionProyectoCargo> terminarPostulacion() {
-        return postulacionesDTO;
+    public void terminarPostulacion() {
+        try {
+            postulacionesDTO = controlador.realizarPostulacion(postulacionesDTO);
+            ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
+            String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+            ctx.redirect(ctxPath + "/faces/terminarPostulacion.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void cancelarPostulacion() {
