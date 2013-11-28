@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author milton
  */
-public class IntermediarioPersistenciaTipoEstadoPostulacion extends IntermediarioPersistenciaRelacional {
+public class IntermediarioPersistenciaTipoEstadoPostulacionProyectoCargo extends IntermediarioPersistenciaRelacional {
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
