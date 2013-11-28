@@ -6,6 +6,7 @@
 
 package Modelo.Agente;
 import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.Criterio;
 import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
@@ -23,8 +24,18 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     private boolean heBuscadoProyectoCargo;
     private boolean heBuscadoPostulacion;
     private boolean heBuscadoProyecto;
+    private boolean heBuscadoPostulacionProyectoCargoEstadoList;
     private ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo;
 
+    public boolean isHeBuscadoPostulacionProyectoCargoEstadoList() {
+        return heBuscadoPostulacionProyectoCargoEstadoList;
+    }
+
+    public void setHeBuscadoPostulacionProyectoCargoEstadoList(boolean heBuscadoPostulacionProyectoCargoEstadoList) {
+        this.heBuscadoPostulacionProyectoCargoEstadoList = heBuscadoPostulacionProyectoCargoEstadoList;
+    }
+    
+    
     public String getOidUniversidad() {
         return oidUniversidad;
     }
@@ -99,7 +110,15 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
-        return implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
+        List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstados;
+        if(heBuscadoPostulacionProyectoCargoEstadoList){
+            postulacionProyectoCargoEstados = implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
+        }else{
+            Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("PostulacionProyectoCargo", "=", this);
+            postulacionProyectoCargoEstados = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
+        }
+        
+        return postulacionProyectoCargoEstados;
     }
 
     @Override

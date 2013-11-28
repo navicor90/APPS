@@ -19,13 +19,22 @@ import java.util.List;
  * @author yanina
  */
 public class AgenteProyecto extends Agente implements Proyecto{
-    String oidEmpresa;
-    String oidUniversidad;
-    boolean heBuscadoEmpresa;
-    boolean heBuscadoUniversidad;
-    boolean heBuscadoProyectoCargoList;
-    ImplementacionProyecto implementacionProyecto;
+    private String oidEmpresa;
+    private String oidUniversidad;
+    private boolean heBuscadoEmpresa;
+    private boolean heBuscadoUniversidad;
+    private boolean heBuscadoProyectoCargoList;
+    private ImplementacionProyecto implementacionProyecto;
 
+    public boolean isHeBuscadoProyectoCargoList() {
+        return heBuscadoProyectoCargoList;
+    }
+
+    public void setHeBuscadoProyectoCargoList(boolean heBuscadoProyectoCargoList) {
+        this.heBuscadoProyectoCargoList = heBuscadoProyectoCargoList;
+    }
+    
+    
     public String getOidEmpresa() {
         return oidEmpresa;
     }
@@ -135,6 +144,8 @@ public class AgenteProyecto extends Agente implements Proyecto{
         }else{
             Expresion criterioBusquedaProyCargo = FabricaCriterio.getInstancia().crear("proyecto", "=", this);
             proyectoCargoList= (List)FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", criterioBusquedaProyCargo);
+            implementacionProyecto.setProyectoCargoList(proyectoCargoList);
+            this.setHeBuscadoProyectoCargoList(true);
         }
         return proyectoCargoList;
     }

@@ -17,18 +17,51 @@ import java.util.List;
  */
 public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
 
-    String oidProyecto;
-    String oidTipoCargo;
-    String oidProyectoCargoCarrera;
-    boolean heBuscadoProyectoCargoCarrrera;
-    boolean heBuscadoProyecto;
-    boolean heBuscadoTipoCargo;
-    ImplementacionProyectoCargo implementacionProyectoCargo;
+    private String oidProyecto;
+    private String oidTipoCargo;
+    private String oidProyectoCargoCarrera;
+    private boolean heBuscadoProyectoCargoCarrrera;
+    private boolean heBuscadoProyecto;
+    private boolean heBuscadoTipoCargo;
+    private boolean heBuscadoProyectoCargoEstado;
+    private ImplementacionProyectoCargo implementacionProyectoCargo;
 
     public AgenteProyectoCargo() {
         heBuscadoProyecto=false;
         heBuscadoProyectoCargoCarrrera=false;
         heBuscadoTipoCargo=false;
+    }
+
+    public boolean isHeBuscadoProyectoCargoEstado() {
+        return heBuscadoProyectoCargoEstado;
+    }
+
+    public void setHeBuscadoProyectoCargoEstado(boolean heBuscadoProyectoCargoEstado) {
+        this.heBuscadoProyectoCargoEstado = heBuscadoProyectoCargoEstado;
+    }
+    
+    public boolean isHeBuscadoProyectoCargoCarrrera() {
+        return heBuscadoProyectoCargoCarrrera;
+    }
+
+    public void setHeBuscadoProyectoCargoCarrrera(boolean heBuscadoProyectoCargoCarrrera) {
+        this.heBuscadoProyectoCargoCarrrera = heBuscadoProyectoCargoCarrrera;
+    }
+
+    public boolean isHeBuscadoProyecto() {
+        return heBuscadoProyecto;
+    }
+
+    public void setHeBuscadoProyecto(boolean heBuscadoProyecto) {
+        this.heBuscadoProyecto = heBuscadoProyecto;
+    }
+
+    public boolean isHeBuscadoTipoCargo() {
+        return heBuscadoTipoCargo;
+    }
+
+    public void setHeBuscadoTipoCargo(boolean heBuscadoTipoCargo) {
+        this.heBuscadoTipoCargo = heBuscadoTipoCargo;
     }
     
     public String getOidProyecto() {
@@ -111,6 +144,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     @Override
     public void setProyectoCargoEstadoList(List<ProyectoCargoEstado> proyectoCargoEstado) {
         implementacionProyectoCargo.setProyectoCargoEstadoList(proyectoCargoEstado);
+        this.setHeBuscadoProyectoCargoEstado(true);
     }
 
     @Override
@@ -126,8 +160,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
             tipoCargo = implementacionProyectoCargo.getTipoCargo();
         } else {
             tipoCargo = (TipoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoCargo", oidTipoCargo);
-            System.out.println(tipoCargo.getNomTipoCargo()+"---------------");
-            implementacionProyectoCargo.setTipoCargo(tipoCargo);
+            this.setTipoCargo(tipoCargo);
         }
         return tipoCargo;
     }
@@ -135,7 +168,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     @Override
     public void setTipoCargo(TipoCargo tipoCargo) {
         implementacionProyectoCargo.setTipoCargo(tipoCargo);
-        heBuscadoTipoCargo=true;
+        this.setHeBuscadoTipoCargo(true);
     }
 
     @Override
@@ -145,6 +178,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
             proyecto = implementacionProyectoCargo.getProyecto();
         } else {
             proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
+            this.setProyecto(proyecto);
         }
         return proyecto;
     }
@@ -163,6 +197,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     @Override
     public void setProyectoCargoCarrera(ProyectoCargoCarrera proyectoCargoCarrera) {
         implementacionProyectoCargo.setProyectoCargoCarrera(proyectoCargoCarrera);
+        this.setHeBuscadoProyectoCargoCarrrera(true);
     }
 
     @Override

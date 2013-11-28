@@ -6,6 +6,7 @@
 
 package Modelo.Agente;
 
+import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.util.Date;
@@ -14,19 +15,11 @@ import java.util.Date;
  * @author yanina
  */
 public class AgentePostulacionProyectoCargoEstado extends Agente implements PostulacionProyectoCargoEstado{
-    String oidPostulacionProyectoCargo;
     String oidTipoEstadoPostulacionProyectoCargo;
-    boolean heBuscadoPostulacionProyectoCargo;
+    String oidPostulacionProyectoCargo;
     boolean   heBuscadoTipoEstadoPostulacionProyectoCargo;
+    boolean   heBuscadoPostulacionProyectoCargo;
     ImplementacionPostulacionProyectoCargoEstado implementacionPostulacionProyectoCargoEstado;
-
-    public String getOidPostulacionProyectoCargo() {
-        return oidPostulacionProyectoCargo;
-    }
-
-    public void setOidPostulacionProyectoCargo(String oidPostulacionproyectoCargo) {
-        this.oidPostulacionProyectoCargo = oidPostulacionproyectoCargo;
-    }
 
     public String getOidTipoEstadoPostulacionProyectoCargo() {
         return oidTipoEstadoPostulacionProyectoCargo;
@@ -34,14 +27,6 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
 
     public void setOidTipoEstadoPostulacionProyectoCargo(String oidTipoEstadoPostulacionProyectoCargo) {
         this.oidTipoEstadoPostulacionProyectoCargo = oidTipoEstadoPostulacionProyectoCargo;
-    }
-
-    public boolean isHeBuscadoPostulacionProyectoCargo() {
-        return heBuscadoPostulacionProyectoCargo;
-    }
-
-    public void setHeBuscadoPostulacionProyectoCargo(boolean heBuscadoPostulacionProyectoCargo) {
-        this.heBuscadoPostulacionProyectoCargo = heBuscadoPostulacionProyectoCargo;
     }
 
     public boolean isHeBuscadoTipoEstadoPostulacionProyectoCargo() {
@@ -72,12 +57,37 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
 
     @Override
     public TipoEstadoPostulacionProyectoCargo getTipoEstadoPostulacionProyectoCargo() {
+        TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo;
+        if(heBuscadoTipoEstadoPostulacionProyectoCargo){
+            tipoEstadoPostulacionProyectoCargo = implementacionPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
+        }else{
+            tipoEstadoPostulacionProyectoCargo = (TipoEstadoPostulacionProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoPostulacionProyectoCargo", oidTipoEstadoPostulacionProyectoCargo);
+            implementacionPostulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
+            this.setHeBuscadoTipoEstadoPostulacionProyectoCargo(true);
+        }
         return implementacionPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
     }
-
+    
     @Override
     public void setTipoEstadoPostulacionProyectoCargo(TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo) {
         implementacionPostulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
     }
+
+    public String getOidPostulacionProyectoCargo() {
+        return oidPostulacionProyectoCargo;
+    }
+
+    public void setOidPostulacionProyectoCargo(String oidPostulacionProyectoCargo) {
+        this.oidPostulacionProyectoCargo = oidPostulacionProyectoCargo;
+    }
+
+    public boolean isHeBuscadoPostulacionProyectoCargo() {
+        return heBuscadoPostulacionProyectoCargo;
+    }
+
+    public void setHeBuscadoPostulacionProyectoCargo(boolean heBuscadoPostulacionProyectoCargo) {
+        this.heBuscadoPostulacionProyectoCargo = heBuscadoPostulacionProyectoCargo;
+    }
+    
     
 }
