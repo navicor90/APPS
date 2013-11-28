@@ -6,10 +6,16 @@
 
 package Controlador.Persistencia;
 
+import Modelo.Agente.Agente;
+import Modelo.Agente.AgentePostulacion;
+import Modelo.Agente.AgenteTipoEstadoPostulacionProyectoCargo;
 import Modelo.Criterio;
 import Modelo.Expresion;
+import Modelo.implementacion.ImplementacionPostulacion;
+import Modelo.implementacion.ImplementacionTipoEstadoPostulacionProyectoCargo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,37 +26,48 @@ public class IntermediarioPersistenciaTipoEstadoPostulacionProyectoCargo extends
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String convertirObjetoRegistro(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> tipoEstadoPostulacionProyectoCargoList = new ArrayList<>();
+        while (rs.next()) {
+            AgenteTipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargoAgente = new AgenteTipoEstadoPostulacionProyectoCargo();
+            ImplementacionTipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargoImplementacion = new ImplementacionTipoEstadoPostulacionProyectoCargo();
+            tipoEstadoPostulacionProyectoCargoAgente.setImplementacionTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargoImplementacion);
+            tipoEstadoPostulacionProyectoCargoAgente.setOid(rs.getString("OIDTipoEstadoPostulacionProyectoCargo"));
+            tipoEstadoPostulacionProyectoCargoAgente.setDescripcion(rs.getString("descripcionTipoEstadoPostulacionProyectoCargo"));
+            tipoEstadoPostulacionProyectoCargoAgente.setNombreEstado(rs.getString("nombreTipoEstadoPostulacionProyectoCargo"));
+            tipoEstadoPostulacionProyectoCargoList.add(tipoEstadoPostulacionProyectoCargoAgente);
+        }
+        return tipoEstadoPostulacionProyectoCargoList;
     }
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM AE.TipoEstadoPostulacionProyectoCargo WHERE "+desarmarExpresion(expresion);
+        return sql;
+    }
+
+    @Override
+    public String convertirObjetoRegistro(Object obj) {
+        return null;
     }
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         String sql = "SELECT * FROM AE.TipoEstadoPostulacionProyectoCargo WHERE OIDPostulacion='"+oid+"'";
+        return sql;
     }
 
     @Override
-    public String armarConsultaInsercion(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String armarConsultaInsercion(Object objInsert) {
+        return null;
     }
 
     @Override
-    public String armarConsultaActualizacion(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String armarConsultaActualizacion(Object objUpdate) {
+        return null;
     }
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
-    
 }
