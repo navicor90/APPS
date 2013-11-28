@@ -43,6 +43,12 @@ public class FactoriaIntermediarioPersistencia {
             case "PostulacionProyectoCargo":
                 intermediario = new IntermediarioPersistenciaPostulacionProyectoCargo();
                 break;
+            case "TipoEstadoPostulacion":
+                intermediario = new IntermediarioPersistenciaTipoEstadoPostulacion();
+                break;
+            case "PostulacionProyectoCargoEsado":
+                intermediario = new IntermediarioPersistenciaPostulacionProyectoCargoEstado();
+                break;
             default:
                 intermediario = null;
         }
