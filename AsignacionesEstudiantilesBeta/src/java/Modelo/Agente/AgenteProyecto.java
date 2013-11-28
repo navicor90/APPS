@@ -133,7 +133,7 @@ public class AgenteProyecto extends Agente implements Proyecto{
         if(heBuscadoProyectoCargoList){
             proyectoCargoList= implementacionProyecto.getProyectoCargoList();
         }else{
-            Expresion criterioBusquedaProyCargo = FabricaCriterio.getInstancia().crear("Proyecto", "=", this);
+            Expresion criterioBusquedaProyCargo = FabricaCriterio.getInstancia().crear("proyecto", "=", this);
             proyectoCargoList= (List)FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", criterioBusquedaProyCargo);
         }
         return proyectoCargoList;

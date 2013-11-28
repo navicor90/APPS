@@ -75,7 +75,7 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
     public String desarmarCriterioPorObjeto(Criterio criterio) {
         String criterioString="";
         switch(criterio.getAtributo()){
-            case "Proyecto":
+            case "proyecto":
                 criterioString = "OIDProyecto";
                 break;
             default:
