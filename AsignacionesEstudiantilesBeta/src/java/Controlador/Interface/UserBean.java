@@ -102,7 +102,7 @@ public class UserBean {
     }
 
     public List<DTOPostulacionProyectoCargo> terminarPostulacion() {
-        return postulacionesDTO;
+        return controlador.realizarPostulacion(postulacionesDTO);
     }
 
     public void cancelarPostulacion() {
