@@ -22,8 +22,6 @@ public class FachadaPersistencia {
         return instancia;
     }
 
-    public FachadaPersistencia() {
-    }
 
     public List<Object> buscar(String nombreEntidad, Expresion criterio) {
         return FachadaPersistenciaInterna.getInstancia().buscar(nombreEntidad, criterio);

@@ -80,6 +80,8 @@ public class UserBean {
     public List<DTOProyecto> getListaProyecto() {
         HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String URL = origRequest.getRequestURI();
+        System.out.println("legajo ="+legajo);
+        System.out.println("url = "+URL);
         List<DTOProyecto> proyectosList = controlador.listarProyectos(legajo, URL);
         return proyectosList;
     }

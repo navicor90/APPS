@@ -69,7 +69,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "";
     }
 }
 /* esto es nuevo

@@ -24,11 +24,11 @@ public class Conexion {
             String usuarioDB = "root";
             String passwordDB = "soyceleste";
             conexion = DriverManager.getConnection(servidor, usuarioDB, passwordDB);
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-         return conexion;   
+        } finally {
+            return conexion;
         }
     }
 }

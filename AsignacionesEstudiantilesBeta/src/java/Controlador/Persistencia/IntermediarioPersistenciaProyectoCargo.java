@@ -7,6 +7,7 @@
 package Controlador.Persistencia;
 
 
+import Modelo.Agente.Agente;
 import Modelo.Agente.AgenteProyectoCargo;
 import Modelo.Criterio;
 import Modelo.Expresion;
@@ -72,6 +73,18 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String criterioString="";
+        switch(criterio.getAtributo()){
+            case "Proyecto":
+                criterioString = "OIDProyecto";
+                break;
+            default:
+                return "";
+        }
+        criterioString += criterio.getOperador();
+        Agente agente = (Agente) criterio.getValor();
+        criterioString += "'"+agente.getOid()+"'";
+        
+        return criterioString;
     }
 }

@@ -23,9 +23,9 @@ public class ExpertoRegistrarPostulacion {
     Estudiante estudiante;
     int codUniversidad;
 
-    public List<DTOProyecto> listarProyectos(long legajo, int codUniversidad) {
+    public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad) {
         this.codUniversidad = codUniversidad;
-        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo);
+        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
         List<Object> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         estudiante = null;
         if (estudiantesList != null) {
@@ -68,7 +68,7 @@ public class ExpertoRegistrarPostulacion {
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
-        Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto", "=", codigoProyecto);
+        Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto", "=", codigoProyecto.toString());
         List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
         Proyecto proyecto = proyectosList.get(0);
         List<ProyectoCargo> proyectoCargosList = proyecto.getProyectoCargoList();
