@@ -3,6 +3,7 @@ package Modelo.implementacion;
 
 
 import Modelo.interfaces.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,10 @@ public class ImplementacionPostulacion implements Postulacion{
     private Estudiante estudiante;
     private Date fechaHoraAnulacionPostulacion;
 
+    public ImplementacionPostulacion() {
+        proyectoCargosList = new ArrayList<>();
+    }
+    
     @Override
     public List<PostulacionProyectoCargo> getProyectoCargosList() {
         return proyectoCargosList;

@@ -43,7 +43,7 @@ public class FactoriaIntermediarioPersistencia {
             case "PostulacionProyectoCargo":
                 intermediario = new IntermediarioPersistenciaPostulacionProyectoCargo();
                 break;
-            case "TipoEstadoPostulacion":
+            case "TipoEstadoPostulacionProyectoCargo":
                 intermediario = new IntermediarioPersistenciaTipoEstadoPostulacionProyectoCargo();
                 break;
             case "PostulacionProyectoCargoEsado":

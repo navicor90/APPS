@@ -1,6 +1,7 @@
 package Modelo.implementacion;
 
 import Modelo.interfaces.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -22,6 +23,11 @@ public class ImplementacionPostulacionProyectoCargo implements PostulacionProyec
     private Universidad universidad;
     private ProyectoCargo proyectoCargo;
 
+    public ImplementacionPostulacionProyectoCargo() {
+        postulacionProyectoCargoEstadoList = new ArrayList<>();
+    }
+
+    
     @Override
     public int getPrioridad() {
         return prioridad;
