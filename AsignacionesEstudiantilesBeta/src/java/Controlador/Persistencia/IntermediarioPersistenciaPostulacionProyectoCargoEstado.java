@@ -7,6 +7,7 @@
 package Controlador.Persistencia;
 
 import Modelo.Agente.Agente;
+import Modelo.Agente.AgentePostulacionProyectoCargo;
 import Modelo.Agente.AgentePostulacionProyectoCargoEstado;
 
 import Modelo.Criterio;
@@ -59,7 +60,13 @@ public class IntermediarioPersistenciaPostulacionProyectoCargoEstado extends Int
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-        return null;
+        AgentePostulacionProyectoCargoEstado agente = (AgentePostulacionProyectoCargoEstado) objInsert;
+        String sql = "INSERT INTO  AE.postulacionProyectoCargoEstados "
+                + "(OIDPostulacionProyectoCargoEstado ,fechaHoraCambioPostulacionProyectoCargoEstado ,OIDTipoEstadoPostulacionProyectoCargo,"
+                + "OIDPostulacionProyectoCargo)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getFechaHoraCambio()+"',  '"+agente.getOidPostulacionProyectoCargo()
+                +"',  '"+agente.getOidTipoEstadoPostulacionProyectoCargo()+"')";
+        return sql;
     }
 
     @Override
