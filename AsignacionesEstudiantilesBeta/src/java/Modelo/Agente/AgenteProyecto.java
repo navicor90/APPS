@@ -12,6 +12,7 @@ import Modelo.Expresion;
 import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 /**
@@ -137,7 +138,7 @@ public class AgenteProyecto extends Agente implements Proyecto{
     }
 
     @Override
-    public List<ProyectoCargo> getProyectoCargoList() {
+    public List<ProyectoCargo> getProyectoCargoList(){
         List<ProyectoCargo> proyectoCargoList= null;
         if(heBuscadoProyectoCargoList){
             proyectoCargoList= implementacionProyecto.getProyectoCargoList();

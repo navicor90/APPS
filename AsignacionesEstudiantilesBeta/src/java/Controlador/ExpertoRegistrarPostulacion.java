@@ -10,6 +10,7 @@ import Controlador.Persistencia.FachadaPersistencia;
 import Modelo.*;
 import Modelo.DTO.*;
 import Modelo.interfaces.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ExpertoRegistrarPostulacion {
     Estudiante estudiante;
     int codUniversidad;
 
-    public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad) {
+    public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad){
         this.codUniversidad = codUniversidad;
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
         List<Object> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
@@ -67,7 +68,7 @@ public class ExpertoRegistrarPostulacion {
         return null;
     }
 
-    public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
+    public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto){
         Criterio criterioBusquedaProyecto = (Criterio) FabricaCriterio.getInstancia().crear("codigoProyecto", "=", codigoProyecto.toString());
         List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
         Proyecto proyecto = proyectosList.get(0);

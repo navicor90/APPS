@@ -6,8 +6,6 @@
 
 package Modelo.interfaces;
 
-import Modelo.implementacion.ImplementacionProyectoCargoEstado;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,11 +40,11 @@ public interface ProyectoCargo {
     
     public void addProyectoCargoEstado(ProyectoCargoEstado proyectoCargoEstado);
 
-    public TipoCargo getTipoCargo();
+    public TipoCargo getTipoCargo() ;
 
     public void setTipoCargo(TipoCargo tipoCargo);
 
-    public Proyecto getProyecto();
+    public Proyecto getProyecto() ;
 
     public void setProyecto(Proyecto proyecto);
 

@@ -10,6 +10,7 @@ import Modelo.Criterio;
 import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
+import java.sql.SQLException;
 
 import java.util.List;
 
@@ -148,7 +149,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     
 
     @Override
-    public TipoCargo getTipoCargo() {
+    public TipoCargo getTipoCargo()  {
         TipoCargo tipoCargo = null;
         if (heBuscadoTipoCargo) {
             tipoCargo = implementacionProyectoCargo.getTipoCargo();

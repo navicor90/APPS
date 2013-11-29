@@ -5,7 +5,6 @@
  */
 package Modelo.interfaces;
 
-import Modelo.implementacion.ImplementacionPostulacionProyectoCargoEstado;
 import java.util.List;
 
 /**
@@ -26,13 +25,13 @@ public interface PostulacionProyectoCargo {
 
     public void setCantidadMateriasRegulares(int cantidadMateriasRegulares);
 
-    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList();
+    public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() ;
 
     public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado);
 
     public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado);
 
-    public Proyecto getProyecto();
+    public Proyecto getProyecto() ;
 
     public void setProyecto(Proyecto proyecto);
 

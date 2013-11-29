@@ -10,6 +10,7 @@ import Modelo.Criterio;
 import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 /**

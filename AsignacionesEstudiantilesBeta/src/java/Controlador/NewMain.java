@@ -6,17 +6,12 @@
 package Controlador;
 
 import Controlador.Persistencia.FachadaPersistencia;
-import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Controlador.Persistencia.*;
 import Modelo.*;
-import Modelo.DTO.DTOEstadoAcademicoGeneral;
-import Modelo.DTO.DTOProyecto;
-import Modelo.interfaces.Estudiante;
-import Modelo.interfaces.Proyecto;
-import java.sql.Connection;
+import Modelo.interfaces.TipoCargo;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -28,14 +23,13 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-        Object m = new Mensajes();
         
-        System.out.println(m.getClass().getName());
-        System.out.println(m.getClass().getSimpleName());
-        System.out.println(m.getClass().getCanonicalName());
-        
-        
-        
+        FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+        TipoCargo tc = (TipoCargo) FabricaEntidades.getInstancia().crearEntidad(TipoCargo.class);
+        tc.setCodigo(6);
+        tc.setNomTipoCargo("Responsable de Marketing");
+        FachadaPersistencia.obtenerInstancia().guardar("TipoCargo",tc);
+        FachadaPersistenciaInterna.getInstancia().ConfirmarTransaccion();
         /*FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
          Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", "34567");
          List<Estudiante> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
@@ -79,6 +73,20 @@ public class NewMain {
          */
     }
 
+    private static String getCadenaAlfanumAleatoria(int longitud) {
+        String cadenaAleatoria = "";
+        long milis = new java.util.GregorianCalendar().getTimeInMillis();
+        Random r = new Random(milis);
+        int i = 0;
+        while (i < longitud){
+            char c = (char) r.nextInt(255);
+            if ((c >= '0' && c <= '9') || (c >= 'A' && c <='Z') ){
+                cadenaAleatoria += c;
+                i++;
+            }
+        }
+        return cadenaAleatoria;
+    }
     public static Expresion generarExp() {
         Criterio e1 = new Criterio();
         e1.setAtributo("nombre");

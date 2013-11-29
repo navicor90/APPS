@@ -21,13 +21,13 @@ import java.util.logging.Logger;
 public abstract class IntermediarioPersistenciaRelacional extends IntermediarioPersistencia {
 
     @Override
-    public List<Object> materializar(Expresion expresion) {
+    public List<Object> materializar(Expresion expresion) throws SQLException {
         List<Object> objetosList = new ArrayList<>();
         try {
             Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
             Statement st = conexion.createStatement();
             String consulta = armarConsultaSeleccion(expresion);
-            System.out.println("Consulta="+consulta);
+            System.out.println("Consulta=" + consulta);
             ResultSet rs = st.executeQuery(consulta);
             objetosList = convertirRegistroAObjeto(rs);
         } catch (SQLException ex) {
@@ -37,13 +37,13 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     }
 
     @Override
-    public Object materializar(String oid) {
+    public Object materializar(String oid) throws SQLException {
         Object objeto = null;
         try {
             Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
             Statement st = conexion.createStatement();
             String consulta = armarConsultaSeleccion(oid);
-            System.out.println("Consulta="+consulta);
+            System.out.println("Consulta=" + consulta);
             ResultSet rs = st.executeQuery(consulta);
             List<Object> objectList = convertirRegistroAObjeto(rs);
             objeto = objectList.get(0);
@@ -54,8 +54,14 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     }
 
     @Override
-    public boolean desmaterializar(Object objeto){
-        return false;
+    public boolean desmaterializar(Object objeto) throws SQLException{
+
+        Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
+        Statement st = conexion.createStatement();
+        String consulta = armarConsultaInsercion(objeto);
+        System.out.println("Consulta=" + consulta);
+        st.executeUpdate(consulta);
+        return true;
     }
 
     public abstract List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException;
@@ -69,7 +75,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     public abstract String armarConsultaInsercion(Object objeto);
 
     public abstract String armarConsultaActualizacion(Object objeto);
-    
+
     public String desarmarExpresion(Expresion expresion) {
         if (expresion.getClass() == CriterioCompuesto.class) {
             CriterioCompuesto criterioCompuesto = (CriterioCompuesto) expresion;
@@ -92,6 +98,6 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
         }
 
     }
-    
+
     public abstract String desarmarCriterioPorObjeto(Criterio criterio);
 }

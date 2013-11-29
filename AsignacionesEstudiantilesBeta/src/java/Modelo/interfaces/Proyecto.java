@@ -38,7 +38,7 @@ public interface Proyecto {
 
     public void setNombreProyecto(String nombreProyecto);
 
-    public Empresa getEmpresa();
+    public Empresa getEmpresa() ;
 
     public void setEmpresa(Empresa empresa);
 
@@ -48,7 +48,7 @@ public interface Proyecto {
 
     public void addProyectoCargo(ProyectoCargo proyectoCargo);
 
-    public Universidad getUniversidad();
+    public Universidad getUniversidad() ;
 
     public void setUniversidad(Universidad universidad);
 

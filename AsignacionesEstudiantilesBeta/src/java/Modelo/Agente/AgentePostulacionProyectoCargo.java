@@ -10,6 +10,7 @@ import Modelo.Criterio;
 import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
+import java.sql.SQLException;
 import java.util.List;
 /**
  *
@@ -132,7 +133,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     }
     
     @Override
-    public Proyecto getProyecto() {
+    public Proyecto getProyecto(){
         Proyecto proyecto = null;
         if(heBuscadoProyecto){
             proyecto = implementacionPostulacionProyectoCargo.getProyecto();

@@ -35,8 +35,8 @@ public class FachadaPersistenciaInterna {
         return FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad).buscar(oid);
     }
 
-    public void guardar(Object obj) {
-        IntermediarioPersistencia intermediario = FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(obj.getClass().getSimpleName());
+    public void guardar(String nombreEntidad,Object obj) {
+        IntermediarioPersistencia intermediario = FactoriaIntermediarioPersistencia.obtenerInstancia().obtenerIntermediarioPersistencia(nombreEntidad);
         intermediario.guardar(obj);
     }
 

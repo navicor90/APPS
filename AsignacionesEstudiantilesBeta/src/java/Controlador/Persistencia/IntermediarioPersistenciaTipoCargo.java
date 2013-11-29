@@ -57,7 +57,9 @@ public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenci
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-        return null;
+        AgenteTipoCargo agente = (AgenteTipoCargo) objInsert;
+        String sql = "INSERT INTO  AE.tipoCargos (OIDTipoCargo ,codigoTipoCargo ,nombreTipoCargo)VALUES ('"+agente.getOid()+"',  '"+agente.getCodigo()+"',  '"+agente.getNomTipoCargo()+"')";
+        return sql;
     }
 
     @Override

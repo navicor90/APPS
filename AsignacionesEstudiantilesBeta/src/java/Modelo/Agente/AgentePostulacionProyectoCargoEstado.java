@@ -9,6 +9,7 @@ package Modelo.Agente;
 import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
+import java.sql.SQLException;
 import java.util.Date;
 /**
  *

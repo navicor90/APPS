@@ -29,10 +29,11 @@ public class DecoradorRegistrarPostulacion extends ExpertoRegistrarPostulacion {
 
     @Override
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
-        List<DTOPostulacionProyectoCargo> realizarPostulacion = super.realizarPostulacion(postulacionesDTO);
+        List<DTOPostulacionProyectoCargo> realizarPostulacion =null;
         try {
+            realizarPostulacion = super.realizarPostulacion(postulacionesDTO);
             FachadaPersistenciaInterna.getInstancia().ConfirmarTransaccion();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             try {
                 FachadaPersistenciaInterna.getInstancia().CancelarTransaccion();
                 Logger.getLogger(DecoradorRegistrarPostulacion.class.getName()).log(Level.SEVERE, null, ex);
