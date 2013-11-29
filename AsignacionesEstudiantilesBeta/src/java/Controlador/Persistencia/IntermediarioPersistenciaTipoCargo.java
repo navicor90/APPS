@@ -45,8 +45,8 @@ public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenci
     }
 
     @Override
-    public String persistirObjetosInternos(Object obj) {
-        return null;
+    public void persistirObjetosInternos(Object obj) {
+        
     }
 
     @Override

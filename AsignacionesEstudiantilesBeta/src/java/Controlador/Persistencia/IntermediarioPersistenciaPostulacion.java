@@ -50,8 +50,8 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
     }
 
     @Override
-    public String persistirObjetosInternos(Object obj) {
-        return null;
+    public void persistirObjetosInternos(Object obj) {
+
     }
 
     @Override

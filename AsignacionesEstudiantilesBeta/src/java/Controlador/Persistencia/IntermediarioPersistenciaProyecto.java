@@ -43,7 +43,7 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
     }
 
     @Override
-    public String persistirObjetosInternos(Object obj) {
+    public void persistirObjetosInternos(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -46,8 +46,8 @@ public class IntermediarioPersistenciaProyectoCargoCarrera extends Intermediario
     }
 
     @Override
-    public String persistirObjetosInternos(Object obj) {
-        return null;
+    public void persistirObjetosInternos(Object obj) {
+   
     }
 
     @Override

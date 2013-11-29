@@ -55,8 +55,8 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
 
     @Override
     public boolean desmaterializar(Object objeto) throws SQLException{
-
         Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
+        persistirObjetosInternos(objeto);
         Statement st = conexion.createStatement();
         String consulta = armarConsultaInsercion(objeto);
         System.out.println("Consulta=" + consulta);
@@ -66,7 +66,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
 
     public abstract List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException;
 
-    public abstract String persistirObjetosInternos(Object objeto);
+    public abstract void persistirObjetosInternos(Object obj);
 
     public abstract String armarConsultaSeleccion(Expresion expresion);
 
