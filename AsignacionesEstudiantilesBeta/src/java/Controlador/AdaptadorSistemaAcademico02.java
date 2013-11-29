@@ -20,12 +20,12 @@ public class AdaptadorSistemaAcademico02 implements AdaptadorSistemaAcademico{
     @Override
     public List<DTOMateria> ObtenerEstadoAcademicoDetallado(String legajo) {
         List<DTOMateria> dtoList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             DTOMateria dto = new DTOMateria();
             dto.setEstadoMateria("esRegular");
             dtoList.add(dto);
         }
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             DTOMateria dto = new DTOMateria();
             dto.setEstadoMateria("esAprobada");
             dtoList.add(dto);

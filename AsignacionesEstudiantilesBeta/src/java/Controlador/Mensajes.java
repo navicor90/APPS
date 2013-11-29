@@ -14,6 +14,6 @@ public class Mensajes {
     public static final String POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO="No se realizó esta postulación, EXISTE UNA POSTULACION DE USTED A ESTE CARGO";
     public static final String POSTULACION_ERROR_YA_TIENE_ASIGNADO_UN_CARGO="No se realizó esta postulación,  usted YA ESTA ASIGNADO a un cargo";
     public static final String POSTULACION_EXITOSA="Postulacion EXITOSA";
-    
+    public static final String POSTULACION_ERROR_NO_CUMPLE_CONDICIONES="Postulacion fallida, no cumple con las condiciones";
             
 }

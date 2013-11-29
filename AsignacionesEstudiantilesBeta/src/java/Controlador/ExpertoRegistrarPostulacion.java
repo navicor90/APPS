@@ -129,7 +129,7 @@ public class ExpertoRegistrarPostulacion {
                         int cantidadMateriasRegularesSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRegulares();
                         int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
                         int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
-                        
+                        postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_NO_CUMPLE_CONDICIONES);
                         if (cantidadMateriasRendidasSolicitadas <= cantidadMateriasRendidas) {
                             if ((cantidadMateriasRendidas - cantidadMateriasRendidasSolicitadas) >= cantidadMateriasRegularesSolicitadas) {
                                 Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo", "=", "Efectiva");
