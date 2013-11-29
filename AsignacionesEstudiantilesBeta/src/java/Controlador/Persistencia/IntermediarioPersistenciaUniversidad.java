@@ -22,7 +22,7 @@ public class IntermediarioPersistenciaUniversidad extends IntermediarioPersisten
     }
 
     @Override
-    public String convertirObjetoRegistro(Object objeto) {
+    public String persistirObjetosInternos(Object objeto) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

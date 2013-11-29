@@ -66,7 +66,7 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
 
     public abstract List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException;
 
-    public abstract String convertirObjetoRegistro(Object objeto);
+    public abstract String persistirObjetosInternos(Object objeto);
 
     public abstract String armarConsultaSeleccion(Expresion expresion);
 

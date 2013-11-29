@@ -47,7 +47,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
     }
 
     @Override
-    public String convertirObjetoRegistro(Object obj) {
+    public String persistirObjetosInternos(Object obj) {
         return null;
     }
 

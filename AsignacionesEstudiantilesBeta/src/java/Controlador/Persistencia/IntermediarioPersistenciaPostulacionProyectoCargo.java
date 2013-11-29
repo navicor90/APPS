@@ -49,7 +49,7 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
     }
 
     @Override
-    public String convertirObjetoRegistro(Object obj) {
+    public String persistirObjetosInternos(Object obj) {
         return null;
     }
 

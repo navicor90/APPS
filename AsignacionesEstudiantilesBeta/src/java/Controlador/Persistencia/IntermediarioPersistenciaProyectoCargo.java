@@ -51,7 +51,7 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
     }
 
     @Override
-    public String convertirObjetoRegistro(Object obj) {
+    public String persistirObjetosInternos(Object obj) {
         return null;
     }
 

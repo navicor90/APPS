@@ -50,7 +50,7 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
     }
 
     @Override
-    public String convertirObjetoRegistro(Object obj) {
+    public String persistirObjetosInternos(Object obj) {
         return null;
     }
 
