@@ -12,6 +12,7 @@ import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionPostulacionProyectoCargo;
 import Modelo.interfaces.PostulacionProyectoCargo;
+import Modelo.interfaces.PostulacionProyectoCargoEstado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,6 +57,9 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
         instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
         instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
         instanciaFPI.guardar("Universidad", postulacionProyectoCargo.getUniversidad());
+        for (PostulacionProyectoCargoEstado postEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
+            instanciaFPI.guardar("PostulacionProyectoCargoEstado", postEstado);
+        }
     }
 
     @Override
