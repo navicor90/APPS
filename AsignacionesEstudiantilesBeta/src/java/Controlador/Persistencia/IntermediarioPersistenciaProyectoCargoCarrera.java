@@ -30,7 +30,7 @@ public class IntermediarioPersistenciaProyectoCargoCarrera extends Intermediario
             ImplementacionProyectoCargoCarrera proyectoCargoCarreraImplementacion = new ImplementacionProyectoCargoCarrera();
             proyectoCargoCarreraAgente.setImplementacionProyectoCargoCarrera(proyectoCargoCarreraImplementacion);
             proyectoCargoCarreraAgente.setOid(rs.getString("OIDProyectoCargoCarrera"));
-            proyectoCargoCarreraAgente.setCantidadMateriasRegulares(rs.getInt("cantidadMateriasRegularProyectoCargoCarrera"));
+            proyectoCargoCarreraAgente.setCantidadMateriasRegulares(rs.getInt("cantidadMateriasRegularesProyectoCargoCarrera"));
             proyectoCargoCarreraAgente.setCantidadMateriasRendidas(rs.getInt("cantidadMateriasAprobadasProyectoCargoCarrera"));
             proyectoCargoCarreraAgente.setOidCarrera(rs.getString("OIDCarrera"));
             proyectoCargoCarreraAgente.setOidProyectoCargo(rs.getString("OIDProyectoCargo"));
@@ -41,7 +41,7 @@ public class IntermediarioPersistenciaProyectoCargoCarrera extends Intermediario
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.proyectoCargoCarrera WHERE " + desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.proyectoCargoCarreras WHERE " + desarmarExpresion(expresion);
         return sql;
     }
 
@@ -52,7 +52,7 @@ public class IntermediarioPersistenciaProyectoCargoCarrera extends Intermediario
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-        String sql = "SELECT * FROM AE.proyectoCargoCarrera WHERE OIDPostulacion='" + oid + "'";
+        String sql = "SELECT * FROM AE.proyectoCargoCarreras WHERE OIDPostulacionProyectoCargoCarrera='" + oid + "'";
         return sql;
     }
 
@@ -70,10 +70,10 @@ public class IntermediarioPersistenciaProyectoCargoCarrera extends Intermediario
     public String desarmarCriterioPorObjeto(Criterio criterio) {
         String criterioString = "";
         switch (criterio.getAtributo()) {
-            case "ProyectoCargo":
+            case "proyectoCargo":
                 criterioString = "OIDProyectoCargo";
                 break;
-            case "Carrera":
+            case "carrera":
                 criterioString = "OIDCarrera";
                 break;
             default:

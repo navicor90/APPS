@@ -87,6 +87,8 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
         this.proyectoCargoEstadoList = proyectoCargoEstadoList;
     }
     
+    
+    @Override
     public void addProyectoCargoEstado(ProyectoCargoEstado proyectoCargoEstado){
         proyectoCargoEstadoList.add(proyectoCargoEstado);
     }

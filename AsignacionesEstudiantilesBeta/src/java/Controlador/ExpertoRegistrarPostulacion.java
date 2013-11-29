@@ -139,6 +139,7 @@ public class ExpertoRegistrarPostulacion {
                                 postulacionProyectoCargoEstado.setFechaHoraCambio(new Date());
                                 postulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
                                 postulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
+                                postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_EXITOSA);
                             } else {
                                 if (cantidadMateriasRegulares >= cantidadMateriasRegularesSolicitadas) {
                                     Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo", "=", "Efectiva");
@@ -148,6 +149,7 @@ public class ExpertoRegistrarPostulacion {
                                     postulacionProyectoCargoEstado.setFechaHoraCambio(new Date());
                                     postulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
                                     postulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
+                                    postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_EXITOSA);
                                 }
                             }
                         }

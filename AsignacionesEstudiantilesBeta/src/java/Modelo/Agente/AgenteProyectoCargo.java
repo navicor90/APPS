@@ -6,6 +6,8 @@
 package Modelo.Agente;
 
 import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.Criterio;
+import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 
@@ -19,7 +21,6 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
 
     private String oidProyecto;
     private String oidTipoCargo;
-    private String oidProyectoCargoCarrera;
     private boolean heBuscadoProyectoCargoCarrrera;
     private boolean heBuscadoProyecto;
     private boolean heBuscadoTipoCargo;
@@ -72,13 +73,6 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
         this.oidProyecto = oidProyecto;
     }
 
-    public String getOidProyectoCargoCarrera() {
-        return oidProyectoCargoCarrera;
-    }
-
-    public void setOidProyectoCargoCarrera(String oidProyectoCargoCarrera) {
-        this.oidProyectoCargoCarrera = oidProyectoCargoCarrera;
-    }
 
     public String getOidTipoCargo() {
         return oidTipoCargo;
@@ -195,7 +189,9 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
         if(heBuscadoProyectoCargoCarrrera){
             proyectoCargoCarrera = implementacionProyectoCargo.getProyectoCargoCarrera();
         }else{
-            proyectoCargoCarrera = (ProyectoCargoCarrera) FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargoCarrera", oidProyectoCargoCarrera);
+            Criterio criterioBusquedaProyectoCargoCarrera = (Criterio) FabricaCriterio.getInstancia().crear("proyectoCargo", "=", this);
+            List<Object> proyectoCargoCarrerasList = FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargoCarrera", criterioBusquedaProyectoCargoCarrera);
+            proyectoCargoCarrera = (ProyectoCargoCarrera) proyectoCargoCarrerasList.get(0);
             this.setProyectoCargoCarrera(proyectoCargoCarrera);
         }
         return proyectoCargoCarrera;
