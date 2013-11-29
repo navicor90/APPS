@@ -54,7 +54,8 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
         FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
         PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) obj;
         instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
-        
+        instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
+        instanciaFPI.guardar("Universidad", postulacionProyectoCargo.getUniversidad());
     }
 
     @Override
