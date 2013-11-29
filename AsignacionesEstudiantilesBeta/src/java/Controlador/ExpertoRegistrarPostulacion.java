@@ -99,7 +99,7 @@ public class ExpertoRegistrarPostulacion {
             for (Postulacion postulacionAntigua : postulacionesList) {
                 System.out.println(postulacionAntigua.getNroPostulacion()+"--------------------");
                 for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargosList()) {
-                    if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
+                    if (postulacionProyectoCargoAntigua.getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                         if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
                             postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
                             postulacionProyectoCargo.setProyecto(postulacionProyectoCargoAntigua.getProyecto());

@@ -44,10 +44,6 @@ public interface ProyectoCargo {
 
     public void setTipoCargo(TipoCargo tipoCargo);
 
-    public Proyecto getProyecto() ;
-
-    public void setProyecto(Proyecto proyecto);
-
     public ProyectoCargoCarrera getProyectoCargoCarrera();
 
     public void setProyectoCargoCarrera(ProyectoCargoCarrera proyectoCargoCarrera);

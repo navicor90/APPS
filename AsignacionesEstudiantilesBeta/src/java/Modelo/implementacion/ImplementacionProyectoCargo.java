@@ -22,7 +22,6 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
     private int nroProyectoCargo;
     private List <ProyectoCargoEstado> proyectoCargoEstadoList;
     private TipoCargo tipoCargo;
-    private Proyecto proyecto;
     private ProyectoCargoCarrera proyectoCargoCarrera;
 
     @Override
@@ -101,16 +100,6 @@ public class ImplementacionProyectoCargo implements ProyectoCargo{
     @Override
     public void setTipoCargo(TipoCargo tipoCargo) {
         this.tipoCargo = tipoCargo;
-    }
-
-    @Override
-    public Proyecto getProyecto() {
-        return proyecto;
-    }
-
-    @Override
-    public void setProyecto(Proyecto proyecto) {
-        this.proyecto = proyecto;
     }
 
     @Override
