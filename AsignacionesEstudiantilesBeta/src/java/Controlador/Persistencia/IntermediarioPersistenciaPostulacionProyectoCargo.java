@@ -11,6 +11,7 @@ import Modelo.Agente.AgentePostulacionProyectoCargo;
 import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionPostulacionProyectoCargo;
+import Modelo.interfaces.PostulacionProyectoCargo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -50,7 +51,10 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
 
     @Override
     public void persistirObjetosInternos(Object obj) {
- 
+        FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
+        PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) obj;
+        instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
+        
     }
 
     @Override
@@ -61,7 +65,14 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-        return null;
+        AgentePostulacionProyectoCargo agente = (AgentePostulacionProyectoCargo) objInsert;
+        String sql = "INSERT INTO  AE.postulacionProyectoCargos "
+                + "(OIDPostulacionProyectoCargo ,prioridadPostulacionProyectoCargo ,cantidadMateriasAprobadasEstudiantePostulacionProyectoCargo,"
+                + "cantidadMateriasRegularesPostulacionProyectoCargo,OIDPostulacion,OIDProyecto,OIDProyectoCargo,OIDUniversidad)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getPrioridad()+"',  '"+agente.getCantidadMateriasAprobadasEstudiante()
+                +"',  '"+agente.getCantidadMateriasRegulares()+"',  '"+agente.getOidPostulacion()+"',  '"+agente.getOidProyecto()
+                +"',  '"+agente.getOidProyectoCargo()+"',  '"+agente.getOidUniversidad()+"')";
+        return sql;
     }
 
     @Override

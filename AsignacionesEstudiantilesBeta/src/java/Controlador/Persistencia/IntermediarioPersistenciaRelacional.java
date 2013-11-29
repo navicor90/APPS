@@ -5,6 +5,7 @@
 package Controlador.Persistencia;
 
 import Modelo.*;
+import Modelo.Agente.Agente;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,13 +55,22 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     }
 
     @Override
-    public boolean desmaterializar(Object objeto) throws SQLException{
+    public boolean desmaterializar(Object objeto) throws SQLException {
         Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
         persistirObjetosInternos(objeto);
         Statement st = conexion.createStatement();
-        String consulta = armarConsultaInsercion(objeto);
-        System.out.println("Consulta=" + consulta);
-        st.executeUpdate(consulta);
+        Agente agente = (Agente) objeto;
+        if (agente.esNuevo()) {
+            String consulta = armarConsultaInsercion(objeto);
+            System.out.println("Consulta=" + consulta);
+            st.executeUpdate(consulta);
+        } else {
+            if (agente.seHaModificado()) {
+                String consulta = armarConsultaActualizacion(objeto);
+                System.out.println("Consulta=" + consulta);
+                st.executeUpdate(consulta);
+            }
+        }
         return true;
     }
 
