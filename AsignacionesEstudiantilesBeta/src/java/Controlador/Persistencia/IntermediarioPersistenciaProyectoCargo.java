@@ -8,15 +8,12 @@ package Controlador.Persistencia;
 
 
 import Modelo.Agente.Agente;
-import Modelo.Agente.AgenteProyecto;
 import Modelo.Agente.AgenteProyectoCargo;
 import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionProyectoCargo;
-import Modelo.interfaces.PostulacionProyectoCargo;
 import Modelo.interfaces.ProyectoCargo;
 import Modelo.interfaces.ProyectoCargoEstado;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

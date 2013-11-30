@@ -57,9 +57,12 @@ public abstract class IntermediarioPersistenciaRelacional extends IntermediarioP
     @Override
     public boolean desmaterializar(Object objeto) throws SQLException {
         Connection conexion = FachadaPersistenciaInterna.getInstancia().getConexion();
-        persistirObjetosInternos(objeto);
+        
         Statement st = conexion.createStatement();
         Agente agente = (Agente) objeto;
+        if(agente.esNuevo() || agente.seHaModificado()){
+            persistirObjetosInternos(objeto);
+        }
         if (agente.esNuevo()) {
             String consulta = armarConsultaInsercion(objeto);
             System.out.println("Consulta=" + consulta);

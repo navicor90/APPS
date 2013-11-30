@@ -9,10 +9,15 @@ package Modelo.Agente;
  * @author franco
  */
 public class Agente {
-    String oid;
-    boolean esNuevo;
-    boolean modificado;
+    private String oid;
+    private boolean esNuevo;
+    private boolean modificado;
 
+    public Agente() {
+        esNuevo = false;
+        modificado = false;
+    }
+    
     public boolean seHaModificado() {
         return modificado;
     }
