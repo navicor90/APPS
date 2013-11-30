@@ -6,16 +6,12 @@
 
 package entidades;
 
-import entidades.Estudiante;
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -23,48 +19,24 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class EstudianteMateria implements Serializable {
-    @OneToOne(mappedBy = "estudianteMateria")
+    @ManyToOne
+    private EstadoAcademico estadoAcademico;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-    @ManyToOne
-    private Estudiante estudiante;
+    private String id; 
     @ManyToOne
     private Materia materia;
     private String estado;
     private int notaFinal;
 
-    public Estudiante getEstudiante() {
-        return estudiante;
+
+    public String getId() {
+        return id;
     }
 
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
-    }
-
-    public Materia getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materia materia) {
-        this.materia = materia;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public int getNotaFinal() {
-        return notaFinal;
-    }
-
-    public void setNotaFinal(int notaFinal) {
-        this.notaFinal = notaFinal;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

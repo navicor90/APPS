@@ -28,30 +28,15 @@ public class PlanDeEstudio implements Serializable {
     @ManyToOne
     private Carrera  carrera;
 
-    public int getCodPlanEstudio() {
-        return codPlanEstudio;
+
+    public String getId() {
+        return id;
     }
 
-    public void setCodPlanEstudio(int codPlanEstudio) {
-        this.codPlanEstudio = codPlanEstudio;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNombrePlanEstudio() {
-        return nombrePlanEstudio;
-    }
-
-    public void setNombrePlanEstudio(String nombrePlanEstudio) {
-        this.nombrePlanEstudio = nombrePlanEstudio;
-    }
-
-    public Carrera getCarrera() {
-        return carrera;
-    }
-
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
-    }
-    
     @Override
     public int hashCode() {
         int hash = 0;

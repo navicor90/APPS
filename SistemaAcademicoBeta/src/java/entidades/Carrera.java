@@ -27,21 +27,9 @@ public class Carrera implements Serializable {
     @ManyToOne
     private Universidad universidad;
 
-    public String getNombreCarrera() {
-        return nombreCarrera;
-    }
 
-    public void setNombreCarrera(String nombreCarrera) {
-        this.nombreCarrera = nombreCarrera;
-    }
 
-    public Universidad getUniversidad() {
-        return universidad;
-    }
 
-    public void setUniversidad(Universidad universidad) {
-        this.universidad = universidad;
-    }
 
     public String getId() {
         return id;
@@ -73,7 +61,7 @@ public class Carrera implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Carreraa[ id=" + id + " ]";
+        return "entidades.Carrera[ id=" + id + " ]";
     }
     
 }

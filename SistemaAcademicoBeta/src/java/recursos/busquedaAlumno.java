@@ -5,7 +5,7 @@
  */
 
 package recursos;
-import entidades.Estudiante;
+import entidades.*;
 import javax.ejb.Stateless;
 import com.google.gson.*;
 import javax.ws.rs.GET;
@@ -27,8 +27,9 @@ public class busquedaAlumno {
         return pJSON;
      }
     private String buscarAlumno(String legajo){
-    Estudiante estudiante;
-       estudiante =(Estudiante)entityManager.createQuery("SELECT a FROM Estudiante a WHERE a.legajo='"+legajo+"'").getSingleResult();
+        System.out.println("holaaaaaaaaaaaaa");
+    Estudiante estudiante =(Estudiante)entityManager.createQuery("SELECT e FROM prueba e WHERE e.valor='20'").getSingleResult();
+    //prueba pruebaa=(prueba)entityManager.createQuery("SELECT e FROM prueba e WHERE e.valor='20'").getSingleResult();
         return convertirAJSON(estudiante);
      }
     private String convertirAJSON(Object alumno){

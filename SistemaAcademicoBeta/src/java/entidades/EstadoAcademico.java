@@ -8,11 +8,13 @@ package entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -21,20 +23,46 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class EstadoAcademico implements Serializable {
-   private static final long serialVersionUID = 1L;
+    @ManyToOne
+    private Estudiante estudiante;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String legajo;
+    private String  estadoAcademico;
     @ManyToOne
     private Carrera carrera;
-    @ManyToOne
-    private Estudiante estudiante;
-    private String  estadoAcademico;
+    @OneToMany(mappedBy = "estadoAcademico")
+    private List<EstudianteMateria> estudianteMateria;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaIngreso;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaBaja;
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
+    }
+
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+    public String getEstadoAcademico() {
+        return estadoAcademico;
+    }
+
+    public void setEstadoAcademico(String estadoAcademico) {
+        this.estadoAcademico = estadoAcademico;
+    }
 
     public Carrera getCarrera() {
         return carrera;
@@ -43,6 +71,15 @@ public class EstadoAcademico implements Serializable {
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
     }
+
+    public List<EstudianteMateria> getEstudianteMateria() {
+        return estudianteMateria;
+    }
+
+    public void setEstudianteMateria(List<EstudianteMateria> estudianteMateria) {
+        this.estudianteMateria = estudianteMateria;
+    }
+
     public Date getFechaIngreso() {
         return fechaIngreso;
     }
@@ -58,7 +95,17 @@ public class EstadoAcademico implements Serializable {
     public void setFechaBaja(Date fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
+
     
+    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

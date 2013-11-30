@@ -24,34 +24,19 @@ public class Materia implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String nombre;
-    private int codigo;
+    private int codigo; 
     @ManyToOne
     private PlanDeEstudio planDeEstudio;
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public PlanDeEstudio getPlanDeEstudio() {
-        return planDeEstudio;
-    }
-
-    public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) {
-        this.planDeEstudio = planDeEstudio;
-    }
     
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {

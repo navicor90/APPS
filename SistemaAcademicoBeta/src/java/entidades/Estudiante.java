@@ -26,11 +26,19 @@ public class Estudiante implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String tipoDni;
-    private int dni;
+    private Long dni;
     private String nombre;
     @ManyToOne
-    private Universidad universidad;
+    private Universidad universidad; 
+    @OneToMany(mappedBy = "estudiante")
+    private List<EstadoAcademico> estadoacademico;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+     
+    
+    
     public String getTipoDni() {
         return tipoDni;
     }
@@ -39,12 +47,20 @@ public class Estudiante implements Serializable {
         this.tipoDni = tipoDni;
     }
 
-    public int getDni() {
+    public Long getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(Long dni) {
         this.dni = dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Universidad getUniversidad() {
@@ -54,17 +70,17 @@ public class Estudiante implements Serializable {
     public void setUniversidad(Universidad universidad) {
         this.universidad = universidad;
     }
-    
-    
-    
-    public String getNombre() {
-        return nombre;
+
+    public List<EstadoAcademico> getEstadoacademico() {
+        return estadoacademico;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEstadoacademico(List<EstadoAcademico> estadoacademico) {
+        this.estadoacademico = estadoacademico;
     }
-    
+
+
+
     public String getId() {
         return id;
     }
@@ -95,7 +111,7 @@ public class Estudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Alumno[ id=" + id + " ]";
+        return "entidades.Estudiante[ id=" + id + " ]";
     }
     
 }

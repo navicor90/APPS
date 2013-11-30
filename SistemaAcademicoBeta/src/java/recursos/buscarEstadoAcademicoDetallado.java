@@ -16,7 +16,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-
 /**
  *
  * @author yanina
@@ -34,12 +33,9 @@ public class buscarEstadoAcademicoDetallado {
         return pJSON;
      }
     private String buscarAlumno(String legajo){
-    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcaddemico INNER JOIN Carrera EstudianteMateria INER JOIN Materia WHERE e.dni='"+legajo+"'").getResultList();
-     String todoslosjson= "";
-        for (Estudiante e:estudiantes) {
-            todoslosjson += "    "+convertirAJSON(e);
-        }
-    return todoslosjson;
+    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcaddemico a INNER JOIN Carrera EstudianteMateria INER JOIN Materia WHERE e.dni="+legajo).getResultList();
+     
+    return convertirAJSON(estudiantes);
      }
     private String convertirAJSON(Object estudiante){
         Gson googleSon=new Gson();

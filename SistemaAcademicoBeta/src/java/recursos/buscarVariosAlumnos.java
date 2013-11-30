@@ -6,11 +6,8 @@
 
 package recursos;
 
-import com.google.gson.Gson;
-import entidades.EstadoAcademico;
-import entidades.EstadoAcademicoSImple;
-import entidades.Estudiante;
-import entidades.EstudianteSimple;
+import com.google.gson.*;
+import entidades.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -25,20 +22,19 @@ import javax.ws.rs.QueryParam;
  *
  * @author yanina
  */
-@Stateless
-@Path("/EstadoAcademicoGeneral")
-public class buscarEstadoAcademicoGeneral {
+ @Stateless
+@Path("/VariosEstudiantes")
+public class buscarVariosAlumnos {
     @PersistenceContext( unitName =  "SistemaAcademicoBetaPU")      
     EntityManager entityManager ;
     @GET
     @Produces("application/json")
-    public String consultarEstadoAcademicoGeneral (@QueryParam("dni") Long dni, @QueryParam("tipoDni") String tipoDni){
-        System.out.println("valores"+tipoDni + dni);
-        String pJSON= buscarAlumno(dni, tipoDni);       
+    public String consultarAlumno (@QueryParam("dni") String dni){
+        String pJSON= buscarAlumno(dni);       
         return pJSON;
      }
-    private String buscarAlumno(Long dni, String tipoDni){
-        List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT a FROM Estudiante a WHERE a.dni="+dni+" AND a.tipoDni='"+tipoDni+"'").getResultList();
+    private String buscarAlumno(String dni){
+        List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT a FROM Estudiante a WHERE a.dni=123").getResultList();
         List<EstudianteSimple> estudiantesSimples= new ArrayList<>();
         for (Estudiante estudiante : estudiantes) {
             EstudianteSimple e = new EstudianteSimple();
@@ -63,7 +59,15 @@ public class buscarEstadoAcademicoGeneral {
      }
     private String convertirAJSON(Object alumno){
         Gson googleSon=new Gson();
+        
+        List<EstudianteSimple> estudiantes = (List)alumno;
+        for (EstudianteSimple e : estudiantes ){
+            System.out.println(e.getDni());
+        }
+        System.out.println("PREVIO a to json");
+        String j = googleSon.toJson(alumno);
+        System.out.println(j);
+                
         return googleSon.toJson(alumno);        
     }
 }
-

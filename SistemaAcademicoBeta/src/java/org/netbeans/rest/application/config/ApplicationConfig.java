@@ -22,6 +22,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(recursos.buscarEstadoAcademicoDetallado.class);
         resources.add(recursos.buscarEstadoAcademicoGeneral.class);
+        resources.add(recursos.buscarVariosAlumnos.class);
         resources.add(recursos.busquedaAlumno.class);
     }  
 }
