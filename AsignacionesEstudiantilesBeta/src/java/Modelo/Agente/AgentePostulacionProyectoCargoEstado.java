@@ -72,6 +72,7 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
     @Override
     public void setTipoEstadoPostulacionProyectoCargo(TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo) {
         implementacionPostulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
+        this.setHeBuscadoTipoEstadoPostulacionProyectoCargo(true);
     }
 
     public String getOidPostulacionProyectoCargo() {

@@ -103,11 +103,17 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public List<PostulacionProyectoCargo> getPostulacionProyectoCargosList() {
         List<PostulacionProyectoCargo> postulacionProyectoCargos;
+        System.out.println("esteeeeeee es el metodo qliaaaaaaaaaaadoooo"+this.esNuevo());
         if(heBuscadoPostulacionProyectoCargo || this.esNuevo()){
+            System.out.println("entraaaaaaaaaaaa la mierda estaaaaaa");
             postulacionProyectoCargos = implementacionPostulacion.getPostulacionProyectoCargosList();
         }else{
             Criterio criterioBusquedaPostulacionProyectoCargos = (Criterio) FabricaCriterio.getInstancia().crear("postulacion", "=", this);
             postulacionProyectoCargos = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargo", criterioBusquedaPostulacionProyectoCargos);
+        }
+        for (PostulacionProyectoCargo p:postulacionProyectoCargos) {
+                Agente a = (Agente) p;
+                System.out.println("PPC OID======================"+a.getOid());
         }
         return postulacionProyectoCargos;
     }

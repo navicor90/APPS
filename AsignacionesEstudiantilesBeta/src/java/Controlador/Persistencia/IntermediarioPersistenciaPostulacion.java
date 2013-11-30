@@ -53,9 +53,13 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
 
     @Override
     public void persistirObjetosInternos(Object obj) {
+        System.out.println("Persistir Objetos de IPPOSTULACION");
         FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
-        AgentePostulacion postulacion = (AgentePostulacion)(Postulacion)obj;
+        AgentePostulacion postulacion = (AgentePostulacion)obj;
         for (PostulacionProyectoCargo postulacionProyectoCargo: postulacion.getPostulacionProyectoCargosList()) {
+            System.out.println("guuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+            System.out.println("codigoProyecto "+postulacionProyectoCargo.getProyecto().getCodigo());
+            System.out.println("nombreProyecto "+postulacionProyectoCargo.getProyecto().getNombreProyecto());
             instanciaFPI.guardar("PostulacionProyectoCargo", postulacionProyectoCargo);
             
         }
