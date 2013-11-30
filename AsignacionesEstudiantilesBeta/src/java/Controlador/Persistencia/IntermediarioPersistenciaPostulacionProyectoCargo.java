@@ -59,6 +59,7 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
         instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
         //instanciaFPI.guardar("Universidad", postulacionProyectoCargo.getUniversidad());
         for (PostulacionProyectoCargoEstado postEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
+            
             instanciaFPI.guardar("PostulacionProyectoCargoEstado", postEstado);
         }
     }

@@ -160,7 +160,14 @@ public class ExpertoRegistrarPostulacion {
             }
             postulacion.addPostulacionProyectoCargo(postulacionProyectoCargo);
         }
+        for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
+            for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
+                System.out.println(postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado());
+            }
+
+        }
         FachadaPersistencia.obtenerInstancia().guardar("Postulacion", postulacion);
+        
         return postulacionesProyectoCargoDTOList;
     }
 

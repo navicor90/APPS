@@ -119,6 +119,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
             Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("PostulacionProyectoCargo", "=", this);
             postulacionProyectoCargoEstados = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
         }
+        System.out.println("previo for");
         for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargoEstados) {
             System.out.println("postpcestado"+postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado());
         }
