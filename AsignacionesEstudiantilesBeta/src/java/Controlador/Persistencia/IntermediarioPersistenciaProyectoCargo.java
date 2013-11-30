@@ -12,7 +12,8 @@ import Modelo.Agente.AgenteProyectoCargo;
 import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionProyectoCargo;
-
+import Modelo.interfaces.ProyectoCargo;
+import Modelo.interfaces.ProyectoCargoEstado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,7 +53,13 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-
+        FachadaPersistenciaInterna fachadaPI = FachadaPersistenciaInterna.getInstancia();
+        ProyectoCargo proyectoCargo = (ProyectoCargo) obj;
+        fachadaPI.guardar("ProyectoCargoCarrera", proyectoCargo.getProyectoCargoCarrera());
+        fachadaPI.guardar("TipoCargo", proyectoCargo.getTipoCargo());
+        for (ProyectoCargoEstado proyectoCargoEstado : proyectoCargo.getProyectoCargoEstadoList()) {
+            fachadaPI.guardar("ProyectoCargoEstado", proyectoCargoEstado);
+        }
     }
 
     @Override
@@ -62,7 +69,14 @@ public class IntermediarioPersistenciaProyectoCargo extends IntermediarioPersist
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-        return null;
+        AgenteProyectoCargo agente = (AgenteProyectoCargo) objInsert;
+        String sql = "INSERT INTO  AE.proyectos "
+                + "(OIDProyectoCargo ,numeroProyectoCargo ,descripcionProyectoCargo,cantidadMinimaPostulacionProyectoCargo,"
+                + "estaHabilitadoProyectoCargo,horasDedicadasProyectoCargo,OIDProyecto,OIDTipoCargo)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getNroProyectoCargo()+"',  '"+agente.getDescripcion()
+                +"',  '"+agente.getCantidadMinimaPostulacion()+"',  '"+agente.isHabilitado()
+                +"',  '"+agente.getHorasDedicadas() +"',  '"+agente.getOidProyecto()+"',  '"+agente.getTipoCargo()+"')";
+        return sql;
     }
 
     @Override

@@ -167,24 +167,6 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     }
 
     @Override
-    public Proyecto getProyecto() {
-        Proyecto proyecto = null;
-        if (heBuscadoProyecto) {
-            proyecto = implementacionProyectoCargo.getProyecto();
-        } else {
-            proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
-            this.setProyecto(proyecto);
-        }
-        return proyecto;
-    }
-
-    @Override
-    public void setProyecto(Proyecto proyecto) {
-        implementacionProyectoCargo.setProyecto(proyecto);
-        heBuscadoProyecto=true;
-    }
-
-    @Override
     public ProyectoCargoCarrera getProyectoCargoCarrera() {
         ProyectoCargoCarrera proyectoCargoCarrera ;
         if(heBuscadoProyectoCargoCarrrera){

@@ -33,6 +33,7 @@ public abstract class IntermediarioPersistencia {
     }
 
     public Object buscar(String oid) {
+        System.out.println("OID ="+oid);
         Cache cache = Cache.obtenerInstancia();
         Object agente = cache.buscar(oid);
         if (agente == null) {

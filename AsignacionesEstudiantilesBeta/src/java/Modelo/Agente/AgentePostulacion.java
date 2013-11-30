@@ -19,22 +19,24 @@ import java.util.List;
  */
 public class AgentePostulacion extends Agente implements Postulacion{
     private boolean heBuscadoEstudiante;
-    private boolean heBuscadoProyectoCargo;
+    private boolean heBuscadoPostulacionProyectoCargo;
     private String OIDEstudiante;
     private ImplementacionPostulacion implementacionPostulacion;
 
     public AgentePostulacion() {
         heBuscadoEstudiante = false;
-        heBuscadoProyectoCargo = false;
-    }
-    
-    public boolean isHeBuscadoProyectoCargo() {
-        return heBuscadoProyectoCargo;
+        heBuscadoPostulacionProyectoCargo = false;
     }
 
-    public void setHeBuscadoProyectoCargo(boolean heBuscadoProyectoCargo) {
-        this.heBuscadoProyectoCargo = heBuscadoProyectoCargo;
+    public boolean isHeBuscadoPostulacionProyectoCargo() {
+        return heBuscadoPostulacionProyectoCargo;
     }
+
+    public void setHeBuscadoPostulacionProyectoCargo(boolean heBuscadoPostulacionProyectoCargo) {
+        this.heBuscadoPostulacionProyectoCargo = heBuscadoPostulacionProyectoCargo;
+    }
+    
+
     
     public boolean isHeBuscadoEstudiante() {
         return heBuscadoEstudiante;
@@ -84,8 +86,8 @@ public class AgentePostulacion extends Agente implements Postulacion{
     }
 
     @Override
-    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo){
-        implementacionPostulacion.addProyectoCargo(proyectoCargo);
+    public void addPostulacionProyectoCargo(PostulacionProyectoCargo proyectoCargo){
+        implementacionPostulacion.addPostulacionProyectoCargo(proyectoCargo);
     }
 
     @Override
@@ -99,21 +101,26 @@ public class AgentePostulacion extends Agente implements Postulacion{
     }
 
     @Override
-    public List<PostulacionProyectoCargo> getProyectoCargosList() {
+    public List<PostulacionProyectoCargo> getPostulacionProyectoCargosList() {
         List<PostulacionProyectoCargo> postulacionProyectoCargos;
-        
-        if(heBuscadoProyectoCargo){
-            postulacionProyectoCargos = implementacionPostulacion.getProyectoCargosList();
+        System.out.println("esteeeeeee es el metodo qliaaaaaaaaaaadoooo"+this.esNuevo());
+        if(heBuscadoPostulacionProyectoCargo || this.esNuevo()){
+            System.out.println("entraaaaaaaaaaaa la mierda estaaaaaa");
+            postulacionProyectoCargos = implementacionPostulacion.getPostulacionProyectoCargosList();
         }else{
             Criterio criterioBusquedaPostulacionProyectoCargos = (Criterio) FabricaCriterio.getInstancia().crear("postulacion", "=", this);
             postulacionProyectoCargos = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargo", criterioBusquedaPostulacionProyectoCargos);
+        }
+        for (PostulacionProyectoCargo p:postulacionProyectoCargos) {
+                Agente a = (Agente) p;
+                System.out.println("PPC OID======================"+a.getOid());
         }
         return postulacionProyectoCargos;
     }
 
     @Override
-    public void setProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
-        implementacionPostulacion.setProyectoCargosList(proyectoCargosList);
+    public void setPostulacionProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
+        implementacionPostulacion.setPostulacionProyectoCargosList(proyectoCargosList);
     }
 
     @Override

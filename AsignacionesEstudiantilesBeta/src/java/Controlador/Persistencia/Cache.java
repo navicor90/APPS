@@ -37,6 +37,7 @@ public class Cache {
         Agente agenteEncontrado = null;
         for (Agente agente : objetosAgenteDepositados) {
             String agenteOid = agente.getOid();
+            //System.out.println("agente OID ="+agenteOid);
             if (oid.contentEquals(agenteOid)) {
                 agenteEncontrado = agente;
                 break;

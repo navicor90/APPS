@@ -8,6 +8,9 @@ package Controlador;
 import Controlador.Persistencia.FachadaPersistencia;
 import Controlador.Persistencia.*;
 import Modelo.*;
+import Modelo.Agente.Agente;
+import Modelo.Agente.AgenteEstudiante;
+import Modelo.Agente.AgentePostulacion;
 import Modelo.interfaces.TipoCargo;
 
 import java.sql.SQLException;
@@ -24,12 +27,10 @@ public class NewMain {
      */
     public static void main(String[] args) throws SQLException {
         
-        FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-        TipoCargo tc = (TipoCargo) FabricaEntidades.getInstancia().crearEntidad(TipoCargo.class);
-        tc.setCodigo(6);
-        tc.setNomTipoCargo("Responsable de Marketing");
-        FachadaPersistencia.obtenerInstancia().guardar("TipoCargo",tc);
-        FachadaPersistenciaInterna.getInstancia().ConfirmarTransaccion();
+        Agente agente = new AgenteEstudiante();
+        System.out.println(agente.esNuevo());
+        AgentePostulacion agente2 = new AgentePostulacion();
+        System.out.println(agente2.esNuevo());
         /*FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
          Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", "34567");
          List<Estudiante> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);

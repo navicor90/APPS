@@ -20,22 +20,22 @@ import java.util.List;
 public class ImplementacionPostulacion implements Postulacion{
     private Date fechaHoraPostulacion;
     private int nroPostulacion;
-    private List<PostulacionProyectoCargo> proyectoCargosList;
+    private List<PostulacionProyectoCargo> postulacionProyectoCargosList;
     private Estudiante estudiante;
     private Date fechaHoraAnulacionPostulacion;
 
     public ImplementacionPostulacion() {
-        proyectoCargosList = new ArrayList<>();
+        postulacionProyectoCargosList = new ArrayList<>();
     }
     
     @Override
-    public List<PostulacionProyectoCargo> getProyectoCargosList() {
-        return proyectoCargosList;
+    public List<PostulacionProyectoCargo> getPostulacionProyectoCargosList() {
+        return postulacionProyectoCargosList;
     }
 
     @Override
-    public void setProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
-        this.proyectoCargosList = proyectoCargosList;
+    public void setPostulacionProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
+        this.postulacionProyectoCargosList = proyectoCargosList;
     }
 
     @Override
@@ -79,8 +79,8 @@ public class ImplementacionPostulacion implements Postulacion{
     }
 
     @Override
-    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo) {
-        proyectoCargosList.add(proyectoCargo);
+    public void addPostulacionProyectoCargo(PostulacionProyectoCargo proyectoCargo) {
+        postulacionProyectoCargosList.add(proyectoCargo);
     }
 
 }

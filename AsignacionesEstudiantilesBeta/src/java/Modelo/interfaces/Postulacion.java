@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface Postulacion {
 
-    public List<PostulacionProyectoCargo> getProyectoCargosList();
+    public List<PostulacionProyectoCargo> getPostulacionProyectoCargosList();
 
-    public void setProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList);
+    public void setPostulacionProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList);
 
     public Date getFechaHoraAnulacionPostulacion();
 
@@ -31,7 +31,7 @@ public interface Postulacion {
 
     public void setNroPostulacion(int nroPostulacion);
 
-    public void addProyectoCargo(PostulacionProyectoCargo proyectoCargo);
+    public void addPostulacionProyectoCargo(PostulacionProyectoCargo proyectoCargo);
 
     public Estudiante getEstudiante();
 

@@ -8,6 +8,8 @@ package Controlador;
 import Controlador.Persistencia.FabricaEntidades;
 import Controlador.Persistencia.FachadaPersistencia;
 import Modelo.*;
+import Modelo.Agente.Agente;
+import Modelo.Agente.AgentePostulacionProyectoCargo;
 import Modelo.DTO.*;
 import Modelo.interfaces.*;
 import java.sql.SQLException;
@@ -97,9 +99,8 @@ public class ExpertoRegistrarPostulacion {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
             //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
             for (Postulacion postulacionAntigua : postulacionesList) {
-                System.out.println(postulacionAntigua.getNroPostulacion()+"--------------------");
-                for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getProyectoCargosList()) {
-                    if (postulacionProyectoCargoAntigua.getProyectoCargo().getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
+                for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getPostulacionProyectoCargosList()) {
+                    if (postulacionProyectoCargoAntigua.getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                         if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
                             postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
                             postulacionProyectoCargo.setProyecto(postulacionProyectoCargoAntigua.getProyecto());
@@ -116,7 +117,6 @@ public class ExpertoRegistrarPostulacion {
                 }
             }
             //registramos las postulaciones a nuevos proyectoCargo
-            System.out.println("registramos las postulaciones a nuevos proyectoCargo");
             if (postulacionProyectoCargoDTO.getDescripcionEstado() == null) {
                 Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("codigoProyecto", "=", Integer.toString(postulacionProyectoCargoDTO.getNroProyecto()));
                 List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
@@ -158,9 +158,16 @@ public class ExpertoRegistrarPostulacion {
                 }
 
             }
-            postulacion.addProyectoCargo(postulacionProyectoCargo);
+            postulacion.addPostulacionProyectoCargo(postulacionProyectoCargo);
         }
-        //FachadaPersistencia.obtenerInstancia().guardar(postulacion);
+        for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
+            for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
+                System.out.println(postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado());
+            }
+
+        }
+        FachadaPersistencia.obtenerInstancia().guardar("Postulacion", postulacion);
+        
         return postulacionesProyectoCargoDTOList;
     }
 

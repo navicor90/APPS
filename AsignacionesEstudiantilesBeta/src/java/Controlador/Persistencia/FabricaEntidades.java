@@ -56,6 +56,7 @@ public class FabricaEntidades {
             agenteTipoCargo.setImplementacionTipoCargo(new ImplementacionTipoCargo());
             entidadNueva = agenteTipoCargo;
         }
+        entidadNueva.setEsNuevo(true);
         entidadNueva.setOid(getCadenaAlfanumAleatoria());
         return entidadNueva;
     }

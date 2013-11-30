@@ -58,8 +58,8 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
 
     @Override
     public TipoEstadoPostulacionProyectoCargo getTipoEstadoPostulacionProyectoCargo() {
-        TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo;
-        if(heBuscadoTipoEstadoPostulacionProyectoCargo){
+        TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo=null;
+        if(heBuscadoTipoEstadoPostulacionProyectoCargo || this.esNuevo()){
             tipoEstadoPostulacionProyectoCargo = implementacionPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
         }else{
             tipoEstadoPostulacionProyectoCargo = (TipoEstadoPostulacionProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoPostulacionProyectoCargo", oidTipoEstadoPostulacionProyectoCargo);

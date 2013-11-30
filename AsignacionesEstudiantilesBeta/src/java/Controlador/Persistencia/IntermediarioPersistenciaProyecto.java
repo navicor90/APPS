@@ -9,6 +9,8 @@ import Modelo.Agente.AgenteProyecto;
 import Modelo.Criterio;
 import Modelo.implementacion.ImplementacionProyecto;
 import Modelo.Expresion;
+import Modelo.interfaces.Proyecto;
+import Modelo.interfaces.ProyectoCargo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,7 +46,14 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FachadaPersistenciaInterna fachadaPI = FachadaPersistenciaInterna.getInstancia();
+        Proyecto proyecto = (Proyecto) obj;
+        fachadaPI.guardar("Empresa", proyecto.getEmpresa());
+        for (ProyectoCargo proyectoCargo : proyecto.getProyectoCargoList()) {
+            fachadaPI.guardar("ProyectoCargo", proyectoCargo);
+        }
+        
+        
     }
 
     @Override
@@ -60,7 +69,13 @@ public class IntermediarioPersistenciaProyecto extends IntermediarioPersistencia
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AgenteProyecto agente = (AgenteProyecto) objInsert;
+        String sql = "INSERT INTO  AE.proyectos "
+                + "(OIDProyecto ,codigoProyecto ,nombreProyecto,descripcionProyecto,duracionProyecto,fechaInicioProyecto,fechaLimitePostulacion)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getCodigo()+"',  '"+agente.getNombreProyecto()+"',  '"+agente.getDescripcion()+"',  '"+agente.getFechaInicio()
+                +"',  '"+agente.getFechaFinPostulacion()
+                +"',  '"+agente.getOidEmpresa()+"',  '"+agente.getOidUniversidad()+"')";
+        return sql;
     }
 
     @Override

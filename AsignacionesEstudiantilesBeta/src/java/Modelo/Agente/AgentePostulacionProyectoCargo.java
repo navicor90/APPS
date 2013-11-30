@@ -112,13 +112,17 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
         List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstados;
-        if(heBuscadoPostulacionProyectoCargoEstadoList){
+        System.out.println("PREVIO getPostulacionProyectoCargoEstadoList "+this.esNuevo());
+        if(heBuscadoPostulacionProyectoCargoEstadoList || this.esNuevo()){
             postulacionProyectoCargoEstados = implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
         }else{
             Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("PostulacionProyectoCargo", "=", this);
             postulacionProyectoCargoEstados = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
         }
-        
+        System.out.println("previo for");
+        for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargoEstados) {
+            System.out.println("postpcestado"+postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado());
+        }
         return postulacionProyectoCargoEstados;
     }
 
@@ -135,7 +139,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public Proyecto getProyecto(){
         Proyecto proyecto = null;
-        if(heBuscadoProyecto){
+        if(heBuscadoProyecto || this.esNuevo()){
             proyecto = implementacionPostulacionProyectoCargo.getProyecto();
         }else{
             proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
@@ -161,7 +165,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public ProyectoCargo getProyectoCargo() {
         ProyectoCargo proyectoCargo;
-        if(heBuscadoProyectoCargo){
+        if(heBuscadoProyectoCargo || this.esNuevo()){
             proyectoCargo = implementacionPostulacionProyectoCargo.getProyectoCargo();
         }else{
             proyectoCargo = (ProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", oidProyectoCargo);
