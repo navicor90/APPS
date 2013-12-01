@@ -6,11 +6,8 @@
 
 package recursos;
 
-import com.google.gson.Gson;
-import entidades.EstadoAcademico;
-import entidades.EstadoAcademicoSImple;
-import entidades.Estudiante;
-import entidades.EstudianteSimple;
+import com.google.gson.*;
+import entidades.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -39,27 +36,26 @@ public class buscarEstadoAcademicoGeneral {
      }
     private String buscarAlumno(Long dni, String tipoDni){
         List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT a FROM Estudiante a WHERE a.dni="+dni+" AND a.tipoDni='"+tipoDni+"'").getResultList();
-        List<EstudianteSimple> estudiantesSimples= new ArrayList<>();
+        List<EstudianteSimple> ListaEstudianteSimple= new ArrayList<>();
         for (Estudiante estudiante : estudiantes) {
-            EstudianteSimple e = new EstudianteSimple();
-            e.setNombre(estudiante.getNombre());
-            e.setDni(estudiante.getDni());
-            e.setTipoDni(estudiante.getTipoDni());
+            EstudianteSimple estudianteSimple = new EstudianteSimple();
             List<EstadoAcademico> estadosAcademicos=estudiante.getEstadoacademico();
-            List<EstadoAcademicoSImple> estadoAcademicoSimple=new ArrayList<>();
+            List<EstadoAcademicoSImple> ListaEstadoAcademicoSimple=new ArrayList<>();
             for (EstadoAcademico estadoAcademico: estadosAcademicos ) {
-                EstadoAcademicoSImple es=new EstadoAcademicoSImple();
-                es.setFechaBaja(estadoAcademico.getFechaBaja());
-                es.setFechaIngreso(estadoAcademico.getFechaIngreso());
-                es.setLegajo(estadoAcademico.getLegajo());
-                es.setCarrera(estadoAcademico.getCarrera());
-                es.setEstadoAcademico(estadoAcademico.getEstadoAcademico());
-                estadoAcademicoSimple.add(es);
+                EstadoAcademicoSImple estadoAcademicoSimple=new EstadoAcademicoSImple();
+                estadoAcademicoSimple.setFechaBaja(estadoAcademico.getFechaBaja());
+                estadoAcademicoSimple.setFechaIngreso(estadoAcademico.getFechaIngreso());
+                estadoAcademicoSimple.setLegajo(estadoAcademico.getLegajo());
+                CarreraSimple carreraSimple=new CarreraSimple();
+                carreraSimple.setNombre(estadoAcademico.getCarrera().getNombreCarrera());
+                estadoAcademicoSimple.setCarreraSimple(carreraSimple);
+                estadoAcademicoSimple.setEstadoAcademico(estadoAcademico.getEstadoAcademico());
+                ListaEstadoAcademicoSimple.add(estadoAcademicoSimple);
                 }
-            e.setEstadoacademicoSimple(estadoAcademicoSimple);
-            estudiantesSimples.add(e);
+            estudianteSimple.setEstadoacademicoSimple(ListaEstadoAcademicoSimple);
+            ListaEstudianteSimple.add(estudianteSimple);
         }
-        return convertirAJSON(estudiantesSimples);
+        return convertirAJSON(ListaEstudianteSimple);
      }
     private String convertirAJSON(Object alumno){
         Gson googleSon=new Gson();

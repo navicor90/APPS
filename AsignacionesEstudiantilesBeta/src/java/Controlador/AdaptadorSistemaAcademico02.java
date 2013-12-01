@@ -37,13 +37,13 @@ public class AdaptadorSistemaAcademico02 implements AdaptadorSistemaAcademico{
     public List<DTOEstadoAcademicoGeneral> obtenerEstadoAcademicoGeneral(String tipoDni, long dni) {
         List<DTOEstadoAcademicoGeneral> estadosAcademicosGeneral = new ArrayList<>();
         DTOEstadoAcademicoGeneral estadoAcademicoGeneral = new DTOEstadoAcademicoGeneral();
-       // estadoAcademicoGeneral.setCarrera("Sistemas");
+        estadoAcademicoGeneral.setNombreCarrera("Sistemas");
         estadoAcademicoGeneral.setEstadoAcademico("esRegular");
         Date fechaIngreso = new Date();
         fechaIngreso.setDate(10);
         fechaIngreso.setMonth(01);
         fechaIngreso.setYear(2010);
-        //estadoAcademicoGeneral.setFechaDeIngreso(fechaIngreso);
+        estadoAcademicoGeneral.setFechaIngreso(fechaIngreso);
         estadosAcademicosGeneral.add(estadoAcademicoGeneral);
         return estadosAcademicosGeneral;
     }

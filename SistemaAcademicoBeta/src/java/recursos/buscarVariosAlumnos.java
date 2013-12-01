@@ -48,7 +48,6 @@ public class buscarVariosAlumnos {
                 es.setFechaBaja(estadoAcademico.getFechaBaja());
                 es.setFechaIngreso(estadoAcademico.getFechaIngreso());
                 es.setLegajo(estadoAcademico.getLegajo());
-                es.setCarrera(estadoAcademico.getCarrera());
                 es.setEstadoAcademico(estadoAcademico.getEstadoAcademico());
                 estadoAcademicoSimple.add(es);
                 }

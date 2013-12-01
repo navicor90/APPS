@@ -30,7 +30,39 @@ public class EstudianteMateria implements Serializable {
     private String estado;
     private int notaFinal;
 
+    public EstadoAcademico getEstadoAcademico() {
+        return estadoAcademico;
+    }
 
+    public void setEstadoAcademico(EstadoAcademico estadoAcademico) {
+        this.estadoAcademico = estadoAcademico;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getNotaFinal() {
+        return notaFinal;
+    }
+
+    public void setNotaFinal(int notaFinal) {
+        this.notaFinal = notaFinal;
+    }
+
+    
     public String getId() {
         return id;
     }

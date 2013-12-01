@@ -16,8 +16,8 @@ import java.util.List;
 public class EstadoAcademicoSImple {
     private String legajo;
     private String  estadoAcademico;
-    private Carrera carrera;
-    private List<EstudianteMateria> estudianteMateria;
+    private CarreraSimple carreraSimple;
+    private List<EstudianteMateriaSimple> estudianteMateriaSimple;
     private Date fechaIngreso;
     private Date fechaBaja;
 
@@ -37,22 +37,23 @@ public class EstadoAcademicoSImple {
         this.estadoAcademico = estadoAcademico;
     }
 
-    public Carrera getCarrera() {
-        return carrera;
+    public CarreraSimple getCarreraSimple() {
+        return carreraSimple;
     }
 
-    public void setCarrera(Carrera carrera) {
-        this.carrera = carrera;
+    public void setCarreraSimple(CarreraSimple carreraSimple) {
+        this.carreraSimple = carreraSimple;
+    }
+    
+
+    public List<EstudianteMateriaSimple> getEstudianteMateriaSimple() {
+        return estudianteMateriaSimple;
     }
 
-    public List<EstudianteMateria> getEstudianteMateria() {
-        return estudianteMateria;
+    public void setEstudianteMateriaSimple(List<EstudianteMateriaSimple> estudianteMateriaSimple) {
+        this.estudianteMateriaSimple = estudianteMateriaSimple;
     }
-
-    public void setEstudianteMateria(List<EstudianteMateria> estudianteMateria) {
-        this.estudianteMateria = estudianteMateria;
-    }
-
+    
     public Date getFechaIngreso() {
         return fechaIngreso;
     }
