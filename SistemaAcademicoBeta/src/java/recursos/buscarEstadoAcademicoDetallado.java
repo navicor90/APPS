@@ -6,8 +6,9 @@
 
 package recursos;
 
-import com.google.gson.Gson;
-import entidades.Estudiante;
+import com.google.gson.*;
+import entidades.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -32,11 +33,35 @@ public class buscarEstadoAcademicoDetallado {
         String pJSON= buscarAlumno(legajo);       
         return pJSON;
      }
-    private String buscarAlumno(String legajo){
-    List<Estudiante> estudiantes =(List)entityManager.createQuery("SELECT e FROM Estudiante e INNER JOIN EstadoAcaddemico a INNER JOIN Carrera EstudianteMateria INER JOIN Materia WHERE e.dni="+legajo).getResultList();
-     
-    return convertirAJSON(estudiantes);
+        private String buscarAlumno(String legajo){
+            List<EstadoAcademico> ListaEstadoAcademico =(List)entityManager.createQuery("SELECT a FROM EstadoAcademico a WHERE a.legajo="+legajo).getResultList();
+            List<EstadoAcademicoSImple> ListaEstadoAcademicoSimple=new ArrayList<>();
+            for (EstadoAcademico estadoAcademico: ListaEstadoAcademico ) {
+                EstadoAcademicoSImple estadoAcademicoSimple=new EstadoAcademicoSImple();
+                estadoAcademicoSimple.setLegajo(estadoAcademico.getLegajo());
+                CarreraSimple carreraSimple=new CarreraSimple();
+                carreraSimple.setNombre(estadoAcademico.getCarrera().getNombreCarrera());
+                estadoAcademicoSimple.setCarreraSimple(carreraSimple);
+                List<EstudianteMateria> ListaEstudianteMateria=estadoAcademico.getEstudianteMateria();
+                List<EstudianteMateriaSimple> ListaEstudianteMateriaSimple=new ArrayList<>();
+                for(EstudianteMateria estudianteMateria: ListaEstudianteMateria){
+                    EstudianteMateriaSimple estudianteMateriaSimple=new EstudianteMateriaSimple();
+                    MateriaSimple materiaSimple= new MateriaSimple();
+                    materiaSimple.setNombre(estudianteMateria.getMateria().getNombre());
+                    estudianteMateriaSimple.setMateriaSimple(materiaSimple);
+                    estudianteMateriaSimple.setEstado(estudianteMateria.getEstado());
+                    estudianteMateriaSimple.setId(estudianteMateria.getId());
+                    estudianteMateriaSimple.setNotaFinal(estudianteMateria.getNotaFinal());
+                    ListaEstudianteMateriaSimple.add(estudianteMateriaSimple);
+                }
+                estadoAcademicoSimple.setEstudianteMateriaSimple(ListaEstudianteMateriaSimple);
+                ListaEstadoAcademicoSimple.add(estadoAcademicoSimple);
+            }
+            
+        
+        return convertirAJSON(ListaEstadoAcademicoSimple);
      }
+
     private String convertirAJSON(Object estudiante){
         Gson googleSon=new Gson();
         return googleSon.toJson(estudiante);        
