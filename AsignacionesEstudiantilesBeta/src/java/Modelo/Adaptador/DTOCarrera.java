@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Modelo.DTO;
+package Modelo.Adaptador;
 
 import com.google.gson.annotations.SerializedName;
 import java.util.Date;
@@ -15,12 +15,12 @@ import java.util.List;
  * @author yanina
  */
 public class DTOCarrera {
-    private final Long legajo;
-    private final String estadoAcademico;
+    private  Long legajo;
+    private  String estadoAcademico;
     @SerializedName("carreraSimple")
-    private final CarreraSimple carreraSimple;
-    private final Date fechaIngreso;
-    private  final Date fechaBaja;
+    private  CarreraSimple carreraSimple;
+    private  Date fechaIngreso;
+    private Date fechaBaja;
 
     public DTOCarrera(Long legajo, String estadoAcademico, CarreraSimple carreraSimple, Date fechaIngreso, Date fechaBaja) {
         this.legajo = legajo;
@@ -30,6 +30,33 @@ public class DTOCarrera {
         this.fechaBaja = fechaBaja;
     }
 
+    public DTOCarrera() {
+    }
+    
+    public DTOCarrera(CarreraSimple carreraSimple) {
+        this.carreraSimple = carreraSimple;
+    }
+    
+    public void setLegajo(Long legajo) {
+        this.legajo = legajo;
+    }
+
+    public void setEstadoAcademico(String estadoAcademico) {
+        this.estadoAcademico = estadoAcademico;
+    }
+
+    public void setCarreraSimple(CarreraSimple carreraSimple) {
+        this.carreraSimple = carreraSimple;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public void setFechaBaja(Date fechaBaja) {
+        this.fechaBaja = fechaBaja;
+    }
+    
     public Long getLegajo() {
         return legajo;
     }

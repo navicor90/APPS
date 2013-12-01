@@ -6,16 +6,15 @@
 
 package Controlador;
 
-import Controlador.SistemaExterno.EstadoAcademicoGeneral;
-import Modelo.DTO.DTOEstadoAcademicoGeneral;
+import Controlador.SistemaExterno.ConexionEstadoAcademicoDetallado;
+import Controlador.SistemaExterno.ConexionEstadoAcademicoGeneral;
 import Modelo.DTO.DTOMateria;
+import Modelo.DTO.DTOEstadoAcademicoGeneral;
+import Modelo.Adaptador.*;
 import java.util.ArrayList;
 import java.util.List;
-import Modelo.DTO.*;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import java.lang.reflect.Type;
 /**
  *
@@ -26,43 +25,52 @@ public class AdaptadorSistemaAcademico01 implements AdaptadorSistemaAcademico{
 
     @Override
     public List<DTOMateria> ObtenerEstadoAcademicoDetallado(String legajo) {
-       List <DTOMateria> selec= new ArrayList<>();
-       return selec;
+        System.out.println("Detallado");
+       List <DTOMateria> listasDtoMateria= new ArrayList<>();
+       ConexionEstadoAcademicoDetallado conexionEstadoAcademicoDetallado =new ConexionEstadoAcademicoDetallado();
+       String estadoAcademicoJson=conexionEstadoAcademicoDetallado.consultarEstadoAcademicoDetallado(String.class, legajo);
+       Gson gson=new Gson();
+       Type tipoEstadoAcademico = new TypeToken<List<DTOEstadoAcademicoDetallado>>(){}.getType();
+       List<DTOEstadoAcademicoDetallado> ListaDtoEstadoAcademicoDetallado = gson.fromJson(estadoAcademicoJson, tipoEstadoAcademico);
+       for(DTOEstadoAcademicoDetallado dtoEstadoAcademicoDetallado: ListaDtoEstadoAcademicoDetallado){
+           List<EstudianteMateriaSimple> ListaEstudianteMateriaSimple= dtoEstadoAcademicoDetallado.getEstudianteMateriaSimple();
+           for(EstudianteMateriaSimple estudianteMateriaSimple:ListaEstudianteMateriaSimple){
+               DTOMateria dTOMateria=new DTOMateria();
+               dTOMateria.setLegajo(dtoEstadoAcademicoDetallado.getLegajo());
+               dTOMateria.setNombreCarrera(dtoEstadoAcademicoDetallado.getCarreraSimple().getNombreCarrera());
+               dTOMateria.setEstadoMateria(estudianteMateriaSimple.getEstado());
+               dTOMateria.setNotaMateria(estudianteMateriaSimple.getNotaFinal());
+               dTOMateria.setNombreMateria(estudianteMateriaSimple.getMateriaSimples().getNombre());
+               listasDtoMateria.add(dTOMateria);
+               
+           }
+        }
+       return listasDtoMateria;
     }
 
     @Override
     public List<DTOEstadoAcademicoGeneral> obtenerEstadoAcademicoGeneral(String tipoDNI, long DNI) {
-        List<DTOEstadoAcademicoGeneral> dt=new ArrayList<>();
-        EstadoAcademicoGeneral estadoAcademicoGeneral=new EstadoAcademicoGeneral();
-        //String estadoAcademicoJson=estadoAcademicoGeneral.consultarEstadoAcademicoGeneral(String.class, String.valueOf(DNI), tipoDNI);
-        String estadoAcademicoJson="[{\"estadoacademicoSimple\":[{\"legajo\":\"1231\",\"estadoAcademico\":\"regular\"},{\"legajo\":\"1233\",\"estadoAcademico\":\"libre\"}]}]";
-        System.out.println("json"+estadoAcademicoJson);
-        final Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
-        System.out.println("hola1");
-        final Type tipoEstadoAcademico = new TypeToken<List<DTOEstadoAcademico>>(){}.getType();
-        final List<DTOEstadoAcademico> dtoEstadoAcademico = gson.fromJson(estadoAcademicoJson, tipoEstadoAcademico);
-        System.out.println("json pasado");
-        for(DTOEstadoAcademico ea:dtoEstadoAcademico){
-            List<DTOCarrera> carreras=ea.getDtoCarrera();
-            System.out.println("voy bien");
-            System.out.println(carreras);
-            ea.getDtoCarrera();
-            
+        List<DTOEstadoAcademicoGeneral> ListasDtoEaGenerale=new ArrayList<>();
+        ConexionEstadoAcademicoGeneral conexionEstadoAcademicoGeneral=new ConexionEstadoAcademicoGeneral();
+        String estadoAcademicoJson=conexionEstadoAcademicoGeneral.consultarEstadoAcademicoGeneral(String.class, String.valueOf(DNI), tipoDNI);
+        System.out.println(estadoAcademicoJson);
+        Gson gson = new Gson();
+        Type tipoEstadoAcademico = new TypeToken<List<DTOEstadoAcademico>>(){}.getType();
+        List<DTOEstadoAcademico> dtoEstadoAcademico = gson.fromJson(estadoAcademicoJson, tipoEstadoAcademico);
+        for(DTOEstadoAcademico estadoAcademico:dtoEstadoAcademico){
+            List<DTOCarrera> carreras=estadoAcademico.getEstadoacademicoSimple();
             for(DTOCarrera carrera:carreras){
-                System.out.println("ok");
-                System.out.println(carrera.getLegajo()+"legajo");
-                DTOEstadoAcademicoGeneral eg=new DTOEstadoAcademicoGeneral();
-                eg.setEstadoAcademico(carrera.getEstadoAcademico());
-                eg.setFechaBaja(carrera.getFechaBaja());
-                eg.setFechaIngreso(carrera.getFechaIngreso());
-                eg.setLegajo(carrera.getLegajo());
-                eg.setNombreCarrera(carrera.getCarreraSimple().getNombreCarrera());
-                dt.add(eg);
+                DTOEstadoAcademicoGeneral dtoEaGeneral=new DTOEstadoAcademicoGeneral();
+                dtoEaGeneral.setEstadoAcademico(carrera.getEstadoAcademico());
+                dtoEaGeneral.setFechaBaja(carrera.getFechaBaja());
+                dtoEaGeneral.setFechaIngreso(carrera.getFechaIngreso());
+                dtoEaGeneral.setLegajo(carrera.getLegajo());
+                dtoEaGeneral.setNombreCarrera(carrera.getCarreraSimple().getNombreCarrera());
+                ListasDtoEaGenerale.add(dtoEaGeneral);
+           }
         }
-                    
-        }
-        return dt;
+        return ListasDtoEaGenerale;
     }
     
     
-}
+    }
