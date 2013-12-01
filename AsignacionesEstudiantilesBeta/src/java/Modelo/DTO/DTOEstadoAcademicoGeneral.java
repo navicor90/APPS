@@ -6,25 +6,27 @@
 
 package Modelo.DTO;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author yanina
  */
 public class DTOEstadoAcademicoGeneral {
-    private String Carrera;
+    private Long legajo;
     private String estadoAcademico;
-    private Date fechaDeBaja;
-    private Date fechaDeIngreso;
-    private int legajo;
+    private String nombreCarrera;
+    private Date fechaIngreso;
+    private Date fechaBaja;
 
-    public String getCarrera() {
-        return Carrera;
+    public Long getLegajo() {
+        return legajo;
     }
 
-    public void setCarrera(String Carrera) {
-        this.Carrera = Carrera;
+    public void setLegajo(Long legajo) {
+        this.legajo = legajo;
     }
 
     public String getEstadoAcademico() {
@@ -35,28 +37,28 @@ public class DTOEstadoAcademicoGeneral {
         this.estadoAcademico = estadoAcademico;
     }
 
-    public Date getFechaDeBaja() {
-        return fechaDeBaja;
+    public String getNombreCarrera() {
+        return nombreCarrera;
     }
 
-    public void setFechaDeBaja(Date fechaDeBaja) {
-        this.fechaDeBaja = fechaDeBaja;
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
     }
 
-    public Date getFechaDeIngreso() {
-        return fechaDeIngreso;
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setFechaDeIngreso(Date fechaDeIngreso) {
-        this.fechaDeIngreso = fechaDeIngreso;
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
-    public int getLegajo() {
-        return legajo;
+    public Date getFechaBaja() {
+        return fechaBaja;
     }
 
-    public void setLegajo(int legajo) {
-        this.legajo = legajo;
+    public void setFechaBaja(Date fechaBaja) {
+        this.fechaBaja = fechaBaja;
     }
     
     
