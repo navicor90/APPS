@@ -16,7 +16,7 @@ public class DTOMateria {
     private String estadoMateria;
     private Date fechaEstadoMateria;
     private Date fechaIngreso;
-    private int legajo;
+    private String legajo;
     private String nombreCarrera;
     private String nombreMateria;
     private Float notaMateria;
@@ -46,11 +46,11 @@ public class DTOMateria {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public int getLegajo() {
+    public String getLegajo() {
         return legajo;
     }
 
-    public void setLegajo(int legajo) {
+    public void setLegajo(String legajo) {
         this.legajo = legajo;
     }
 

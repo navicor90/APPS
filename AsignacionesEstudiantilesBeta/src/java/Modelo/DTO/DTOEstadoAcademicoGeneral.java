@@ -20,7 +20,7 @@ public class DTOEstadoAcademicoGeneral {
     private String nombreCarrera;
     private Date fechaIngreso;
     private Date fechaBaja;
-
+    
     public Long getLegajo() {
         return legajo;
     }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Modelo.DTO;
+package Modelo.Adaptador;
 import com.google.gson.annotations.SerializedName;
 /**
  *
@@ -12,12 +12,19 @@ import com.google.gson.annotations.SerializedName;
  */
 public class CarreraSimple {
     @SerializedName("nombre")
-    private final String nombreCarrera;
+    private String nombreCarrera;
+
+    public CarreraSimple() {
+    }
 
     public CarreraSimple(String nombreCarrera) {
         this.nombreCarrera = nombreCarrera;
     }
-
+    
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
+    }
+    
     public String getNombreCarrera() {
         return nombreCarrera;
     }

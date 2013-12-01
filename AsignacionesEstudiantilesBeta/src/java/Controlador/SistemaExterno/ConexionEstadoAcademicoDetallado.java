@@ -24,12 +24,12 @@ import javax.ws.rs.core.Form;
  *
  * @author yanina
  */
-public class EstadoAcademicoDetallado {
+public class ConexionEstadoAcademicoDetallado {
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8080/SistemaAcademicoBeta/webresources/";
 
-    public EstadoAcademicoDetallado() {
+    public ConexionEstadoAcademicoDetallado() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("EstadoAcademicoDetallado");
     }
