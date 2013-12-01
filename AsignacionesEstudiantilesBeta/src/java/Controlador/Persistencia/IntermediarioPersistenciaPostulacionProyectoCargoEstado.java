@@ -12,9 +12,10 @@ import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionPostulacionProyectoCargoEstado;
 import Modelo.interfaces.PostulacionProyectoCargoEstado;
-import Modelo.interfaces.ProyectoCargo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class IntermediarioPersistenciaPostulacionProyectoCargoEstado extends Int
     public void persistirObjetosInternos(Object obj) {
         FachadaPersistenciaInterna fachadaPI = FachadaPersistenciaInterna.getInstancia();
         PostulacionProyectoCargoEstado postulacionProyectoCargoEstado = (PostulacionProyectoCargoEstado) obj;
-        fachadaPI.guardar("TipoEstadoPostulacionProyectoCargo", postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo());
+        //fachadaPI.guardar("TipoEstadoPostulacionProyectoCargo", postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo());
         
     }
 
@@ -63,11 +64,13 @@ public class IntermediarioPersistenciaPostulacionProyectoCargoEstado extends Int
     @Override
     public String armarConsultaInsercion(Object objInsert) {
         AgentePostulacionProyectoCargoEstado agente = (AgentePostulacionProyectoCargoEstado) objInsert;
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaCambioConvertida = fechaHora.format(agente.getFechaHoraCambio());
         String sql = "INSERT INTO  AE.postulacionProyectoCargoEstados "
                 + "(OIDPostulacionProyectoCargoEstado ,fechaHoraCambioPostulacionProyectoCargoEstado ,OIDTipoEstadoPostulacionProyectoCargo,"
                 + "OIDPostulacionProyectoCargo)"
-                + "VALUES ('"+agente.getOid()+"',  '"+agente.getFechaHoraCambio()+"',  '"+agente.getOidPostulacionProyectoCargo()
-                +"',  '"+agente.getOidTipoEstadoPostulacionProyectoCargo()+"')";
+                + "VALUES ('"+agente.getOid()+"',  '"+fechaCambioConvertida+"',  '"+agente.getOidTipoEstadoPostulacionProyectoCargo()
+                +"',  '"+agente.getOidPostulacionProyectoCargo()+"')";
         return sql;
     }
 

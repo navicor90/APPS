@@ -86,8 +86,10 @@ public class AgentePostulacion extends Agente implements Postulacion{
     }
 
     @Override
-    public void addPostulacionProyectoCargo(PostulacionProyectoCargo proyectoCargo){
-        implementacionPostulacion.addPostulacionProyectoCargo(proyectoCargo);
+    public void addPostulacionProyectoCargo(PostulacionProyectoCargo postulacionProyectoCargo){
+        implementacionPostulacion.addPostulacionProyectoCargo(postulacionProyectoCargo);
+        AgentePostulacionProyectoCargo agentePostulacionProyectoCargo = (AgentePostulacionProyectoCargo) postulacionProyectoCargo;
+        agentePostulacionProyectoCargo.setOidPostulacion(this.getOid());
     }
 
     @Override
@@ -98,14 +100,14 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public void setEstudiante(Estudiante estudiante) {
         implementacionPostulacion.setEstudiante(estudiante);
+        AgenteEstudiante agenteEstudiante = (AgenteEstudiante) estudiante;
+        this.setOIDEstudiante(agenteEstudiante.getOid());
     }
 
     @Override
     public List<PostulacionProyectoCargo> getPostulacionProyectoCargosList() {
         List<PostulacionProyectoCargo> postulacionProyectoCargos;
-        System.out.println("esteeeeeee es el metodo qliaaaaaaaaaaadoooo"+this.esNuevo());
         if(heBuscadoPostulacionProyectoCargo || this.esNuevo()){
-            System.out.println("entraaaaaaaaaaaa la mierda estaaaaaa");
             postulacionProyectoCargos = implementacionPostulacion.getPostulacionProyectoCargosList();
         }else{
             Criterio criterioBusquedaPostulacionProyectoCargos = (Criterio) FabricaCriterio.getInstancia().crear("postulacion", "=", this);
@@ -113,7 +115,6 @@ public class AgentePostulacion extends Agente implements Postulacion{
         }
         for (PostulacionProyectoCargo p:postulacionProyectoCargos) {
                 Agente a = (Agente) p;
-                System.out.println("PPC OID======================"+a.getOid());
         }
         return postulacionProyectoCargos;
     }
@@ -121,6 +122,10 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public void setPostulacionProyectoCargosList(List<PostulacionProyectoCargo> proyectoCargosList) {
         implementacionPostulacion.setPostulacionProyectoCargosList(proyectoCargosList);
+        for (PostulacionProyectoCargo postulacionProyectoCargo : proyectoCargosList) {
+            AgentePostulacionProyectoCargo agentePostulacionProyectoCargo = (AgentePostulacionProyectoCargo) postulacionProyectoCargo;
+            agentePostulacionProyectoCargo.setOidPostulacion(this.getOid());
+        }
     }
 
     @Override

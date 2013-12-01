@@ -54,14 +54,13 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
     public void persistirObjetosInternos(Object obj) {
         FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
         PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) obj;
-        instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
-        System.out.println("PERSISTIR OBJETOS INTERMEDIARIO PERSISTENCIA POSTULACIONPROYECTOCARGO");
-        instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
+        //instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
+        //instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
         //instanciaFPI.guardar("Universidad", postulacionProyectoCargo.getUniversidad());
-        for (PostulacionProyectoCargoEstado postEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
-            
-            instanciaFPI.guardar("PostulacionProyectoCargoEstado", postEstado);
+        for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
+            FachadaPersistenciaInterna.getInstancia().guardar("PostulacionProyectoCargoEstado", postulacionProyectoCargoEstado);
         }
+        
     }
 
     @Override
@@ -78,7 +77,7 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
                 + "cantidadMateriasRegularesPostulacionProyectoCargo,OIDPostulacion,OIDProyecto,OIDProyectoCargo,OIDUniversidad)"
                 + "VALUES ('"+agente.getOid()+"',  '"+agente.getPrioridad()+"',  '"+agente.getCantidadMateriasAprobadasEstudiante()
                 +"',  '"+agente.getCantidadMateriasRegulares()+"',  '"+agente.getOidPostulacion()+"',  '"+agente.getOidProyecto()
-                +"',  '"+agente.getOidProyectoCargo()+"',  '"+agente.getOidUniversidad()+"')";
+                +"',  '"+agente.getOidProyectoCargo()+"',  '0123u1')";
         return sql;
     }
 

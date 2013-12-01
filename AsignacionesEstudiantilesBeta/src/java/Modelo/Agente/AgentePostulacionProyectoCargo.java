@@ -112,27 +112,28 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
         List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstados;
-        System.out.println("PREVIO getPostulacionProyectoCargoEstadoList "+this.esNuevo());
         if(heBuscadoPostulacionProyectoCargoEstadoList || this.esNuevo()){
             postulacionProyectoCargoEstados = implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
         }else{
             Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("PostulacionProyectoCargo", "=", this);
             postulacionProyectoCargoEstados = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
         }
-        System.out.println("previo for");
-        for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargoEstados) {
-            System.out.println("postpcestado"+postulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado());
-        }
         return postulacionProyectoCargoEstados;
     }
 
     @Override
-    public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstado) {
-        implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstadoList(postulacionProyectoCargoEstado);
+    public void setPostulacionProyectoCargoEstadoList(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList) {
+        implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstadoList(postulacionProyectoCargoEstadoList);
+        for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargoEstadoList) {
+            AgentePostulacionProyectoCargoEstado agentePostulacionProyectoCargoEstado = (AgentePostulacionProyectoCargoEstado) postulacionProyectoCargoEstado;
+            agentePostulacionProyectoCargoEstado.setOidPostulacionProyectoCargo(this.getOid());
+        }
     }
 
     @Override
     public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado) {
+        AgentePostulacionProyectoCargoEstado agentePostulacionProyectoCargoEstado = (AgentePostulacionProyectoCargoEstado) postulacionProyectoCargoEstado;
+        agentePostulacionProyectoCargoEstado.setOidPostulacionProyectoCargo(this.getOid());
         implementacionPostulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
     }
     
@@ -150,6 +151,8 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setProyecto(Proyecto proyecto) {
         implementacionPostulacionProyectoCargo.setProyecto(proyecto);
+        AgenteProyecto agenteProyecto = (AgenteProyecto) proyecto;
+        this.setOidProyecto(agenteProyecto.getOid());
     }
 
     @Override
@@ -160,6 +163,8 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setUniversidad(Universidad universidad) {
         implementacionPostulacionProyectoCargo.setUniversidad(universidad);
+        AgenteUniversidad agenteUniversidad = (AgenteUniversidad) universidad;
+        this.setOidUniversidad(agenteUniversidad.getOid());
     }
 
     @Override
@@ -176,6 +181,8 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setProyectoCargo(ProyectoCargo proyectoCargo) {
         implementacionPostulacionProyectoCargo.setProyectoCargo(proyectoCargo);
+        AgenteProyectoCargo agenteProyectoCargo = (AgenteProyectoCargo) proyectoCargo;
+        this.setOidProyectoCargo(agenteProyectoCargo.getOid());
     }
 
     @Override

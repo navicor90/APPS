@@ -15,6 +15,8 @@ import Modelo.interfaces.Postulacion;
 import Modelo.interfaces.PostulacionProyectoCargo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,17 +55,12 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-        System.out.println("Persistir Objetos de IPPOSTULACION");
         FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
         AgentePostulacion postulacion = (AgentePostulacion)obj;
         for (PostulacionProyectoCargo postulacionProyectoCargo: postulacion.getPostulacionProyectoCargosList()) {
-            System.out.println("guuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-            System.out.println("codigoProyecto "+postulacionProyectoCargo.getProyecto().getCodigo());
-            System.out.println("nombreProyecto "+postulacionProyectoCargo.getProyecto().getNombreProyecto());
             instanciaFPI.guardar("PostulacionProyectoCargo", postulacionProyectoCargo);
-            
         }
-        instanciaFPI.guardar("Estudiante", postulacion.getEstudiante());
+        //instanciaFPI.guardar("Estudiante", postulacion.getEstudiante());
     }
 
     @Override
@@ -74,11 +71,19 @@ public class IntermediarioPersistenciaPostulacion extends IntermediarioPersisten
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-                AgentePostulacion agente = (AgentePostulacion) objInsert;
+        AgentePostulacion agente = (AgentePostulacion) objInsert;
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaPostulacionConvertida = fechaHora.format(agente.getFechaHoraPostulacion());
+        String fechaHoraAnulacionConvertida = "";
+        if(agente.getFechaHoraAnulacionPostulacion() == null){
+            fechaHoraAnulacionConvertida = "0000-00-00 00:00:00";
+        }else{
+            fechaHoraAnulacionConvertida = fechaHora.format(agente.getFechaHoraAnulacionPostulacion());
+        }
         String sql = "INSERT INTO  AE.postulaciones "
-                + "(OIDPostulacion ,codigoPostulacion ,fechaPostulacion,fechaAnulacionPostulacion,fechaPostulacion)"
-                + "VALUES ('"+agente.getOid()+"',  '"+agente.getNroPostulacion()+"',  '"+agente.getFechaHoraPostulacion()
-                +"',  '"+agente.getFechaHoraAnulacionPostulacion()+"',  '"+agente.getOIDEstudiante()+"')";
+                + "(OIDPostulacion ,codigoPostulacion ,fechaPostulacion ,fechaAnulacionPostulacion,OIDEstudiante)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getNroPostulacion()+"',  '"+fechaPostulacionConvertida
+                +"',  '"+fechaHoraAnulacionConvertida+"',  '"+agente.getOIDEstudiante()+"')";
         return sql;
     }
 

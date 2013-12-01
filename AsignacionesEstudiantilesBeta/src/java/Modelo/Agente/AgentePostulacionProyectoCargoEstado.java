@@ -58,7 +58,7 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
 
     @Override
     public TipoEstadoPostulacionProyectoCargo getTipoEstadoPostulacionProyectoCargo() {
-        TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo=null;
+        TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo;
         if(heBuscadoTipoEstadoPostulacionProyectoCargo || this.esNuevo()){
             tipoEstadoPostulacionProyectoCargo = implementacionPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
         }else{
@@ -72,6 +72,8 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
     @Override
     public void setTipoEstadoPostulacionProyectoCargo(TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo) {
         implementacionPostulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
+        AgenteTipoEstadoPostulacionProyectoCargo agenteTipoEstadoPostulacionProyectoCargo = (AgenteTipoEstadoPostulacionProyectoCargo) tipoEstadoPostulacionProyectoCargo;
+        this.setOidTipoEstadoPostulacionProyectoCargo(agenteTipoEstadoPostulacionProyectoCargo.getOid());
     }
 
     public String getOidPostulacionProyectoCargo() {
