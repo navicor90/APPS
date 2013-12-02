@@ -33,7 +33,7 @@ public class DecoradorRegistrarPostulacion extends ExpertoRegistrarPostulacion {
         try {
             realizarPostulacion = super.realizarPostulacion(postulacionesDTO);
             FachadaPersistenciaInterna.getInstancia().ConfirmarTransaccion();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             try {
                 FachadaPersistenciaInterna.getInstancia().CancelarTransaccion();
                 Logger.getLogger(DecoradorRegistrarPostulacion.class.getName()).log(Level.SEVERE, null, ex);
