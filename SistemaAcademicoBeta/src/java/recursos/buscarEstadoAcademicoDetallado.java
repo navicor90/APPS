@@ -37,6 +37,8 @@ public class buscarEstadoAcademicoDetallado {
             List<EstadoAcademico> ListaEstadoAcademico =(List)entityManager.createQuery("SELECT a FROM EstadoAcademico a WHERE a.legajo="+legajo).getResultList();
             List<EstadoAcademicoSImple> ListaEstadoAcademicoSimple=new ArrayList<>();
             for (EstadoAcademico estadoAcademico: ListaEstadoAcademico ) {
+                System.out.println("le"+estadoAcademico.getEstudianteMateria());
+                System.out.println("valores"+ estadoAcademico.getLegajo());
                 EstadoAcademicoSImple estadoAcademicoSimple=new EstadoAcademicoSImple();
                 estadoAcademicoSimple.setLegajo(estadoAcademico.getLegajo());
                 CarreraSimple carreraSimple=new CarreraSimple();
@@ -52,7 +54,9 @@ public class buscarEstadoAcademicoDetallado {
                     estudianteMateriaSimple.setEstado(estudianteMateria.getEstado());
                     estudianteMateriaSimple.setId(estudianteMateria.getId());
                     estudianteMateriaSimple.setNotaFinal(estudianteMateria.getNotaFinal());
+                    estudianteMateriaSimple.setFechaEstado(estudianteMateria.getFechaEstado());
                     ListaEstudianteMateriaSimple.add(estudianteMateriaSimple);
+                    System.out.println("estuddiantemateria"+estudianteMateria);
                 }
                 estadoAcademicoSimple.setEstudianteMateriaSimple(ListaEstudianteMateriaSimple);
                 ListaEstadoAcademicoSimple.add(estadoAcademicoSimple);

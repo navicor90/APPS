@@ -6,6 +6,8 @@
 
 package entidades;
 
+import java.util.Date;
+
 /**
  *
  * @author yanina
@@ -15,7 +17,16 @@ public class EstudianteMateriaSimple {
     private MateriaSimple materiaSimple;
     private String estado;
     private int notaFinal;
+    private Date fechaEstado;
 
+    public Date getFechaEstado() {
+        return fechaEstado;
+    }
+
+    public void setFechaEstado(Date fechaEstado) {
+        this.fechaEstado = fechaEstado;
+    }
+    
     public String getId() {
         return id;
     }

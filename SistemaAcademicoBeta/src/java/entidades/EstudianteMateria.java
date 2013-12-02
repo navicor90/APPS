@@ -7,11 +7,13 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -29,7 +31,18 @@ public class EstudianteMateria implements Serializable {
     private Materia materia;
     private String estado;
     private int notaFinal;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaEstado;
 
+    public Date getFechaEstado() {
+        return fechaEstado;
+    }
+
+    public void setFechaEstado(Date fechaEstado) {
+        this.fechaEstado = fechaEstado;
+    }
+
+    
     public EstadoAcademico getEstadoAcademico() {
         return estadoAcademico;
     }
