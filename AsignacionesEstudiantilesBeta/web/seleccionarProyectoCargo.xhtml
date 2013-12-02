@@ -4,13 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Listar Proyecto Cargo - #{userBean.legajo}</title>
+        <title>Listar Proyecto Cargo - #{registrarPostulacionBean.legajo}</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
         <h1>Añadir Cargo</h1>
         <h:form>
-                <h:dataTable value="#{userBean.listaProyectoCargo}" var="proyectoCargo"
+                <h:dataTable value="#{registrarPostulacionBean.listaProyectoCargo}" var="proyectoCargo"
                              styleClass="proyectoTable"
                              headerClass="proyectoTableHeader"
                              rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
@@ -30,7 +30,7 @@
                         <h:selectBooleanCheckbox value="#{proyectoCargo.selected}"/>
                     </h:column>
                 </h:dataTable>
-            <h:commandButton action="#{userBean.agregarProyectosCargo()}" value="Agregar cargos" />
+            <h:commandButton action="#{registrarPostulacionBean.agregarProyectosCargo()}" value="Agregar cargos" />
         </h:form>
     </h:body>
 </html>

@@ -4,13 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Listar Proyectos - #{userBean.legajo}</title>
+        <title>Listar Proyectos - #{registrarPostulacionBean.legajo}</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
         <div class="seleccionarProyectoDiv">
         <h1>Seleccionar Proyecto</h1>
-        <h:dataTable value="#{userBean.listaProyecto}" var="proyecto"
+        <h:dataTable value="#{registrarPostulacionBean.listaProyecto}" var="proyecto"
                      styleClass="proyectoTable"
                      headerClass="proyectoTableHeader"
                      rowClasses="proyectoTableOddRow,proyectoTableEvenRow">
@@ -34,7 +34,7 @@
         </div>
         <div class="postulacionesCargosRealizadasDiv">
         <h2>Cargos registrados en esta Postulación</h2>
-        <h:dataTable value="#{userBean.postulacionesProyectoCargoDTO}" var="postulacionCargo"
+        <h:dataTable value="#{registrarPostulacionBean.postulacionesProyectoCargoDTO}" var="postulacionCargo"
                      styleClass="postulacionCargoTable" 
                      headerClass="postulacionCargoTableHeader" 
                      rowClasses="postulacionCargoTableOddRow,postulacionCargoTableEvenRow">
@@ -48,8 +48,8 @@
             </h:column>
         </h:dataTable>
         <h:form>
-            <h:commandButton action="#{userBean.terminarPostulacion()}" value="Terminar Postulacion" styleClass="terminarPostulacion" />
-            <h:commandButton action="#{userBean.cancelarPostulacion()}" value="Cancelar Postulacion" styleClass="cancelarPostulacion" />
+            <h:commandButton action="#{registrarPostulacionBean.terminarPostulacion()}" value="Terminar Postulacion" styleClass="terminarPostulacion" />
+            <h:commandButton action="#{registrarPostulacionBean.cancelarPostulacion()}" value="Cancelar Postulacion" styleClass="cancelarPostulacion" />
         </h:form>
         </div>
     </h:body>

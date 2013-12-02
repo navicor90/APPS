@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class UserBean {
+public class RegistrarPostulacionBean {
 
     private long legajo;
     private ControladorRegistrarPostulacion controlador;
@@ -34,7 +34,7 @@ public class UserBean {
     private List<DTOProyectoCargo> proyectoCargosList;
     private DTOProyecto proyectoActual;
 
-    public UserBean() {
+    public RegistrarPostulacionBean() {
         controlador = new ControladorRegistrarPostulacion();
         postulacionesDTO = new ArrayList<DTOPostulacionProyectoCargo>();
 
@@ -106,7 +106,7 @@ public class UserBean {
             String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
             ctx.redirect(ctxPath + "/faces/terminarPostulacion.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarPostulacionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

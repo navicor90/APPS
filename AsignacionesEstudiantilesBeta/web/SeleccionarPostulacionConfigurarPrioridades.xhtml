@@ -4,13 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Listar Postulaciones - #{userBean.legajo}</title>
+        <title>Listar Postulaciones - #{registrarPostulacionBean.legajo}</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
         <div class="seleccionarProyectoDiv">
         <h1>Seleccionar Postulación a configurar</h1>
-        <h:dataTable value="#{userBean.postulacionesProyectoCargoDTO}" var="postulacion"
+        <h:dataTable value="#{registrarPostulacionBean.postulacionesProyectoCargoDTO}" var="postulacion"
                      styleClass="postulacionTable"
                      headerClass="postulacionTableHeader"
                      rowClasses="postulacionTableOddRow,postulacionTableEvenRow">
