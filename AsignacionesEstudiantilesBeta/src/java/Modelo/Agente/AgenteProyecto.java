@@ -22,11 +22,31 @@ import java.util.List;
 public class AgenteProyecto extends Agente implements Proyecto{
     private String oidEmpresa;
     private String oidUniversidad;
+    private String oidTipoSeleccion;
     private boolean heBuscadoEmpresa;
     private boolean heBuscadoUniversidad;
+    private boolean heBuscadoTipoSeleccion;
     private boolean heBuscadoProyectoCargoList;
     private ImplementacionProyecto implementacionProyecto;
 
+    public String getOidTipoSeleccion() {
+        return oidTipoSeleccion;
+    }
+
+    public void setOidTipoSeleccion(String oidTipoSeleccion) {
+        this.oidTipoSeleccion = oidTipoSeleccion;
+    }
+
+    
+    public boolean isHeBuscadoTipoSeleccion() {
+        return heBuscadoTipoSeleccion;
+    }
+
+    public void setHeBuscadoTipoSeleccion(boolean heBuscadoTipoSeleccion) {
+        this.heBuscadoTipoSeleccion = heBuscadoTipoSeleccion;
+    }
+    
+    
     public boolean isHeBuscadoProyectoCargoList() {
         return heBuscadoProyectoCargoList;
     }
@@ -135,6 +155,8 @@ public class AgenteProyecto extends Agente implements Proyecto{
     @Override
     public void setEmpresa(Empresa empresa) {
         implementacionProyecto.setEmpresa(empresa);
+        Agente agente = (Agente) empresa;
+        this.setOidEmpresa(agente.getOid());
     }
 
     @Override
@@ -154,6 +176,10 @@ public class AgenteProyecto extends Agente implements Proyecto{
     @Override
     public void setProyectoCargoList(List<ProyectoCargo> proyectoCargoList) {
         implementacionProyecto.setProyectoCargoList(proyectoCargoList);
+        for (ProyectoCargo proyectoCargo : proyectoCargoList) {
+            AgenteProyectoCargo agente = (AgenteProyectoCargo) proyectoCargo;
+            agente.setOidProyecto(this.getOid());
+        }
     }
 
     @Override
@@ -165,11 +191,14 @@ public class AgenteProyecto extends Agente implements Proyecto{
     @Override
     public Universidad getUniversidad() {
         return implementacionProyecto.getUniversidad();
+        
     }
 
     @Override
     public void setUniversidad(Universidad universidad) {
         implementacionProyecto.setUniversidad(universidad);
+        Agente agente = (Agente) universidad;
+        this.setOidUniversidad(agente.getOid());
     }
 
     @Override
@@ -178,8 +207,13 @@ public class AgenteProyecto extends Agente implements Proyecto{
     }
 
     @Override
-    public void setProyectoEstado(List<ProyectoEstado> proyectoEstado) {
-        implementacionProyecto.setProyectoEstado(proyectoEstado);
+    public void setProyectoEstado(List<ProyectoEstado> proyectoEstadoList) {
+        implementacionProyecto.setProyectoEstado(proyectoEstadoList);
+        for (ProyectoEstado proyectoEstado : proyectoEstadoList) {
+            AgenteProyectoEstado agente = (AgenteProyectoEstado) proyectoEstado ;
+            agente.setOidProyecto(this.getOid());
+        }
+        
     }
 
     @Override
@@ -190,6 +224,8 @@ public class AgenteProyecto extends Agente implements Proyecto{
     @Override
     public void setTipoSeleccion(TipoSeleccion tipoSeleccion) {
         implementacionProyecto.setTipoSeleccion(tipoSeleccion);
+        Agente agente = (Agente) tipoSeleccion;
+        this.setOidTipoSeleccion(agente.getOid());
     }
 
     @Override

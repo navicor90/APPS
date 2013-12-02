@@ -22,6 +22,8 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
 
     private String oidProyecto;
     private String oidTipoCargo;
+    private String oidProyectoCargoCarrera;
+    private boolean heBuscadoProyectoCargoCarrera;
     private boolean heBuscadoProyectoCargoCarrrera;
     private boolean heBuscadoProyecto;
     private boolean heBuscadoTipoCargo;
@@ -34,6 +36,23 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
         heBuscadoTipoCargo=false;
     }
 
+    public String getOidProyectoCargoCarrera() {
+        return oidProyectoCargoCarrera;
+    }
+
+    public void setOidProyectoCargoCarrera(String oidProyectoCargoCarrera) {
+        this.oidProyectoCargoCarrera = oidProyectoCargoCarrera;
+    }
+
+    public boolean isHeBuscadoProyectoCargoCarrera() {
+        return heBuscadoProyectoCargoCarrera;
+    }
+
+    public void setHeBuscadoProyectoCargoCarrera(boolean heBuscadoProyectoCargoCarrera) {
+        this.heBuscadoProyectoCargoCarrera = heBuscadoProyectoCargoCarrera;
+    }
+    
+    
     public boolean isHeBuscadoProyectoCargoEstado() {
         return heBuscadoProyectoCargoEstado;
     }
@@ -151,7 +170,7 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     @Override
     public TipoCargo getTipoCargo()  {
         TipoCargo tipoCargo = null;
-        if (heBuscadoTipoCargo) {
+        if (heBuscadoTipoCargo || this.esNuevo()) {
             tipoCargo = implementacionProyectoCargo.getTipoCargo();
         } else {
             tipoCargo = (TipoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoCargo", oidTipoCargo);
@@ -163,13 +182,15 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     @Override
     public void setTipoCargo(TipoCargo tipoCargo) {
         implementacionProyectoCargo.setTipoCargo(tipoCargo);
-        this.setHeBuscadoTipoCargo(true);
+        Agente agente = (Agente) tipoCargo;
+        this.setOidTipoCargo(agente.getOid());
+        
     }
 
     @Override
     public ProyectoCargoCarrera getProyectoCargoCarrera() {
         ProyectoCargoCarrera proyectoCargoCarrera ;
-        if(heBuscadoProyectoCargoCarrrera){
+        if(heBuscadoProyectoCargoCarrrera || this.esNuevo()){
             proyectoCargoCarrera = implementacionProyectoCargo.getProyectoCargoCarrera();
         }else{
             Criterio criterioBusquedaProyectoCargoCarrera = (Criterio) FabricaCriterio.getInstancia().crear("proyectoCargo", "=", this);
@@ -183,7 +204,8 @@ public class AgenteProyectoCargo extends Agente implements ProyectoCargo {
     @Override
     public void setProyectoCargoCarrera(ProyectoCargoCarrera proyectoCargoCarrera) {
         implementacionProyectoCargo.setProyectoCargoCarrera(proyectoCargoCarrera);
-        this.setHeBuscadoProyectoCargoCarrrera(true);
+        Agente agente = (Agente) proyectoCargoCarrera;
+        this.setOidProyectoCargoCarrera(agente.getOid());
     }
 
     @Override

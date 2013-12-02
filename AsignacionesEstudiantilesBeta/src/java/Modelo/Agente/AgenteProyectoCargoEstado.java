@@ -5,6 +5,7 @@
  */
 
 package Modelo.Agente;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.implementacion.ImplementacionProyectoCargoCarrera;
 import Modelo.implementacion.ImplementacionProyectoCargoEstado;
 import Modelo.interfaces.*;
@@ -73,12 +74,21 @@ public class AgenteProyectoCargoEstado extends Agente implements ProyectoCargoEs
 
     @Override
     public TipoEstadoProyectoCargo getTipoEstadoProyectoCargo() {
-        return implementacionProyectoCargoEstado.getTipoEstadoProyectoCargo();
+        TipoEstadoProyectoCargo tipoEstadoProyectoCargo = null;
+        if(heBuscadoProyectoCargo || this.esNuevo()){
+            tipoEstadoProyectoCargo = implementacionProyectoCargoEstado.getTipoEstadoProyectoCargo();
+        }else{
+            tipoEstadoProyectoCargo = (TipoEstadoProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoProyectoCargo", this.getOidTipoEstadoProyectoCargo());
+            this.setHeBuscadoTipoEstadoProyectoCargo(true);
+        }
+        return tipoEstadoProyectoCargo;
     }
 
     @Override
     public void setTipoEstadoProyectoCargo(TipoEstadoProyectoCargo tipoEstadoProyectoCargo) {
         implementacionProyectoCargoEstado.setTipoEstadoProyectoCargo(tipoEstadoProyectoCargo);
+        Agente agente = (Agente) tipoEstadoProyectoCargo ;
+        this.setOidTipoEstadoProyectoCargo(agente.getOid());
     }
     
 }

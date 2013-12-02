@@ -7,7 +7,6 @@
 package Modelo.Agente;
 import Modelo.interfaces.*;
 import Controlador.Persistencia.*;
-import Modelo.implementacion.*;
 import Modelo.implementacion.ImplementacionProyectoEstado;
 import java.util.Date;
 /**
@@ -61,8 +60,6 @@ public class AgenteProyectoEstado extends Agente implements ProyectoEstado{
         this.ImplementacionProyectoEstado = ImplementacionProyectoEstado;
     }
     
-    
-    
     @Override
     public Date getFechaHoraCambio() {
         return ImplementacionProyectoEstado.getFechaHoraCambio();
@@ -75,12 +72,21 @@ public class AgenteProyectoEstado extends Agente implements ProyectoEstado{
 
     @Override
     public TipoEstadoProyecto getTipoEstadoProyecto() {
-        return ImplementacionProyectoEstado.getTipoEstadoProyecto();
+        TipoEstadoProyecto tipoEstadoProyecto;
+        if(heBuscadoTipoEstadoProyecto || this.esNuevo()){
+            tipoEstadoProyecto = ImplementacionProyectoEstado.getTipoEstadoProyecto();
+        }else{
+            tipoEstadoProyecto = (TipoEstadoProyecto) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoProyecto", this.getOidTipoEstadoProyecto());
+            this.setHeBuscadoTipoEstadoProyecto(true);
+        }
+        return tipoEstadoProyecto;
     }
 
     @Override
     public void setTipoEstadoProyecto(TipoEstadoProyecto tipoEstadoProyecto) {
         ImplementacionProyectoEstado.setTipoEstadoProyecto(tipoEstadoProyecto);
+        Agente agente = (Agente) tipoEstadoProyecto;
+        this.setOidTipoEstadoProyecto(agente.getOid());
     }
     
 }

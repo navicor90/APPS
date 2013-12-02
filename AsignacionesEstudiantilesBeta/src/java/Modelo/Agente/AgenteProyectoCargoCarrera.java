@@ -5,6 +5,7 @@
  */
 
 package Modelo.Agente;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.implementacion.ImplementacionProyectoCargoCarrera;
 import Modelo.interfaces.*;
 /**
@@ -81,12 +82,21 @@ public class AgenteProyectoCargoCarrera extends Agente implements ProyectoCargoC
 
     @Override
     public Carrera getCarrera() {
-        return implementacionProyectoCargoCarrera.getCarrera();
+        Carrera carrera;
+        if(heBuscadoCarrera || this.esNuevo()){
+            carrera = implementacionProyectoCargoCarrera.getCarrera();
+        }else{
+            carrera = (Carrera) FachadaPersistenciaInterna.getInstancia().buscar("Carrera", this.getOidCarrera());
+            this.setHeBuscadoCarrera(true);
+        }
+        return carrera;
     }
 
     @Override
     public void setCarrera(Carrera carrera) {
         implementacionProyectoCargoCarrera.setCarrera(carrera);
+        Agente agente = (Agente) carrera;
+        this.setOidCarrera(agente.getOid());
     }
     
 }
