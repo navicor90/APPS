@@ -9,12 +9,10 @@ import Controlador.ControladorRegistrarPostulacion;
 import Modelo.DTO.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -64,11 +62,11 @@ public class UserBean {
         this.legajo = legajo;
     }
 
-    public List<DTOPostulacionProyectoCargo> getPostulacionesDTO() {
+    public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
         return postulacionesDTO;
     }
 
-    public void setPostulacionesDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+    public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
         this.postulacionesDTO = postulacionesDTO;
     }
 

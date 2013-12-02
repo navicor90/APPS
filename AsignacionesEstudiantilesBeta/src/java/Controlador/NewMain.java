@@ -5,15 +5,12 @@
  */
 package Controlador;
 
-import Controlador.Persistencia.FachadaPersistencia;
-import Controlador.Persistencia.*;
+import Controlador.Persistencia.FabricaEntidades;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.*;
-import Modelo.Agente.Agente;
-import Modelo.Agente.AgenteEstudiante;
-import Modelo.Agente.AgentePostulacion;
-import Modelo.interfaces.TipoCargo;
-
-import java.sql.SQLException;
+import Modelo.interfaces.Proyecto;
+import Modelo.interfaces.ProyectoCargo;
+import Modelo.interfaces.ProyectoCargoCarrera;
 import java.util.Random;
 
 /**
@@ -25,53 +22,18 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
-        
-        Agente agente = new AgenteEstudiante();
-        System.out.println(agente.esNuevo());
-        AgentePostulacion agente2 = new AgentePostulacion();
-        System.out.println(agente2.esNuevo());
-        /*FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
-         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", "34567");
-         List<Estudiante> estudiantesList = (List)FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
-         Estudiante estudiante=null;
-         if(estudiantesList!=null){
-         estudiante = estudiantesList.get(0);
-         }else{
-         System.out.println("nullllllllll");
-         }
-         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(1);
-         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
-         Boolean esRegular = false;
-         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
-         if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("esRegular")) {
-         esRegular = true;
-         }
-         }
-         if (esRegular) {
-         Date fechaActualD = new Date();
-         String fechaActual = "";
-         fechaActual+=fechaActualD.getYear()+"-";
-         int mes = fechaActualD.getMonth()+1;
-         fechaActual+=mes+"-";
-         int dia = fechaActualD.getDate()+1;
-         fechaActual+=dia;
-         Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto",">" ,fechaActual);
-         List<Proyecto> ProyectosList = (List)FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
-         List<DTOProyecto> proyectoDTOList = new ArrayList<>();
-         for (Proyecto proyecto: ProyectosList) {
-         DTOProyecto proyectoDTO = new DTOProyecto();
-         proyectoDTO.setDescripcion(proyecto.getDescripcion());
-         proyectoDTO.setDuracion(proyecto.getDuracion());
-         proyectoDTO.setFechaInicio(proyecto.getFechaInicio());
-         proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
-         System.out.println(proyecto.getNombreProyecto());
-         proyectoDTOList.add(proyectoDTO);
-         }            
-         System.out.println("lalalalalal... i winnnn");
-         }
-         System.out.println("i lost");
-         */
+    public static void main(String[] args) {
+        FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
+        Proyecto proyecto = (Proyecto) FabricaEntidades.getInstancia().crearEntidad(Proyecto.class);
+        ProyectoCargo proyectoCargo1 = (ProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(ProyectoCargo.class);
+        proyectoCargo1.setCantidadMinimaPostulacion(5);
+        proyectoCargo1.setDescripcion("");
+        proyectoCargo1.setHabilitado(true);
+        proyectoCargo1.setHorasDedicadas(4);
+        proyectoCargo1.setNroProyectoCargo(21116);
+        ProyectoCargo proyectoCargo2 = (ProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(ProyectoCargo.class);
+        ProyectoCargoCarrera proyectoCargoCarrera = (ProyectoCargoCarrera) FabricaEntidades.getInstancia().crearEntidad(ProyectoCargoCarrera.class);
+
     }
 
     private static String getCadenaAlfanumAleatoria(int longitud) {

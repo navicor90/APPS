@@ -4,10 +4,15 @@
  */
 package Controlador.Persistencia;
 
+import Modelo.Agente.AgenteUniversidad;
 import Modelo.Criterio;
 import Modelo.Expresion;
+import Modelo.implementacion.ImplementacionUniversidad;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,50 +21,64 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaUniversidad extends IntermediarioPersistenciaRelacional{
 
-    @Override
+@Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void persistirObjetosInternos(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Object> universidadList = new ArrayList<>();
+        while (rs.next()) {
+            AgenteUniversidad universidadAgente = new AgenteUniversidad();
+            ImplementacionUniversidad universidadImplementacion = new ImplementacionUniversidad();
+            universidadAgente.setImplementacionUniversidad(universidadImplementacion);
+            universidadAgente.setOid(rs.getString("OIDUniversidad"));
+            universidadAgente.setCodigo(rs.getLong("codigoUniversidad"));
+            universidadAgente.setNombreUniversidad(rs.getString("nombreUniversidad"));
+            universidadAgente.setDireccionServidorWebUniversidad(rs.getString("direccionServidorWebUniversidad"));
+            universidadAgente.setFechaInicioVigenciaUniversidad(rs.getDate("fechaInicioVigenciaUniversidad"));
+            universidadAgente.setFechaFinVigenciaUniversidad(rs.getDate("fechaFinVigenciaUniversidad"));
+            universidadList.add(universidadAgente);
+        }
+        return universidadList;
     }
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM AE.universidades WHERE "+desarmarExpresion(expresion);
+        return sql;
+    }
+
+    @Override
+    public void persistirObjetosInternos(Object obj) {
     }
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "SELECT * FROM AE.universidades WHERE OIDUniversidad ='"+oid+"'";
+        return sql;
     }
 
     @Override
-    public String armarConsultaInsercion(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String armarConsultaInsercion(Object objInsert) {
+        AgenteUniversidad agente = (AgenteUniversidad) objInsert;
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaInicioVigenciaConvertida = fechaHora.format(agente.getFechaInicioVigenciaUniversidad());
+        String fechaFinVigenciaConvertida = fechaHora.format(agente.getFechaFinVigenciaUniversidad());
+        String sql = "INSERT INTO  AE.postulaciones "
+                + "(OIDUniversidad ,codigoUniversidad ,nombreUniversidad , direccionServidorWebUniversidad,"
+                + "fechaInicioVigenciaUniversidad, fechaFinVigenciaUniversidad)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getCodigo()+"',  '"+agente.getNombreUniversidad()
+                +"',  '"+agente.getDireccionServidorWebUniversidad()+"',  '"+fechaInicioVigenciaConvertida
+                +"',  '"+fechaFinVigenciaConvertida+"')";
+        return sql;
     }
 
     @Override
-    public String armarConsultaActualizacion(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String armarConsultaActualizacion(Object objUpdate) {
+        throw new UnsupportedOperationException("No implementado ------------."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    /* Lo que estaba hecho antes
-    @Override
-    public List<Object> Buscar(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean guardar(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    */
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("No implementado ------------."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }
