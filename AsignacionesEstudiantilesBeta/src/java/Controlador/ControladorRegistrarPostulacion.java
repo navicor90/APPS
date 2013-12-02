@@ -8,6 +8,9 @@ package Controlador;
 
 import Modelo.DTO.*;
 import Controlador.Persistencia.*;
+import Modelo.Criterio;
+import Modelo.FabricaCriterio;
+import Modelo.interfaces.Universidad;
 import java.util.Date;
 import java.util.List;
 /**
@@ -22,8 +25,9 @@ public class ControladorRegistrarPostulacion {
     }
     
     public List<DTOProyecto> listarProyectos(long legajo, String url){
-        int codUniversidad=2;
-        return experto.listarProyectos(legajo, codUniversidad);
+        Criterio criterio = (Criterio) FabricaCriterio.getInstancia().crear("direccionServidorWebUniversidad", "=", url);
+        Universidad universidad =(Universidad) FachadaPersistenciaInterna.getInstancia().buscar("Universidad", criterio);
+        return experto.listarProyectos(legajo, universidad.getCodigo());
     }
     
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto){

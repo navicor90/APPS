@@ -17,7 +17,7 @@ public class FabricaAdaptadorSistemaAcademico {
         if(instancia==null)instancia = new FabricaAdaptadorSistemaAcademico();
         return instancia;
     }
-    public AdaptadorSistemaAcademico obtenerAdaptadorSistemaAcademico(int codUniversidad){
+    public AdaptadorSistemaAcademico obtenerAdaptadorSistemaAcademico(Long codUniversidad){
         return new AdaptadorSistemaAcademico02();
     }
     

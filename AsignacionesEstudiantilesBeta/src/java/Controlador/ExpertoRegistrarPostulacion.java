@@ -22,9 +22,9 @@ import java.util.List;
 public class ExpertoRegistrarPostulacion {
 
     Estudiante estudiante;
-    int codUniversidad;
+    Long codUniversidad;
 
-    public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad) {
+    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) {
         this.codUniversidad = codUniversidad;
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
         List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
