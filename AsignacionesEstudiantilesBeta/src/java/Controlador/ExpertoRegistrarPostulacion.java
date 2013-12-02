@@ -27,10 +27,15 @@ public class ExpertoRegistrarPostulacion {
     public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad) {
         this.codUniversidad = codUniversidad;
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
-        List<Object> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
+        List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         estudiante = null;
         if (estudiantesList != null) {
-            estudiante = (Estudiante) estudiantesList.get(0);
+            for (Estudiante e : estudiantesList) {
+                if(e.getUniversidad().getCodigo() == codUniversidad){
+                    estudiante = e;
+                }
+            }
+            
         } else {
             return null;
         }
