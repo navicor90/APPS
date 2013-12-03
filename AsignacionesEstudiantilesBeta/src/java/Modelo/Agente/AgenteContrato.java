@@ -18,6 +18,24 @@ import java.util.List;
  */
 public class AgenteContrato extends Agente implements Contrato{
     ImplementacionContrato implementacionContrato;
+    public boolean heBuscadoPostulacion;
+    public boolean heBuscadoPostulacionProyectoCargo;
+
+    public boolean isHeBuscadoPostulacion() {
+        return heBuscadoPostulacion;
+    }
+
+    public void setHeBuscadoPostulacion(boolean heBuscadoPostulacion) {
+        this.heBuscadoPostulacion = heBuscadoPostulacion;
+    }
+
+    public boolean isHeBuscadoPostulacionProyectoCargo() {
+        return heBuscadoPostulacionProyectoCargo;
+    }
+
+    public void setHeBuscadoPostulacionProyectoCargo(boolean heBuscadoPostulacionProyectoCargo) {
+        this.heBuscadoPostulacionProyectoCargo = heBuscadoPostulacionProyectoCargo;
+    }
 
     public ImplementacionContrato getImplementacionContrato() {
         return implementacionContrato;
@@ -49,42 +67,42 @@ public class AgenteContrato extends Agente implements Contrato{
     }
 
     @Override
-    public ImplementacionEmpresa getEmpresa() {
+    public Empresa getEmpresa() {
         return implementacionContrato.getEmpresa();
     }
 
     @Override
-    public void setEmpresa(ImplementacionEmpresa empresa) {
+    public void setEmpresa(Empresa empresa) {
         implementacionContrato.setEmpresa(empresa);
     }
 
     @Override
-    public List<ImplementacionPostulacionProyectoCargo> getPostulacionProyecCargo() {
+    public List<PostulacionProyectoCargo> getPostulacionProyecCargo() {
         return implementacionContrato.getPostulacionProyecCargo();
     }
 
     @Override
-    public void setPostulacionProyecCargo(List<ImplementacionPostulacionProyectoCargo> postulacionProyecCargo) {
+    public void setPostulacionProyecCargo(List<PostulacionProyectoCargo> postulacionProyecCargo) {
         implementacionContrato.setPostulacionProyecCargo(postulacionProyecCargo);
     }
 
     @Override
-    public ImplementacionPostulacion getPostulacion() {
+    public Postulacion getPostulacion() {
         return implementacionContrato.getPostulacion();
     }
 
     @Override
-    public void setPostulacion(ImplementacionPostulacion postulacion) {
+    public void setPostulacion(Postulacion postulacion) {
         implementacionContrato.setPostulacion(postulacion);
     }
 
     @Override
-    public ImplementacionContrato getContrato() {
+    public Contrato getContrato() {
         return implementacionContrato.getContrato();
     }
 
     @Override
-    public void setContrato(ImplementacionContrato contrato) {
+    public void setContrato(Contrato contrato) {
         implementacionContrato.setContrato(contrato);
     }
     

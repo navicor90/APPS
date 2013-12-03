@@ -26,19 +26,19 @@ public interface Contrato {
 
     public void setFechaEmisionContrato(Date fechaEmisionContrato) ;
 
-    public ImplementacionEmpresa getEmpresa() ;
+    public Empresa getEmpresa() ;
 
-    public void setEmpresa(ImplementacionEmpresa empresa) ;
+    public void setEmpresa(Empresa empresa) ;
 
-    public List<ImplementacionPostulacionProyectoCargo> getPostulacionProyecCargo() ;
+    public List<PostulacionProyectoCargo> getPostulacionProyecCargo() ;
 
-    public void setPostulacionProyecCargo(List<ImplementacionPostulacionProyectoCargo> postulacionProyecCargo) ;
+    public void setPostulacionProyecCargo(List<PostulacionProyectoCargo> postulacionProyecCargo) ;
 
-    public ImplementacionPostulacion getPostulacion() ;
+    public Postulacion getPostulacion() ;
 
-    public void setPostulacion(ImplementacionPostulacion postulacion) ;
+    public void setPostulacion(Postulacion postulacion) ;
 
-    public ImplementacionContrato getContrato() ;
+    public Contrato getContrato() ;
 
-    public void setContrato(ImplementacionContrato contrato) ;
+    public void setContrato(Contrato contrato) ;
 }

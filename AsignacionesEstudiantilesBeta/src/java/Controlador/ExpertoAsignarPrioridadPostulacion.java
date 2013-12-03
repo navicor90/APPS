@@ -54,8 +54,15 @@ public class ExpertoAsignarPrioridadPostulacion {
             List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
                     for (Postulacion postulacion : postulacionesList) {
                        Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
-                       List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
-                        if(contratoList == null){
+                       List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);//puedo manejarlo como un contrato solo o tengo que hacer lstaDeContrato.get(0)??
+                       Contrato contrato = contratoList.get(0);
+                       if(contrato != null){
+                            //Expresion criterioBusquedaContratoEstado = FabricaCriterio.getInstancia().crear("contrato", "=", contrato);
+                            //List<ContratoEstado> contratoEstadoList = (List) contrato.g;
+                                for (ContratoEstado contratoEstado : contratoEstadoList) {
+                                    Expresion criterioBusquedaEstadoContrato = FabricaCriterio.getInstancia().crear("contratoEstado", "=", contratoEstado);
+                                    EstadoContrato estadoContratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("EstadoContrato", criterioBusquedaEstadoContrato);
+                            }
                             
                         }
         }                  

@@ -17,10 +17,10 @@ import java.util.List;
 public class ImplementacionContrato implements Contrato {
     private int codigoContrato;
     private Date fechaEmisionContrato;
-    private ImplementacionEmpresa empresa;
-    private List<ImplementacionPostulacionProyectoCargo> postulacionProyecCargo;
-    private ImplementacionPostulacion postulacion;
-    private ImplementacionContrato contrato;
+    private Empresa empresa;
+    private List<PostulacionProyectoCargo> postulacionProyecCargo;
+    private Postulacion postulacion;
+    private Contrato contrato;
 
     @Override
     public int getCodigoContrato() {
@@ -43,42 +43,42 @@ public class ImplementacionContrato implements Contrato {
     }
 
     @Override
-    public ImplementacionEmpresa getEmpresa() {
+    public Empresa getEmpresa() {
         return empresa;
     }
 
     @Override
-    public void setEmpresa(ImplementacionEmpresa empresa) {
+    public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
     @Override
-    public List<ImplementacionPostulacionProyectoCargo> getPostulacionProyecCargo() {
+    public List<PostulacionProyectoCargo> getPostulacionProyecCargo() {
         return postulacionProyecCargo;
     }
 
     @Override
-    public void setPostulacionProyecCargo(List<ImplementacionPostulacionProyectoCargo> postulacionProyecCargo) {
+    public void setPostulacionProyecCargo(List<PostulacionProyectoCargo> postulacionProyecCargo) {
         this.postulacionProyecCargo = postulacionProyecCargo;
     }
 
     @Override
-    public ImplementacionPostulacion getPostulacion() {
+    public Postulacion getPostulacion() {
         return postulacion;
     }
 
     @Override
-    public void setPostulacion(ImplementacionPostulacion postulacion) {
+    public void setPostulacion(Postulacion postulacion) {
         this.postulacion = postulacion;
     }
 
     @Override
-    public ImplementacionContrato getContrato() {
+    public Contrato getContrato() {
         return contrato;
     }
 
     @Override
-    public void setContrato(ImplementacionContrato contrato) {
+    public void setContrato(Contrato contrato) {
         this.contrato = contrato;
     }
 

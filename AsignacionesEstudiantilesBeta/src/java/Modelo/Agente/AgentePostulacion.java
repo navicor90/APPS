@@ -18,7 +18,7 @@ import java.util.List;
  * @author yanina
  */
 public class AgentePostulacion extends Agente implements Postulacion{
-    private boolean heBuscadoEstudiante;
+    private boolean heBuscadoEstudiante; 
     private boolean heBuscadoPostulacionProyectoCargo;
     private String OIDEstudiante;
     private ImplementacionPostulacion implementacionPostulacion;
