@@ -30,7 +30,4 @@ public interface Carrera {
 
     public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) ;
 
-    public PlanDeEstudio getPlanDeEstudio() ;
-
-    public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) ;
 }

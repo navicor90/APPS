@@ -8,8 +8,10 @@ package Modelo.implementacion;
 
 import Modelo.interfaces.Carrera;
 import Modelo.interfaces.EstadoAcademico;
+import Modelo.interfaces.EstudianteMateria;
 import Modelo.interfaces.TipoEstadoAcademico;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,9 +21,21 @@ public class ImplementacionEstadoAcademico implements EstadoAcademico {
     String legajo;
     Carrera carrera;
     TipoEstadoAcademico tipoEstadoAcademico;
+    List<EstudianteMateria> estudianteMateriaList;
     Date fechaIngreso;
     Date fechaFinHabilitacion;
 
+    @Override
+    public List<EstudianteMateria> getEstudianteMateriaList() {
+        return estudianteMateriaList;
+    }
+
+    @Override
+    public void setEstudianteMateriaList(List<EstudianteMateria> estudianteMateriaList) {
+        this.estudianteMateriaList = estudianteMateriaList;
+    }
+    
+    
     @Override
     public Date getFechaIngreso() {
         return fechaIngreso;

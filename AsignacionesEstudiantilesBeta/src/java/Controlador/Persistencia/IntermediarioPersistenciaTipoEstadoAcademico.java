@@ -23,58 +23,40 @@ public class IntermediarioPersistenciaTipoEstadoAcademico extends IntermediarioP
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
-        List<Object> postulacionList = new ArrayList<>();
+        List<Object> tipoEstadoAcademicoList = new ArrayList<>();
         while (rs.next()) {
             AgenteTipoEstadoAcademico tipoEstadoAcademicoAgente = new AgenteTipoEstadoAcademico();
-            ImplementacionTipoEstadoAcademico postulacionProyectoCargoImplementacion = new ImplementacionPostulacionProyectoCargo();
-            tipoEstadoAcademicoAgente.setImplementacionPostulacionProyectoCargo(postulacionProyectoCargoImplementacion);
+            ImplementacionTipoEstadoAcademico postulacionProyectoCargoImplementacion = new ImplementacionTipoEstadoAcademico();
+            tipoEstadoAcademicoAgente.setImplementacionTipoEstadoAcademico(postulacionProyectoCargoImplementacion);
             tipoEstadoAcademicoAgente.setOid(rs.getString("OIDPostulacionProyectoCargo"));
-            tipoEstadoAcademicoAgente.setPrioridad(rs.getInt("prioridadPostulacionProyectoCargo"));
-            tipoEstadoAcademicoAgente.setCantidadMateriasAprobadasEstudiante(rs.getInt("cantidadMateriasAprobadasEstudiantePostulacionProyectoCargo"));
-            tipoEstadoAcademicoAgente.setCantidadMateriasRegulares(rs.getInt("cantidadMateriasRegularesPostulacionProyectoCargo"));
-            tipoEstadoAcademicoAgente.setOidPostulacion(rs.getString("OIDPostulacion"));
-            tipoEstadoAcademicoAgente.setOidProyecto(rs.getString("OIDProyecto"));
-            tipoEstadoAcademicoAgente.setOidProyectoCargo(rs.getString("OIDProyectoCargo"));
-            tipoEstadoAcademicoAgente.setOidUniversidad(rs.getString("OIDUniversidad"));
-            postulacionList.add(tipoEstadoAcademicoAgente);
+            tipoEstadoAcademicoAgente.setCodigo(rs.getInt("codigo"));
+            tipoEstadoAcademicoAgente.setNombre(rs.getString("nombre"));
+            tipoEstadoAcademicoList.add(tipoEstadoAcademicoAgente);
         }
-        return postulacionList;
+        return tipoEstadoAcademicoList;
     }
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE "+desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.tipoEstadoAcademicos WHERE "+desarmarExpresion(expresion);
         return sql;
     }
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-        FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
-        PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) obj;
-        //instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
-        //instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
-        //instanciaFPI.guardar("Universidad", postulacionProyectoCargo.getUniversidad());
-        for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
-            FachadaPersistenciaInterna.getInstancia().guardar("PostulacionProyectoCargoEstado", postulacionProyectoCargoEstado);
-        }
-        
     }
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-         String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE OIDPostulacionProyectoCargo='"+oid+"'";
+         String sql = "SELECT * FROM AE.tipoEstadoAcademicos WHERE OIDTipoEstadoAcademico='"+oid+"'";
         return sql;
     }
 
     @Override
     public String armarConsultaInsercion(Object objInsert) {
-        AgentePostulacionProyectoCargo agente = (AgentePostulacionProyectoCargo) objInsert;
-        String sql = "INSERT INTO  AE.postulacionProyectoCargos "
-                + "(OIDPostulacionProyectoCargo ,prioridadPostulacionProyectoCargo ,cantidadMateriasAprobadasEstudiantePostulacionProyectoCargo,"
-                + "cantidadMateriasRegularesPostulacionProyectoCargo,OIDPostulacion,OIDProyecto,OIDProyectoCargo,OIDUniversidad)"
-                + "VALUES ('"+agente.getOid()+"',  '"+agente.getPrioridad()+"',  '"+agente.getCantidadMateriasAprobadasEstudiante()
-                +"',  '"+agente.getCantidadMateriasRegulares()+"',  '"+agente.getOidPostulacion()+"',  '"+agente.getOidProyecto()
-                +"',  '"+agente.getOidProyectoCargo()+"',  '0123u1')";
+        AgenteTipoEstadoAcademico agente = (AgenteTipoEstadoAcademico) objInsert;
+        String sql = "INSERT INTO  AE.tipoEstadoAcademicos (OIDTipoEstadoAcademico ,codigo ,nombre)"
+                + "VALUES ('"+agente.getOid()+"',  '"+agente.getCodigo()+"',  '"+agente.getNombre()+"')";
         return sql;
     }
 
@@ -85,27 +67,8 @@ public class IntermediarioPersistenciaTipoEstadoAcademico extends IntermediarioP
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        String criterioString="";
-        switch(criterio.getAtributo()){
-            case "postulacion":
-                criterioString = "OIDPostulacion";
-                break;
-            case "proyecto":
-                criterioString = "OIDProyecto";
-                break;
-            case "proyectoCargo":
-                criterioString = "OIDProyectoCargo";
-                break;
-            case "universidad":
-                criterioString = "OIDUniversidad";
-                break;
-            default:
-                return "";
-        }
-        criterioString += criterio.getOperador();
-        Agente agente = (Agente) criterio.getValor();
-        criterioString += "'"+agente.getOid()+"'";
-        
-        return criterioString;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }

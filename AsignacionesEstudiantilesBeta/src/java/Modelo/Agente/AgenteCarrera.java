@@ -15,10 +15,29 @@ import java.util.Date;
  * @author yanina
  */
 public class AgenteCarrera extends Agente implements Carrera  {
-    String oidUniversidad;
-    boolean heBuscadoUniversdad;
-    ImplementacionCarrera implementacionCarrera;
+    private String oidUniversidad;
+    private boolean heBuscadoUniversdad;
+    private boolean heBuscadoTipoEstadoCarrera;
+    private String oidTipoEstadoCarrera;
+    private ImplementacionCarrera implementacionCarrera;
 
+    public boolean isHeBuscadoTipoEstadoCarrera() {
+        return heBuscadoTipoEstadoCarrera;
+    }
+
+    public void setHeBuscadoTipoEstadoCarrera(boolean heBuscadoTipoEstadoCarrera) {
+        this.heBuscadoTipoEstadoCarrera = heBuscadoTipoEstadoCarrera;
+    }
+
+    public String getOidTipoEstadoCarrera() {
+        return oidTipoEstadoCarrera;
+    }
+
+    public void setOidTipoEstadoCarrera(String oidTipoEstadoCarrera) {
+        this.oidTipoEstadoCarrera = oidTipoEstadoCarrera;
+    }
+    
+    
     public String getOidUniversidad() {
         return oidUniversidad;
     }
@@ -81,16 +100,6 @@ public class AgenteCarrera extends Agente implements Carrera  {
     @Override
     public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) {
         implementacionCarrera.setEstadoCarrerra(estadoCarrerra);
-    }
-
-    @Override
-    public PlanDeEstudio getPlanDeEstudio() {
-        return implementacionCarrera.getPlanDeEstudio();
-    }
-
-    @Override
-    public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) {
-        implementacionCarrera.setPlanDeEstudio(planDeEstudio);
     }
     
 }

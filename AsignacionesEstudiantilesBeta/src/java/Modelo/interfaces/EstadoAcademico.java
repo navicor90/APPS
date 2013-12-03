@@ -3,34 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.interfaces;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author milton
  */
 public interface EstadoAcademico {
-    
-    public Date getFechaIngreso() ;
 
-    public void setFechaIngreso(Date fechaIngreso) ;
+    public List<EstudianteMateria> getEstudianteMateriaList();
 
-    public Date getFechaFinHabilitacion() ;
+    public void setEstudianteMateriaList(List<EstudianteMateria> estudianteMateriaList);
 
-    public void setFechaFinHabilitacion(Date fechaFinHabilitacion) ;
-    
-    public Carrera getCarrera() ;
+    public Date getFechaIngreso();
 
-    public void setCarrera(Carrera carrera) ;
-    
-    public String getLegajo() ;
+    public void setFechaIngreso(Date fechaIngreso);
 
-    public void setLegajo(String legajo) ;
+    public Date getFechaFinHabilitacion();
 
-    public TipoEstadoAcademico getTipoEstadoAcademico() ;
+    public void setFechaFinHabilitacion(Date fechaFinHabilitacion);
 
-    public void setTipoEstadoAcademico(TipoEstadoAcademico tipoEstadoAcademico) ;
+    public Carrera getCarrera();
+
+    public void setCarrera(Carrera carrera);
+
+    public String getLegajo();
+
+    public void setLegajo(String legajo);
+
+    public TipoEstadoAcademico getTipoEstadoAcademico();
+
+    public void setTipoEstadoAcademico(TipoEstadoAcademico tipoEstadoAcademico);
 }

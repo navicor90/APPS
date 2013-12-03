@@ -19,7 +19,6 @@ public class ImplementacionCarrera implements Carrera {
     private String nombreCarrera;
     private Universidad universdad;
     private TipoEstadoCarrera estadoCarrerra;
-    private PlanDeEstudio planDeEstudio;
 
     @Override
     public Date getFechaFinVigencia() {
@@ -59,16 +58,6 @@ public class ImplementacionCarrera implements Carrera {
     @Override
     public void setEstadoCarrerra(TipoEstadoCarrera estadoCarrerra) {
         this.estadoCarrerra = estadoCarrerra;
-    }
-
-    @Override
-    public PlanDeEstudio getPlanDeEstudio() {
-        return planDeEstudio;
-    }
-
-    @Override
-    public void setPlanDeEstudio(PlanDeEstudio planDeEstudio) {
-        this.planDeEstudio = planDeEstudio;
     }
     
 

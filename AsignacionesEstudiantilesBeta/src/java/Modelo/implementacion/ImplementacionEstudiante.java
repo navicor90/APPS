@@ -24,10 +24,12 @@ public class ImplementacionEstudiante implements Estudiante {
     private TipoEstadoEstudiante estadoEstudiante;
     private List<EstadoAcademico> estadoAcademicoList;
 
+    @Override
     public List<EstadoAcademico> getEstadoAcademicoList() {
         return estadoAcademicoList;
     }
 
+    @Override
     public void setEstadoAcademicoList(List<EstadoAcademico> estadoAcademicoList) {
         this.estadoAcademicoList = estadoAcademicoList;
     }

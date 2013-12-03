@@ -180,16 +180,11 @@ public class ExpertoRegistrarPostulacion {
         Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("codigoPostulacion", ">", "0");
         List<Postulacion> postuluaciones = (List)FachadaPersistencia.obtenerInstancia().buscar("Postulacion", c);
         Iterator iteratorPost = postuluaciones.iterator();
-        Postulacion ultimaPostulacion = null;
-        while(iteratorPost.hasNext()){
-                ultimaPostulacion = (Postulacion) iteratorPost.next();
-        }
-        nroPostulacion = ultimaPostulacion.getNroPostulacion()+1;
+        nroPostulacion = 0;
         for (int i = 0; i < postuluaciones.size(); i++){
             Postulacion postulacion = postuluaciones.get(i);
-            if(nroPostulacion==postulacion.getNroPostulacion()){
-                nroPostulacion++;
-                i=0;
+            if(nroPostulacion<=postulacion.getNroPostulacion()){
+                nroPostulacion=postulacion.getNroPostulacion()+1;
             }
         }
     return nroPostulacion;
