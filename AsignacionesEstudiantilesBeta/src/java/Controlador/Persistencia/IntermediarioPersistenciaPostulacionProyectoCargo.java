@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class IntermediarioPersistenciaPostulacionProyectoCargo extends IntermediarioPersistenciaRelacional {
 
-@Override
+    @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
         List<Object> postulacionList = new ArrayList<>();
         while (rs.next()) {
@@ -46,13 +46,13 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE "+desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE " + desarmarExpresion(expresion);
         return sql;
     }
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-        FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
+        FachadaPersistenciaInterna instanciaFPI = FachadaPersistenciaInterna.getInstancia();
         PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) obj;
         //instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
         //instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
@@ -60,12 +60,12 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
         for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
             FachadaPersistenciaInterna.getInstancia().guardar("PostulacionProyectoCargoEstado", postulacionProyectoCargoEstado);
         }
-        
+
     }
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-         String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE OIDPostulacionProyectoCargo='"+oid+"'";
+        String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE OIDPostulacionProyectoCargo='" + oid + "'";
         return sql;
     }
 
@@ -75,9 +75,9 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
         String sql = "INSERT INTO  AE.postulacionProyectoCargos "
                 + "(OIDPostulacionProyectoCargo ,prioridadPostulacionProyectoCargo ,cantidadMateriasAprobadasEstudiantePostulacionProyectoCargo,"
                 + "cantidadMateriasRegularesPostulacionProyectoCargo,OIDPostulacion,OIDProyecto,OIDProyectoCargo,OIDUniversidad)"
-                + "VALUES ('"+agente.getOid()+"',  '"+agente.getPrioridad()+"',  '"+agente.getCantidadMateriasAprobadasEstudiante()
-                +"',  '"+agente.getCantidadMateriasRegulares()+"',  '"+agente.getOidPostulacion()+"',  '"+agente.getOidProyecto()
-                +"',  '"+agente.getOidProyectoCargo()+"',  '0123u1')";
+                + "VALUES ('" + agente.getOid() + "',  '" + agente.getPrioridad() + "',  '" + agente.getCantidadMateriasAprobadasEstudiante()
+                + "',  '" + agente.getCantidadMateriasRegulares() + "',  '" + agente.getOidPostulacion() + "',  '" + agente.getOidProyecto()
+                + "',  '" + agente.getOidProyectoCargo() + "',  '0123u1')";
         return sql;
     }
 
@@ -88,8 +88,8 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        String criterioString="";
-        switch(criterio.getAtributo()){
+        String criterioString = "";
+        switch (criterio.getAtributo()) {
             case "postulacion":
                 criterioString = "OIDPostulacion";
                 break;
@@ -107,8 +107,8 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
         }
         criterioString += criterio.getOperador();
         Agente agente = (Agente) criterio.getValor();
-        criterioString += "'"+agente.getOid()+"'";
-        
+        criterioString += "'" + agente.getOid() + "'";
+
         return criterioString;
     }
 }
