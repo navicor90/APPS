@@ -2,31 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Listar Postulaciones - #{registrarPostulacionBean.legajo}</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
     <h:body>
-        <div class="seleccionarProyectoDiv">
-        <h1>Seleccionar Postulación a configurar</h1>
-        <h:dataTable value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="postulacion"
-                     styleClass="postulacionTable"
-                     headerClass="postulacionTableHeader"
-                     rowClasses="postulacionTableOddRow,postulacionTableEvenRow">
-            <h:column>
-                <f:facet name="header">Prioridad</f:facet>
-                    #{postulacion.prioridad}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre Proyecto</f:facet>
-                    #{postulacion.nomProyecto}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nombre del Cargo</f:facet>
-                    #{postulacion.nomProyectoCargo}
-            </h:column>
-        </h:dataTable>
-        </div>
+        <h:form id="form">  
+
+            <h3 style="margin-top:0">Basic OrderList</h3>  
+            <p:orderList value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO" itemLabel="#{ppcDTO}" itemValue="#{ppcDTO}">
+                <f:facet name="caption">Available</f:facet>  
+                <p:column style="width:25%;">  
+                    #{ppcDTO.nomProyecto}
+                </p:column>  
+                <p:column style="width:75%;">  
+                    #{ppcDTO.nomProyectoCargo}
+                </p:column>  
+            </p:orderList>  
+
+            <p:commandButton value="Submit" update="displayPPC" oncomplete="PF('Dialog').show()" style="margin-top:5px" id="btnCitySubmit"/>  
+
+            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="Dialog" header="PPC" width="200" id="dlgCities">  
+                <p:dataList id="displayPPC" value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO">  
+                    <h:outputText value="#{ppcDTO.nomProyecto}"  />  
+                </p:dataList>  
+            </p:dialog>  
+        </h:form>                
     </h:body>
 </html>

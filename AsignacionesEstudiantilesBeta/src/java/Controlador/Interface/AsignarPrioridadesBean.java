@@ -6,6 +6,7 @@
 package Controlador.Interface;
 
 import Modelo.DTO.DTOPostulacionProyectoCargo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -23,6 +24,20 @@ public class AsignarPrioridadesBean {
      */
     private List<DTOPostulacionProyectoCargo> postulacionesDTO;
 
+    public AsignarPrioridadesBean() {
+        postulacionesDTO = new ArrayList<>();
+        DTOPostulacionProyectoCargo dto = new DTOPostulacionProyectoCargo();
+        dto.setNomProyecto("proy1");
+        dto.setNomProyectoCargo("proycargo1");
+        postulacionesDTO.add(dto);
+        DTOPostulacionProyectoCargo dto1 = new DTOPostulacionProyectoCargo();
+        dto1.setNomProyecto("proy2");
+        dto1.setNomProyectoCargo("proycargo2");
+        postulacionesDTO.add(dto1);
+    }
+    
+    
+    
     public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
         return postulacionesDTO;
     }
