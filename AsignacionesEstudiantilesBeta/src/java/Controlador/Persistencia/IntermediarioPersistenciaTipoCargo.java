@@ -25,7 +25,7 @@ public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenci
 
     @Override
     public List<Object> convertirRegistroAObjeto(ResultSet rs) throws SQLException {
-        List<Object> estudiantesList = new ArrayList<>();
+        List<Object> tipoCargoList = new ArrayList<>();
         while (rs.next()) {
             AgenteTipoCargo tipoCargoAgente = new AgenteTipoCargo();
             ImplementacionTipoCargo tipoCargoImplementacion = new ImplementacionTipoCargo();
@@ -33,9 +33,9 @@ public class IntermediarioPersistenciaTipoCargo extends IntermediarioPersistenci
             tipoCargoAgente.setOid(rs.getString("OIDTipoCargo"));
             tipoCargoAgente.setCodigo(rs.getInt("codigoTipoCargo"));
             tipoCargoAgente.setNomTipoCargo(rs.getString("nombreTipoCargo"));
-            estudiantesList.add(tipoCargoAgente);
+            tipoCargoList.add(tipoCargoAgente);
         }
-        return estudiantesList;
+        return tipoCargoList;
     }
 
     @Override

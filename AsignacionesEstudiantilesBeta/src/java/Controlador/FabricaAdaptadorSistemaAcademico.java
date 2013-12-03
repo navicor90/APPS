@@ -18,7 +18,7 @@ public class FabricaAdaptadorSistemaAcademico {
         return instancia;
     }
     public AdaptadorSistemaAcademico obtenerAdaptadorSistemaAcademico(Long codUniversidad){
-        return new AdaptadorSistemaAcademico02();
+        return new AdaptadorSistemaAcademico01();
     }
     
 }

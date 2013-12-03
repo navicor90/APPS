@@ -14,6 +14,14 @@ import Modelo.implementacion.*;
  */
 public class AgenteTipoEstadoEstudiante extends Agente implements TipoEstadoEstudiante{
     ImplementacionTipoEstadoEstudiante implementacionTipoEstadoEstudiante;
+
+    public ImplementacionTipoEstadoEstudiante getImplementacionTipoEstadoEstudiante() {
+        return implementacionTipoEstadoEstudiante;
+    }
+
+    public void setImplementacionTipoEstadoEstudiante(ImplementacionTipoEstadoEstudiante implementacionTipoEstadoEstudiante) {
+        this.implementacionTipoEstadoEstudiante = implementacionTipoEstadoEstudiante;
+    }
     
     @Override
     public String getNombreTipoEstadoEstudiante() {
