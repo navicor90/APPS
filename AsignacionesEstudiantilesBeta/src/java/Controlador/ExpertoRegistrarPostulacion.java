@@ -13,7 +13,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,20 +27,25 @@ public class ExpertoRegistrarPostulacion {
     Estudiante estudiante;
     Long codUniversidad;
 
-    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) {
+    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) throws Exception {
         this.codUniversidad = codUniversidad;
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
         List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         estudiante = null;
-        if (estudiantesList != null) {
-            
+        System.out.println("estudiante empty"+estudiantesList.isEmpty());
+        if(!estudiantesList.isEmpty()) {
             for (Estudiante e : estudiantesList) {
+                System.out.println("nananan batman");
+                System.out.println(e.getApellido());
                 if(e.getUniversidad().getCodigo() == codUniversidad){
                     estudiante = e;
                 }
             }
-        } else {
-            return null;
+        }else{
+            String mensaje = "No se encuentra el legajo ingresado, vuelva a intentarlo o registrese";
+            Exception e = new Exception(mensaje);
+            System.out.println("mensaje experto:"+e.getMessage());
+            throw new Exception(mensaje);
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
@@ -91,7 +99,8 @@ public class ExpertoRegistrarPostulacion {
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) {
         Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
         postulacion.setFechaHoraPostulacion(new Date());
-        //postulacion.setNroPostulacion(11723);
+        //Asignar el numero de postulacion
+        postulacion.setNroPostulacion(this.AsignarNroPostulacion());
         postulacion.setEstudiante(estudiante);
         for (DTOPostulacionProyectoCargo postulacionProyectoCargoDTO : postulacionesProyectoCargoDTOList) {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
@@ -174,7 +183,28 @@ public class ExpertoRegistrarPostulacion {
 
         return postulacionesProyectoCargoDTOList;
     }
-
+    
+    private int AsignarNroPostulacion(){
+        int nroPostulacion = 0;
+        Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("codigoPostulacion", ">", "0");
+        List<Postulacion> postuluaciones = (List)FachadaPersistencia.obtenerInstancia().buscar("Postulacion", c);
+        Iterator iteratorPost = postuluaciones.iterator();
+        Postulacion ultimaPostulacion = null;
+        while(iteratorPost.hasNext()){
+                ultimaPostulacion = (Postulacion) iteratorPost.next();
+        }
+        nroPostulacion = ultimaPostulacion.getNroPostulacion()+1;
+        for (int i = 0; i < postuluaciones.size(); i++){
+            Postulacion postulacion = postuluaciones.get(i);
+            if(nroPostulacion==postulacion.getNroPostulacion()){
+                nroPostulacion++;
+                i=0;
+            }
+        }
+    return nroPostulacion;
+    }
+    
+    
     private int contarMateriasRegulares(List<DTOMateria> materiasList) {
         int contador = 0;
         for (DTOMateria materiaDTO : materiasList) {

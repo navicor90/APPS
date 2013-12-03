@@ -30,13 +30,17 @@ public class RegistrarPostulacionBean {
 
     private long legajo;
     private ControladorRegistrarPostulacion controlador;
+    private List<DTOProyecto> proyectosList;
     private List<DTOPostulacionProyectoCargo> postulacionesDTO;
     private List<DTOProyectoCargo> proyectoCargosList;
     private DTOProyecto proyectoActual;
+    private List<String> erroresMensajes;
+    private boolean hayErrores;
 
     public RegistrarPostulacionBean() {
         controlador = new ControladorRegistrarPostulacion();
-        postulacionesDTO = new ArrayList<DTOPostulacionProyectoCargo>();
+        postulacionesDTO = new ArrayList<>();        
+        hayErrores = false;
 
     }
 
@@ -52,31 +56,6 @@ public class RegistrarPostulacionBean {
             }
         }
         return "seleccionarProyecto.xhtml";
-    }
-
-    public long getLegajo() {
-        return legajo;
-    }
-
-    public void setLegajo(long legajo) {
-        this.legajo = legajo;
-    }
-
-    public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
-        return postulacionesDTO;
-    }
-
-    public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
-        this.postulacionesDTO = postulacionesDTO;
-    }
-
-    public List<DTOProyecto> getListaProyecto() {
-        HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        String URL = origRequest.getRequestURI();
-        System.out.println("legajo =" + legajo);
-        System.out.println("url = " + URL);
-        List<DTOProyecto> proyectosList = controlador.listarProyectos(legajo, URL);
-        return proyectosList;
     }
 
     public List<DTOProyectoCargo> getListaProyectoCargo() {
@@ -125,6 +104,64 @@ public class RegistrarPostulacionBean {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public String validateRedirect(){
+        erroresMensajes= new ArrayList();
+        String pageToRedirect;
+        HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String URL = origRequest.getRequestURI();
+        proyectosList = null;
+        try {
+            proyectosList = controlador.listarProyectos(legajo, URL);
+        } catch (Exception ex) {
+            hayErrores = true;
+            erroresMensajes.add(ex.getMessage());
+        }
+        if (hayErrores) {
+            pageToRedirect = "MostrarMensajes.xhtml?faces-redirect=true";
+        } else {
+            pageToRedirect = "seleccionarProyecto.xhtml?faces-redirect=true";
+        }
+        hayErrores=false;
+        return pageToRedirect;
+    }
+    
+    public long getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(long legajo) {
+        this.legajo = legajo;
+    }
+
+    public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
+        return postulacionesDTO;
+    }
+
+    public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+        this.postulacionesDTO = postulacionesDTO;
+    }
+
+    public List<DTOProyecto> getListaProyecto() {
+        return proyectosList;
+    }
+
+    public List<String> getErroresMensajes() {
+        return erroresMensajes;
+        
+    }
+
+    public void setErroresMensajes(List<String> erroresMensajes) {
+        this.erroresMensajes = erroresMensajes;
+    }
+
+    public boolean isHayErrores() {
+        return hayErrores;
+    }
+
+    public void setHayErrores(boolean hayErrores) {
+        this.hayErrores = hayErrores;
     }
 
 }
