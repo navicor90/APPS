@@ -5,6 +5,7 @@
 package Modelo.implementacion;
 
 import Modelo.interfaces.*;
+import java.util.List;
 
 /**
  *
@@ -13,7 +14,6 @@ import Modelo.interfaces.*;
 public class ImplementacionEstudiante implements Estudiante {
 
     private int codigo;
-    private String legajo;
     private String nombre;
     private String apellido;
     private String email;
@@ -22,6 +22,15 @@ public class ImplementacionEstudiante implements Estudiante {
     private Long telefono;
     private Universidad universidad;
     private TipoEstadoEstudiante estadoEstudiante;
+    private List<EstadoAcademico> estadoAcademicoList;
+
+    public List<EstadoAcademico> getEstadoAcademicoList() {
+        return estadoAcademicoList;
+    }
+
+    public void setEstadoAcademicoList(List<EstadoAcademico> estadoAcademicoList) {
+        this.estadoAcademicoList = estadoAcademicoList;
+    }
 
     @Override
     public int getCodigo() {
@@ -31,16 +40,6 @@ public class ImplementacionEstudiante implements Estudiante {
     @Override
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    @Override
-    public String getLegajo() {
-        return legajo;
-    }
-
-    @Override
-    public void setLegajo(String legajo) {
-        this.legajo = legajo;
     }
 
     @Override

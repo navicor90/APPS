@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.interfaces;
+
+import java.util.List;
 
 /**
  *
  * @author yanina
  */
 public interface Estudiante {
-    
-    public int getCodigo() ;
 
-    public void setCodigo(int codigo) ;
-    
-    public String getLegajo();
+    public int getCodigo();
 
-    public void setLegajo(String legajo);
+    public void setCodigo(int codigo);
+
+    public List<EstadoAcademico> getEstadoAcademicoList();
+
+    public void setEstadoAcademicoList(List<EstadoAcademico> estadoAcademicoList);
 
     public String getNombre();
 

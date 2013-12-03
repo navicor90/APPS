@@ -7,6 +7,7 @@ package Modelo.Agente;
 
 import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.implementacion.ImplementacionEstadoAcademico;
+import Modelo.interfaces.Carrera;
 import Modelo.interfaces.EstadoAcademico;
 import Modelo.interfaces.TipoEstadoAcademico;
 
@@ -19,6 +20,9 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
     private ImplementacionEstadoAcademico implementacionEstadoAcademico;
     private boolean heBuscadoTipoEstadoAcademico;
     private String OIDTipoEstadoAcademico;
+    private String OIDEstudiante;
+    private boolean heBuscadoCarrera;
+    private String OIDCarrera;
 
     @Override
     public String getLegajo() {
@@ -75,4 +79,49 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
         this.OIDTipoEstadoAcademico = OIDTipoEstadoAcademico;
     }
 
+    public String getOIDEstudiante() {
+        return OIDEstudiante;
+    }
+
+    public void setOIDEstudiante(String OIDEstudiante) {
+        this.OIDEstudiante = OIDEstudiante;
+    }
+
+    public boolean isHeBuscadoCarrera() {
+        return heBuscadoCarrera;
+    }
+
+    public void setHeBuscadoCarrera(boolean heBuscadoCarrera) {
+        this.heBuscadoCarrera = heBuscadoCarrera;
+    }
+
+    public String getOIDCarrera() {
+        return OIDCarrera;
+    }
+
+    public void setOIDCarrera(String OIDCarrera) {
+        this.OIDCarrera = OIDCarrera;
+    }
+
+    @Override
+    public Carrera getCarrera() {
+        Carrera carrera ;
+        if(this.isHeBuscadoCarrera() || this.esNuevo()){
+            carrera = implementacionEstadoAcademico.getCarrera();
+        }else{
+            carrera = (Carrera) FachadaPersistenciaInterna.getInstancia().buscar("Carrera", this.getOIDCarrera());
+            this.setCarrera(carrera);
+            this.setHeBuscadoCarrera(true);
+        }
+        return carrera;
+    }
+
+    @Override
+    public void setCarrera(Carrera carrera) {
+        Agente agente = (Agente) carrera;
+        this.setOIDCarrera(agente.getOid());
+        this.getImplementacionEstadoAcademico().setCarrera(carrera);
+    }
+    
+    
 }

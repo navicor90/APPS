@@ -9,15 +9,20 @@ package Modelo.Agente;
 import Modelo.interfaces.*;
 import Modelo.implementacion.*;
 import Controlador.Persistencia.*;
+import Modelo.Criterio;
+import Modelo.FabricaCriterio;
+import java.util.List;
 /**
  *
  * @author yanina
  */
 public class AgenteEstudiante extends Agente implements Estudiante{
+
     String oidUniversidad;
     boolean heBuscadoUniversdad;
+    boolean heBuscadoEstadoAcademico;
     ImplementacionEstudiante implementacionEstudiante;
-
+    
     public String getOidUniversidad() {
         return oidUniversidad;
     }
@@ -42,16 +47,6 @@ public class AgenteEstudiante extends Agente implements Estudiante{
 
     public void setImplementacionEstudiante(ImplementacionEstudiante implementacionEstudiante) {
         this.implementacionEstudiante = implementacionEstudiante;
-    }
-    
-    @Override
-    public String getLegajo() {
-        return implementacionEstudiante.getLegajo();
-    }
-
-    @Override
-    public void setLegajo(String legajo) {
-        implementacionEstudiante.setLegajo(legajo);
     }
 
     @Override
@@ -151,6 +146,27 @@ public class AgenteEstudiante extends Agente implements Estudiante{
     public void setCodigo(int codigo) {
         implementacionEstudiante.setCodigo(codigo);
     }
-    
+    @Override
+    public List<EstadoAcademico> getEstadoAcademicoList() {
+        List<EstadoAcademico> estadoAcademicoList;
+        if(this.heBuscadoEstadoAcademico || this.esNuevo()){
+            estadoAcademicoList = (List) this.getImplementacionEstudiante().getEstadoAcademicoList();
+        }else{
+            Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("estudiante", "=", this);
+            estadoAcademicoList = (List) FachadaPersistenciaInterna.getInstancia().buscar("EstadoAcademico", c);
+            this.setHeBuscadoUniversdad(true);
+            this.setEstadoAcademicoList(estadoAcademicoList);
+        }
+        return estadoAcademicoList;
+    }
+
+    @Override
+    public void setEstadoAcademicoList(List<EstadoAcademico> estadoAcademicoList) {
+        for (EstadoAcademico estadoAcademico : estadoAcademicoList) {
+            AgenteEstadoAcademico agenteEstadoAcademico = (AgenteEstadoAcademico) estadoAcademico;
+            agenteEstadoAcademico.setOIDEstudiante(this.getOid());
+        }
+        this.getImplementacionEstudiante().setEstadoAcademicoList(estadoAcademicoList);
+    }
     
 }

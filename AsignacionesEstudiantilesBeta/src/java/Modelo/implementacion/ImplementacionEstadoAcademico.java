@@ -6,6 +6,7 @@
 
 package Modelo.implementacion;
 
+import Modelo.interfaces.Carrera;
 import Modelo.interfaces.EstadoAcademico;
 import Modelo.interfaces.TipoEstadoAcademico;
 
@@ -15,8 +16,18 @@ import Modelo.interfaces.TipoEstadoAcademico;
  */
 public class ImplementacionEstadoAcademico implements EstadoAcademico {
     String legajo;
+    Carrera carrera;
     TipoEstadoAcademico tipoEstadoAcademico;
 
+    public Carrera getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
+    }
+    
+    
     @Override
     public String getLegajo() {
         return legajo;

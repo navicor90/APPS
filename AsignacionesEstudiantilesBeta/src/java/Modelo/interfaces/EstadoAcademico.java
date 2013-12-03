@@ -12,6 +12,10 @@ package Modelo.interfaces;
  */
 public interface EstadoAcademico {
     
+    public Carrera getCarrera() ;
+
+    public void setCarrera(Carrera carrera) ;
+    
     public String getLegajo() ;
 
     public void setLegajo(String legajo) ;
