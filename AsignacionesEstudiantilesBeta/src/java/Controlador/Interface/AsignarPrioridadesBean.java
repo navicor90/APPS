@@ -53,5 +53,8 @@ public class AsignarPrioridadesBean {
     public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
         this.postulacionesDTO = postulacionesDTO;
     }
+    public String guardarCambios(){
+        return "index.xhtml";
+    }
 
 }
