@@ -22,20 +22,20 @@ import java.util.List;
 public class ExpertoRegistrarPostulacion {
 
     Estudiante estudiante;
-    int codUniversidad;
+    Long codUniversidad;
 
-    public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad) {
+    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) {
         this.codUniversidad = codUniversidad;
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
         List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         estudiante = null;
         if (estudiantesList != null) {
+            
             for (Estudiante e : estudiantesList) {
                 if(e.getUniversidad().getCodigo() == codUniversidad){
                     estudiante = e;
                 }
             }
-            
         } else {
             return null;
         }
@@ -91,7 +91,7 @@ public class ExpertoRegistrarPostulacion {
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) {
         Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
         postulacion.setFechaHoraPostulacion(new Date());
-        postulacion.setNroPostulacion(11723);
+        //postulacion.setNroPostulacion(11723);
         postulacion.setEstudiante(estudiante);
         for (DTOPostulacionProyectoCargo postulacionProyectoCargoDTO : postulacionesProyectoCargoDTOList) {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
@@ -113,8 +113,10 @@ public class ExpertoRegistrarPostulacion {
                     PostulacionProyectoCargoEstado postulacionProyectoCargoEstado = (PostulacionProyectoCargoEstado) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargoEstado.class);
                     postulacionProyectoCargoEstado.setFechaHoraCambio(new Date());
                     //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
+                    
                     Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
                     List<Postulacion> postulacionesAntiguasList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
+                    
                     for (Postulacion postulacionAntigua : postulacionesAntiguasList) {
                         for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getPostulacionProyectoCargosList()) {
                             if (postulacionProyectoCargoAntigua.getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {

@@ -11,7 +11,6 @@ import Modelo.Agente.AgentePostulacion;
 import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.implementacion.ImplementacionPostulacion;
-import Modelo.interfaces.Postulacion;
 import Modelo.interfaces.PostulacionProyectoCargo;
 import java.sql.ResultSet;
 import java.sql.SQLException;

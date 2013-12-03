@@ -9,22 +9,22 @@
     </h:head>
     <h:body>
         <div class="seleccionarProyectoDiv">
-        <h1>Seleccionar Proyecto</h1>
-        <h:dataTable value="#{userBean.postulacionesDTO}" var="postulacion"
-                     styleClass="postulacionTable"
-                     headerClass="postulacionTableHeader"
-                     rowClasses="postulacionTableOddRow,postulacionTableEvenRow">
+        <h1>Postulaciones realizadas</h1>
+        <h:dataTable value="#{registrarPostulacionBean.postulacionesProyectoCargoDTO}" var="postulacionCargo"
+                     styleClass="postulacionCargoTable"
+                     headerClass="postulacionCargoTableHeader"
+                     rowClasses="postulacionCargoTableOddRow,postulacionCargoTableEvenRow">
             <h:column>
                 <f:facet name="header">Nombre Proyecto</f:facet>
-                    #{postulacion.nomProyecto}
+                    #{postulacionCargo.nomProyecto}
             </h:column>
             <h:column>
                 <f:facet name="header">Nombre del Cargo</f:facet>
-                    #{postulacion.nomProyectoCargo}
+                    #{postulacionCargo.nomProyectoCargo}
             </h:column>
             <h:column>
                 <f:facet name="header">Estado</f:facet>
-                    #{postulacion.descripcionEstado}
+                    #{postulacionCargo.descripcionEstado}
             </h:column>
         </h:dataTable>
         </div>

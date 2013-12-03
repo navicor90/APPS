@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Listar Postulaciones a cargos - #{registrarPostulacionBean.legajo}</title>
+        <link href="css/style.css" type="text/css" rel="stylesheet" />
+    </h:head>
+    <h1 style="border-bottom: 1px #B5B5B5 dotted;border-top: 1px #B5B5B5 dotted">
+        Ordene las postulaciones de acuerdo a sus preferencias.</h1>
+    <h:body>
+        <div class="OrdenarPPC">
+            <h:form id="form">  
+                <p:orderList value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO"  
+                             itemValue="#{ppcDTO}" converter="postulacionProyectoCargoC" id="customList" styleClass="PostulacionesProyectoCargoOrderList">  
+                    <f:facet name="caption">Disponibles</f:facet>  
+                    <p:column>
+                        #{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}  
+                    </p:column>
+                </p:orderList>  
+                <p:commandButton value="Submit" action="#{asignarPrioridadesBean.guardarCambios()}" styleClass="OrdenarButtonSubmit" id="btnPlayerSubmit"/>  
+            </h:form>  
+        </div>
+    </h:body>
+</html>

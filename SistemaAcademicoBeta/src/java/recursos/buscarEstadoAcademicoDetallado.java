@@ -52,16 +52,14 @@ public class buscarEstadoAcademicoDetallado {
                     estudianteMateriaSimple.setEstado(estudianteMateria.getEstado());
                     estudianteMateriaSimple.setId(estudianteMateria.getId());
                     estudianteMateriaSimple.setNotaFinal(estudianteMateria.getNotaFinal());
+                    estudianteMateriaSimple.setFechaEstado(estudianteMateria.getFechaEstado());
                     ListaEstudianteMateriaSimple.add(estudianteMateriaSimple);
                 }
                 estadoAcademicoSimple.setEstudianteMateriaSimple(ListaEstudianteMateriaSimple);
                 ListaEstadoAcademicoSimple.add(estadoAcademicoSimple);
             }
-            
-        
         return convertirAJSON(ListaEstadoAcademicoSimple);
      }
-
     private String convertirAJSON(Object estudiante){
         Gson googleSon=new Gson();
         return googleSon.toJson(estudiante);        

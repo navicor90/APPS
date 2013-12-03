@@ -7,6 +7,7 @@
 package Modelo.Agente;
 import Modelo.interfaces.*;
 import Modelo.implementacion.*;
+import java.util.Date;
 /**
  *
  * @author yanina
@@ -58,6 +59,36 @@ public class AgenteUniversidad extends Agente implements Universidad{
     @Override
     public void setCodigo(Long codigo) {
         implementacionUniversidad.setCodigo(codigo);
+    }
+
+    @Override
+    public Date getFechaInicioVigenciaUniversidad() {
+        return implementacionUniversidad.getFechaInicioVigenciaUniversidad();
+    }
+
+    @Override
+    public void setFechaInicioVigenciaUniversidad(Date fechaInicioVigenciaUniversidad) {
+        implementacionUniversidad.setFechaInicioVigenciaUniversidad(fechaInicioVigenciaUniversidad);
+    }
+
+    @Override
+    public Date getFechaFinVigenciaUniversidad() {
+        return implementacionUniversidad.getFechaFinVigenciaUniversidad();
+    }
+
+    @Override
+    public void setFechaFinVigenciaUniversidad(Date fechaFinVigenciaUniversidad) {
+        implementacionUniversidad.setFechaFinVigenciaUniversidad(fechaFinVigenciaUniversidad);
+    }
+
+    @Override
+    public String getDireccionServidorWebUniversidad() {
+        return implementacionUniversidad.getDireccionServidorWebUniversidad();
+    }
+
+    @Override
+    public void setDireccionServidorWebUniversidad(String direccionServidorWebUniversidad) {
+        implementacionUniversidad.setDireccionServidorWebUniversidad(direccionServidorWebUniversidad);
     }
     
 }

@@ -6,6 +6,8 @@
 
 package Modelo.interfaces;
 
+import java.util.Date;
+
 /**
  *
  * @author yanina
@@ -18,4 +20,15 @@ public interface Universidad {
     public Long getCodigo();
 
     public void setCodigo(Long codigo);
+    public Date getFechaInicioVigenciaUniversidad() ;
+
+    public void setFechaInicioVigenciaUniversidad(Date fechaInicioVigenciaUniversidad);
+
+    public Date getFechaFinVigenciaUniversidad() ;
+
+    public void setFechaFinVigenciaUniversidad(Date fechaFinVigenciaUniversidad) ;
+
+    public String getDireccionServidorWebUniversidad() ;
+
+    public void setDireccionServidorWebUniversidad(String direccionServidorWebUniversidad) ;
 }

@@ -9,12 +9,10 @@ import Controlador.ControladorRegistrarPostulacion;
 import Modelo.DTO.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -28,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @ManagedBean
 @SessionScoped
-public class UserBean {
+public class RegistrarPostulacionBean {
 
     private long legajo;
     private ControladorRegistrarPostulacion controlador;
@@ -36,7 +34,7 @@ public class UserBean {
     private List<DTOProyectoCargo> proyectoCargosList;
     private DTOProyecto proyectoActual;
 
-    public UserBean() {
+    public RegistrarPostulacionBean() {
         controlador = new ControladorRegistrarPostulacion();
         postulacionesDTO = new ArrayList<DTOPostulacionProyectoCargo>();
 
@@ -64,11 +62,11 @@ public class UserBean {
         this.legajo = legajo;
     }
 
-    public List<DTOPostulacionProyectoCargo> getPostulacionesDTO() {
+    public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
         return postulacionesDTO;
     }
 
-    public void setPostulacionesDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+    public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
         this.postulacionesDTO = postulacionesDTO;
     }
 
@@ -108,7 +106,7 @@ public class UserBean {
             String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
             ctx.redirect(ctxPath + "/faces/terminarPostulacion.xhtml");
         } catch (IOException ex) {
-            Logger.getLogger(UserBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RegistrarPostulacionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

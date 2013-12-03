@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class DecoradorRegistrarPostulacion extends ExpertoRegistrarPostulacion {
 
     @Override
-    public List<DTOProyecto> listarProyectos(Long legajo, int codUniversidad) {
+    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) {
         List<DTOProyecto> listaProyectos;
         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
         listaProyectos = super.listarProyectos(legajo, codUniversidad);

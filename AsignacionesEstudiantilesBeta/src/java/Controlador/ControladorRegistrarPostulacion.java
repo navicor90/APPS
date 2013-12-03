@@ -22,8 +22,9 @@ public class ControladorRegistrarPostulacion {
     }
     
     public List<DTOProyecto> listarProyectos(long legajo, String url){
-        int codUniversidad=2;
-        return experto.listarProyectos(legajo, codUniversidad);
+        long codigo =0;
+        if(url.contains("AsignacionesEstudiantilesBeta")) codigo = 1;
+        return experto.listarProyectos(legajo, codigo);
     }
     
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto){

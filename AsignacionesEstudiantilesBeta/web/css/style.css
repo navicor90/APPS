@@ -37,30 +37,30 @@ and open the template in the editor.
    background:none repeat scroll 0 0 #D3D3D3;
 }
 
-.postulacionesRealizadasDiv{
+.postulacionesCargosRealizadasDiv{
     float: right;
     width: 34%;
     
 }
-.postulacionTable{   
+.postulacionCargoTable{   
    border-collapse:collapse;
    border:1px solid #000000;
    width: 100%;
 }
 
-.postulacionTableHeader{
+.postulacionCargoTableHeader{
    text-align:center;
    background:none repeat scroll 0 0 #B5B5B5;
    border-bottom:1px solid #000000;  
    padding:2px;
 }
 
-.postulacionTableOddRow{
+.postulacionCargoTableOddRow{
    text-align:center;
    background:none repeat scroll 0 0 #FFFFFF;
 }
 
-.postulacionTableEvenRow{
+.postulacionCargoTableEvenRow{
    text-align:center;
    background:none repeat scroll 0 0 #efdf6d;
 }
@@ -85,4 +85,17 @@ and open the template in the editor.
    text-align:center;
    text-decoration: none;
    color: tomato;
+}
+.ui-orderlist .ui-orderlist-list{
+           width: 900px;
+}
+
+
+.OrdenarPPC{
+    width: 100%;
+    float: right;
+}
+.OrdenarButtonSubmit{
+    margin-top: 5px;
+    margin-left: 855px;
 }
