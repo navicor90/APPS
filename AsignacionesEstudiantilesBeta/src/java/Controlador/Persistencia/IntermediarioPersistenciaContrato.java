@@ -69,8 +69,8 @@ public class IntermediarioPersistenciaContrato extends IntermediarioPersistencia
     public String desarmarCriterioPorObjeto(Criterio criterio) {
         String criterioString="";
         switch(criterio.getAtributo()){
-            case "estudiante":
-                criterioString = "OIDEstudiante";
+            case "postulacion":
+                criterioString = "OIDPostulacion";
                 break;
             default:
                 return "";

@@ -8,6 +8,7 @@ package Modelo.interfaces;
 
 import Modelo.interfaces.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -22,4 +23,5 @@ public interface ContratoEstado {
     public TipoEstadoContrato getTipoEstadoContrato() ;
 
     public void setTipoEstadoContrato(TipoEstadoContrato tipoEstadoContrato);
+
 }

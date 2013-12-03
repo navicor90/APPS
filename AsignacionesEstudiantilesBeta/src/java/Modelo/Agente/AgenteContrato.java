@@ -11,6 +11,7 @@ import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.util.Date;
 import java.util.List;
+import Modelo.*;
 
 /**
  *
@@ -18,8 +19,11 @@ import java.util.List;
  */
 public class AgenteContrato extends Agente implements Contrato{
     ImplementacionContrato implementacionContrato;
-    public boolean heBuscadoPostulacion;
-    public boolean heBuscadoPostulacionProyectoCargo;
+    private boolean heBuscadoPostulacion;
+    private boolean heBuscadoPostulacionProyectoCargo;
+    private boolean heBuscadoContratoEstado;
+    private boolean heBuscadoProyecto;
+    private String oidAgenteContrato;
 
     public boolean isHeBuscadoPostulacion() {
         return heBuscadoPostulacion;
@@ -97,13 +101,51 @@ public class AgenteContrato extends Agente implements Contrato{
     }
 
     @Override
-    public Contrato getContrato() {
-        return implementacionContrato.getContrato();
+    public List<ContratoEstado> getContratoEstadoList() {
+        List<ContratoEstado> contratoEstadoList;
+        if (heBuscadoContratoEstado || this.esNuevo()){
+            contratoEstadoList = implementacionContrato.getContratoEstadoList();
+        }else{
+            Criterio criterioBusquedaContratoEstado = (Criterio) FabricaCriterio.getInstancia().crear("Contrato", "=", this);
+            contratoEstadoList = (List) FachadaPersistenciaInterna.getInstancia().buscar("ContratoEstado", criterioBusquedaContratoEstado);
+        }
+        return contratoEstadoList;
     }
 
     @Override
-    public void setContrato(Contrato contrato) {
-        implementacionContrato.setContrato(contrato);
+    public void setContratoEstadoList(List<ContratoEstado> contratoEstadoList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addContratoEstado(ContratoEstado contratoEstado) {
+        AgenteContratoEstado contratoEstadoAgente = (AgenteContratoEstado) contratoEstado;
+        contratoEstadoAgente.setOidContrato(this.oidAgenteContrato);
+        implementacionContrato.addContratoEstado(contratoEstado);
+    }
+
+    public boolean isHeBuscadoContratoEstado() {
+        return heBuscadoContratoEstado;
+    }
+
+    public void setHeBuscadoContratoEstado(boolean heBuscadoContratoEstado) {
+        this.heBuscadoContratoEstado = heBuscadoContratoEstado;
+    }
+
+    public boolean isHeBuscadoProyecto() {
+        return heBuscadoProyecto;
+    }
+
+    public void setHeBuscadoProyecto(boolean heBuscadoProyecto) {
+        this.heBuscadoProyecto = heBuscadoProyecto;
+    }
+
+    public String getOidAgenteContrato() {
+        return oidAgenteContrato;
+    }
+
+    public void setOidAgenteContrato(String oidAgenteContrato) {
+        this.oidAgenteContrato = oidAgenteContrato;
     }
     
 }

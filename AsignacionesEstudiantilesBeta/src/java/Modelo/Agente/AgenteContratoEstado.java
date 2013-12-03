@@ -5,14 +5,21 @@
  */
 
 package Modelo.Agente;
+import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.Criterio;
+import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.util.Date;
+import java.util.List;
 /**
  *
  * @author yanina
  */
 public class AgenteContratoEstado extends Agente implements ContratoEstado{
+    private boolean heBuscadoTipoEstadoContrato;
+    private String oidContrato;
+    private String oidTipoEstadoContrato;
     ImplementacionContratoEstado implementacionContratoEstado;
 
     public ImplementacionContratoEstado getImplementacionContratoEstado() {
@@ -36,12 +43,46 @@ public class AgenteContratoEstado extends Agente implements ContratoEstado{
 
     @Override
     public TipoEstadoContrato getTipoEstadoContrato() {
-        return  implementacionContratoEstado.getTipoEstadoContrato();
+        TipoEstadoContrato tipoEstadoContrato;
+        if (heBuscadoTipoEstadoContrato || this.esNuevo()){
+            tipoEstadoContrato = implementacionContratoEstado.getTipoEstadoContrato();
+        }else{
+            Criterio criterioBusquedaTipoEstadoContrato = (Criterio) FabricaCriterio.getInstancia().crear("Criterio", "=", this);
+            List<TipoEstadoContrato> tipoEstadoContratoList = (List)FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoContrato", criterioBusquedaTipoEstadoContrato);
+            tipoEstadoContrato = tipoEstadoContratoList.get(0);
+            this.setHeBuscadoTipoEstadoContrato(true);
+            this.implementacionContratoEstado.setTipoEstadoContrato(tipoEstadoContrato);
+        }
+        return tipoEstadoContrato;
     }
 
     @Override
     public void setTipoEstadoContrato(TipoEstadoContrato tipoEstadoContrato) {
         implementacionContratoEstado.setTipoEstadoContrato(tipoEstadoContrato);
+    }
+
+    public String getOidContrato() {
+        return oidContrato;
+    }
+
+    public void setOidContrato(String oidContrato) {
+        this.oidContrato = oidContrato;
+    }
+
+    public String getOidTipoEstadoContrato() {
+        return oidTipoEstadoContrato;
+    }
+
+    public void setOidTipoEstadoContrato(String oidTipoEstadoContrato) {
+        this.oidTipoEstadoContrato = oidTipoEstadoContrato;
+    }
+
+    public boolean isHeBuscadoTipoEstadoContrato() {
+        return heBuscadoTipoEstadoContrato;
+    }
+
+    public void setHeBuscadoTipoEstadoContrato(boolean heBuscadoTipoEstadoContrato) {
+        this.heBuscadoTipoEstadoContrato = heBuscadoTipoEstadoContrato;
     }
     
 }

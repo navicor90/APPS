@@ -20,7 +20,9 @@ public class ImplementacionContrato implements Contrato {
     private Empresa empresa;
     private List<PostulacionProyectoCargo> postulacionProyecCargo;
     private Postulacion postulacion;
-    private Contrato contrato;
+    private List<ContratoEstado> contratoEstadoList;
+
+ 
 
     @Override
     public int getCodigoContrato() {
@@ -70,18 +72,21 @@ public class ImplementacionContrato implements Contrato {
     @Override
     public void setPostulacion(Postulacion postulacion) {
         this.postulacion = postulacion;
+    }            
+
+    @Override
+    public List<ContratoEstado> getContratoEstadoList() {
+        return contratoEstadoList;
     }
 
     @Override
-    public Contrato getContrato() {
-        return contrato;
+    public void setContratoEstadoList(List<ContratoEstado> contratoEstadoList) {
+        this.contratoEstadoList = contratoEstadoList;
     }
 
     @Override
-    public void setContrato(Contrato contrato) {
-        this.contrato = contrato;
+    public void addContratoEstado(ContratoEstado contratoEstado) {
+        this.contratoEstadoList.add(contratoEstado);
     }
-
-            
-            
+    
 }

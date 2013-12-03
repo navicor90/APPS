@@ -38,7 +38,9 @@ public interface Contrato {
 
     public void setPostulacion(Postulacion postulacion) ;
 
-    public Contrato getContrato() ;
-
-    public void setContrato(Contrato contrato) ;
+    public List<ContratoEstado> getContratoEstadoList();
+    
+    public void setContratoEstadoList(List<ContratoEstado> contratoEstadoList);
+    public void addContratoEstado(ContratoEstado contratoEstado);
+    
 }
