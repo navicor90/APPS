@@ -41,6 +41,7 @@ public class AsignarPrioridadesBean {
         dto3.setNomProyectoCargo("proycargo3");
         dto3.setPrioridad(3);
         postulacionesDTO.add(dto3);
+        PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesDTO);
     }
     
     

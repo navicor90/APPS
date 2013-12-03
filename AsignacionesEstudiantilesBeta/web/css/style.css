@@ -86,3 +86,17 @@ and open the template in the editor.
    text-decoration: none;
    color: tomato;
 }
+.ui-orderlist .ui-orderlist-list{
+           width: 900px;
+}
+
+
+.OrdenarPPC{
+    width: 100%;
+    float: right;
+}
+.OrdenarButtonSubmit{
+    margin-top: 5px;
+    margin-left: 855px;
+
+}

@@ -21,23 +21,12 @@ import javax.faces.convert.ConverterException;
 public class PostulacionProyectoCargoConverter implements Converter {
 private static List<DTOPostulacionProyectoCargo> postulacionesDTO;
 
-    static{
-        postulacionesDTO = new ArrayList<>();
-        DTOPostulacionProyectoCargo dto = new DTOPostulacionProyectoCargo();
-        dto.setNomProyecto("proy1");
-        dto.setNomProyectoCargo("proycargo1");
-        dto.setPrioridad(1);
-        postulacionesDTO.add(dto);
-        DTOPostulacionProyectoCargo dto1 = new DTOPostulacionProyectoCargo();
-        dto1.setNomProyecto("proy2");
-        dto1.setNomProyectoCargo("proycargo2");
-        dto1.setPrioridad(2);
-        postulacionesDTO.add(dto1);
-        DTOPostulacionProyectoCargo dto3 = new DTOPostulacionProyectoCargo();
-        dto3.setNomProyecto("proy3");
-        dto3.setNomProyectoCargo("proycargo3");
-        dto3.setPrioridad(3);
-        postulacionesDTO.add(dto3);
+    public static List<DTOPostulacionProyectoCargo> getPostulacionesDTO() {
+        return postulacionesDTO;
+    }
+
+    public static void setPostulacionesDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+        PostulacionProyectoCargoConverter.postulacionesDTO = postulacionesDTO;
     }
     
     @Override

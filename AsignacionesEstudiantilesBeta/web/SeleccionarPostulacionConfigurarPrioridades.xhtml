@@ -9,28 +9,31 @@
         <title>Listar Postulaciones - #{registrarPostulacionBean.legajo}</title>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
+    <h1 style="border-bottom: 1px #B5B5B5 dotted;border-top: 1px #B5B5B5 dotted">
+        Ordene las postulaciones de acuerdo a sus preferencias.</h1>
     <h:body>
-        <h:form id="form">  
-            <p:orderList value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO"  
-                         itemValue="#{ppcDTO}" converter="postulacionProyectoCargoC" controlsLocation="left" id="customList">  
-                <f:facet name="caption">Available</f:facet>  
+        <div class="OrdenarPPC">
+            <h:form id="form">  
+                <p:orderList value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO"  
+                             itemValue="#{ppcDTO}" converter="postulacionProyectoCargoC" id="customList" styleClass="PostulacionesProyectoCargoOrderList">  
+                    <f:facet name="caption">Disponibles</f:facet>  
+                    <p:column>  
+                        #{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}  
+                    </p:column>  
+                </p:orderList>  
 
-                <p:column style="width:75%;">  
-                    #{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}  
-                </p:column>  
-            </p:orderList>  
+                <p:commandButton value="Submit" update="displayPPC" oncomplete="PF('Dialog').show()" styleClass="OrdenarButtonSubmit" id="btnPlayerSubmit"/>  
 
-            <p:commandButton value="Submit" update="displayPlayers" oncomplete="PF('playerDialog').show()" style="margin-top:5px" id="btnPlayerSubmit"/>  
+                <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="Dialog" header="Postulaciones Cargos" width="600" id="dlgPlayers">  
+                    <h:panelGrid id="displayPPC" columns="2">  
+                        <ui:repeat value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO">  
+                            <h:outputText value="#{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}" style="margin-right:5px" />  
+                            <br />  
+                        </ui:repeat>  
+                    </h:panelGrid>  
+                </p:dialog>  
 
-            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog" header="Players" width="200" id="dlgPlayers">  
-                <h:panelGrid id="displayPlayers" columns="2">  
-                    <ui:repeat value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO">  
-                        <h:outputText value="#{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}" style="margin-right:5px" />  
-                        <br />  
-                    </ui:repeat>  
-                </h:panelGrid>  
-            </p:dialog>  
-
-        </h:form>  
+            </h:form>  
+        </div>
     </h:body>
 </html>
