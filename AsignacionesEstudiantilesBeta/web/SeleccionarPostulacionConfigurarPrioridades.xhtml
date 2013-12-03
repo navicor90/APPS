@@ -11,25 +11,26 @@
     </h:head>
     <h:body>
         <h:form id="form">  
-
-            <h3 style="margin-top:0">Basic OrderList</h3>  
-            <p:orderList value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO" itemLabel="#{ppcDTO}" itemValue="#{ppcDTO}">
+            <p:orderList value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO"  
+                         itemValue="#{ppcDTO}" converter="postulacionProyectoCargoC" controlsLocation="left" id="customList">  
                 <f:facet name="caption">Available</f:facet>  
-                <p:column style="width:25%;">  
-                    #{ppcDTO.nomProyecto}
-                </p:column>  
+
                 <p:column style="width:75%;">  
-                    #{ppcDTO.nomProyectoCargo}
+                    #{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}  
                 </p:column>  
             </p:orderList>  
 
-            <p:commandButton value="Submit" update="displayPPC" oncomplete="PF('Dialog').show()" style="margin-top:5px" id="btnCitySubmit"/>  
+            <p:commandButton value="Submit" update="displayPlayers" oncomplete="PF('playerDialog').show()" style="margin-top:5px" id="btnPlayerSubmit"/>  
 
-            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="Dialog" header="PPC" width="200" id="dlgCities">  
-                <p:dataList id="displayPPC" value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO">  
-                    <h:outputText value="#{ppcDTO.nomProyecto}"  />  
-                </p:dataList>  
+            <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog" header="Players" width="200" id="dlgPlayers">  
+                <h:panelGrid id="displayPlayers" columns="2">  
+                    <ui:repeat value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="ppcDTO">  
+                        <h:outputText value="#{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}" style="margin-right:5px" />  
+                        <br />  
+                    </ui:repeat>  
+                </h:panelGrid>  
             </p:dialog>  
-        </h:form>                
+
+        </h:form>  
     </h:body>
 </html>

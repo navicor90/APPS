@@ -8,8 +8,8 @@
         <converter-class>Controlador.Interface.PlayerConverter</converter-class>
     </converter>
     <converter>
-        <converter-id>proyectoCargo</converter-id>
-        <converter-class>Controlador.Interface.ProyectoCargoConverter</converter-class>
+        <converter-id>postulacionProyectoCargoC</converter-id>
+        <converter-class>Controlador.Interface.PostulacionProyectoCargoConverter</converter-class>
     </converter>
     <managed-bean>
         <managed-bean-name>orderListBean</managed-bean-name>

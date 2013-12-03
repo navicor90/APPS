@@ -10,14 +10,6 @@
     </h:head>
     <h:body>
         <h:form id="form">  
-  
-    <h3 style="margin-top:0">Basic OrderList</h3>  
-    <p:orderList value="#{orderListBean.cities}" var="city" controlsLocation="none"  
-                 itemLabel="#{city}" itemValue="#{city}" id="basicList"/>  
-  
-    <p:commandButton value="Submit" update="displayCities" oncomplete="PF('cityDialog').show()" style="margin-top:5px" id="btnCitySubmit"/>  
-  
-    <h3>Pojo Support with Clip Effect, Captions, Custom Content and Reorder Controls</h3>  
     <p:orderList value="#{orderListBean.players}" var="player"  
                     itemValue="#{player}" converter="player" controlsLocation="left" id="customList">  
         <f:facet name="caption">Available</f:facet>  
@@ -28,12 +20,6 @@
     </p:orderList>  
   
     <p:commandButton value="Submit" update="displayPlayers" oncomplete="PF('playerDialog').show()" style="margin-top:5px" id="btnPlayerSubmit"/>  
-  
-    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog" header="Cities" width="200" id="dlgCities">  
-        <p:dataList id="displayCities" value="#{orderListBean.cities}" var="city">  
-            <h:outputText value="#{city}"  />  
-        </p:dataList>  
-    </p:dialog>  
   
     <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="playerDialog" header="Players" width="200" id="dlgPlayers">  
         <h:panelGrid id="displayPlayers" columns="2">  

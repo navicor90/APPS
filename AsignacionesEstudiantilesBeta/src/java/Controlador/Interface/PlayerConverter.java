@@ -48,6 +48,7 @@ public class PlayerConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String submittedValue) {
+        System.out.println("submiteeeddd valueee :"+submittedValue);
         if (submittedValue.trim().equals("")) {
             return null;
         } else {

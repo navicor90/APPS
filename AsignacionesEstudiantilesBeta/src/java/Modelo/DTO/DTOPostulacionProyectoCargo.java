@@ -6,11 +6,13 @@
 
 package Modelo.DTO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author yanina
  */
-public class DTOPostulacionProyectoCargo {
+public class DTOPostulacionProyectoCargo implements Serializable {
     private String descripcionEstado;
     private int nroProyecto;
     private int nroProyectoCargo;
@@ -69,4 +71,24 @@ public class DTOPostulacionProyectoCargo {
     }
     
     
+        @Override
+        public boolean equals(Object obj) {
+                if(obj == null)
+                        return false;
+                if(!(obj instanceof DTOPostulacionProyectoCargo))
+                        return false;
+                
+                return ((DTOPostulacionProyectoCargo)obj).getPrioridad() == this.prioridad;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 1;
+            return hash * 31 + nomProyecto.hashCode();
+        }
+
+        @Override
+        public String toString() {
+                return nomProyecto;
+        }
 }
