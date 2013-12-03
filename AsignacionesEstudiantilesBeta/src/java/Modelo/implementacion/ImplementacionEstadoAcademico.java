@@ -9,6 +9,7 @@ package Modelo.implementacion;
 import Modelo.interfaces.Carrera;
 import Modelo.interfaces.EstadoAcademico;
 import Modelo.interfaces.TipoEstadoAcademico;
+import java.util.Date;
 
 /**
  *
@@ -18,11 +19,35 @@ public class ImplementacionEstadoAcademico implements EstadoAcademico {
     String legajo;
     Carrera carrera;
     TipoEstadoAcademico tipoEstadoAcademico;
+    Date fechaIngreso;
+    Date fechaFinHabilitacion;
 
+    @Override
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    @Override
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    @Override
+    public Date getFechaFinHabilitacion() {
+        return fechaFinHabilitacion;
+    }
+
+    @Override
+    public void setFechaFinHabilitacion(Date fechaFinHabilitacion) {
+        this.fechaFinHabilitacion = fechaFinHabilitacion;
+    }
+
+    @Override
     public Carrera getCarrera() {
         return carrera;
     }
 
+    @Override
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
     }

@@ -10,6 +10,7 @@ import Modelo.implementacion.ImplementacionEstadoAcademico;
 import Modelo.interfaces.Carrera;
 import Modelo.interfaces.EstadoAcademico;
 import Modelo.interfaces.TipoEstadoAcademico;
+import java.util.Date;
 
 /**
  *
@@ -121,6 +122,26 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
         Agente agente = (Agente) carrera;
         this.setOIDCarrera(agente.getOid());
         this.getImplementacionEstadoAcademico().setCarrera(carrera);
+    }
+
+    @Override
+    public Date getFechaIngreso() {
+        return this.implementacionEstadoAcademico.getFechaIngreso();
+    }
+
+    @Override
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.implementacionEstadoAcademico.setFechaIngreso(fechaIngreso);
+    }
+
+    @Override
+    public Date getFechaFinHabilitacion() {
+        return this.implementacionEstadoAcademico.getFechaFinHabilitacion();
+    }
+
+    @Override
+    public void setFechaFinHabilitacion(Date fechaFinHabilitacion) {
+        this.implementacionEstadoAcademico.setFechaFinHabilitacion(fechaFinHabilitacion);
     }
     
     

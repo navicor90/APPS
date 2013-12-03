@@ -6,11 +6,21 @@
 
 package Modelo.interfaces;
 
+import java.util.Date;
+
 /**
  *
  * @author milton
  */
 public interface EstadoAcademico {
+    
+    public Date getFechaIngreso() ;
+
+    public void setFechaIngreso(Date fechaIngreso) ;
+
+    public Date getFechaFinHabilitacion() ;
+
+    public void setFechaFinHabilitacion(Date fechaFinHabilitacion) ;
     
     public Carrera getCarrera() ;
 
