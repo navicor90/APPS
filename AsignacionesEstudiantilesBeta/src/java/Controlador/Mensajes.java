@@ -15,6 +15,8 @@ public class Mensajes {
     public static final String POSTULACION_ERROR_YA_TIENE_ASIGNADO_UN_CARGO="Postulación FALLIDA,  usted ya esta asignado a un cargo";
     public static final String POSTULACION_ERROR_NO_CUMPLE_CONDICIONES="Postulación FALLIDA, no cumple con las condiciones";
     public static final String POSTULACION_EXITOSA="Postulacion EXITOSA";
+    public static final String LEGAJO_NO_ENCONTRADO="No se encuentra el legajo ingresado, vuelva a intentarlo o registrese";
+    public static final String NO_REGULAR="No se encuentra regular, porfavor, verifique su estado en la Universidad";
     
             
 }

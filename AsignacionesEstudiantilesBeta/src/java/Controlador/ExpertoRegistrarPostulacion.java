@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -32,26 +30,20 @@ public class ExpertoRegistrarPostulacion {
         Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
         List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
         estudiante = null;
-        System.out.println("estudiante empty"+estudiantesList.isEmpty());
         if(!estudiantesList.isEmpty()) {
             for (Estudiante e : estudiantesList) {
-                System.out.println("nananan batman");
-                System.out.println(e.getApellido());
                 if(e.getUniversidad().getCodigo() == codUniversidad){
                     estudiante = e;
                 }
             }
         }else{
-            String mensaje = "No se encuentra el legajo ingresado, vuelva a intentarlo o registrese";
-            Exception e = new Exception(mensaje);
-            System.out.println("mensaje experto:"+e.getMessage());
-            throw new Exception(mensaje);
+            throw new Exception(Mensajes.LEGAJO_NO_ENCONTRADO);
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
         Boolean esRegular = false;
         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
-            if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("esRegular")) {
+            if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("regular")) {
                 esRegular = true;
             }
         }
@@ -72,7 +64,7 @@ public class ExpertoRegistrarPostulacion {
             }
             return proyectoDTOList;
         }
-        return null;
+        throw new Exception(Mensajes.NO_REGULAR);
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
@@ -122,7 +114,6 @@ public class ExpertoRegistrarPostulacion {
                     PostulacionProyectoCargoEstado postulacionProyectoCargoEstado = (PostulacionProyectoCargoEstado) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargoEstado.class);
                     postulacionProyectoCargoEstado.setFechaHoraCambio(new Date());
                     //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
-                    
                     Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
                     List<Postulacion> postulacionesAntiguasList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
                     
