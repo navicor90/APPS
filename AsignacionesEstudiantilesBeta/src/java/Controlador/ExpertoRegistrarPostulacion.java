@@ -44,7 +44,6 @@ public class ExpertoRegistrarPostulacion {
         Boolean esRegular = false;
         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
             if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("regular")) {
-                if(estadoAcademicoGeneral.getNombreCarrera()==estudiante.)
                 esRegular = true;
             }
         }
