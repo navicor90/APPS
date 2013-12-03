@@ -31,34 +31,27 @@ public class IntermediarioPersistenciaCarrera extends IntermediarioPersistenciaR
             carreraAgente.setOid(rs.getString("OIDCarrera"));
             carreraAgente.setFechaFinVigencia(rs.getDate("fechaFinVigencia"));
             carreraAgente.setOidUniversidad(rs.getString("OIDUniversidad"));
-            carreraAgente.set
+            carreraAgente.setOidTipoEstadoCarrera(rs.getString("OIDTipoEstadoCarrera"));
             
         }
-        return postulacionList;
+        return carreraList;
     }
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE "+desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.carreras WHERE "+desarmarExpresion(expresion);
         return sql;
     }
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-        FachadaPersistenciaInterna instanciaFPI =FachadaPersistenciaInterna.getInstancia();
-        PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) obj;
-        //instanciaFPI.guardar("Proyecto", postulacionProyectoCargo.getProyecto());
-        //instanciaFPI.guardar("ProyectoCargo", postulacionProyectoCargo.getProyectoCargo());
-        //instanciaFPI.guardar("Universidad", postulacionProyectoCargo.getUniversidad());
-        for (PostulacionProyectoCargoEstado postulacionProyectoCargoEstado : postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
-            FachadaPersistenciaInterna.getInstancia().guardar("PostulacionProyectoCargoEstado", postulacionProyectoCargoEstado);
-        }
-        
+       //SIN IMPLEMENTAR PERSISTIR OBJETOS INTERNOS, EN INTERMEDIARIOPERSISTENCIACARRERA
+        System.out.println("        SIN IMPLEMENTAR PERSISTIR OBJETOS INTERNOS, EN INTERMEDIARIOPERSISTENCIACARRERA");
     }
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-         String sql = "SELECT * FROM AE.postulacionProyectoCargos WHERE OIDPostulacionProyectoCargo='"+oid+"'";
+         String sql = "SELECT * FROM AE.carrera WHERE OIDPostulacionProyectoCargo='"+oid+"'";
         return sql;
     }
 

@@ -6,11 +6,15 @@
 package Modelo.Agente;
 
 import Controlador.Persistencia.FachadaPersistenciaInterna;
+import Modelo.Criterio;
+import Modelo.FabricaCriterio;
 import Modelo.implementacion.ImplementacionEstadoAcademico;
 import Modelo.interfaces.Carrera;
 import Modelo.interfaces.EstadoAcademico;
+import Modelo.interfaces.EstudianteMateria;
 import Modelo.interfaces.TipoEstadoAcademico;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -24,6 +28,15 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
     private String OIDEstudiante;
     private boolean heBuscadoCarrera;
     private String OIDCarrera;
+    private boolean heBuscadoEstudianteMateriaList;
+
+    public boolean isHeBuscadoEstudianteMateriaList() {
+        return heBuscadoEstudianteMateriaList;
+    }
+
+    public void setHeBuscadoEstudianteMateriaList(boolean heBuscadoEstudianteMateriaList) {
+        this.heBuscadoEstudianteMateriaList = heBuscadoEstudianteMateriaList;
+    }
 
     @Override
     public String getLegajo() {
@@ -142,6 +155,30 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
     @Override
     public void setFechaFinHabilitacion(Date fechaFinHabilitacion) {
         this.implementacionEstadoAcademico.setFechaFinHabilitacion(fechaFinHabilitacion);
+    }
+
+    @Override
+    public List<EstudianteMateria> getEstudianteMateriaList() {
+        List<EstudianteMateria> estudianteMateriaList;
+        if(heBuscadoEstudianteMateriaList || this.esNuevo()){
+            estudianteMateriaList = implementacionEstadoAcademico.getEstudianteMateriaList();
+        }else{
+            Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("EstadoAcademico", "=", this);
+            estudianteMateriaList = (List)FachadaPersistenciaInterna.getInstancia().buscar("EstudianteMateria", c);
+            this.setHeBuscadoEstudianteMateriaList(true);
+            this.setEstudianteMateriaList(estudianteMateriaList);
+        }   
+        return estudianteMateriaList;
+    }
+
+    @Override
+    public void setEstudianteMateriaList(List<EstudianteMateria> estudianteMateriaList) {
+        for (EstudianteMateria estudianteMateria : estudianteMateriaList) {
+            AgenteEstudianteMateria agente = (AgenteEstudianteMateria) estudianteMateria;
+            //FALTA IMPLEMENTACION DEL ESTUDIANTE MATERIA
+            System.out.println("                Falta impelmentacion del estudiante materia");
+        }
+        this.implementacionEstadoAcademico.setEstudianteMateriaList(estudianteMateriaList);
     }
     
     
