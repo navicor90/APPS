@@ -65,6 +65,7 @@ public class ExpertoRegistrarPostulacion {
         } 
         DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fechaActualConvertida = fechaHora.format(new Date());
+        //BUSCAR SOLO LOS PROYECTOS VIGENTES
         Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto", ">", fechaActualConvertida);
         List<Proyecto> ProyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
         List<DTOProyecto> proyectoDTOList = new ArrayList<>();
