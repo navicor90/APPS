@@ -25,6 +25,9 @@ public class FactoriaIntermediarioPersistencia {
             case "Estudiante":
                 intermediario = new IntermediarioPersistenciaEstudiante();
                 break;
+            case "TipoEstadoEstudiante":
+                intermediario = new IntermediarioPersistenciaTipoEstadoEstudiante();
+                break;
             case "Proyecto":
                 intermediario = new IntermediarioPersistenciaProyecto();
                 break;

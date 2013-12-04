@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
  * @author yanina
  */
 public class EstudianteMateriaSimple {
-    private long id;
+    private String id;
     @SerializedName("materiaSimple")
     private MateriaSimple materiaSimples;
     private String estado;
@@ -22,18 +22,18 @@ public class EstudianteMateriaSimple {
     public EstudianteMateriaSimple() {
     }
 
-    public EstudianteMateriaSimple(long id, MateriaSimple materiaSimples, String estado, Float notaFinal) {
+    public EstudianteMateriaSimple(String id, MateriaSimple materiaSimples, String estado, Float notaFinal) {
         this.id = id;
         this.materiaSimples = materiaSimples;
         this.estado = estado;
         this.notaFinal = notaFinal;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

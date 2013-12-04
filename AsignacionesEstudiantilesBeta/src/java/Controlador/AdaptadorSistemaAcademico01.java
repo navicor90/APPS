@@ -25,12 +25,12 @@ public class AdaptadorSistemaAcademico01 implements AdaptadorSistemaAcademico{
 
     @Override
     public List<DTOMateria> ObtenerEstadoAcademicoDetallado(String legajo) {
-        System.out.println("Detallado");
        List <DTOMateria> listasDtoMateria= new ArrayList<>();
        ConexionEstadoAcademicoDetallado conexionEstadoAcademicoDetallado =new ConexionEstadoAcademicoDetallado();
        String estadoAcademicoJson=conexionEstadoAcademicoDetallado.consultarEstadoAcademicoDetallado(String.class, legajo);
        Gson gson=new Gson();
        Type tipoEstadoAcademico = new TypeToken<List<DTOEstadoAcademicoDetallado>>(){}.getType();
+        System.out.println("Detallado =  "+estadoAcademicoJson);
        List<DTOEstadoAcademicoDetallado> ListaDtoEstadoAcademicoDetallado = gson.fromJson(estadoAcademicoJson, tipoEstadoAcademico);
        for(DTOEstadoAcademicoDetallado dtoEstadoAcademicoDetallado: ListaDtoEstadoAcademicoDetallado){
            List<EstudianteMateriaSimple> ListaEstudianteMateriaSimple= dtoEstadoAcademicoDetallado.getEstudianteMateriaSimple();

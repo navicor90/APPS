@@ -29,7 +29,7 @@ public class IntermediarioPersistenciaTipoEstadoEstudiante extends Intermediario
             ImplementacionTipoEstadoEstudiante tipoEstadoEstudianteImplementacion = new ImplementacionTipoEstadoEstudiante();
             tipoEstadoEstudianteAgente.setImplementacionTipoEstadoEstudiante(tipoEstadoEstudianteImplementacion);
             tipoEstadoEstudianteAgente.setOid(rs.getString("OIDTipoEstadoEstudiante"));
-            tipoEstadoEstudianteAgente.setNombreTipoEstadoEstudiante(rs.getString("nombreTipoEstadoEstudiante"));
+            tipoEstadoEstudianteAgente.setNombreTipoEstadoEstudiante(rs.getString("nombre"));
             tipoEstadoList.add(tipoEstadoEstudianteAgente);
         }
         return tipoEstadoList;
@@ -55,7 +55,7 @@ public class IntermediarioPersistenciaTipoEstadoEstudiante extends Intermediario
     @Override
     public String armarConsultaInsercion(Object objInsert) {
         AgenteTipoEstadoEstudiante agente = (AgenteTipoEstadoEstudiante) objInsert;
-        String sql = "INSERT INTO  AE.tipoEstadoEstudiantes (OIDTipoEstadoEstudiante ,nombreTipoEstadoEstudiante)VALUES ('"
+        String sql = "INSERT INTO  AE.tipoEstadoEstudiantes (OIDTipoEstadoEstudiante ,nombre)VALUES ('"
                 +agente.getOid()+"',  '"+agente.getNombreTipoEstadoEstudiante()+"')";
         return sql;
     }
