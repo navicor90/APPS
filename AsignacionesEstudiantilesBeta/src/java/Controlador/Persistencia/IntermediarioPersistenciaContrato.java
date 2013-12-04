@@ -31,6 +31,9 @@ public class IntermediarioPersistenciaContrato extends IntermediarioPersistencia
             contratoAgente.setOid(rs.getString("OIDContrato"));
             contratoAgente.setCodigoContrato(rs.getInt("codigoContrato"));
             contratoAgente.setFechaEmisionContrato(rs.getDate("fechaEmisionContrato"));
+            contratoAgente.setOidPostulacion(rs.getString("OIDPostulacion"));
+            contratoAgente.setOidProyecto(rs.getString("OIDProyecto"));
+            contratoAgente.setOidPostulacionProyectoCargo(rs.getString("OIDPostulacionProyectoCargo"));
             contratoList.add(contratoAgente);
         }
         return contratoList;

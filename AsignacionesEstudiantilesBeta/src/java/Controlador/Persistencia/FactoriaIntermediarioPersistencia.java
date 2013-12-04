@@ -65,7 +65,7 @@ public class FactoriaIntermediarioPersistencia {
                 intermediario = new IntermediarioPersistenciaCarrera();
                 break;
             case "Contrato":
-                intermediario = new IntermediarioPersistenciaProyectoCargoCarrera();
+                intermediario = new IntermediarioPersistenciaContrato();
                 break;
             default:
                 intermediario = null;

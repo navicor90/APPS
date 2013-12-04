@@ -23,7 +23,33 @@ public class AgenteContrato extends Agente implements Contrato{
     private boolean heBuscadoPostulacionProyectoCargo;
     private boolean heBuscadoContratoEstado;
     private boolean heBuscadoProyecto;
-    private String oidAgenteContrato;
+    private String oidPostulacion;
+    private String oidPostulacionProyectoCargo;
+    private String oidProyecto;
+
+    public String getOidPostulacion() {
+        return oidPostulacion;
+    }
+
+    public void setOidPostulacion(String oidPostulacion) {
+        this.oidPostulacion = oidPostulacion;
+    }
+
+    public String getOidPostulacionProyectoCargo() {
+        return oidPostulacionProyectoCargo;
+    }
+
+    public void setOidPostulacionProyectoCargo(String oidPostulacionProyectoCargo) {
+        this.oidPostulacionProyectoCargo = oidPostulacionProyectoCargo;
+    }
+
+    public String getOidProyecto() {
+        return oidProyecto;
+    }
+
+    public void setOidProyecto(String oidProyecto) {
+        this.oidProyecto = oidProyecto;
+    }
 
     public boolean isHeBuscadoPostulacion() {
         return heBuscadoPostulacion;
@@ -80,15 +106,7 @@ public class AgenteContrato extends Agente implements Contrato{
         implementacionContrato.setEmpresa(empresa);
     }
 
-    @Override
-    public List<PostulacionProyectoCargo> getPostulacionProyecCargo() {
-        return implementacionContrato.getPostulacionProyecCargo();
-    }
 
-    @Override
-    public void setPostulacionProyecCargo(List<PostulacionProyectoCargo> postulacionProyecCargo) {
-        implementacionContrato.setPostulacionProyecCargo(postulacionProyecCargo);
-    }
 
     @Override
     public Postulacion getPostulacion() {
@@ -120,7 +138,7 @@ public class AgenteContrato extends Agente implements Contrato{
     @Override
     public void addContratoEstado(ContratoEstado contratoEstado) {
         AgenteContratoEstado contratoEstadoAgente = (AgenteContratoEstado) contratoEstado;
-        contratoEstadoAgente.setOidContrato(this.oidAgenteContrato);
+        contratoEstadoAgente.setOidContrato(this.getOid());
         implementacionContrato.addContratoEstado(contratoEstado);
     }
 
@@ -140,12 +158,24 @@ public class AgenteContrato extends Agente implements Contrato{
         this.heBuscadoProyecto = heBuscadoProyecto;
     }
 
-    public String getOidAgenteContrato() {
-        return oidAgenteContrato;
+    @Override
+    public PostulacionProyectoCargo getPostulacionProyecCargo() {
+        return this.implementacionContrato.getPostulacionProyecCargo();
     }
 
-    public void setOidAgenteContrato(String oidAgenteContrato) {
-        this.oidAgenteContrato = oidAgenteContrato;
+    @Override
+    public void setPostulacionProyecCargo(PostulacionProyectoCargo postulacionProyecCargo) {
+        this.implementacionContrato.setPostulacionProyecCargo(postulacionProyecCargo);
+    }
+
+    @Override
+    public Proyecto getProyecto() {
+        return this.implementacionContrato.getProyecto();
+    }
+
+    @Override
+    public void setProyecto(Proyecto proyecto) {
+        this.implementacionContrato.setProyecto(proyecto);
     }
     
 }

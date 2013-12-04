@@ -18,11 +18,22 @@ public class ImplementacionContrato implements Contrato {
     private int codigoContrato;
     private Date fechaEmisionContrato;
     private Empresa empresa;
-    private List<PostulacionProyectoCargo> postulacionProyecCargo;
+    private PostulacionProyectoCargo postulacionProyecCargo;
+    private Proyecto proyecto;
     private Postulacion postulacion;
     private List<ContratoEstado> contratoEstadoList;
 
- 
+    @Override
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    @Override
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
+    }
+
+    
 
     @Override
     public int getCodigoContrato() {
@@ -55,14 +66,16 @@ public class ImplementacionContrato implements Contrato {
     }
 
     @Override
-    public List<PostulacionProyectoCargo> getPostulacionProyecCargo() {
+    public PostulacionProyectoCargo getPostulacionProyecCargo() {
         return postulacionProyecCargo;
     }
 
     @Override
-    public void setPostulacionProyecCargo(List<PostulacionProyectoCargo> postulacionProyecCargo) {
+    public void setPostulacionProyecCargo(PostulacionProyectoCargo postulacionProyecCargo) {
         this.postulacionProyecCargo = postulacionProyecCargo;
     }
+
+
 
     @Override
     public Postulacion getPostulacion() {

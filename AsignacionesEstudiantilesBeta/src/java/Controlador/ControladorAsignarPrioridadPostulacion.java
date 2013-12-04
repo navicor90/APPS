@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Controlador.Persistencia.FabricaExperto;
 import Modelo.DTO.DTOPostulacionProyectoCargo;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ControladorAsignarPrioridadPostulacion {
     ExpertoAsignarPrioridadPostulacion experto;
 
     public ControladorAsignarPrioridadPostulacion() {
-        experto  = new ExpertoAsignarPrioridadPostulacion();
+        experto  = (ExpertoAsignarPrioridadPostulacion) FabricaExperto.getInstancia().obtenerExperto("AsignarPrioridadPostulacion");
     }
     
     public List<DTOPostulacionProyectoCargo> listarPostulaciones(String legajo, String url) throws ExceptionAPPS {
