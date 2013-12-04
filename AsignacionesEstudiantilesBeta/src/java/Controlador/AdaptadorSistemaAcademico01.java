@@ -42,7 +42,6 @@ public class AdaptadorSistemaAcademico01 implements AdaptadorSistemaAcademico{
                dTOMateria.setNotaMateria(estudianteMateriaSimple.getNotaFinal());
                dTOMateria.setNombreMateria(estudianteMateriaSimple.getMateriaSimples().getNombre());
                listasDtoMateria.add(dTOMateria);
-               
            }
         }
        return listasDtoMateria;

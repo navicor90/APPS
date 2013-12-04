@@ -39,7 +39,6 @@ public class ExpertoRegistrarPostulacion {
         for (EstadoAcademico ea : estadoAcademicoList) {
             if (ea.getCarrera().getUniversdad().getCodigo() == codUniversidad) {
                 estadoAcademico = ea;
-                System.out.println("estado academico legajo: " + estadoAcademico.getLegajo());
             }
         }
         if (estadoAcademico.getCarrera().getUniversdad().getFechaFinVigenciaUniversidad().before(new Date())) {
