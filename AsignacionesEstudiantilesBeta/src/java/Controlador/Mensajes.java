@@ -17,6 +17,7 @@ public class Mensajes {
     public static final String POSTULACION_EXITOSA="Postulacion EXITOSA";
     public static final String LEGAJO_NO_ENCONTRADO="No se encuentra el legajo ingresado, vuelva a intentarlo o registrese";
     public static final String NO_REGULAR="No se encuentra regular, porfavor, verifique su estado en la Universidad";
+    public static final String INACTIVO="Lo siento, este legajo se encuentra inactivo, contacte al administrador";
     
             
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controlador;
+
 import Controlador.Persistencia.FabricaEntidades;
 import Controlador.Persistencia.FachadaPersistencia;
 import Modelo.*;
@@ -27,17 +28,23 @@ public class ExpertoRegistrarPostulacion {
 
     public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) throws Exception {
         this.codUniversidad = codUniversidad;
-        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
-        List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
-        estudiante = null;
-        if(!estudiantesList.isEmpty()) {
-            for (Estudiante e : estudiantesList) {
-                if(e.getUniversidad().getCodigo() == codUniversidad){
-                    estudiante = e;
+        Expresion expresionBusquedaEstadoAcademico = FabricaCriterio.getInstancia().crear("legajo", "=", legajo.toString());
+        List<EstadoAcademico> estadoAcademicoList = (List) FachadaPersistencia.obtenerInstancia().buscar("EstadoAcademico", expresionBusquedaEstadoAcademico);
+        EstadoAcademico estadoAcademico = null;
+        if (!estadoAcademicoList.isEmpty()) {
+            for (EstadoAcademico ea : estadoAcademicoList) {
+                if (ea.getCarrera().getUniversdad().getCodigo() == codUniversidad) {
+                    estadoAcademico = ea;
                 }
             }
-        }else{
+        } else {
             throw new Exception(Mensajes.LEGAJO_NO_ENCONTRADO);
+        }
+        Criterio criterioBusquedaEstudiante = (Criterio) FabricaCriterio.getInstancia().crear("estadoAcademico", "=", estadoAcademico);
+        List<Estudiante> estudianteList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", criterioBusquedaEstudiante);
+        estudiante = estudianteList.get(0);
+        if(estudiante.getEstadoEstudiante().getNombreTipoEstadoEstudiante().contentEquals("Inactivo")){
+            throw new Exception(Mensajes.INACTIVO);
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
@@ -116,7 +123,7 @@ public class ExpertoRegistrarPostulacion {
                     //validamos que no se haya registrado una postulacion, en otra ocasion para el mismo proyectoCargo
                     Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
                     List<Postulacion> postulacionesAntiguasList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
-                    
+
                     for (Postulacion postulacionAntigua : postulacionesAntiguasList) {
                         for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getPostulacionProyectoCargosList()) {
                             if (postulacionProyectoCargoAntigua.getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
@@ -174,23 +181,22 @@ public class ExpertoRegistrarPostulacion {
 
         return postulacionesProyectoCargoDTOList;
     }
-    
-    private int AsignarNroPostulacion(){
+
+    private int AsignarNroPostulacion() {
         int nroPostulacion = 0;
         Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("codigoPostulacion", ">", "0");
-        List<Postulacion> postuluaciones = (List)FachadaPersistencia.obtenerInstancia().buscar("Postulacion", c);
+        List<Postulacion> postuluaciones = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", c);
         Iterator iteratorPost = postuluaciones.iterator();
         nroPostulacion = 0;
-        for (int i = 0; i < postuluaciones.size(); i++){
+        for (int i = 0; i < postuluaciones.size(); i++) {
             Postulacion postulacion = postuluaciones.get(i);
-            if(nroPostulacion<=postulacion.getNroPostulacion()){
-                nroPostulacion=postulacion.getNroPostulacion()+1;
+            if (nroPostulacion <= postulacion.getNroPostulacion()) {
+                nroPostulacion = postulacion.getNroPostulacion() + 1;
             }
         }
-    return nroPostulacion;
+        return nroPostulacion;
     }
-    
-    
+
     private int contarMateriasRegulares(List<DTOMateria> materiasList) {
         int contador = 0;
         for (DTOMateria materiaDTO : materiasList) {
