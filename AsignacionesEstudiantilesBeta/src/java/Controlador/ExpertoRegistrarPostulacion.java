@@ -25,33 +25,39 @@ public class ExpertoRegistrarPostulacion {
 
     Estudiante estudiante;
     Long codUniversidad;
+    String legajo;
 
-    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) throws Exception {
+    public List<DTOProyecto> listarProyectos(String legajo, Long codUniversidad) throws Exception {
         this.codUniversidad = codUniversidad;
+        this.legajo = legajo;
         Expresion expresionBusquedaEstadoAcademico = FabricaCriterio.getInstancia().crear("legajo", "=", legajo.toString());
         List<EstadoAcademico> estadoAcademicoList = (List) FachadaPersistencia.obtenerInstancia().buscar("EstadoAcademico", expresionBusquedaEstadoAcademico);
         EstadoAcademico estadoAcademico = null;
-        if (!estadoAcademicoList.isEmpty()) {
-            for (EstadoAcademico ea : estadoAcademicoList) {
-                if (ea.getCarrera().getUniversdad().getCodigo() == codUniversidad) {
-                    estadoAcademico = ea;
-                }
-            }
-        } else {
+        if (estadoAcademicoList.isEmpty()) {
             throw new Exception(Mensajes.LEGAJO_NO_ENCONTRADO);
+        }
+        for (EstadoAcademico ea : estadoAcademicoList) {
+            if (ea.getCarrera().getUniversdad().getCodigo() == codUniversidad) {
+                estadoAcademico = ea;
+            }
+        }
+        if (estadoAcademico.getCarrera().getUniversdad().getFechaFinVigenciaUniversidad().before(new Date())) {
+            throw new Exception(Mensajes.UNIVERSIDAD_INACTIVA);
         }
         Criterio criterioBusquedaEstudiante = (Criterio) FabricaCriterio.getInstancia().crear("estadoAcademico", "=", estadoAcademico);
         List<Estudiante> estudianteList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", criterioBusquedaEstudiante);
         estudiante = estudianteList.get(0);
-        if(estudiante.getEstadoEstudiante().getNombreTipoEstadoEstudiante().contentEquals("Inactivo")){
-            throw new Exception(Mensajes.INACTIVO);
+        if (estudiante.getEstadoEstudiante().getNombreTipoEstadoEstudiante().contentEquals("Inactivo")) {
+            throw new Exception(Mensajes.ESTUDIANTE_INACTIVO);
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
         Boolean esRegular = false;
         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
-            if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("regular")) {
-                esRegular = true;
+            if (estadoAcademico.getCarrera().getNombreCarrera().contentEquals(estadoAcademicoGeneral.getNombreCarrera())) {
+                if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("regular")) {
+                    esRegular = true;
+                }
             }
         }
         if (esRegular) {
@@ -91,15 +97,15 @@ public class ExpertoRegistrarPostulacion {
         return proyectoCargosDTOList;
     }
 
-    public Date obtenerFechaYHoraActuales() {
-        return new Date();
-    }
-
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) {
         Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
         postulacion.setFechaHoraPostulacion(new Date());
         //Asignar el numero de postulacion
         postulacion.setNroPostulacion(this.AsignarNroPostulacion());
+        List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
+        List<DTOMateria> materiaDTO = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).ObtenerEstadoAcademicoDetallado(legajo);
+        int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
+        int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
         postulacion.setEstudiante(estudiante);
         for (DTOPostulacionProyectoCargo postulacionProyectoCargoDTO : postulacionesProyectoCargoDTOList) {
             PostulacionProyectoCargo postulacionProyectoCargo = (PostulacionProyectoCargo) FabricaEntidades.getInstancia().crearEntidad(PostulacionProyectoCargo.class);
@@ -110,11 +116,8 @@ public class ExpertoRegistrarPostulacion {
                 if (proyectoCargo.getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
                     postulacionProyectoCargo.setProyecto(proyecto);
                     postulacionProyectoCargo.setProyectoCargo(proyectoCargo);
-                    List<DTOMateria> materiaDTO = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).ObtenerEstadoAcademicoDetallado(estudiante.getLegajo());
                     int cantidadMateriasRendidasSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRendidas();
                     int cantidadMateriasRegularesSolicitadas = proyectoCargo.getProyectoCargoCarrera().getCantidadMateriasRegulares();
-                    int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
-                    int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
                     postulacionProyectoCargo.setCantidadMateriasAprobadasEstudiante(cantidadMateriasRendidas);
                     postulacionProyectoCargo.setCantidadMateriasRegulares(cantidadMateriasRegulares);
                     postulacionProyectoCargo.setPrioridad(0);
