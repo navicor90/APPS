@@ -5,11 +5,17 @@
  */
 package Controlador.Interface;
 
+import Controlador.ControladorAsignarPrioridadPostulacion;
+import Controlador.ExceptionAPPS;
 import Modelo.DTO.DTOPostulacionProyectoCargo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -23,37 +29,46 @@ public class AsignarPrioridadesBean {
      * Creates a new instance of AsignarPrioridadesBean
      */
     private List<DTOPostulacionProyectoCargo> postulacionesDTO;
+    private Controlador.ControladorAsignarPrioridadPostulacion controlador;
+    private UserBean user;
+    private List<String> erroresMensajes;
+    private boolean hayErrores;
 
     public AsignarPrioridadesBean() {
-        postulacionesDTO = new ArrayList<>();
-        DTOPostulacionProyectoCargo dto = new DTOPostulacionProyectoCargo();
-        dto.setNomProyecto("proy1");
-        dto.setNomProyectoCargo("proycargo1");
-        dto.setPrioridad(1);
-        postulacionesDTO.add(dto);
-        DTOPostulacionProyectoCargo dto1 = new DTOPostulacionProyectoCargo();
-        dto1.setNomProyecto("proy2");
-        dto1.setNomProyectoCargo("proycargo2");
-        dto1.setPrioridad(2);
-        postulacionesDTO.add(dto1);
-        DTOPostulacionProyectoCargo dto3 = new DTOPostulacionProyectoCargo();
-        dto3.setNomProyecto("proy3");
-        dto3.setNomProyectoCargo("proycargo3");
-        dto3.setPrioridad(3);
-        postulacionesDTO.add(dto3);
-        PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesDTO);
+        controlador = new ControladorAsignarPrioridadPostulacion();
+        hayErrores = false;
     }
-    
-    
-    
+
     public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
         return postulacionesDTO;
+    }
+
+    public String redirect(UserBean user) {
+        this.user = user;
+        HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        String URL = origRequest.getRequestURI();
+        String pageToRedirect;
+        try {
+            postulacionesDTO = controlador.listarPostulaciones(user.getLegajo(), URL);
+            PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesDTO);
+        } catch (ExceptionAPPS ex) {
+            hayErrores = true;
+            erroresMensajes.add(ex.getMessage());
+        }
+        if (hayErrores) {
+            pageToRedirect = "MostrarMensajes.xhtml?faces-redirect=true";
+        } else {
+            pageToRedirect = "configurarPrioridades.xhtml?faces-redirect=true";
+        }
+        hayErrores = false;
+        return pageToRedirect;
     }
 
     public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
         this.postulacionesDTO = postulacionesDTO;
     }
-    public String guardarCambios(){
+
+    public String guardarCambios() {
         return "index.xhtml";
     }
 

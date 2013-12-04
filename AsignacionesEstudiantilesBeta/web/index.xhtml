@@ -16,11 +16,11 @@
                 <br/>
                 <h:panelGrid id="panelLogin" columns="2" style="margin-left: 40%;">
                     <p:outputLabel value="Legajo" />
-                    <h:inputText value="#{registrarPostulacionBean.legajo}" />
+                    <h:inputText value="#{userBean.legajo}" />
                 </h:panelGrid>
                     <h:panelGroup style="display:block; text-align: center">
                         <p:commandButton id="RegistrarPostulacion" value="Registrar Postulacion" action="#{registrarPostulacionBean.validateRedirect()}" />
-                        <p:commandButton id="AsignarPrioridades" value="AsignarPrioridades" action="configurarPrioridades.xhtml" />
+                        <p:commandButton id="AsignarPrioridades" value="AsignarPrioridades" action="#{asignarPrioridadesBean.redirect(userBean)}" />
                         <p:commandButton id="Registrarme" value="Registrarme" action="index.xhtml" />
                     </h:panelGroup>
 

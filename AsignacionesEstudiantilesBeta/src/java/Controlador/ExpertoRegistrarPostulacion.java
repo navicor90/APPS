@@ -104,7 +104,6 @@ public class ExpertoRegistrarPostulacion {
         postulacion.setFechaHoraPostulacion(new Date());
         //Asignar el numero de postulacion
         postulacion.setNroPostulacion(this.AsignarNroPostulacion());
-        List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
         List<DTOMateria> materiaDTO = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad).ObtenerEstadoAcademicoDetallado(legajo);
         int cantidadMateriasRendidas = contarMateriasAprobadas(materiaDTO);
         int cantidadMateriasRegulares = contarMateriasRegulares(materiaDTO);
@@ -220,5 +219,26 @@ public class ExpertoRegistrarPostulacion {
             }
         }
         return contador;
+    }
+    
+    
+    public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList){
+        Criterio criterioBusquedaPostulacionesHabilitadas = (Criterio) FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
+        List<Postulacion> postulaciones = (List)FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulacionesHabilitadas);
+        List<Postulacion> postulacionesHabilitadas = new ArrayList<>();
+        for (Postulacion postulacion : postulaciones) {
+            for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
+                if(postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList())
+            }
+            
+        }
+        
+        
+        return null;
+    }
+    
+    public PostulacionProyectoCargoEstado getUltimoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList){
+        for()
+        return null;
     }
 }

@@ -6,6 +6,7 @@
 package Controlador;
 
 import Controlador.Persistencia.FachadaPersistencia;
+import Modelo.Criterio;
 import Modelo.DTO.DTOEstadoAcademicoGeneral;
 import Modelo.DTO.DTOPostulacionProyectoCargo;
 import Modelo.Expresion;
@@ -15,6 +16,7 @@ import Modelo.interfaces.Postulacion;
 import java.util.List;
 import Modelo.interfaces.Contrato;
 import Modelo.interfaces.ContratoEstado;
+import Modelo.interfaces.EstadoAcademico;
 import Modelo.interfaces.PostulacionProyectoCargo;
 import Modelo.interfaces.PostulacionProyectoCargoEstado;
 import Modelo.interfaces.Proyecto;
@@ -24,6 +26,7 @@ import Modelo.interfaces.TipoEstadoContrato;
 import Modelo.interfaces.TipoEstadoPostulacionProyectoCargo;
 import Modelo.interfaces.TipoEstadoProyecto;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -33,33 +36,45 @@ public class ExpertoAsignarPrioridadPostulacion {
 
     private Estudiante estudiante;
     private long codUniversidad;
+    private String legajo;
 
     public ExpertoAsignarPrioridadPostulacion() {
     }
 
-    public List<DTOPostulacionProyectoCargo> listarPostulaciones(String legajo, int codigo) throws Exception {
-        List<DTOPostulacionProyectoCargo> dtoPostulacionProyectoCargoListArmada = new ArrayList<>();
+    public List<DTOPostulacionProyectoCargo> listarPostulaciones(String legajo, int codigo) throws ExceptionAPPS {
         this.codUniversidad = codigo;
-        Expresion expresionBusquedaEstudiante = FabricaCriterio.getInstancia().crear("legajoEstudiante", "=", legajo.toString());
-        List<Estudiante> estudiantesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", expresionBusquedaEstudiante);
-        estudiante = null;
-        if (estudiantesList != null) {
-            for (Estudiante e : estudiantesList) {
-                if (e.getUniversidad().getCodigo() == codUniversidad) {
-                    estudiante = e;
-                }
+        this.legajo = legajo;
+        Expresion expresionBusquedaEstadoAcademico = FabricaCriterio.getInstancia().crear("legajo", "=", legajo.toString());
+        List<EstadoAcademico> estadoAcademicoList = (List) FachadaPersistencia.obtenerInstancia().buscar("EstadoAcademico", expresionBusquedaEstadoAcademico);
+        EstadoAcademico estadoAcademico = null;
+        if (estadoAcademicoList.isEmpty()) {
+            throw new ExceptionAPPS(Mensajes.LEGAJO_NO_ENCONTRADO);
+        }
+        for (EstadoAcademico ea : estadoAcademicoList) {
+            if (ea.getCarrera().getUniversdad().getCodigo() == codUniversidad) {
+                estadoAcademico = ea;
             }
-        } else {
-            return null;
+        }
+        if (estadoAcademico.getCarrera().getUniversdad().getFechaFinVigenciaUniversidad().before(new Date())) {
+            throw new ExceptionAPPS(Mensajes.UNIVERSIDAD_INACTIVA);
+        }
+        Criterio criterioBusquedaEstudiante = (Criterio) FabricaCriterio.getInstancia().crear("estadoAcademico", "=", estadoAcademico);
+        List<Estudiante> estudianteList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", criterioBusquedaEstudiante);
+        estudiante = estudianteList.get(0);
+        if (estudiante.getEstadoEstudiante().getNombreTipoEstadoEstudiante().contentEquals("Inactivo")) {
+            throw new ExceptionAPPS(Mensajes.ESTUDIANTE_INACTIVO);
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
         Boolean esRegular = false;
         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
-            if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("esRegular")) {
-                esRegular = true;
+            if (estadoAcademico.getCarrera().getNombreCarrera().contentEquals(estadoAcademicoGeneral.getNombreCarrera())) {
+                if (estadoAcademicoGeneral.getEstadoAcademico().contentEquals("regular")) {
+                    esRegular = true;
+                }
             }
         }
+        List<DTOPostulacionProyectoCargo> dtoPostulacionProyectoCargoListArmada = new ArrayList<>();
         if (esRegular) {
             Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
             List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
@@ -78,7 +93,7 @@ public class ExpertoAsignarPrioridadPostulacion {
                     }
                     TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
                     if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
-                        throw new Exception(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
+                        throw new ExceptionAPPS(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
                     }
                 }
 
@@ -94,39 +109,41 @@ public class ExpertoAsignarPrioridadPostulacion {
                         }
                     }
                     TipoEstadoPostulacionProyectoCargo estadoPostulacionProyectoCargo = ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
-                        if (estadoPostulacionProyectoCargo.getNombreEstado().contentEquals("Efectiva")) {
-                            //verifico que el proyecto que ofrece el cargo para el cual se postulo este vigente o activo
-                            ProyectoCargo proyectoCargo = postulacionProyectoCargo.getProyectoCargo();
-                            Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("proyectoCargo", "=", proyectoCargo);
-                            List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
-                            Proyecto proyecto = proyectosList.get(0);
-                            List<ProyectoEstado> proyectoEstadoList = proyecto.getProyectoEstado();
-                            //busco el ultimo estado del proyecto
-                            ProyectoEstado ultimoProyectoEstado = proyectoEstadoList.get(0);
-                            for (int j = 1; j < proyectoEstadoList.size(); j++) {
-                                ProyectoEstado proyectoEstado = proyectoEstadoList.get(j);
-                                if (proyectoEstado.getFechaHoraCambio().after(ultimoProyectoEstado.getFechaHoraCambio())) {
-                                    ultimoProyectoEstado = proyectoEstado;
-                                }
+                    if (estadoPostulacionProyectoCargo.getNombreEstado().contentEquals("Efectiva")) {
+                        //verifico que el proyecto que ofrece el cargo para el cual se postulo este vigente o activo
+                        ProyectoCargo proyectoCargo = postulacionProyectoCargo.getProyectoCargo();
+                        Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("proyectoCargo", "=", proyectoCargo);
+                        List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
+                        Proyecto proyecto = proyectosList.get(0);
+                        List<ProyectoEstado> proyectoEstadoList = proyecto.getProyectoEstado();
+                        //busco el ultimo estado del proyecto
+                        ProyectoEstado ultimoProyectoEstado = proyectoEstadoList.get(0);
+                        for (int j = 1; j < proyectoEstadoList.size(); j++) {
+                            ProyectoEstado proyectoEstado = proyectoEstadoList.get(j);
+                            if (proyectoEstado.getFechaHoraCambio().after(ultimoProyectoEstado.getFechaHoraCambio())) {
+                                ultimoProyectoEstado = proyectoEstado;
                             }
-                            TipoEstadoProyecto estadoProyecto = ultimoProyectoEstado.getTipoEstadoProyecto();
-                            if(estadoProyecto.getNombreTipoEstadoProyecto().contentEquals("Vigente")){
-                                int nroProyecto = proyecto.getCodigo();
-                                String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
-                                String nomProyecto = proyecto.getNombreProyecto();
-                                int prioridad = postulacionProyectoCargo.getPrioridad();
-                                int nroProyectoCargo = proyectoCargo.getNroProyectoCargo();               
-                                DTOPostulacionProyectoCargo dtoPostulacionProyectoCargo = new DTOPostulacionProyectoCargo();                       
-                                dtoPostulacionProyectoCargo.setNroProyecto(nroProyecto);
-                                dtoPostulacionProyectoCargo.setPrioridad(prioridad);
-                                dtoPostulacionProyectoCargo.setNomProyecto(nomProyecto);
-                                dtoPostulacionProyectoCargo.setNroProyectoCargo(nroProyectoCargo);
-                                dtoPostulacionProyectoCargo.setNomProyectoCargo(nomProyectoCargo);
-                                dtoPostulacionProyectoCargoListArmada.add(dtoPostulacionProyectoCargo);
-                            }
-                        }                    
+                        }
+                        TipoEstadoProyecto estadoProyecto = ultimoProyectoEstado.getTipoEstadoProyecto();
+                        if (estadoProyecto.getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
+                            int nroProyecto = proyecto.getCodigo();
+                            String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
+                            String nomProyecto = proyecto.getNombreProyecto();
+                            int prioridad = postulacionProyectoCargo.getPrioridad();
+                            int nroProyectoCargo = proyectoCargo.getNroProyectoCargo();
+                            DTOPostulacionProyectoCargo dtoPostulacionProyectoCargo = new DTOPostulacionProyectoCargo();
+                            dtoPostulacionProyectoCargo.setNroProyecto(nroProyecto);
+                            dtoPostulacionProyectoCargo.setPrioridad(prioridad);
+                            dtoPostulacionProyectoCargo.setNomProyecto(nomProyecto);
+                            dtoPostulacionProyectoCargo.setNroProyectoCargo(nroProyectoCargo);
+                            dtoPostulacionProyectoCargo.setNomProyectoCargo(nomProyectoCargo);
+                            dtoPostulacionProyectoCargoListArmada.add(dtoPostulacionProyectoCargo);
+                        }
+                    }
                 }
             }
+        } else {
+            throw new ExceptionAPPS(Mensajes.NO_REGULAR);
         }
         return dtoPostulacionProyectoCargoListArmada;
     }
