@@ -16,18 +16,22 @@ public class ImplementacionTipoEstadoAcademico implements TipoEstadoAcademico {
     int codigo;
     String nombre;
 
+    @Override
     public int getCodigo() {
         return codigo;
     }
 
+    @Override
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
+    @Override
     public String getNombre() {
         return nombre;
     }
 
+    @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

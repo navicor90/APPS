@@ -29,13 +29,13 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class RegistrarPostulacionBean {
 
-    private String legajo;
     private ControladorRegistrarPostulacion controlador;
     private List<DTOProyecto> proyectosList;
     private List<DTOPostulacionProyectoCargo> postulacionesDTO;
     private List<DTOProyectoCargo> proyectoCargosList;
     private DTOProyecto proyectoActual;
     private List<String> erroresMensajes;
+    private UserBean user;
     private boolean hayErrores;
 
     public RegistrarPostulacionBean() {
@@ -107,14 +107,15 @@ public class RegistrarPostulacionBean {
         }
     }
 
-    public String validateRedirect(){
+    public String validateRedirect(UserBean user){
+        this.user = user;
         erroresMensajes= new ArrayList();
         String pageToRedirect;
         HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String URL = origRequest.getRequestURI();
         proyectosList = null;
         try {
-            proyectosList = controlador.listarProyectos(legajo, URL);
+            proyectosList = controlador.listarProyectos(user.getLegajo(), URL);
         } catch (ExceptionAPPS ex) {
             hayErrores = true;
             erroresMensajes.add(ex.getMessage());
@@ -126,14 +127,6 @@ public class RegistrarPostulacionBean {
         }
         hayErrores=false;
         return pageToRedirect;
-    }
-    
-    public String getLegajo() {
-        return legajo;
-    }
-
-    public void setLegajo(String legajo) {
-        this.legajo = legajo;
     }
 
     public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {

@@ -221,24 +221,4 @@ public class ExpertoRegistrarPostulacion {
         return contador;
     }
     
-    
-    public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList){
-        Criterio criterioBusquedaPostulacionesHabilitadas = (Criterio) FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
-        List<Postulacion> postulaciones = (List)FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulacionesHabilitadas);
-        List<Postulacion> postulacionesHabilitadas = new ArrayList<>();
-        for (Postulacion postulacion : postulaciones) {
-            for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
-                if(postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList())
-            }
-            
-        }
-        
-        
-        return null;
-    }
-    
-    public PostulacionProyectoCargoEstado getUltimoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList){
-        for()
-        return null;
-    }
 }

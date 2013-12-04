@@ -19,7 +19,7 @@
                     <h:inputText value="#{userBean.legajo}" />
                 </h:panelGrid>
                     <h:panelGroup style="display:block; text-align: center">
-                        <p:commandButton id="RegistrarPostulacion" value="Registrar Postulacion" action="#{registrarPostulacionBean.validateRedirect()}" />
+                        <p:commandButton id="RegistrarPostulacion" value="Registrar Postulacion" action="#{registrarPostulacionBean.validateRedirect(userBean)}" />
                         <p:commandButton id="AsignarPrioridades" value="AsignarPrioridades" action="#{asignarPrioridadesBean.redirect(userBean)}" />
                         <p:commandButton id="Registrarme" value="Registrarme" action="index.xhtml" />
                     </h:panelGroup>
