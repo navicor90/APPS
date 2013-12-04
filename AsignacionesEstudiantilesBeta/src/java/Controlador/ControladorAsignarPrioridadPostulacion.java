@@ -21,8 +21,7 @@ public class ControladorAsignarPrioridadPostulacion {
     }
     
     public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList){
-        experto.asignarPrioridades(postulacionProyectoCargosDTOList);
-        return null;
+        return experto.asignarPrioridades(postulacionProyectoCargosDTOList);
     }
     
 }
