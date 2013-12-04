@@ -6,10 +6,22 @@
 
 package Controlador;
 
+import Modelo.DTO.DTOPostulacionProyectoCargo;
+import java.util.List;
+
 /**
  *
  * @author milton
  */
 public class ControladorAsignarPrioridadPostulacion {
+    ExpertoAsignarPrioridadPostulacion experto;
+    
+    public List<DTOPostulacionProyectoCargo> listarPostulaciones(String legajo, int codigo){
+        return experto.listarPostulaciones(legajo, codigo);
+    }
+    
+    public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList){
+        return null;
+    }
     
 }
