@@ -19,5 +19,5 @@ public class Mensajes {
     public static final String NO_REGULAR="No se encuentra regular, porfavor, verifique su estado en la Universidad";
     public static final String ESTUDIANTE_INACTIVO="Lo siento, este legajo se encuentra inactivo, contacte al administrador";
     public static final String UNIVERSIDAD_INACTIVA="Lo siento, la universidad actualmente se encuentra inactiva, contacte al administrador";
-            
+    public static final String ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE="Usted no puede asignar prioridades ya que ya ha sido seleccionado en un proyecto";        
 }
