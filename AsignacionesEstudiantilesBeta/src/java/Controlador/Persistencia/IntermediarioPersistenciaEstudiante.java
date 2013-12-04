@@ -34,6 +34,7 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
             estudianteAgente.setTipoDni(rs.getString("tipoDNIEstudiante"));
             estudianteAgente.setEmail(rs.getString("emailEstudiante"));
             estudianteAgente.setOidUniversidad(rs.getString("OIDUniversidad"));
+            estudianteAgente.setOIDTIpoEstadoEstudiante(rs.getString("OIDTipoEstadoEstudiante"));
             estudiantesList.add(estudianteAgente);
         }
         return estudiantesList;
@@ -41,32 +42,43 @@ public class IntermediarioPersistenciaEstudiante extends IntermediarioPersistenc
 
     @Override
     public String armarConsultaSeleccion(Expresion expresion) {
-        String sql = "SELECT * FROM AE.estudiantes WHERE "+desarmarExpresion(expresion);
+        String sql = "SELECT * FROM AE.estudiantes WHERE " + desarmarExpresion(expresion);
         return sql;
     }
 
     @Override
     public void persistirObjetosInternos(Object obj) {
-    
+
     }
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String armarConsultaInsercion(Object objInsert) {
-        return null;
+    public String armarConsultaInsercion(Object objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String armarConsultaActualizacion(Object objUpdate) {
-        return null;
+    public String armarConsultaActualizacion(Object objeto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String desarmarCriterioPorObjeto(Criterio criterio) {
-        return "";
+        String criterioString = "";
+        switch (criterio.getAtributo()) {
+            case "estadoAcademico":
+                criterioString = "OIDEstudiante";
+                criterioString += criterio.getOperador();
+                AgenteEstadoAcademico agente = (AgenteEstadoAcademico)criterio.getValor();
+                criterioString += "'" + agente.getOIDEstudiante() + "'";
+                break;
+            default:
+                return "";
+        }
+        return criterioString;
     }
 }

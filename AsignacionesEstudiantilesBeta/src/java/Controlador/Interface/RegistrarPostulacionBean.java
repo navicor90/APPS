@@ -6,6 +6,7 @@
 package Controlador.Interface;
 
 import Controlador.ControladorRegistrarPostulacion;
+import Controlador.ExceptionAPPS;
 import Modelo.DTO.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class RegistrarPostulacionBean {
 
-    private long legajo;
+    private String legajo;
     private ControladorRegistrarPostulacion controlador;
     private List<DTOProyecto> proyectosList;
     private List<DTOPostulacionProyectoCargo> postulacionesDTO;
@@ -114,7 +115,7 @@ public class RegistrarPostulacionBean {
         proyectosList = null;
         try {
             proyectosList = controlador.listarProyectos(legajo, URL);
-        } catch (Exception ex) {
+        } catch (ExceptionAPPS ex) {
             hayErrores = true;
             erroresMensajes.add(ex.getMessage());
         }
@@ -127,11 +128,11 @@ public class RegistrarPostulacionBean {
         return pageToRedirect;
     }
     
-    public long getLegajo() {
+    public String getLegajo() {
         return legajo;
     }
 
-    public void setLegajo(long legajo) {
+    public void setLegajo(String legajo) {
         this.legajo = legajo;
     }
 

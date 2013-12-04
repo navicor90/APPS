@@ -123,6 +123,7 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
         if(this.isHeBuscadoCarrera() || this.esNuevo()){
             carrera = implementacionEstadoAcademico.getCarrera();
         }else{
+            System.out.println("OID CARRERA "+this.getOIDCarrera());
             carrera = (Carrera) FachadaPersistenciaInterna.getInstancia().buscar("Carrera", this.getOIDCarrera());
             this.setCarrera(carrera);
             this.setHeBuscadoCarrera(true);
@@ -132,6 +133,7 @@ public class AgenteEstadoAcademico extends Agente implements EstadoAcademico {
 
     @Override
     public void setCarrera(Carrera carrera) {
+        System.out.println(carrera.getNombreCarrera());
         Agente agente = (Agente) carrera;
         this.setOIDCarrera(agente.getOid());
         this.getImplementacionEstadoAcademico().setCarrera(carrera);

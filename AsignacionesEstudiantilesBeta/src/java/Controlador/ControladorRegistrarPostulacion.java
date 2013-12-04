@@ -24,7 +24,7 @@ public class ControladorRegistrarPostulacion {
         this.experto = (ExpertoRegistrarPostulacion) FabricaExperto.getInstancia().obtenerExperto("registrarPostulacion");
     }
 
-    public List<DTOProyecto> listarProyectos(long legajo, String url) throws Exception {
+    public List<DTOProyecto> listarProyectos(String legajo, String url) throws ExceptionAPPS {
         long codigo = 0;
         if (url.contains("AsignacionesEstudiantilesBeta")) {
             codigo = 1;
@@ -34,10 +34,6 @@ public class ControladorRegistrarPostulacion {
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {
         return experto.listarProyectoCargos(codigoProyecto);
-    }
-
-    public Date obtenerFechaYHoraActuales() {
-        return experto.obtenerFechaYHoraActuales();
     }
 
     public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) {

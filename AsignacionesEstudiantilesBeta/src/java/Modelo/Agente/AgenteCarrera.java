@@ -84,11 +84,21 @@ public class AgenteCarrera extends Agente implements Carrera  {
 
     @Override
     public Universidad getUniversdad() {
-        return implementacionCarrera.getUniversdad();
+        Universidad universidad;
+        if(this.isHeBuscadoUniversdad() || this.esNuevo()){
+            universidad = implementacionCarrera.getUniversdad();
+        }else{
+            universidad = (Universidad) FachadaPersistenciaInterna.getInstancia().buscar("Universidad", this.getOidUniversidad());
+            this.setHeBuscadoUniversdad(true);
+            this.getImplementacionCarrera().setUniversdad(universidad);
+        }
+        return universidad;
     }
 
     @Override
     public void setUniversdad(Universidad universdad) {
+        Agente agente = (Agente) universdad;
+        this.setOidUniversidad(agente.getOid());
         implementacionCarrera.setUniversdad(universdad);
     }
 

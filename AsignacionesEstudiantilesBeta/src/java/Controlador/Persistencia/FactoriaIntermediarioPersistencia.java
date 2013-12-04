@@ -52,6 +52,18 @@ public class FactoriaIntermediarioPersistencia {
             case "ProyectoCargoCarrera":
                 intermediario = new IntermediarioPersistenciaProyectoCargoCarrera();
                 break;
+            case "EstadoAcademico":
+                intermediario = new IntermediarioPersistenciaEstadoAcademico();
+                break;
+            case "TipoEstadoAcademico":
+                intermediario = new IntermediarioPersistenciaTipoEstadoAcademico();
+                break;
+            case "Carrera":
+                intermediario = new IntermediarioPersistenciaCarrera();
+                break;
+            case "Contrato":
+                intermediario = new IntermediarioPersistenciaProyectoCargoCarrera();
+                break;
             default:
                 intermediario = null;
         }

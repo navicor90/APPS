@@ -5,6 +5,7 @@
  */
 package Controlador.Persistencia;
 
+import Controlador.ExceptionAPPS;
 import Controlador.ExpertoRegistrarPostulacion;
 import Modelo.DTO.DTOPostulacionProyectoCargo;
 import Modelo.DTO.DTOProyecto;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public class DecoradorRegistrarPostulacion extends ExpertoRegistrarPostulacion {
 
     @Override
-    public List<DTOProyecto> listarProyectos(Long legajo, Long codUniversidad) throws Exception{
+    public List<DTOProyecto> listarProyectos(String legajo, Long codUniversidad) throws ExceptionAPPS {
         List<DTOProyecto> listaProyectos;
         FachadaPersistenciaInterna.getInstancia().iniciarTransaccion();
         listaProyectos = super.listarProyectos(legajo, codUniversidad);

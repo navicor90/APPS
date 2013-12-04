@@ -32,7 +32,7 @@ public class IntermediarioPersistenciaCarrera extends IntermediarioPersistenciaR
             carreraAgente.setFechaFinVigencia(rs.getDate("fechaFinVigencia"));
             carreraAgente.setOidUniversidad(rs.getString("OIDUniversidad"));
             carreraAgente.setOidTipoEstadoCarrera(rs.getString("OIDTipoEstadoCarrera"));
-
+            carreraList.add(carreraAgente);
         }
         return carreraList;
     }

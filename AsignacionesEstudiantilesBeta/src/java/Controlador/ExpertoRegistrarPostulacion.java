@@ -27,28 +27,29 @@ public class ExpertoRegistrarPostulacion {
     Long codUniversidad;
     String legajo;
 
-    public List<DTOProyecto> listarProyectos(String legajo, Long codUniversidad) throws Exception {
+    public List<DTOProyecto> listarProyectos(String legajo, Long codUniversidad) throws ExceptionAPPS {
         this.codUniversidad = codUniversidad;
         this.legajo = legajo;
         Expresion expresionBusquedaEstadoAcademico = FabricaCriterio.getInstancia().crear("legajo", "=", legajo.toString());
         List<EstadoAcademico> estadoAcademicoList = (List) FachadaPersistencia.obtenerInstancia().buscar("EstadoAcademico", expresionBusquedaEstadoAcademico);
         EstadoAcademico estadoAcademico = null;
         if (estadoAcademicoList.isEmpty()) {
-            throw new Exception(Mensajes.LEGAJO_NO_ENCONTRADO);
+            throw new ExceptionAPPS(Mensajes.LEGAJO_NO_ENCONTRADO);
         }
         for (EstadoAcademico ea : estadoAcademicoList) {
             if (ea.getCarrera().getUniversdad().getCodigo() == codUniversidad) {
                 estadoAcademico = ea;
+                System.out.println("estado academico legajo: " + estadoAcademico.getLegajo());
             }
         }
         if (estadoAcademico.getCarrera().getUniversdad().getFechaFinVigenciaUniversidad().before(new Date())) {
-            throw new Exception(Mensajes.UNIVERSIDAD_INACTIVA);
+            throw new ExceptionAPPS(Mensajes.UNIVERSIDAD_INACTIVA);
         }
         Criterio criterioBusquedaEstudiante = (Criterio) FabricaCriterio.getInstancia().crear("estadoAcademico", "=", estadoAcademico);
         List<Estudiante> estudianteList = (List) FachadaPersistencia.obtenerInstancia().buscar("Estudiante", criterioBusquedaEstudiante);
         estudiante = estudianteList.get(0);
         if (estudiante.getEstadoEstudiante().getNombreTipoEstadoEstudiante().contentEquals("Inactivo")) {
-            throw new Exception(Mensajes.ESTUDIANTE_INACTIVO);
+            throw new ExceptionAPPS(Mensajes.ESTUDIANTE_INACTIVO);
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
@@ -60,24 +61,25 @@ public class ExpertoRegistrarPostulacion {
                 }
             }
         }
-        if (esRegular) {
-            DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String fechaActualConvertida = fechaHora.format(new Date());
-            Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto", ">", fechaActualConvertida);
-            List<Proyecto> ProyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
-            List<DTOProyecto> proyectoDTOList = new ArrayList<>();
-            for (Proyecto proyecto : ProyectosList) {
-                DTOProyecto proyectoDTO = new DTOProyecto();
-                proyectoDTO.setDescripcion(proyecto.getDescripcion());
-                proyectoDTO.setDuracion(proyecto.getDuracion());
-                proyectoDTO.setFechaInicio(proyecto.getFechaInicio());
-                proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
-                proyectoDTO.setCodigo(proyecto.getCodigo());
-                proyectoDTOList.add(proyectoDTO);
-            }
-            return proyectoDTOList;
+        if (!esRegular) {
+            throw new ExceptionAPPS(Mensajes.NO_REGULAR);
+        } 
+        DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaActualConvertida = fechaHora.format(new Date());
+        Expresion expresionBusquedaProyectos = FabricaCriterio.getInstancia().crear("FechaInicioProyecto", ">", fechaActualConvertida);
+        List<Proyecto> ProyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", expresionBusquedaProyectos);
+        List<DTOProyecto> proyectoDTOList = new ArrayList<>();
+        for (Proyecto proyecto : ProyectosList) {
+            DTOProyecto proyectoDTO = new DTOProyecto();
+            proyectoDTO.setDescripcion(proyecto.getDescripcion());
+            proyectoDTO.setDuracion(proyecto.getDuracion());
+            proyectoDTO.setFechaInicio(proyecto.getFechaInicio());
+            proyectoDTO.setNomProyecto(proyecto.getNombreProyecto());
+            proyectoDTO.setCodigo(proyecto.getCodigo());
+            proyectoDTOList.add(proyectoDTO);
         }
-        throw new Exception(Mensajes.NO_REGULAR);
+        return proyectoDTOList;
+
     }
 
     public List<DTOProyectoCargo> listarProyectoCargos(Integer codigoProyecto) {

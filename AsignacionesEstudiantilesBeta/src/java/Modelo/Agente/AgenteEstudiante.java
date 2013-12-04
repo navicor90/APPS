@@ -18,10 +18,12 @@ import java.util.List;
  */
 public class AgenteEstudiante extends Agente implements Estudiante{
 
-    String oidUniversidad;
-    boolean heBuscadoUniversdad;
-    boolean heBuscadoEstadoAcademico;
-    ImplementacionEstudiante implementacionEstudiante;
+    private String oidUniversidad;
+    private boolean heBuscadoUniversdad;
+    private boolean heBuscadoEstadoAcademico;
+    private boolean heBuscadoTipoEstadoEstudiante;
+    private String OIDTIpoEstadoEstudiante;
+    private ImplementacionEstudiante implementacionEstudiante;
     
     public String getOidUniversidad() {
         return oidUniversidad;
@@ -37,6 +39,30 @@ public class AgenteEstudiante extends Agente implements Estudiante{
 
     public void setHeBuscadoUniversdad(boolean heBuscadoUniversdad) {
         this.heBuscadoUniversdad = heBuscadoUniversdad;
+    }
+
+    public boolean isHeBuscadoEstadoAcademico() {
+        return heBuscadoEstadoAcademico;
+    }
+
+    public void setHeBuscadoEstadoAcademico(boolean heBuscadoEstadoAcademico) {
+        this.heBuscadoEstadoAcademico = heBuscadoEstadoAcademico;
+    }
+
+    public boolean isHeBuscadoTipoEstadoEstudiante() {
+        return heBuscadoTipoEstadoEstudiante;
+    }
+
+    public void setHeBuscadoTipoEstadoEstudiante(boolean heBuscadoTipoEstadoEstudiante) {
+        this.heBuscadoTipoEstadoEstudiante = heBuscadoTipoEstadoEstudiante;
+    }
+
+    public String getOIDTIpoEstadoEstudiante() {
+        return OIDTIpoEstadoEstudiante;
+    }
+
+    public void setOIDTIpoEstadoEstudiante(String OIDTIpoEstadoEstudiante) {
+        this.OIDTIpoEstadoEstudiante = OIDTIpoEstadoEstudiante;
     }
     
     
@@ -129,7 +155,13 @@ public class AgenteEstudiante extends Agente implements Estudiante{
 
     @Override
     public TipoEstadoEstudiante getEstadoEstudiante() {
-        return implementacionEstudiante.getEstadoEstudiante();
+        TipoEstadoEstudiante estadoEstudiante ;
+        if(this.isHeBuscadoTipoEstadoEstudiante()|| this.esNuevo()){
+            estadoEstudiante = implementacionEstudiante.getEstadoEstudiante();
+        }else{
+            estadoEstudiante = (TipoEstadoEstudiante) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoEstudiante", this.getOIDTIpoEstadoEstudiante());
+        }
+        return estadoEstudiante;
     }
 
     @Override
