@@ -73,6 +73,12 @@ public class FactoriaIntermediarioPersistencia {
             case "Contrato":
                 intermediario = new IntermediarioPersistenciaContrato();
                 break;
+            case "ContratoEstado":
+                intermediario = new IntermediarioPersistenciaContratoEstado();
+                break;
+            case "TipoEstadoContrato":
+                intermediario = new IntermediarioPersistenciaTipoEstadoContrato();
+                break;
             default:
                 intermediario = null;
         }
