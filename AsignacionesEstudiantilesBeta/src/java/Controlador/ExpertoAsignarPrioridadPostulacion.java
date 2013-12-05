@@ -91,6 +91,7 @@ public class ExpertoAsignarPrioridadPostulacion {
                         ProyectoEstado ultimoProyectoEstado = getUltimoEstadoProyectoEstado(proyectoEstadoList);
                         System.out.println("estado del ultimo Proyecto"+ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto());
                         if (ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
+                            System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwttttttttttaaaaaaaaadddddddfack");
                             String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
                             String nomProyecto = proyecto.getNombreProyecto();
                             int nroProyecto = proyecto.getCodigo();

@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.Agente;
-import Controlador.Persistencia.FachadaPersistencia;
+
 import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.Criterio;
 import Modelo.Expresion;
 import Modelo.FabricaCriterio;
 import Modelo.implementacion.*;
 import Modelo.interfaces.*;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+
 /**
  *
  * @author yanina
  */
-public class AgenteProyecto extends Agente implements Proyecto{
+public class AgenteProyecto extends Agente implements Proyecto {
+
     private String oidEmpresa;
     private String oidUniversidad;
     private String oidTipoSeleccion;
@@ -27,7 +27,24 @@ public class AgenteProyecto extends Agente implements Proyecto{
     private boolean heBuscadoUniversidad;
     private boolean heBuscadoTipoSeleccion;
     private boolean heBuscadoProyectoCargoList;
+    private boolean heBuscadoProyectoEstadoList;
     private ImplementacionProyecto implementacionProyecto;
+
+    public AgenteProyecto() {
+        heBuscadoEmpresa = false;
+        heBuscadoProyectoCargoList = false;
+        heBuscadoProyectoEstadoList = false;
+        heBuscadoTipoSeleccion = false;
+        heBuscadoUniversidad = false;
+    }
+
+    public boolean isHeBuscadoProyectoEstadoList() {
+        return heBuscadoProyectoEstadoList;
+    }
+
+    public void setHeBuscadoProyectoEstadoList(boolean heBuscadoProyectoEstadoList) {
+        this.heBuscadoProyectoEstadoList = heBuscadoProyectoEstadoList;
+    }
 
     public String getOidTipoSeleccion() {
         return oidTipoSeleccion;
@@ -37,7 +54,6 @@ public class AgenteProyecto extends Agente implements Proyecto{
         this.oidTipoSeleccion = oidTipoSeleccion;
     }
 
-    
     public boolean isHeBuscadoTipoSeleccion() {
         return heBuscadoTipoSeleccion;
     }
@@ -45,8 +61,7 @@ public class AgenteProyecto extends Agente implements Proyecto{
     public void setHeBuscadoTipoSeleccion(boolean heBuscadoTipoSeleccion) {
         this.heBuscadoTipoSeleccion = heBuscadoTipoSeleccion;
     }
-    
-    
+
     public boolean isHeBuscadoProyectoCargoList() {
         return heBuscadoProyectoCargoList;
     }
@@ -54,8 +69,7 @@ public class AgenteProyecto extends Agente implements Proyecto{
     public void setHeBuscadoProyectoCargoList(boolean heBuscadoProyectoCargoList) {
         this.heBuscadoProyectoCargoList = heBuscadoProyectoCargoList;
     }
-    
-    
+
     public String getOidEmpresa() {
         return oidEmpresa;
     }
@@ -95,8 +109,7 @@ public class AgenteProyecto extends Agente implements Proyecto{
     public void setImplementacionProyecto(ImplementacionProyecto implementacionProyecto) {
         this.implementacionProyecto = implementacionProyecto;
     }
-    
-    
+
     @Override
     public String getDescripcion() {
         return implementacionProyecto.getDescripcion();
@@ -160,13 +173,13 @@ public class AgenteProyecto extends Agente implements Proyecto{
     }
 
     @Override
-    public List<ProyectoCargo> getProyectoCargoList(){
-        List<ProyectoCargo> proyectoCargoList= null;
-        if(heBuscadoProyectoCargoList){
-            proyectoCargoList= implementacionProyecto.getProyectoCargoList();
-        }else{
+    public List<ProyectoCargo> getProyectoCargoList() {
+        List<ProyectoCargo> proyectoCargoList = null;
+        if (heBuscadoProyectoCargoList) {
+            proyectoCargoList = implementacionProyecto.getProyectoCargoList();
+        } else {
             Expresion criterioBusquedaProyCargo = FabricaCriterio.getInstancia().crear("proyecto", "=", this);
-            proyectoCargoList= (List)FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", criterioBusquedaProyCargo);
+            proyectoCargoList = (List) FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", criterioBusquedaProyCargo);
             implementacionProyecto.setProyectoCargoList(proyectoCargoList);
             this.setHeBuscadoProyectoCargoList(true);
         }
@@ -187,11 +200,10 @@ public class AgenteProyecto extends Agente implements Proyecto{
         implementacionProyecto.addProyectoCargo(proyectoCargo);
     }
 
-    
     @Override
     public Universidad getUniversidad() {
         return implementacionProyecto.getUniversidad();
-        
+
     }
 
     @Override
@@ -203,17 +215,27 @@ public class AgenteProyecto extends Agente implements Proyecto{
 
     @Override
     public List<ProyectoEstado> getProyectoEstado() {
-        return implementacionProyecto.getProyectoEstado();
+        List<ProyectoEstado> proyectoEstadoList;
+        if (this.isHeBuscadoProyectoEstadoList() || this.esNuevo()) {
+            proyectoEstadoList = implementacionProyecto.getProyectoEstado();
+        } else {
+            Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("proyecto", "=", this);
+            proyectoEstadoList = (List)FachadaPersistenciaInterna.getInstancia().buscar("ProyectoEstado", c);
+            this.setHeBuscadoProyectoEstadoList(true);
+            this.getImplementacionProyecto().setProyectoEstado(proyectoEstadoList);
+        }
+
+        return proyectoEstadoList;
     }
 
     @Override
     public void setProyectoEstado(List<ProyectoEstado> proyectoEstadoList) {
         implementacionProyecto.setProyectoEstado(proyectoEstadoList);
         for (ProyectoEstado proyectoEstado : proyectoEstadoList) {
-            AgenteProyectoEstado agente = (AgenteProyectoEstado) proyectoEstado ;
+            AgenteProyectoEstado agente = (AgenteProyectoEstado) proyectoEstado;
             agente.setOidProyecto(this.getOid());
         }
-        
+
     }
 
     @Override
@@ -237,5 +259,5 @@ public class AgenteProyecto extends Agente implements Proyecto{
     public void setCodigo(int codigo) {
         implementacionProyecto.setCodigo(codigo);
     }
-    
+
 }

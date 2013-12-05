@@ -78,6 +78,7 @@ public class AgenteProyectoEstado extends Agente implements ProyectoEstado{
         }else{
             tipoEstadoProyecto = (TipoEstadoProyecto) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoProyecto", this.getOidTipoEstadoProyecto());
             this.setHeBuscadoTipoEstadoProyecto(true);
+            this.getImplementacionProyectoEstado().setTipoEstadoProyecto(tipoEstadoProyecto);
         }
         return tipoEstadoProyecto;
     }

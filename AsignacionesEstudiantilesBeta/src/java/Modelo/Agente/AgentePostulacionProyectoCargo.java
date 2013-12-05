@@ -28,6 +28,15 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     private boolean heBuscadoPostulacionProyectoCargoEstadoList;
     private ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo;
 
+    public AgentePostulacionProyectoCargo() {
+        heBuscadoPostulacion=false;
+        heBuscadoPostulacionProyectoCargoEstadoList=false;
+        heBuscadoProyecto=false;
+        heBuscadoProyectoCargo=false;
+        heBuscadoUniversidad=false;
+    }
+    
+    
     public boolean isHeBuscadoPostulacionProyectoCargoEstadoList() {
         return heBuscadoPostulacionProyectoCargoEstadoList;
     }
@@ -145,7 +154,10 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
         if(heBuscadoProyecto || this.esNuevo()){
             proyecto = implementacionPostulacionProyectoCargo.getProyecto();
         }else{
+            System.out.println("ooooooooooooooooooooooooooooooooo"+oidProyecto);
             proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
+            this.setHeBuscadoProyecto(true);
+            this.getImplementacionPostulacionProyectoCargo().setProyecto(proyecto);
         }
         return proyecto;
     }
@@ -176,6 +188,8 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
             proyectoCargo = implementacionPostulacionProyectoCargo.getProyectoCargo();
         }else{
             proyectoCargo = (ProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", oidProyectoCargo);
+            this.setHeBuscadoProyectoCargo(true);
+            this.getImplementacionPostulacionProyectoCargo().setProyectoCargo(proyectoCargo);
         }
         return proyectoCargo;
     }

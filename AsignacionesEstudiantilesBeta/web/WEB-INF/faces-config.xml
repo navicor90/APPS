@@ -4,21 +4,8 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <converter>
-        <converter-id>player</converter-id>
-        <converter-class>Controlador.Interface.PlayerConverter</converter-class>
-    </converter>
-    <converter>
         <converter-id>postulacionProyectoCargoC</converter-id>
         <converter-class>Controlador.Interface.PostulacionProyectoCargoConverter</converter-class>
     </converter>
-    <managed-bean>
-        <managed-bean-name>orderListBean</managed-bean-name>
-        <managed-bean-class>Controlador.Interface.OrderListBean</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
-        <managed-bean-name>asignarPrioridadesBean</managed-bean-name>
-        <managed-bean-class>Controlador.Interface.AsignarPrioridadesBean</managed-bean-class>
-        <managed-bean-scope>view</managed-bean-scope>
-    </managed-bean>
+    
 </faces-config>

@@ -11,7 +11,7 @@ import Modelo.DTO.DTOPostulacionProyectoCargo;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletRequest;
  * @author milton
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class AsignarPrioridadesBean {
 
     /**
      * Creates a new instance of AsignarPrioridadesBean
      */
-    private List<DTOPostulacionProyectoCargo> postulacionesDTO;
+    private List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTO;
     private Controlador.ControladorAsignarPrioridadPostulacion controlador;
     private UserBean user;
     private List<String> erroresMensajes;
@@ -35,13 +35,12 @@ public class AsignarPrioridadesBean {
     public AsignarPrioridadesBean() {
         controlador = new ControladorAsignarPrioridadPostulacion();
         hayErrores = false;
+        postulacionesProyectoCargoDTO = new ArrayList<>();
     }
 
     public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
-        if(postulacionesDTO == null){
-            postulacionesDTO = new ArrayList<>();
-        }
-        return postulacionesDTO;
+        if(postulacionesProyectoCargoDTO==null)postulacionesProyectoCargoDTO=new ArrayList<>();
+        return postulacionesProyectoCargoDTO;
     }
 
     public String redirect(UserBean user) {
@@ -50,8 +49,8 @@ public class AsignarPrioridadesBean {
         String URL = origRequest.getRequestURI();
         String pageToRedirect;
         try {
-            postulacionesDTO = controlador.listarPostulaciones(user.getLegajo(), URL);
-            PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesDTO);
+            this.setPostulacionesProyectoCargoDTO(controlador.listarPostulaciones(user.getLegajo(), URL));
+            PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesProyectoCargoDTO);
         } catch (ExceptionAPPS ex) {
             hayErrores = true;
             erroresMensajes.add(ex.getMessage());
@@ -66,7 +65,7 @@ public class AsignarPrioridadesBean {
     }
 
     public void setPostulacionesProyectoCargoDTO(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
-        this.postulacionesDTO = postulacionesDTO;
+        this.postulacionesProyectoCargoDTO = postulacionesDTO;
     }
 
     public String guardarCambios() {
