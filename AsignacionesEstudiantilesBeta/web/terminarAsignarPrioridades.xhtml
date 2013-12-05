@@ -12,10 +12,14 @@
     <h:body>
         <div class="seleccionarProyectoDiv">
         <h1>Postulaciones realizadas</h1>
-        <h:dataTable value="#{registrarPostulacionBean.postulacionesProyectoCargoDTO}" var="postulacionCargo"
+        <h:dataTable value="#{asignarPrioridadesBean.postulacionesProyectoCargoDTO}" var="postulacionCargo"
                      styleClass="postulacionCargoTable"
                      headerClass="postulacionCargoTableHeader"
                      rowClasses="postulacionCargoTableOddRow,postulacionCargoTableEvenRow">
+            <h:column>
+                <f:facet name="header">Prioridad</f:facet>
+                    #{postulacionCargo.prioridad}
+            </h:column>
             <h:column>
                 <f:facet name="header">Nombre Proyecto</f:facet>
                     #{postulacionCargo.nomProyecto}

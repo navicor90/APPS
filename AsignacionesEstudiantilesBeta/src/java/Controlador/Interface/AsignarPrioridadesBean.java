@@ -92,16 +92,8 @@ public class AsignarPrioridadesBean {
     }
 
     public String guardarCambios() {
-        controlador.asignarPrioridades(postulacionesProyectoCargoDTO);
-        ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
-        String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
-        try {
-            ((HttpSession) ctx.getSession(false)).invalidate();
-            ctx.redirect(ctxPath + "/faces/index.xhtml");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return "index.xhtml";
+        postulacionesProyectoCargoDTO = controlador.asignarPrioridades(postulacionesProyectoCargoDTO);
+        return "terminarAsignarPrioridades.xhtml";
     }
      
     public void cancelarConfigurarPrioridades() {

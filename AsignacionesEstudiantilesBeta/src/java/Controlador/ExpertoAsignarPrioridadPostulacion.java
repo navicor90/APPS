@@ -113,6 +113,7 @@ public class ExpertoAsignarPrioridadPostulacion {
         Criterio criterioBusquedaPostulacionesHabilitadas = (Criterio) FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
         List<Postulacion> postulaciones = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulacionesHabilitadas);
         List<PostulacionProyectoCargo> postulacionProyectoCargoHabilitadas = new ArrayList<>();
+        List<DTOPostulacionProyectoCargo> dtoOrdenado = new ArrayList<>();
         for (Postulacion postulacion : postulaciones) {
             for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
                 List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList = (List) postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
@@ -132,13 +133,15 @@ public class ExpertoAsignarPrioridadPostulacion {
                 if (postProyCargoDTO.getNroProyecto() == postulacionProyectoCargoHabilitada.getProyecto().getCodigo()) {
                     if (postProyCargoDTO.getNroProyectoCargo() == postulacionProyectoCargoHabilitada.getProyectoCargo().getNroProyectoCargo()) {
                         postulacionProyectoCargoHabilitada.setPrioridad(i);
+                        postProyCargoDTO.setPrioridad(i);
+                        dtoOrdenado.add(postProyCargoDTO);
                         FachadaPersistencia.obtenerInstancia().guardar("PostulacionProyectoCargo", postulacionProyectoCargoHabilitada);
                     }
                 }
             }
         }
 
-        return null;
+        return ordenarListaDTOPostulacionProyectoCargo_Prioridad(dtoOrdenado);
     }
 
     private PostulacionProyectoCargoEstado getUltimoEstadoPostulacionProyectoCargoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadosList) {
