@@ -6,25 +6,10 @@
 package Controlador;
 
 import Controlador.Persistencia.FachadaPersistencia;
-import Modelo.Criterio;
-import Modelo.DTO.DTOEstadoAcademicoGeneral;
-import Modelo.DTO.DTOPostulacionProyectoCargo;
-import Modelo.Expresion;
-import Modelo.FabricaCriterio;
-import Modelo.interfaces.Estudiante;
-import Modelo.interfaces.Postulacion;
+import Modelo.DTO.*;
+import Modelo.*;
 import java.util.List;
-import Modelo.interfaces.Contrato;
-import Modelo.interfaces.ContratoEstado;
-import Modelo.interfaces.EstadoAcademico;
-import Modelo.interfaces.PostulacionProyectoCargo;
-import Modelo.interfaces.PostulacionProyectoCargoEstado;
-import Modelo.interfaces.Proyecto;
-import Modelo.interfaces.ProyectoCargo;
-import Modelo.interfaces.ProyectoEstado;
-import Modelo.interfaces.TipoEstadoContrato;
-import Modelo.interfaces.TipoEstadoPostulacionProyectoCargo;
-import Modelo.interfaces.TipoEstadoProyecto;
+import Modelo.interfaces.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -81,56 +66,36 @@ public class ExpertoAsignarPrioridadPostulacion {
             for (Postulacion postulacion : postulacionesList) {
                 Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
                 List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
-                Contrato contrato = contratoList.get(0);
-                if (contrato != null) {
-                    List<ContratoEstado> contratoEstadoList = (List) contrato.getContratoEstadoList();
-                    ContratoEstado ultimoContratoEstado = contratoEstadoList.get(0);
-                    for (int i = 1; i < contratoEstadoList.size(); i++) {
-                        ContratoEstado contratoEstado = contratoEstadoList.get(i);
-                        if (contratoEstado.getFechaHoraCambioEstado().after(ultimoContratoEstado.getFechaHoraCambioEstado())) {
-                            ultimoContratoEstado = contratoEstado;
+                if (!contratoList.isEmpty()) {
+                    for (Contrato contrato : contratoList) {
+                        if (contrato != null) {
+                            List<ContratoEstado> contratoEstadoList = (List) contrato.getContratoEstadoList();
+                            ContratoEstado ultimoContratoEstado = getUltimoContratoEstado(contratoEstadoList);
+                            TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
+                            if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
+                                throw new ExceptionAPPS(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
+                            }
                         }
                     }
-                    TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
-                    if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
-                        throw new ExceptionAPPS(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
-                    }
                 }
-
                 List<PostulacionProyectoCargo> postulacionProyectoCargoList = (List) postulacion.getPostulacionProyectoCargosList();
                 for (PostulacionProyectoCargo postulacionProyectoCargo : postulacionProyectoCargoList) {
                     List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList = (List) postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
-                    PostulacionProyectoCargoEstado ultimoPostulacionProyectoCargoEstado = postulacionProyectoCargoEstadoList.get(0);
-                    // bucle para encontrar el estado de la postulacionProyectoCargo mas reciente
-                    for (int i = 1; i < postulacionProyectoCargoEstadoList.size(); i++) {
-                        PostulacionProyectoCargoEstado postulacionProyectoCargoEstado = postulacionProyectoCargoEstadoList.get(i);
-                        if (postulacionProyectoCargoEstado.getFechaHoraCambio().after(ultimoPostulacionProyectoCargoEstado.getFechaHoraCambio())) {
-                            ultimoPostulacionProyectoCargoEstado = postulacionProyectoCargoEstado;
-                        }
-                    }
-                    TipoEstadoPostulacionProyectoCargo estadoPostulacionProyectoCargo = ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
-                    if (estadoPostulacionProyectoCargo.getNombreEstado().contentEquals("Efectiva")) {
+                    PostulacionProyectoCargoEstado ultimoPostulacionProyectoCargoEstado = getUltimoEstadoPostulacionProyectoCargoEstado(postulacionProyectoCargoEstadoList);
+                    if (ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado().contentEquals("Efectiva")) {
                         //verifico que el proyecto que ofrece el cargo para el cual se postulo este vigente o activo
                         ProyectoCargo proyectoCargo = postulacionProyectoCargo.getProyectoCargo();
-                        Expresion criterioBusquedaProyecto = FabricaCriterio.getInstancia().crear("proyectoCargo", "=", proyectoCargo);
-                        List<Proyecto> proyectosList = (List) FachadaPersistencia.obtenerInstancia().buscar("Proyecto", criterioBusquedaProyecto);
-                        Proyecto proyecto = proyectosList.get(0);
+                        Proyecto proyecto = postulacionProyectoCargo.getProyecto();
                         List<ProyectoEstado> proyectoEstadoList = proyecto.getProyectoEstado();
                         //busco el ultimo estado del proyecto
-                        ProyectoEstado ultimoProyectoEstado = proyectoEstadoList.get(0);
-                        for (int j = 1; j < proyectoEstadoList.size(); j++) {
-                            ProyectoEstado proyectoEstado = proyectoEstadoList.get(j);
-                            if (proyectoEstado.getFechaHoraCambio().after(ultimoProyectoEstado.getFechaHoraCambio())) {
-                                ultimoProyectoEstado = proyectoEstado;
-                            }
-                        }
-                        TipoEstadoProyecto estadoProyecto = ultimoProyectoEstado.getTipoEstadoProyecto();
-                        if (estadoProyecto.getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
-                            int nroProyecto = proyecto.getCodigo();
+                        ProyectoEstado ultimoProyectoEstado = getUltimoEstadoProyectoEstado(proyectoEstadoList);
+                        System.out.println("estado del ultimo Proyecto"+ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto());
+                        if (ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
                             String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
                             String nomProyecto = proyecto.getNombreProyecto();
-                            int prioridad = postulacionProyectoCargo.getPrioridad();
+                            int nroProyecto = proyecto.getCodigo();
                             int nroProyectoCargo = proyectoCargo.getNroProyectoCargo();
+                            int prioridad = postulacionProyectoCargo.getPrioridad();
                             DTOPostulacionProyectoCargo dtoPostulacionProyectoCargo = new DTOPostulacionProyectoCargo();
                             dtoPostulacionProyectoCargo.setNroProyecto(nroProyecto);
                             dtoPostulacionProyectoCargo.setPrioridad(prioridad);
@@ -155,7 +120,7 @@ public class ExpertoAsignarPrioridadPostulacion {
         for (Postulacion postulacion : postulaciones) {
             for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
                 //if (postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
-                    
+
                 //}
             }
 
@@ -164,8 +129,34 @@ public class ExpertoAsignarPrioridadPostulacion {
         return null;
     }
 
-    private PostulacionProyectoCargoEstado getUltimoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList) {
-        return null;
+    private PostulacionProyectoCargoEstado getUltimoEstadoPostulacionProyectoCargoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadosList) {
+        PostulacionProyectoCargoEstado ppceUltimo = postulacionProyectoCargoEstadosList.get(0);
+        for (int i = 1; i < postulacionProyectoCargoEstadosList.size(); i++) {
+            PostulacionProyectoCargoEstado ppce = postulacionProyectoCargoEstadosList.get(i);
+            if (ppce.getFechaHoraCambio().before(ppceUltimo.getFechaHoraCambio())) {
+                ppceUltimo = ppce;
+            }
+        }
+        return ppceUltimo;
     }
-
+    private ContratoEstado getUltimoContratoEstado(List<ContratoEstado> contratoEstadosList){
+        ContratoEstado contratoEstadoUltimo = contratoEstadosList.get(0);
+        for (int i = 1; i < contratoEstadosList.size(); i++) {
+            ContratoEstado ce = contratoEstadosList.get(i);
+            if(ce.getFechaHoraCambioEstado().before(contratoEstadoUltimo.getFechaHoraCambioEstado())){
+                contratoEstadoUltimo = ce;
+            }
+        }
+        return contratoEstadoUltimo;
+    }
+    private ProyectoEstado getUltimoEstadoProyectoEstado(List<ProyectoEstado> proyectoEstados) {
+        ProyectoEstado peUltimo = proyectoEstados.get(0);
+        for (int i = 1; i < proyectoEstados.size(); i++) {
+            ProyectoEstado pe = proyectoEstados.get(i);
+            if (pe.getFechaHoraCambio().before(peUltimo.getFechaHoraCambio())) {
+                peUltimo = pe;
+            }
+        }
+        return peUltimo;
+    }
 }

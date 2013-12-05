@@ -13,7 +13,7 @@ import Modelo.interfaces.*;
  *
  * @author yanina
  */
-public class AgenteTipoEstadoProyecto implements TipoEstadoProyecto{
+public class AgenteTipoEstadoProyecto extends Agente implements TipoEstadoProyecto{
     ImplementacionTipoEstadoProyecto implementacionTipoEstadoProyecto;          
 
     public ImplementacionTipoEstadoProyecto getImplementacionTipoEstadoProyecto() {

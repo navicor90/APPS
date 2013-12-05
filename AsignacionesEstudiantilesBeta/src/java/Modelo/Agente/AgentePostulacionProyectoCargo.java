@@ -115,7 +115,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
         if(heBuscadoPostulacionProyectoCargoEstadoList || this.esNuevo()){
             postulacionProyectoCargoEstados = implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
         }else{
-            Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("PostulacionProyectoCargo", "=", this);
+            Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("postulacionProyectoCargo", "=", this);
             postulacionProyectoCargoEstados = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
             this.setHeBuscadoPostulacionProyectoCargoEstadoList(true);
             this.implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstadoList(postulacionProyectoCargoEstados);

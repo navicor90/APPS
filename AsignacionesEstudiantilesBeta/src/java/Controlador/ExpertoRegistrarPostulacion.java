@@ -62,7 +62,7 @@ public class ExpertoRegistrarPostulacion {
         }
         if (!esRegular) {
             throw new ExceptionAPPS(Mensajes.NO_REGULAR);
-        } 
+        }
         DateFormat fechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String fechaActualConvertida = fechaHora.format(new Date());
         //BUSCAR SOLO LOS PROYECTOS VIGENTES
@@ -132,11 +132,14 @@ public class ExpertoRegistrarPostulacion {
                         for (PostulacionProyectoCargo postulacionProyectoCargoAntigua : postulacionAntigua.getPostulacionProyectoCargosList()) {
                             if (postulacionProyectoCargoAntigua.getProyecto().getCodigo() == postulacionProyectoCargoDTO.getNroProyecto()) {
                                 if (postulacionProyectoCargoAntigua.getProyectoCargo().getNroProyectoCargo() == postulacionProyectoCargoDTO.getNroProyectoCargo()) {
-                                    postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
-                                    Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo", "=", "Fallida");
-                                    List<TipoEstadoPostulacionProyectoCargo> tiposEstadoPostulacionProyectoCargoList = (List) FachadaPersistencia.obtenerInstancia().buscar("TipoEstadoPostulacionProyectoCargo", criterioBusquedaEstadoPostulaciones);
-                                    TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo = tiposEstadoPostulacionProyectoCargoList.get(0);
-                                    postulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
+                                    PostulacionProyectoCargoEstado ultimoEstado = getUltimoEstado(postulacionProyectoCargoAntigua.getPostulacionProyectoCargoEstadoList());
+                                    if (ultimoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado().contentEquals("Efectiva")) {
+                                        postulacionProyectoCargoDTO.setDescripcionEstado(Mensajes.POSTULACION_ERROR_YA_SE_ENCUENTRA_POSTULADO_A_ESTE_CARGO);
+                                        Criterio criterioBusquedaEstadoPostulaciones = (Criterio) FabricaCriterio.getInstancia().crear("nombreTipoEstadoPostulacionProyectoCargo", "=", "Fallida");
+                                        List<TipoEstadoPostulacionProyectoCargo> tiposEstadoPostulacionProyectoCargoList = (List) FachadaPersistencia.obtenerInstancia().buscar("TipoEstadoPostulacionProyectoCargo", criterioBusquedaEstadoPostulaciones);
+                                        TipoEstadoPostulacionProyectoCargo tipoEstadoPostulacionProyectoCargo = tiposEstadoPostulacionProyectoCargoList.get(0);
+                                        postulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
+                                    }
                                 }
                             }
                         }
@@ -186,6 +189,17 @@ public class ExpertoRegistrarPostulacion {
         return postulacionesProyectoCargoDTOList;
     }
 
+    private PostulacionProyectoCargoEstado getUltimoEstado(List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadosList) {
+        PostulacionProyectoCargoEstado ppceUltimo = postulacionProyectoCargoEstadosList.get(0);
+        for (int i = 1; i < postulacionProyectoCargoEstadosList.size(); i++) {
+            PostulacionProyectoCargoEstado ppce = postulacionProyectoCargoEstadosList.get(i);
+            if (ppce.getFechaHoraCambio().before(ppceUltimo.getFechaHoraCambio())) {
+                ppceUltimo = ppce;
+            }
+        }
+        return ppceUltimo;
+    }
+
     private int AsignarNroPostulacion() {
         int nroPostulacion = 0;
         Criterio c = (Criterio) FabricaCriterio.getInstancia().crear("codigoPostulacion", ">", "0");
@@ -208,6 +222,7 @@ public class ExpertoRegistrarPostulacion {
                 contador++;
             }
         }
+        System.out.println("MATERIAS regulares = " + contador);
         return contador;
     }
 
@@ -218,7 +233,8 @@ public class ExpertoRegistrarPostulacion {
                 contador++;
             }
         }
+        System.out.println("MATERIAS APROBADAS = " + contador);
         return contador;
     }
-    
+
 }

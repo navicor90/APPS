@@ -66,7 +66,7 @@ public class AgentePostulacionProyectoCargoEstado extends Agente implements Post
             implementacionPostulacionProyectoCargoEstado.setTipoEstadoPostulacionProyectoCargo(tipoEstadoPostulacionProyectoCargo);
             this.setHeBuscadoTipoEstadoPostulacionProyectoCargo(true);
         }
-        return implementacionPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo();
+        return tipoEstadoPostulacionProyectoCargo;
     }
     
     @Override

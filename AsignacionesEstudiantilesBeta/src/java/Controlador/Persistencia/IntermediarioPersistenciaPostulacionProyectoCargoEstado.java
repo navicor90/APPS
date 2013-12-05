@@ -83,10 +83,10 @@ public class IntermediarioPersistenciaPostulacionProyectoCargoEstado extends Int
     public String desarmarCriterioPorObjeto(Criterio criterio) {
         String criterioString="";
         switch(criterio.getAtributo()){
-            case "TipoEstadoPostulacionProyectoCargo":
+            case "tipoEstadoPostulacionProyectoCargo":
                 criterioString = "OIDTipoEstadoPostulacionProyectoCargo";
                 break;
-            case "PostulacionProyectoCargo":
+            case "postulacionProyectoCargo":
                 criterioString = "OIDPostulacionProyectoCargo";
                 break;
             default:

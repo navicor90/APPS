@@ -52,7 +52,7 @@ public class IntermediarioPersistenciaTipoEstadoPostulacionProyectoCargo extends
 
     @Override
     public String armarConsultaSeleccion(String oid) {
-         String sql = "SELECT * FROM AE.tipoEstadoPostulacionProyectoCargos WHERE OIDPostulacion='"+oid+"'";
+         String sql = "SELECT * FROM AE.tipoEstadoPostulacionProyectoCargos WHERE OIDTipoEstadoPostulacionProyectoCargo='"+oid+"'";
         return sql;
     }
 
