@@ -75,7 +75,7 @@ public class ExpertoAsignarPrioridadPostulacion {
                     ContratoEstado ultimoContratoEstado = getUltimoContratoEstado(contratoEstadoList);
                     TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
                     if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
-                        throw new ExceptionAPPS(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
+                        throw new ExceptionAPPS(Mensajes.ERROR_POSEE_CONTRATO_VIGENTE);
                     }
                 }
             }

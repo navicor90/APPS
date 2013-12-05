@@ -129,7 +129,7 @@ public class RegistrarPostulacionBean {
             
         }
         if (hayErrores) {
-            pageToRedirect = "mostrarMensajesAsignarPrioridades.xhtml?faces-redirect=true";
+            pageToRedirect = "mostrarMensajesRegistrarPostulacion.xhtml?faces-redirect=true";
         } else {
             pageToRedirect = "seleccionarProyecto.xhtml?faces-redirect=true";
         }

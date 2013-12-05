@@ -50,8 +50,29 @@ public class ExpertoRegistrarPostulacion {
         if (estudiante.getEstadoEstudiante().getNombreTipoEstadoEstudiante().contentEquals("Inactivo")) {
             throw new ExceptionAPPS(Mensajes.ESTUDIANTE_INACTIVO);
         }
+        Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
+        List<Postulacion> postulacionesAntiguasList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
+        for (Postulacion postulacionAntigua : postulacionesAntiguasList) {
+            Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacionAntigua);
+            List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
+            if (!contratoList.isEmpty()) {
+                for (Contrato contrato : contratoList) {
+                    List<ContratoEstado> contratoEstadoList = (List) contrato.getContratoEstadoList();
+                    ContratoEstado ultimoContratoEstado = getUltimoContratoEstado(contratoEstadoList);
+                    TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
+                    if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
+                        throw new ExceptionAPPS(Mensajes.ERROR_POSEE_CONTRATO_VIGENTE);
+                    }
+                }
+            }
+        }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
+        System.out.println(estadoAcademicoGeneralList.size()+"---------------------------------");
+        if(estadoAcademicoGeneralList.isEmpty() || estadoAcademicoGeneralList == null){
+            System.out.println("gooooooooooooooooooooooooooooooool");
+            throw new ExceptionAPPS(Mensajes.NO_SE_ENCUENTRA_EN_EL_SISTEMA_ACADEMICO_SIGUIENTE+estadoAcademico.getCarrera().getUniversdad().getNombreUniversidad());
+        }
         Boolean esRegular = false;
         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
             if (estadoAcademico.getCarrera().getNombreCarrera().contentEquals(estadoAcademicoGeneral.getNombreCarrera())) {
@@ -235,6 +256,17 @@ public class ExpertoRegistrarPostulacion {
         }
         System.out.println("MATERIAS APROBADAS = " + contador);
         return contador;
+    }
+
+    private ContratoEstado getUltimoContratoEstado(List<ContratoEstado> contratoEstadosList) {
+        ContratoEstado contratoEstadoUltimo = contratoEstadosList.get(0);
+        for (int i = 1; i < contratoEstadosList.size(); i++) {
+            ContratoEstado ce = contratoEstadosList.get(i);
+            if (ce.getFechaHoraCambioEstado().before(contratoEstadoUltimo.getFechaHoraCambioEstado())) {
+                contratoEstadoUltimo = ce;
+            }
+        }
+        return contratoEstadoUltimo;
     }
 
 }
