@@ -139,12 +139,14 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
             AgentePostulacionProyectoCargoEstado agentePostulacionProyectoCargoEstado = (AgentePostulacionProyectoCargoEstado) postulacionProyectoCargoEstado;
             agentePostulacionProyectoCargoEstado.setOidPostulacionProyectoCargo(this.getOid());
         }
+        this.setModificado(true);
     }
 
     @Override
     public void addPostulacionProyectoCargoEstado(PostulacionProyectoCargoEstado postulacionProyectoCargoEstado) {
         AgentePostulacionProyectoCargoEstado agentePostulacionProyectoCargoEstado = (AgentePostulacionProyectoCargoEstado) postulacionProyectoCargoEstado;
         agentePostulacionProyectoCargoEstado.setOidPostulacionProyectoCargo(this.getOid());
+        this.setModificado(true);
         implementacionPostulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
     }
     
@@ -166,6 +168,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setProyecto(Proyecto proyecto) {
         implementacionPostulacionProyectoCargo.setProyecto(proyecto);
         AgenteProyecto agenteProyecto = (AgenteProyecto) proyecto;
+        this.setModificado(true);
         this.setOidProyecto(agenteProyecto.getOid());
     }
 
@@ -178,6 +181,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setUniversidad(Universidad universidad) {
         implementacionPostulacionProyectoCargo.setUniversidad(universidad);
         AgenteUniversidad agenteUniversidad = (AgenteUniversidad) universidad;
+        this.setModificado(true);
         this.setOidUniversidad(agenteUniversidad.getOid());
     }
 
@@ -198,6 +202,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setProyectoCargo(ProyectoCargo proyectoCargo) {
         implementacionPostulacionProyectoCargo.setProyectoCargo(proyectoCargo);
         AgenteProyectoCargo agenteProyectoCargo = (AgenteProyectoCargo) proyectoCargo;
+        this.setModificado(true);
         this.setOidProyectoCargo(agenteProyectoCargo.getOid());
     }
 
@@ -209,6 +214,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setPrioridad(int prioridad) {
         implementacionPostulacionProyectoCargo.setPrioridad(prioridad);
+        this.setModificado(true);
     }
 
     @Override
@@ -219,6 +225,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setCantidadMateriasAprobadasEstudiante(int cantidadMateriasAprobadasEstudiante) {
         implementacionPostulacionProyectoCargo.setCantidadMateriasAprobadasEstudiante(cantidadMateriasAprobadasEstudiante);
+        this.setModificado(true);
     }
 
     @Override
@@ -229,6 +236,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     @Override
     public void setCantidadMateriasRegulares(int cantidadMateriasRegulares) {
         implementacionPostulacionProyectoCargo.setCantidadMateriasRegulares(cantidadMateriasRegulares);
+        this.setModificado(true);
     }
     
 }

@@ -73,6 +73,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public void setFechaHoraPostulacion(Date fechaHoraPostulacion) {
         implementacionPostulacion.setFechaHoraPostulacion(fechaHoraPostulacion);
+        this.setModificado(true);
     }
 
     @Override
@@ -83,6 +84,8 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public void setNroPostulacion(int nroPostulacion) {
         implementacionPostulacion.setNroPostulacion(nroPostulacion);
+        this.setModificado(true);
+        
     }
 
     @Override
@@ -90,6 +93,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
         implementacionPostulacion.addPostulacionProyectoCargo(postulacionProyectoCargo);
         AgentePostulacionProyectoCargo agentePostulacionProyectoCargo = (AgentePostulacionProyectoCargo) postulacionProyectoCargo;
         agentePostulacionProyectoCargo.setOidPostulacion(this.getOid());
+        this.setModificado(true);
     }
 
     @Override
@@ -102,6 +106,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
         implementacionPostulacion.setEstudiante(estudiante);
         AgenteEstudiante agenteEstudiante = (AgenteEstudiante) estudiante;
         this.setOIDEstudiante(agenteEstudiante.getOid());
+        this.setModificado(true);
     }
 
     @Override
@@ -126,6 +131,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
             AgentePostulacionProyectoCargo agentePostulacionProyectoCargo = (AgentePostulacionProyectoCargo) postulacionProyectoCargo;
             agentePostulacionProyectoCargo.setOidPostulacion(this.getOid());
         }
+        this.setModificado(true);
     }
 
     @Override
@@ -136,6 +142,7 @@ public class AgentePostulacion extends Agente implements Postulacion{
     @Override
     public void setFechaHoraAnulacionPostulacion(Date fechaHoraAnulacionPostulacion) {
         implementacionPostulacion.setFechaHoraAnulacionPostulacion(fechaHoraAnulacionPostulacion);
+        this.setModificado(true);
     }
     
 }
