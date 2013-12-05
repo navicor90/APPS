@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo.Agente;
+
 import Controlador.Persistencia.FachadaPersistenciaInterna;
 import Modelo.Criterio;
 import Modelo.FabricaCriterio;
@@ -12,11 +12,13 @@ import Modelo.implementacion.*;
 import Modelo.interfaces.*;
 import java.sql.SQLException;
 import java.util.List;
+
 /**
  *
  * @author yanina
  */
-public class AgentePostulacionProyectoCargo extends Agente implements PostulacionProyectoCargo{   
+public class AgentePostulacionProyectoCargo extends Agente implements PostulacionProyectoCargo {
+
     private String oidUniversidad;
     private String oidProyectoCargo;
     private String oidPostulacion;
@@ -29,14 +31,13 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     private ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo;
 
     public AgentePostulacionProyectoCargo() {
-        heBuscadoPostulacion=false;
-        heBuscadoPostulacionProyectoCargoEstadoList=false;
-        heBuscadoProyecto=false;
-        heBuscadoProyectoCargo=false;
-        heBuscadoUniversidad=false;
+        heBuscadoPostulacion = false;
+        heBuscadoPostulacionProyectoCargoEstadoList = false;
+        heBuscadoProyecto = false;
+        heBuscadoProyectoCargo = false;
+        heBuscadoUniversidad = false;
     }
-    
-    
+
     public boolean isHeBuscadoPostulacionProyectoCargoEstadoList() {
         return heBuscadoPostulacionProyectoCargoEstadoList;
     }
@@ -44,8 +45,7 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setHeBuscadoPostulacionProyectoCargoEstadoList(boolean heBuscadoPostulacionProyectoCargoEstadoList) {
         this.heBuscadoPostulacionProyectoCargoEstadoList = heBuscadoPostulacionProyectoCargoEstadoList;
     }
-    
-    
+
     public String getOidUniversidad() {
         return oidUniversidad;
     }
@@ -117,15 +117,15 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setImplementacionPostulacionProyectoCargo(ImplementacionPostulacionProyectoCargo implementacionPostulacionProyectoCargo) {
         this.implementacionPostulacionProyectoCargo = implementacionPostulacionProyectoCargo;
     }
-    
+
     @Override
     public List<PostulacionProyectoCargoEstado> getPostulacionProyectoCargoEstadoList() {
         List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstados;
-        if(heBuscadoPostulacionProyectoCargoEstadoList || this.esNuevo()){
+        if (heBuscadoPostulacionProyectoCargoEstadoList || this.esNuevo()) {
             postulacionProyectoCargoEstados = implementacionPostulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
-        }else{
+        } else {
             Criterio criterioBusquedaPostulacionPCE = (Criterio) FabricaCriterio.getInstancia().crear("postulacionProyectoCargo", "=", this);
-            postulacionProyectoCargoEstados = (List)FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
+            postulacionProyectoCargoEstados = (List) FachadaPersistenciaInterna.getInstancia().buscar("PostulacionProyectoCargoEstado", criterioBusquedaPostulacionPCE);
             this.setHeBuscadoPostulacionProyectoCargoEstadoList(true);
             this.implementacionPostulacionProyectoCargo.setPostulacionProyectoCargoEstadoList(postulacionProyectoCargoEstados);
         }
@@ -149,14 +149,14 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
         this.setModificado(true);
         implementacionPostulacionProyectoCargo.addPostulacionProyectoCargoEstado(postulacionProyectoCargoEstado);
     }
-    
+
     @Override
-    public Proyecto getProyecto(){
+    public Proyecto getProyecto() {
         Proyecto proyecto = null;
-        if(heBuscadoProyecto || this.esNuevo()){
+        if (heBuscadoProyecto || this.esNuevo()) {
             proyecto = implementacionPostulacionProyectoCargo.getProyecto();
-        }else{
-            System.out.println("ooooooooooooooooooooooooooooooooo"+oidProyecto);
+        } else {
+            System.out.println("ooooooooooooooooooooooooooooooooo" + oidProyecto);
             proyecto = (Proyecto) FachadaPersistenciaInterna.getInstancia().buscar("Proyecto", oidProyecto);
             this.setHeBuscadoProyecto(true);
             this.getImplementacionPostulacionProyectoCargo().setProyecto(proyecto);
@@ -168,8 +168,8 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setProyecto(Proyecto proyecto) {
         implementacionPostulacionProyectoCargo.setProyecto(proyecto);
         AgenteProyecto agenteProyecto = (AgenteProyecto) proyecto;
-        this.setModificado(true);
         this.setOidProyecto(agenteProyecto.getOid());
+        this.setModificado(true);
     }
 
     @Override
@@ -181,16 +181,16 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
     public void setUniversidad(Universidad universidad) {
         implementacionPostulacionProyectoCargo.setUniversidad(universidad);
         AgenteUniversidad agenteUniversidad = (AgenteUniversidad) universidad;
-        this.setModificado(true);
         this.setOidUniversidad(agenteUniversidad.getOid());
+        this.setModificado(true);
     }
 
     @Override
     public ProyectoCargo getProyectoCargo() {
         ProyectoCargo proyectoCargo;
-        if(heBuscadoProyectoCargo || this.esNuevo()){
+        if (heBuscadoProyectoCargo || this.esNuevo()) {
             proyectoCargo = implementacionPostulacionProyectoCargo.getProyectoCargo();
-        }else{
+        } else {
             proyectoCargo = (ProyectoCargo) FachadaPersistenciaInterna.getInstancia().buscar("ProyectoCargo", oidProyectoCargo);
             this.setHeBuscadoProyectoCargo(true);
             this.getImplementacionPostulacionProyectoCargo().setProyectoCargo(proyectoCargo);
@@ -238,5 +238,5 @@ public class AgentePostulacionProyectoCargo extends Agente implements Postulacio
         implementacionPostulacionProyectoCargo.setCantidadMateriasRegulares(cantidadMateriasRegulares);
         this.setModificado(true);
     }
-    
+
 }

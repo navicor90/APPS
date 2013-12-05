@@ -83,7 +83,17 @@ public class IntermediarioPersistenciaPostulacionProyectoCargo extends Intermedi
 
     @Override
     public String armarConsultaActualizacion(Object objUpdate) {
-        return null;
+        AgentePostulacionProyectoCargo agente = (AgentePostulacionProyectoCargo) objUpdate;
+        String sql ="UPDATE  AE.postulacionProyectoCargos SET "
+                + "prioridadPostulacionProyectoCargo='"+agente.getPrioridad()
+                +"',cantidadMateriasAprobadasEstudiantePostulacionProyectoCargo="+agente.getCantidadMateriasAprobadasEstudiante()
+                +"',cantidadMateriasRegularesPostulacionProyectoCargo="+agente.getCantidadMateriasRegulares()
+                +"',OIDPostulacion="+agente.getOidPostulacion()
+                +"',OIDProyecto="+agente.getOidProyecto()
+                +"',OIDProyectoCargo="+agente.getOidProyectoCargo()
+                +"',OIDUniversidad="+agente.getOidUniversidad()
+                +" WHERE OIDPostulacionProyectoCargo = '"+agente.getOid();
+        return sql;
     }
 
     @Override
