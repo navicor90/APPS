@@ -66,7 +66,7 @@ public class ExpertoAsignarPrioridadPostulacion {
         Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
         List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
         for (Postulacion postulacion : postulacionesList) {
-            
+
             Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
             List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
             if (!contratoList.isEmpty()) {
@@ -125,7 +125,17 @@ public class ExpertoAsignarPrioridadPostulacion {
                     }
                 }
             }
-
+        }
+        for (int i = 0; i < postulacionProyectoCargosDTOList.size(); i++) {
+            DTOPostulacionProyectoCargo postProyCargoDTO = postulacionProyectoCargosDTOList.get(i);
+            for (PostulacionProyectoCargo postulacionProyectoCargoHabilitada : postulacionProyectoCargoHabilitadas) {
+                if(postProyCargoDTO.getNroProyecto() ==postulacionProyectoCargoHabilitada.getProyecto().getCodigo()){
+                    if(postProyCargoDTO.getNroProyectoCargo() == postulacionProyectoCargoHabilitada.getProyectoCargo().getNroProyectoCargo()){
+                        postulacionProyectoCargoHabilitada.setPrioridad(i);
+                        FachadaPersistencia.obtenerInstancia().guardar("PostulacionProyectoCargo", postulacionProyectoCargoHabilitada);
+                    }
+                }
+            }
         }
 
         return null;
