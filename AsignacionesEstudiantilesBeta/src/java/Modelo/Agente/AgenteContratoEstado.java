@@ -47,9 +47,7 @@ public class AgenteContratoEstado extends Agente implements ContratoEstado{
         if (heBuscadoTipoEstadoContrato || this.esNuevo()){
             tipoEstadoContrato = implementacionContratoEstado.getTipoEstadoContrato();
         }else{
-            Criterio criterioBusquedaTipoEstadoContrato = (Criterio) FabricaCriterio.getInstancia().crear("Criterio", "=", this);
-            List<TipoEstadoContrato> tipoEstadoContratoList = (List)FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoContrato", criterioBusquedaTipoEstadoContrato);
-            tipoEstadoContrato = tipoEstadoContratoList.get(0);
+            tipoEstadoContrato = (TipoEstadoContrato) FachadaPersistenciaInterna.getInstancia().buscar("TipoEstadoContrato", getOidTipoEstadoContrato());
             this.setHeBuscadoTipoEstadoContrato(true);
             this.implementacionContratoEstado.setTipoEstadoContrato(tipoEstadoContrato);
         }

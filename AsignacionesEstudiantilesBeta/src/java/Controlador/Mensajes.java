@@ -19,6 +19,7 @@ public class Mensajes {
     public static final String NO_REGULAR="No se encuentra regular, porfavor, verifique su estado en la Universidad";
     public static final String ESTUDIANTE_INACTIVO="Lo siento, este legajo se encuentra inactivo, contacte al administrador";
     public static final String UNIVERSIDAD_INACTIVA="Lo siento, la universidad actualmente se encuentra inactiva, contacte al administrador";
-    public static final String ERROR_POSEE_CONTRATO_VIGENTE="Usted no puede asignar prioridades ya que ya ha sido seleccionado en un proyecto";        
+    public static final String ERROR_POSEE_CONTRATO_VIGENTE="Lo siento, Usted tiene un contrato vigente, por lo tanto no se puede registrar a mas postulaciones";        
     public static final String NO_SE_ENCUENTRA_EN_EL_SISTEMA_ACADEMICO_SIGUIENTE = "Disculpe, no lo encontramos en el sistema academico de la ";
+    public static final String NO_SE_INSCRIBIO_A_NINGUN_CARGO = "No se registraron Postulaciones";
 }

@@ -60,7 +60,7 @@ public class ExpertoRegistrarPostulacion {
                     List<ContratoEstado> contratoEstadoList = (List) contrato.getContratoEstadoList();
                     ContratoEstado ultimoContratoEstado = getUltimoContratoEstado(contratoEstadoList);
                     TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
-                    if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
+                    if (estadoContrato.getNombreEstadoContrato().contentEquals("Vigente")) {
                         throw new ExceptionAPPS(Mensajes.ERROR_POSEE_CONTRATO_VIGENTE);
                     }
                 }
@@ -118,7 +118,10 @@ public class ExpertoRegistrarPostulacion {
         return proyectoCargosDTOList;
     }
 
-    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) {
+    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTOList) throws ExceptionAPPS {
+        if(postulacionesProyectoCargoDTOList.isEmpty() || postulacionesProyectoCargoDTOList==null){
+            throw new ExceptionAPPS(Mensajes.NO_SE_INSCRIBIO_A_NINGUN_CARGO);
+        }
         Postulacion postulacion = (Postulacion) FabricaEntidades.getInstancia().crearEntidad(Postulacion.class);
         postulacion.setFechaHoraPostulacion(new Date());
         //Asignar el numero de postulacion

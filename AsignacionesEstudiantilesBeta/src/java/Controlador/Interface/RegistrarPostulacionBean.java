@@ -36,12 +36,10 @@ public class RegistrarPostulacionBean {
     private DTOProyecto proyectoActual;
     private String erroresMensajes;
     private UserBean user;
-    private boolean hayErrores;
 
     public RegistrarPostulacionBean() {
         controlador = new ControladorRegistrarPostulacion();
-        postulacionesDTO = new ArrayList<>();        
-        hayErrores = false;
+        postulacionesDTO = new ArrayList<>();
 
     }
 
@@ -88,11 +86,17 @@ public class RegistrarPostulacionBean {
     }
 
     public void terminarPostulacion() {
+        String pageToRedirect = "terminarPostulacion.xhtml";
         try {
-            postulacionesDTO = controlador.realizarPostulacion(postulacionesDTO);
+            try {
+                postulacionesDTO = controlador.realizarPostulacion(postulacionesDTO);
+            } catch (ExceptionAPPS ex) {
+                erroresMensajes = ex.getMessage();
+                pageToRedirect = "mostrarMensajesRegistrarPostulacion.xhtml";
+            }
             ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
             String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
-            ctx.redirect(ctxPath + "/faces/terminarPostulacion.xhtml");
+            ctx.redirect(ctxPath + "/faces/"+pageToRedirect);
         } catch (IOException ex) {
             Logger.getLogger(RegistrarPostulacionBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,25 +119,19 @@ public class RegistrarPostulacionBean {
         }
     }
 
-    public String validateRedirect(UserBean user){
+    public String validateRedirect(UserBean user) {
         this.user = user;
-        String pageToRedirect;
+        String pageToRedirect = "seleccionarProyecto.xhtml?faces-redirect=true";
         HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String URL = origRequest.getRequestURI();
         proyectosList = null;
         try {
             proyectosList = controlador.listarProyectos(user.getLegajo(), URL);
         } catch (ExceptionAPPS ex) {
-            hayErrores = true;
             erroresMensajes = ex.getMessage();
-            
-        }
-        if (hayErrores) {
             pageToRedirect = "mostrarMensajesRegistrarPostulacion.xhtml?faces-redirect=true";
-        } else {
-            pageToRedirect = "seleccionarProyecto.xhtml?faces-redirect=true";
+
         }
-        hayErrores=false;
         return pageToRedirect;
     }
 
@@ -147,15 +145,6 @@ public class RegistrarPostulacionBean {
 
     public List<DTOProyecto> getListaProyecto() {
         return proyectosList;
-    }
-
-
-    public boolean isHayErrores() {
-        return hayErrores;
-    }
-
-    public void setHayErrores(boolean hayErrores) {
-        this.hayErrores = hayErrores;
     }
 
 }

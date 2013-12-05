@@ -36,7 +36,7 @@ public class ControladorRegistrarPostulacion {
         return experto.listarProyectoCargos(codigoProyecto);
     }
 
-    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) {
+    public List<DTOPostulacionProyectoCargo> realizarPostulacion(List<DTOPostulacionProyectoCargo> postulacionesDTO) throws ExceptionAPPS {
         return experto.realizarPostulacion(postulacionesDTO);
     }
 
