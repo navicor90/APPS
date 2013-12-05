@@ -119,9 +119,10 @@ public class RegistrarPostulacionBean {
         } catch (ExceptionAPPS ex) {
             hayErrores = true;
             erroresMensajes.add(ex.getMessage());
+            
         }
         if (hayErrores) {
-            pageToRedirect = "MostrarMensajes.xhtml?faces-redirect=true";
+            pageToRedirect = "mostrarMensajesAsignarPrioridades.xhtml?faces-redirect=true";
         } else {
             pageToRedirect = "seleccionarProyecto.xhtml?faces-redirect=true";
         }

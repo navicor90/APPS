@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controlador.Interface;
 
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -16,7 +16,10 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class UserBean {
+
     String legajo;
+    private List<String> erroresMensajes;
+
     /**
      * Creates a new instance of UserBean
      */
@@ -30,5 +33,5 @@ public class UserBean {
     public void setLegajo(String legajo) {
         this.legajo = legajo;
     }
-    
+
 }

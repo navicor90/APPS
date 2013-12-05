@@ -60,57 +60,53 @@ public class ExpertoAsignarPrioridadPostulacion {
             }
         }
         List<DTOPostulacionProyectoCargo> dtoPostulacionProyectoCargoListArmada = new ArrayList<>();
-        if (esRegular) {
-            Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
-            List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
-            for (Postulacion postulacion : postulacionesList) {
-                Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
-                List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
-                if (!contratoList.isEmpty()) {
-                    for (Contrato contrato : contratoList) {
-                        if (contrato != null) {
-                            List<ContratoEstado> contratoEstadoList = (List) contrato.getContratoEstadoList();
-                            ContratoEstado ultimoContratoEstado = getUltimoContratoEstado(contratoEstadoList);
-                            TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
-                            if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
-                                throw new ExceptionAPPS(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
-                            }
-                        }
-                    }
-                }
-                List<PostulacionProyectoCargo> postulacionProyectoCargoList = (List) postulacion.getPostulacionProyectoCargosList();
-                for (PostulacionProyectoCargo postulacionProyectoCargo : postulacionProyectoCargoList) {
-                    List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList = (List) postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
-                    PostulacionProyectoCargoEstado ultimoPostulacionProyectoCargoEstado = getUltimoEstadoPostulacionProyectoCargoEstado(postulacionProyectoCargoEstadoList);
-                    if (ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado().contentEquals("Efectiva")) {
-                        //verifico que el proyecto que ofrece el cargo para el cual se postulo este vigente o activo
-                        ProyectoCargo proyectoCargo = postulacionProyectoCargo.getProyectoCargo();
-                        Proyecto proyecto = postulacionProyectoCargo.getProyecto();
-                        List<ProyectoEstado> proyectoEstadoList = proyecto.getProyectoEstado();
-                        //busco el ultimo estado del proyecto
-                        ProyectoEstado ultimoProyectoEstado = getUltimoEstadoProyectoEstado(proyectoEstadoList);
-                        System.out.println("estado del ultimo Proyecto"+ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto());
-                        if (ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
-                            System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwttttttttttaaaaaaaaadddddddfack");
-                            String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
-                            String nomProyecto = proyecto.getNombreProyecto();
-                            int nroProyecto = proyecto.getCodigo();
-                            int nroProyectoCargo = proyectoCargo.getNroProyectoCargo();
-                            int prioridad = postulacionProyectoCargo.getPrioridad();
-                            DTOPostulacionProyectoCargo dtoPostulacionProyectoCargo = new DTOPostulacionProyectoCargo();
-                            dtoPostulacionProyectoCargo.setNroProyecto(nroProyecto);
-                            dtoPostulacionProyectoCargo.setPrioridad(prioridad);
-                            dtoPostulacionProyectoCargo.setNomProyecto(nomProyecto);
-                            dtoPostulacionProyectoCargo.setNroProyectoCargo(nroProyectoCargo);
-                            dtoPostulacionProyectoCargo.setNomProyectoCargo(nomProyectoCargo);
-                            dtoPostulacionProyectoCargoListArmada.add(dtoPostulacionProyectoCargo);
-                        }
+        if (!esRegular) {
+            throw new ExceptionAPPS(Mensajes.NO_REGULAR);
+        }
+        Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
+        List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
+        for (Postulacion postulacion : postulacionesList) {
+            Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
+            List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
+            if (!contratoList.isEmpty()) {
+                for (Contrato contrato : contratoList) {
+                    List<ContratoEstado> contratoEstadoList = (List) contrato.getContratoEstadoList();
+                    ContratoEstado ultimoContratoEstado = getUltimoContratoEstado(contratoEstadoList);
+                    TipoEstadoContrato estadoContrato = ultimoContratoEstado.getTipoEstadoContrato();
+                    if (estadoContrato.getNombreEstadoContrato().contentEquals("vigente")) {
+                        throw new ExceptionAPPS(Mensajes.ASIGNARPRIORIDAD_ERROR_POSEE_CONTRATO_VIGENTE);
                     }
                 }
             }
-        } else {
-            throw new ExceptionAPPS(Mensajes.NO_REGULAR);
+            List<PostulacionProyectoCargo> postulacionProyectoCargoList = (List) postulacion.getPostulacionProyectoCargosList();
+            for (PostulacionProyectoCargo postulacionProyectoCargo : postulacionProyectoCargoList) {
+                List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList = (List) postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
+                PostulacionProyectoCargoEstado ultimoPostulacionProyectoCargoEstado = getUltimoEstadoPostulacionProyectoCargoEstado(postulacionProyectoCargoEstadoList);
+                if (ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado().contentEquals("Efectiva")) {
+                    //verifico que el proyecto que ofrece el cargo para el cual se postulo este vigente o activo
+                    ProyectoCargo proyectoCargo = postulacionProyectoCargo.getProyectoCargo();
+                    Proyecto proyecto = postulacionProyectoCargo.getProyecto();
+                    List<ProyectoEstado> proyectoEstadoList = proyecto.getProyectoEstado();
+                    //busco el ultimo estado del proyecto
+                    ProyectoEstado ultimoProyectoEstado = getUltimoEstadoProyectoEstado(proyectoEstadoList);
+                    if (ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
+                        String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
+                        String nomProyecto = proyecto.getNombreProyecto();
+                        int nroProyecto = proyecto.getCodigo();
+                        int nroProyectoCargo = proyectoCargo.getNroProyectoCargo();
+                        int prioridad = postulacionProyectoCargo.getPrioridad();
+                        DTOPostulacionProyectoCargo dtoPostulacionProyectoCargo = new DTOPostulacionProyectoCargo();
+                        dtoPostulacionProyectoCargo.setNroProyecto(nroProyecto);
+                        dtoPostulacionProyectoCargo.setPrioridad(prioridad);
+                        dtoPostulacionProyectoCargo.setNomProyecto(nomProyecto);
+                        dtoPostulacionProyectoCargo.setNroProyectoCargo(nroProyectoCargo);
+                        dtoPostulacionProyectoCargo.setNomProyectoCargo(nomProyectoCargo);
+                        dtoPostulacionProyectoCargoListArmada.add(dtoPostulacionProyectoCargo);
+                    }
+                }
+            }
         }
+
         return dtoPostulacionProyectoCargoListArmada;
     }
 
@@ -140,16 +136,18 @@ public class ExpertoAsignarPrioridadPostulacion {
         }
         return ppceUltimo;
     }
-    private ContratoEstado getUltimoContratoEstado(List<ContratoEstado> contratoEstadosList){
+
+    private ContratoEstado getUltimoContratoEstado(List<ContratoEstado> contratoEstadosList) {
         ContratoEstado contratoEstadoUltimo = contratoEstadosList.get(0);
         for (int i = 1; i < contratoEstadosList.size(); i++) {
             ContratoEstado ce = contratoEstadosList.get(i);
-            if(ce.getFechaHoraCambioEstado().before(contratoEstadoUltimo.getFechaHoraCambioEstado())){
+            if (ce.getFechaHoraCambioEstado().before(contratoEstadoUltimo.getFechaHoraCambioEstado())) {
                 contratoEstadoUltimo = ce;
             }
         }
         return contratoEstadoUltimo;
     }
+
     private ProyectoEstado getUltimoEstadoProyectoEstado(List<ProyectoEstado> proyectoEstados) {
         ProyectoEstado peUltimo = proyectoEstados.get(0);
         for (int i = 1; i < proyectoEstados.size(); i++) {
