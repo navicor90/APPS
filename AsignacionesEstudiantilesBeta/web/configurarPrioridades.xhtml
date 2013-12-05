@@ -21,7 +21,7 @@
                         #{ppcDTO.prioridad} -#{ppcDTO.nomProyecto} - #{ppcDTO.nomProyectoCargo}  
                     </p:column>
                 </p:orderList>  
-                <p:commandButton id="volverInicio" value="Cancelar" action="index.xhtml?faces-redirect=true" style="float: left"/>
+                <p:commandButton id="cancelar" value="Cancelar" action="#{asignarPrioridadesBean.cancelarConfigurarPrioridades()}" style="float: left"/>
                 <p:commandButton value="Submit" action="#{asignarPrioridadesBean.guardarCambios()}" styleClass="OrdenarButtonSubmit" id="btnPlayerSubmit"/>  
             </h:form>  
         </div>

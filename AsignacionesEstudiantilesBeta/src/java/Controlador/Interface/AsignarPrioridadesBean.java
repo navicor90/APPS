@@ -8,12 +8,16 @@ package Controlador.Interface;
 import Controlador.ControladorAsignarPrioridadPostulacion;
 import Controlador.ExceptionAPPS;
 import Modelo.DTO.DTOPostulacionProyectoCargo;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,7 +51,6 @@ public class AsignarPrioridadesBean {
         this.hayErrores = hayErrores;
     }
 
-
     private boolean hayErrores;
 
     public AsignarPrioridadesBean() {
@@ -57,7 +60,9 @@ public class AsignarPrioridadesBean {
     }
 
     public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
-        if(postulacionesProyectoCargoDTO==null)postulacionesProyectoCargoDTO=new ArrayList<>();
+        if (postulacionesProyectoCargoDTO == null) {
+            postulacionesProyectoCargoDTO = new ArrayList<>();
+        }
         return postulacionesProyectoCargoDTO;
     }
 
@@ -71,7 +76,7 @@ public class AsignarPrioridadesBean {
             PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesProyectoCargoDTO);
         } catch (ExceptionAPPS ex) {
             hayErrores = true;
-            erroresMensajes =ex.getMessage();
+            erroresMensajes = ex.getMessage();
         }
         if (hayErrores) {
             pageToRedirect = "mostrarMensajesAsignarPrioridades.xhtml?faces-redirect=true";
@@ -88,7 +93,32 @@ public class AsignarPrioridadesBean {
 
     public String guardarCambios() {
         controlador.asignarPrioridades(postulacionesProyectoCargoDTO);
+        ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
+        String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+        try {
+            ((HttpSession) ctx.getSession(false)).invalidate();
+            ctx.redirect(ctxPath + "/faces/index.xhtml");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         return "index.xhtml";
+    }
+     
+    public void cancelarConfigurarPrioridades() {
+        ExternalContext ctx = FacesContext.getCurrentInstance().getExternalContext();
+        String ctxPath = ((ServletContext) ctx.getContext()).getContextPath();
+        try {
+            // Usar el contexto de JSF para invalidar la sesión,
+            // NO EL DE SERVLETS (nada de HttpServletRequest)
+            ((HttpSession) ctx.getSession(false)).invalidate();
+            // Redirección de nuevo con el contexto de JSF,
+            // si se usa una HttpServletResponse fallará.
+            // Sin embargo, como ya está fuera del ciclo de vida 
+            // de JSF se debe usar la ruta completa -_-U
+            ctx.redirect(ctxPath + "/faces/index.xhtml");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
