@@ -68,9 +68,7 @@ public class ExpertoRegistrarPostulacion {
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
-        System.out.println(estadoAcademicoGeneralList.size()+"---------------------------------");
         if(estadoAcademicoGeneralList.isEmpty() || estadoAcademicoGeneralList == null){
-            System.out.println("gooooooooooooooooooooooooooooooool");
             throw new ExceptionAPPS(Mensajes.NO_SE_ENCUENTRA_EN_EL_SISTEMA_ACADEMICO_SIGUIENTE+estadoAcademico.getCarrera().getUniversdad().getNombreUniversidad());
         }
         Boolean esRegular = false;

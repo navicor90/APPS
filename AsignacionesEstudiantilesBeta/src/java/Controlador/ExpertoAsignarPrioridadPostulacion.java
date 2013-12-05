@@ -51,6 +51,9 @@ public class ExpertoAsignarPrioridadPostulacion {
         }
         AdaptadorSistemaAcademico adaptadorSA = FabricaAdaptadorSistemaAcademico.getInstancia().obtenerAdaptadorSistemaAcademico(codUniversidad);
         List<DTOEstadoAcademicoGeneral> estadoAcademicoGeneralList = adaptadorSA.obtenerEstadoAcademicoGeneral(estudiante.getTipoDni(), estudiante.getDni());
+        if (estadoAcademicoGeneralList.isEmpty() || estadoAcademicoGeneralList == null) {
+            throw new ExceptionAPPS(Mensajes.NO_SE_ENCUENTRA_EN_EL_SISTEMA_ACADEMICO_SIGUIENTE + estadoAcademico.getCarrera().getUniversdad().getNombreUniversidad());
+        }
         Boolean esRegular = false;
         for (DTOEstadoAcademicoGeneral estadoAcademicoGeneral : estadoAcademicoGeneralList) {
             if (estadoAcademico.getCarrera().getNombreCarrera().contentEquals(estadoAcademicoGeneral.getNombreCarrera())) {
@@ -66,7 +69,6 @@ public class ExpertoAsignarPrioridadPostulacion {
         Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
         List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
         for (Postulacion postulacion : postulacionesList) {
-
             Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
             List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
             if (!contratoList.isEmpty()) {
@@ -168,13 +170,13 @@ public class ExpertoAsignarPrioridadPostulacion {
 
     private List<DTOPostulacionProyectoCargo> ordenarListaDTOPostulacionProyectoCargo_Prioridad(List<DTOPostulacionProyectoCargo> dtoList) {
         List<DTOPostulacionProyectoCargo> dtosOrdenados = new ArrayList<>();
-        if(dtoList.isEmpty()){
+        if (dtoList.isEmpty()) {
             return dtosOrdenados;
         }
         DTOPostulacionProyectoCargo dtoMenor = dtoList.get(0);
         for (int i = 0; i < dtoList.size(); i++) {
             DTOPostulacionProyectoCargo dtoi = dtoList.get(i);
-            if(dtoi.getPrioridad() < dtoMenor.getPrioridad()){
+            if (dtoi.getPrioridad() < dtoMenor.getPrioridad()) {
                 dtoMenor = dtoi;
             }
         }
