@@ -66,6 +66,7 @@ public class ExpertoAsignarPrioridadPostulacion {
         Expresion criterioBusquedaPostulaciones = FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
         List<Postulacion> postulacionesList = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulaciones);
         for (Postulacion postulacion : postulacionesList) {
+            
             Expresion criterioBusquedaContrato = FabricaCriterio.getInstancia().crear("postulacion", "=", postulacion);
             List<Contrato> contratoList = (List) FachadaPersistencia.obtenerInstancia().buscar("Contrato", criterioBusquedaContrato);
             if (!contratoList.isEmpty()) {
@@ -83,11 +84,9 @@ public class ExpertoAsignarPrioridadPostulacion {
                 List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList = (List) postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
                 PostulacionProyectoCargoEstado ultimoPostulacionProyectoCargoEstado = getUltimoEstadoPostulacionProyectoCargoEstado(postulacionProyectoCargoEstadoList);
                 if (ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado().contentEquals("Efectiva")) {
-                    //verifico que el proyecto que ofrece el cargo para el cual se postulo este vigente o activo
                     ProyectoCargo proyectoCargo = postulacionProyectoCargo.getProyectoCargo();
                     Proyecto proyecto = postulacionProyectoCargo.getProyecto();
                     List<ProyectoEstado> proyectoEstadoList = proyecto.getProyectoEstado();
-                    //busco el ultimo estado del proyecto
                     ProyectoEstado ultimoProyectoEstado = getUltimoEstadoProyectoEstado(proyectoEstadoList);
                     if (ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
                         String nomProyectoCargo = proyectoCargo.getTipoCargo().getNomTipoCargo();
@@ -113,12 +112,18 @@ public class ExpertoAsignarPrioridadPostulacion {
     public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList) {
         Criterio criterioBusquedaPostulacionesHabilitadas = (Criterio) FabricaCriterio.getInstancia().crear("estudiante", "=", estudiante);
         List<Postulacion> postulaciones = (List) FachadaPersistencia.obtenerInstancia().buscar("Postulacion", criterioBusquedaPostulacionesHabilitadas);
-        List<Postulacion> postulacionesHabilitadas = new ArrayList<>();
+        List<PostulacionProyectoCargo> postulacionProyectoCargoHabilitadas = new ArrayList<>();
         for (Postulacion postulacion : postulaciones) {
             for (PostulacionProyectoCargo postulacionProyectoCargo : postulacion.getPostulacionProyectoCargosList()) {
-                //if (postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList()) {
-
-                //}
+                List<PostulacionProyectoCargoEstado> postulacionProyectoCargoEstadoList = (List) postulacionProyectoCargo.getPostulacionProyectoCargoEstadoList();
+                PostulacionProyectoCargoEstado ultimoPostulacionProyectoCargoEstado = getUltimoEstadoPostulacionProyectoCargoEstado(postulacionProyectoCargoEstadoList);
+                if (ultimoPostulacionProyectoCargoEstado.getTipoEstadoPostulacionProyectoCargo().getNombreEstado().contentEquals("Efectiva")) {
+                    List<ProyectoEstado> proyectoEstadoList = postulacionProyectoCargo.getProyecto().getProyectoEstado();
+                    ProyectoEstado ultimoProyectoEstado = getUltimoEstadoProyectoEstado(proyectoEstadoList);
+                    if (ultimoProyectoEstado.getTipoEstadoProyecto().getNombreTipoEstadoProyecto().contentEquals("Vigente")) {
+                        postulacionProyectoCargoHabilitadas.add(postulacionProyectoCargo);
+                    }
+                }
             }
 
         }

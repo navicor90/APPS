@@ -10,11 +10,7 @@
     </h:head>
     <h:body>
         <h1>Se produjo el siguiente error</h1>
-        <h:dataTable value="#{asignarPrioridadesBean.erroresMensajes}" var="mensaje">
-            <h:column>
-                <h2 style="color: red">#{mensaje.toString()}</h2>
-            </h:column>
-        </h:dataTable>
+        <h2 style="color: red">#{asignarPrioridadesBean.erroresMensajes}</h2>
         <h:form>
             <p:commandButton value="Volver al Inicio" action="index.xhtml?faces-redirect=true" />
         </h:form>

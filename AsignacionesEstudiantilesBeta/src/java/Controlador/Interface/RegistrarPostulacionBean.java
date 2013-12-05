@@ -34,7 +34,7 @@ public class RegistrarPostulacionBean {
     private List<DTOPostulacionProyectoCargo> postulacionesDTO;
     private List<DTOProyectoCargo> proyectoCargosList;
     private DTOProyecto proyectoActual;
-    private List<String> erroresMensajes;
+    private String erroresMensajes;
     private UserBean user;
     private boolean hayErrores;
 
@@ -43,6 +43,14 @@ public class RegistrarPostulacionBean {
         postulacionesDTO = new ArrayList<>();        
         hayErrores = false;
 
+    }
+
+    public String getErroresMensajes() {
+        return erroresMensajes;
+    }
+
+    public void setErroresMensajes(String erroresMensajes) {
+        this.erroresMensajes = erroresMensajes;
     }
 
     public String agregarProyectosCargo() {
@@ -109,7 +117,6 @@ public class RegistrarPostulacionBean {
 
     public String validateRedirect(UserBean user){
         this.user = user;
-        erroresMensajes= new ArrayList();
         String pageToRedirect;
         HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String URL = origRequest.getRequestURI();
@@ -118,7 +125,7 @@ public class RegistrarPostulacionBean {
             proyectosList = controlador.listarProyectos(user.getLegajo(), URL);
         } catch (ExceptionAPPS ex) {
             hayErrores = true;
-            erroresMensajes.add(ex.getMessage());
+            erroresMensajes = ex.getMessage();
             
         }
         if (hayErrores) {
@@ -142,14 +149,6 @@ public class RegistrarPostulacionBean {
         return proyectosList;
     }
 
-    public List<String> getErroresMensajes() {
-        return erroresMensajes;
-        
-    }
-
-    public void setErroresMensajes(List<String> erroresMensajes) {
-        this.erroresMensajes = erroresMensajes;
-    }
 
     public boolean isHayErrores() {
         return hayErrores;

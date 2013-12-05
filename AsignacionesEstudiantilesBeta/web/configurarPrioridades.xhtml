@@ -18,7 +18,7 @@
                              itemValue="#{ppcDTO}" converter="postulacionProyectoCargoC" id="customList" styleClass="PostulacionesProyectoCargoOrderList">  
                     <f:facet name="caption">Disponibles</f:facet>  
                     <p:column>
-                        #{ppcDTO.nomProyecto} - #{ppcDTO.prioridad}  
+                        #{ppcDTO.nomProyecto} - #{ppcDTO.nomProyectoCargo}  
                     </p:column>
                 </p:orderList>  
                 <p:commandButton id="volverInicio" value="Cancelar" action="index.xhtml?faces-redirect=true" style="float: left"/>

@@ -29,22 +29,31 @@ public class AsignarPrioridadesBean {
     private List<DTOPostulacionProyectoCargo> postulacionesProyectoCargoDTO;
     private Controlador.ControladorAsignarPrioridadPostulacion controlador;
     private UserBean user;
-    private List<String> erroresMensajes;
+    private String erroresMensajes;
 
-    public List<String> getErroresMensajes() {
+    public String getErroresMensajes() {
         return erroresMensajes;
     }
 
-    public void setErroresMensajes(List<String> erroresMensajes) {
+    public void setErroresMensajes(String erroresMensajes) {
         this.erroresMensajes = erroresMensajes;
     }
+
+    public boolean isHayErrores() {
+        return hayErrores;
+    }
+
+    public void setHayErrores(boolean hayErrores) {
+        this.hayErrores = hayErrores;
+    }
+
+
     private boolean hayErrores;
 
     public AsignarPrioridadesBean() {
         controlador = new ControladorAsignarPrioridadPostulacion();
         hayErrores = false;
         postulacionesProyectoCargoDTO = new ArrayList<>();
-        erroresMensajes = new ArrayList<>();
     }
 
     public List<DTOPostulacionProyectoCargo> getPostulacionesProyectoCargoDTO() {
@@ -54,7 +63,6 @@ public class AsignarPrioridadesBean {
 
     public String redirect(UserBean user) {
         this.user = user;
-        erroresMensajes = new ArrayList<>();
         HttpServletRequest origRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String URL = origRequest.getRequestURI();
         String pageToRedirect;
@@ -63,7 +71,7 @@ public class AsignarPrioridadesBean {
             PostulacionProyectoCargoConverter.setPostulacionesDTO(postulacionesProyectoCargoDTO);
         } catch (ExceptionAPPS ex) {
             hayErrores = true;
-            erroresMensajes.add(ex.getMessage());
+            erroresMensajes =ex.getMessage();
         }
         if (hayErrores) {
             pageToRedirect = "mostrarMensajesAsignarPrioridades.xhtml?faces-redirect=true";
