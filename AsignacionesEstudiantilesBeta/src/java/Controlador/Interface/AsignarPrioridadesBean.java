@@ -87,6 +87,7 @@ public class AsignarPrioridadesBean {
     }
 
     public String guardarCambios() {
+        controlador.asignarPrioridades(postulacionesProyectoCargoDTO);
         return "index.xhtml";
     }
 

@@ -105,8 +105,8 @@ public class ExpertoAsignarPrioridadPostulacion {
                 }
             }
         }
-
-        return dtoPostulacionProyectoCargoListArmada;
+        List<DTOPostulacionProyectoCargo> dtosOrdenados = this.ordenarListaDTOPostulacionProyectoCargo_Prioridad(dtoPostulacionProyectoCargoListArmada);
+        return dtosOrdenados;
     }
 
     public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList) {
@@ -129,8 +129,8 @@ public class ExpertoAsignarPrioridadPostulacion {
         for (int i = 0; i < postulacionProyectoCargosDTOList.size(); i++) {
             DTOPostulacionProyectoCargo postProyCargoDTO = postulacionProyectoCargosDTOList.get(i);
             for (PostulacionProyectoCargo postulacionProyectoCargoHabilitada : postulacionProyectoCargoHabilitadas) {
-                if(postProyCargoDTO.getNroProyecto() ==postulacionProyectoCargoHabilitada.getProyecto().getCodigo()){
-                    if(postProyCargoDTO.getNroProyectoCargo() == postulacionProyectoCargoHabilitada.getProyectoCargo().getNroProyectoCargo()){
+                if (postProyCargoDTO.getNroProyecto() == postulacionProyectoCargoHabilitada.getProyecto().getCodigo()) {
+                    if (postProyCargoDTO.getNroProyectoCargo() == postulacionProyectoCargoHabilitada.getProyectoCargo().getNroProyectoCargo()) {
                         postulacionProyectoCargoHabilitada.setPrioridad(i);
                         FachadaPersistencia.obtenerInstancia().guardar("PostulacionProyectoCargo", postulacionProyectoCargoHabilitada);
                     }
@@ -161,6 +161,26 @@ public class ExpertoAsignarPrioridadPostulacion {
             }
         }
         return contratoEstadoUltimo;
+    }
+
+    private List<DTOPostulacionProyectoCargo> ordenarListaDTOPostulacionProyectoCargo_Prioridad(List<DTOPostulacionProyectoCargo> dtoList) {
+        List<DTOPostulacionProyectoCargo> dtosOrdenados = new ArrayList<>();
+        if(dtoList.isEmpty()){
+            return dtosOrdenados;
+        }
+        DTOPostulacionProyectoCargo dtoMenor = dtoList.get(0);
+        for (int i = 0; i < dtoList.size(); i++) {
+            DTOPostulacionProyectoCargo dtoi = dtoList.get(i);
+            if(dtoi.getPrioridad() < dtoMenor.getPrioridad()){
+                dtoMenor = dtoi;
+            }
+        }
+        dtosOrdenados.add(dtoMenor);
+        dtoList.remove(dtoMenor);
+        for (DTOPostulacionProyectoCargo dTOPostulacionProyectoCargo : this.ordenarListaDTOPostulacionProyectoCargo_Prioridad(dtoList)) {
+            dtosOrdenados.add(dTOPostulacionProyectoCargo);
+        }
+        return dtosOrdenados;
     }
 
     private ProyectoEstado getUltimoEstadoProyectoEstado(List<ProyectoEstado> proyectoEstados) {

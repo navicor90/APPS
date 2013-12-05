@@ -19,9 +19,9 @@ public class ControladorAsignarPrioridadPostulacion {
     ExpertoAsignarPrioridadPostulacion experto;
 
     public ControladorAsignarPrioridadPostulacion() {
-        experto  = (ExpertoAsignarPrioridadPostulacion) FabricaExperto.getInstancia().obtenerExperto("AsignarPrioridadPostulacion");
+        experto = (ExpertoAsignarPrioridadPostulacion) FabricaExperto.getInstancia().obtenerExperto("AsignarPrioridadPostulacion");
     }
-    
+
     public List<DTOPostulacionProyectoCargo> listarPostulaciones(String legajo, String url) throws ExceptionAPPS {
         int codigo = 0;
         if (url.contains("AsignacionesEstudiantilesBeta")) {
@@ -30,8 +30,8 @@ public class ControladorAsignarPrioridadPostulacion {
         return experto.listarPostulaciones(legajo, codigo);
     }
 
-    /* public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList){
-     return experto.asignarPrioridades(postulacionProyectoCargosDTOList);
-     }
-     */
+    public List<DTOPostulacionProyectoCargo> asignarPrioridades(List<DTOPostulacionProyectoCargo> postulacionProyectoCargosDTOList) {
+        return experto.asignarPrioridades(postulacionProyectoCargosDTOList);
+    }
+
 }
